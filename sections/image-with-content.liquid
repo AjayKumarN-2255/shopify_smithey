@@ -1,0 +1,127 @@
+{{ 'image-with-content.css' | asset_url | stylesheet_tag }}
+<section
+  class="image-with-content"
+  style="background-color: {{ section.settings.background_color }};"
+>
+  <div class="image-with-content__wrapper image-with-content__wrapper--{{ section.settings.image_position }}">
+    {% if section.settings.image != blank %}
+      <div class="image-with-content__media">
+        {{
+          section.settings.image
+          | image_url: width: 1200
+          | image_tag: loading: 'lazy', class: 'image-with-content__image'
+        }}
+      </div>
+    {% endif %}
+
+    <div class="image-with-content__content">
+      {% if section.settings.eyebrow != blank %}
+        <p class="image-with-content__eyebrow">
+          {{ section.settings.eyebrow }}
+        </p>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <div class="image-with-content__heading">
+          {{ section.settings.heading }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+        <div class="image-with-content__description">
+          {{ section.settings.description }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.content != blank %}
+        <div class="image-with-content__text">
+          {{ section.settings.content }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.button_label != blank %}
+        <a
+          href="{{ section.settings.button_link }}"
+          class="image-with-content__button"
+        >
+          {{ section.settings.button_label }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Image with Content",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image Position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#0b2424"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "US MADE COOKWARE"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<h2>COOK WITH CONFIDENCE,<br>NOT CHEMICALS.</h2>"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Smithey is 100% free of PFAS, pre-seasoned only with pure grapeseed oil.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content",
+      "default": "<p>We believe your cookware shouldn't come with a list of questionable chemicals. No synthetic coatings that flake or break down. No compromises. Just cookware that gets better with every meal and lasts generations.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "LEARN MORE"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image with Content"
+    }
+  ]
+}
+{% endschema %}

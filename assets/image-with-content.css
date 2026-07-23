@@ -1,0 +1,132 @@
+.image-with-content__wrapper--left {
+  flex-direction: row;
+}
+
+.image-with-content__wrapper--right {
+  flex-direction: row-reverse;
+}
+
+.image-with-content__media {
+  display: none;
+}
+
+.image-with-content__wrapper {
+  display: flex;
+}
+
+.image-with-content__content {
+  padding: 30px;
+}
+
+.image-with-content__eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.1px;
+  line-height: 1.4;
+  text-transform: uppercase;
+  margin: 0 0 16px;
+  color: #f5f1e8;
+}
+
+.image-with-content__heading {
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  margin: 0 0 1.2rem;
+  color: #f5f1e8;
+  max-width: 20rem;
+}
+
+.image-with-content__description {
+  font-size: 1.25rem;
+  font-weight: 325;
+  margin: 0 0 1.2rem;
+  color: #f5f1e8;
+  opacity: 0.9;
+}
+
+.image-with-content__text {
+  font-size: 1.08rem;
+  margin: 0 0 14px;
+  color: #f5f1e8;
+}
+
+.image-with-content__button {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.06rem;
+  line-height: 1;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 0.1rem solid currentColor;
+  background-color: #b68b32;
+  border-color: #b68b32;
+  color: #112626;
+}
+
+@media (min-width: 920px) {
+  .image-with-content__wrapper {
+    display: flex;
+    height: 34rem;
+  }
+
+  .image-with-content__media,
+  .image-with-content__content {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .image-with-content__media {
+    display: block;
+  }
+
+  .image-with-content__image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
+  .image-with-content__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 5rem;
+    align-items: flex-start;
+  }
+
+  .image-with-content__eyebrow {
+    font-size: 12px;
+    letter-spacing: 1.2px;
+    margin-bottom: 20px;
+  }
+
+  .image-with-content__heading {
+    font-size: 1.6rem;
+    max-width: unset;
+  }
+
+  .image-with-content__description {
+    font-size: 1.1rem;
+  }
+
+  .image-with-content__text {
+    font-size: 0.75rem;
+    margin: 0 0 20px;
+  }
+  .image-with-content__button {
+    font-size: 0.65rem;
+  }
+}
+
+@media (min-width: 1550px) {
+  .image-with-content__content {
+    padding: 0 10rem;
+  }
+}

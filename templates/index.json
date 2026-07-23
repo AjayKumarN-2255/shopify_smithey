@@ -50,13 +50,24 @@
         "background_color": "#0c2727"
       }
     },
-    "product-slider":{
-      "type":"product-slider"
+    "product-slider": {
+      "type": "product-slider",
+      "settings": {
+        "heading": "AT HOME ON OUR RANGE...",
+        "collection": "cookware",
+        "products_to_show": 8,
+        "button_label": "SHOP ALL BEST SELLERS",
+        "button_link": "#"
+      }
+    },
+    "image-with-content": {
+      "type": "image-with-content"
     }
   },
   "order": [
     "banner",
     "why-choose-us",
-    "product-slider"
+    "product-slider",
+    "image-with-content"
   ]
 }
