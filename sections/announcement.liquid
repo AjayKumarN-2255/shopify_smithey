@@ -1,0 +1,80 @@
+<div
+  class="announcement-bar"
+  style="
+    background: {{ section.settings.background_color }};
+    color: {{ section.settings.text_color }};
+  "
+>
+  <div class="announcement-bar__wrapper">
+    {% if section.settings.link != blank %}
+      <a
+        href="{{ section.settings.link }}"
+        class="announcement-bar__text"
+      >
+        {{ section.settings.text }}
+      </a>
+    {% else %}
+      <span class="announcement-bar__text">
+        {{ section.settings.text }}
+      </span>
+    {% endif %}
+  </div>
+</div>
+
+<style>
+  .announcement-bar__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: height 0.3s ease-in-out, min-height 0.3s ease-in-out;
+    padding: 10px 10px;
+    overflow: hidden;
+  }
+  .announcement-bar__text {
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    line-height: 1;
+    font-weight: 800;
+    text-decoration: underline;
+    text-transform: uppercase;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "tag": "section",
+  "class": "section-announcement-bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Announcement text",
+      "default": "Free shipping on orders over ₹999"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Announcement link"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#112626"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement Bar"
+    }
+  ]
+}
+{% endschema %}

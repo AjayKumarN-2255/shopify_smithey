@@ -1,0 +1,149 @@
+{{ 'banner.css' | asset_url | stylesheet_tag }}
+<section
+  class="banner"
+  style="--banner-height: {{ section.settings.banner_height }}vh;"
+>
+  <div class="banner-wrapper">
+    <div class="banner-media">
+      {% if section.settings.video != blank %}
+        {{
+          section.settings.video
+          | video_tag:
+            autoplay: true,
+            loop: true,
+            muted: true,
+            controls: false,
+            playsinline: true,
+            class: 'banner-video'
+        }}
+      {% else %}
+        <video
+          class="banner-video"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          poster="https://smithey.com/cdn/shop/files/preview_images/4a8ab84d4a924da5ba875c4e96d889a9.thumbnail.0000000000_small.jpg?v=1779217395"
+        >
+          <source
+            src="https://smithey.com/cdn/shop/videos/c/vp/4a8ab84d4a924da5ba875c4e96d889a9/4a8ab84d4a924da5ba875c4e96d889a9.HD-1080p-2.5Mbps-84488191.mp4?v=0"
+            type="video/mp4"
+          >
+          Your browser does not support the video tag.
+        </video>
+
+        <video
+          class="banner-video-mobile"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          poster="https://smithey.com/cdn/shop/files/preview_images/8a3e7145d8814f28b208488bb639f68e.thumbnail.0000000000_small.jpg?v=1779217395"
+        >
+          <source
+            src="https://smithey.com/cdn/shop/videos/c/vp/8a3e7145d8814f28b208488bb639f68e/8a3e7145d8814f28b208488bb639f68e.HD-1080p-2.5Mbps-84488192.mp4?v=0"
+            type="video/mp4"
+          >
+          <img
+            src="https://smithey.com/cdn/shop/files/preview_images/8a3e7145d8814f28b208488bb639f68e.thumbnail.0000000000_small.jpg?v=1779217395"
+            alt="Banner Video"
+          >
+        </video>
+      {% endif %}
+    </div>
+
+    <div class="banner-content">
+      {% if section.settings.subheading != blank %}
+        <p class="banner-subheading">
+          {{ section.settings.subheading }}
+        </p>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <div class="banner-heading">
+          {{ section.settings.heading }}
+        </div>
+      {% endif %}
+      {% if section.settings.button_label != blank %}
+        <a
+          href="{{ section.settings.button_link }}"
+          class="banner-button"
+        >
+          {{ section.settings.button_label }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (min-width: 920px) {
+    .banner {
+      height: var(--banner-height);
+    }
+  }
+  @media (min-width: 1550px) {
+    .banner {
+      height: 100vh;
+    }
+    .banner-content {
+      position: absolute;
+      bottom: 12%;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Video Banner",
+  "tag": "section",
+  "class": "section-banner",
+  "settings": [
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Background video"
+    },
+    {
+      "type": "range",
+      "id": "banner_height",
+      "label": "Banner height",
+      "min": 40,
+      "max": 100,
+      "step": 2,
+      "unit": "vh",
+      "default": 82
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "LIMITED EDITION"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<h1>NO. 11 AMERICAN <br> ANNIVERSARY SKILLET</h1>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video Banner"
+    }
+  ]
+}
+{% endschema %}

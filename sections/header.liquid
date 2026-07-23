@@ -1,0 +1,139 @@
+{{ 'header.css' | asset_url | stylesheet_tag }}
+<header class="site-header">
+  <div class="header-wrapper">
+    <div class="hamberger-menu">
+      <svg
+        x-show="$store.main.navOpened != 'mobile'"
+        width="20"
+        height="16"
+        viewBox="0 0 20 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <line x1="1" y1="1" x2="19" y2="1" stroke="#B68B32" stroke-width="2"></line>
+        <line x1="1" y1="8" x2="19" y2="8" stroke="#B68B32" stroke-width="2"></line>
+        <line x1="1" y1="15" x2="19" y2="15" stroke="#B68B32" stroke-width="2"></line>
+      </svg>
+    </div>
+    <!-- Left Menu -->
+    <nav class="header-left">
+      {% if section.settings.left_menu != blank %}
+        {% for link in section.settings.left_menu.links %}
+          <a href="{{ link.url }}">
+            {{ link.title }}
+          </a>
+        {% endfor %}
+      {% endif %}
+    </nav>
+
+    <!-- Center Logo -->
+    <div class="header-logo">
+      <a href="{{ routes.root_url }}" class="header-logo-link">
+        {% if section.settings.logo %}
+          <img
+            src="{{ section.settings.logo | image_url: width: 200 }}"
+            alt="{{ shop.name }}"
+            width="200"
+            height="auto"
+          >
+        {% else %}
+          {{ shop.name }}
+        {% endif %}
+      </a>
+    </div>
+
+    <!-- Right Menu -->
+    <div class="header-right">
+      {% if section.settings.right_menu != blank %}
+        {% for link in section.settings.right_menu.links %}
+          <a href="{{ link.url }}" class="header-right-link">
+            {{ link.title }}
+          </a>
+        {% endfor %}
+      {% endif %}
+
+      {% if section.settings.show_search %}
+        <a href="{{ routes.search_url }}" class="header-icon">
+          <svg
+            class="header-icon__svg"
+            viewBox="0 0 18 17"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle cx="6.73684" cy="6.73684" r="5.73684" stroke="currentColor" stroke-width="2"></circle>
+            <line x1="10.8126" y1="10.2402" x2="16.7073" y2="16.1349" stroke="currentColor" stroke-width="2"></line>
+          </svg>
+        </a>
+      {% endif %}
+
+      {% if section.settings.show_account and shop.customer_accounts_enabled %}
+        <a href="{{ routes.account_url }}" class="header-icon user-account">
+          <svg
+            class="header-icon__svg"
+            viewBox="0 0 17 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M1 18.5002V16.0251C1 13.816 2.79086 12.0251 5 12.0251H11.8001C14.0092 12.0251 15.8001 13.816 15.8001 16.0251V18.5002" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+            <circle cx="8.39845" cy="4.62502" r="3.62502" stroke="currentColor" stroke-width="2"></circle>
+          </svg>
+        </a>
+      {% endif %}
+
+      {% if section.settings.show_cart %}
+        <a href="{{ routes.cart_url }}" class="header-icon">
+          <svg
+            class="header-icon__svg"
+            viewBox="0 0 16 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect x="1" y="5.18433" width="14" height="13.1579" rx="2" stroke="currentColor" stroke-width="2"></rect>
+            <path d="M10.3852 9.18735V4.04392C10.3852 2.72619 9.31698 1.65796 7.99925 1.65796C6.68151 1.65796 5.61328 2.72619 5.61328 4.04392V9.18735" stroke="currentColor" stroke-width="2"></path>
+          </svg>
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "link_list",
+      "id": "left_menu",
+      "label": "Left menu"
+    },
+    {
+      "type": "link_list",
+      "id": "right_menu",
+      "label": "Right menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search",
+      "label": "Show search",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_account",
+      "label": "Show account",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cart",
+      "label": "Show cart",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

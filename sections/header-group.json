@@ -1,0 +1,29 @@
+{
+  "type": "header",
+  "name": "Header Group",
+  "sections": {
+    "announcement": {
+      "type": "announcement",
+      "settings": {
+        "text": "NEW! THE CARBON STEEL LID HAS LANDED. SHOP NOW",
+        "link": "",
+        "background_color": "#be893d",
+        "text_color": "#112626"
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "left_menu": "header-left-menu",
+        "right_menu": "main-menu",
+        "show_search": true,
+        "show_account": true,
+        "show_cart": true
+      }
+    }
+  },
+  "order": [
+    "announcement",
+    "header"
+  ]
+}

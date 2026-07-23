@@ -1,0 +1,62 @@
+{
+  "sections": {
+    "banner": {
+      "type": "banner",
+      "settings": {
+        "banner_height": 82,
+        "subheading": "LIMITED EDITION",
+        "heading": "<p>NO. 11 AMERICAN<br/>ANNIVERSARY SKILLET</p>",
+        "button_label": "SHOP NOW",
+        "button_link": ""
+      }
+    },
+    "why-choose-us": {
+      "type": "why-choose-us",
+      "blocks": {
+        "faq_636VmT": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "polished cook surface",
+            "faq_content": "<p>We polish our interior to a satin like finish making our cook surface easy to clean and naturally non-stick.</p>",
+            "faq_image": "shopify://shop_images/no_10_chef_skillet_dark_with_8_low_res_500x_ad08c87c-14db-4481-983f-5b51b2d0a3e6.webp"
+          }
+        },
+        "faq_LpUQ8n": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "Made in the USA",
+            "faq_content": "<p>Our cookware is designed and crafted by a team of passionate folks on an old Naval Base in Charleston, SC.</p>",
+            "faq_image": "shopify://shop_images/Boxes_Flags-small_500x_2c5f558f-5493-446e-bf68-5d8dca8aef0a.webp"
+          }
+        },
+        "faq_xgWk3L": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "Lifetime Gift",
+            "faq_content": "<p>We craft cookware intended to be used daily for generations and become a true heirloom in your family’s kitchen.</p>",
+            "faq_image": "shopify://shop_images/smithey_holiday_2021_2.1_26637-small_500x_7b2f7924-09c9-4959-924e-d13fafaf6de3.webp"
+          }
+        }
+      },
+      "block_order": [
+        "faq_636VmT",
+        "faq_LpUQ8n",
+        "faq_xgWk3L"
+      ],
+      "settings": {
+        "logo": "shopify://shop_images/logo.svg",
+        "title": "Why Smithey?",
+        "subtitle": "US Made Modern heirlooms",
+        "background_color": "#0c2727"
+      }
+    },
+    "product-slider":{
+      "type":"product-slider"
+    }
+  },
+  "order": [
+    "banner",
+    "why-choose-us",
+    "product-slider"
+  ]
+}

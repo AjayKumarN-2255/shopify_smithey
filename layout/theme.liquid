@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{ content_for_header }}
+    <style>
+      {{
+        settings.body_font
+        | font_face: font_display: 'swap'
+      }}
+
+      {{
+        settings.body_font
+        | font_modify: 'weight', '500'
+        | font_face: font_display: 'swap'
+      }}
+
+      {{
+        settings.body_font
+        | font_modify: 'weight', '700'
+        | font_face: font_display: 'swap'
+      }}
+
+      {{
+        settings.heading_font
+        | font_face: font_display: 'swap'
+      }}
+
+      {{
+        settings.heading_font
+        | font_modify: 'weight', '700'
+        | font_face: font_display: 'swap'
+      }}
+
+      :root {
+        --font-body: {{ settings.body_font.family }}, {{ settings.body_font.fallback_families }};
+        --font-heading: {{ settings.heading_font.family }}, {{ settings.heading_font.fallback_families }};
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        font-size: clamp(
+          14px,
+          calc(14px + (18 - 14) * ((100vw - 360px) / (991 - 360))),
+          18px
+        );
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: var(--font-body);
+        font-weight: 400;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: var(--font-heading);
+        font-weight: 700;
+      }
+
+      @media screen and (min-width: 992px) {
+        html {
+          font-size: clamp(
+            18px,
+            calc(18px + (20 - 18) * ((100vw - 992px) / (1500 - 992))),
+            20px
+          );
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    {% sections 'header-group' %}
+
+    {{ content_for_layout }}
+
+    {% sections 'footer-group' %}
+  </body>
+</html>

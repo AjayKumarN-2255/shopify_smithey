@@ -1,0 +1,139 @@
+{{ 'why-choose-us.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'why-choose-us.js' | asset_url }}" defer></script>
+<section
+  class="why-us"
+  style="background-color: {{ section.settings.background_color }};"
+>
+  <div class="why-us-wrapper">
+    <div class="why-us-content">
+      {% if section.settings.logo != blank %}
+        <div class="why-us-logo">
+          {{ section.settings.logo | image_url: width: 150 | image_tag: loading: 'lazy' }}
+        </div>
+      {% endif %}
+
+      <div class="why-us-text">
+        {% if section.settings.title != blank %}
+          <h2 class="why-us-title">
+            {{ section.settings.title }}
+          </h2>
+        {% endif %}
+
+        {% if section.settings.subtitle != blank %}
+          <p class="why-us-subtitle">
+            {{ section.settings.subtitle }}
+          </p>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="why-us-faq">
+      {% for block in section.blocks %}
+        <div class="why-us-faq-item" {{ block.shopify_attributes }}>
+          <div class="why-us-faq-header">
+            <h3 class="why-us-faq-title">
+              {{ block.settings.faq_title }}
+            </h3>
+
+            <div
+              type="button"
+              class="why-us-faq-toggle"
+              aria-label="Toggle FAQ"
+            >
+              <svg
+                x-bind:class="expandedPanel == 1 &amp;&amp; 'transform rotate-[-45deg]'"
+                class="why-us-faq-icon"
+                width="22"
+                height="22"
+                viewBox="0 0 22 22"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <circle cx="11" cy="11" r="11" fill="#F3F3F3" fill-opacity="0.33"></circle>
+                <path d="M5.5 11H16.5" stroke="#112626" stroke-linejoin="round"></path>
+                <path d="M11 5.5V16.5" stroke="#112626" stroke-linejoin="round"></path>
+              </svg>
+            </div>
+          </div>
+
+          <div class="why-us-faq-content">
+            {% if block.settings.faq_image != blank %}
+              <div class="why-us-faq-image">
+                {{ block.settings.faq_image | image_url: width: 600 | image_tag: loading: 'lazy' }}
+              </div>
+            {% endif %}
+
+            <div class="why-us-faq-text">
+              {{ block.settings.faq_content }}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Why Us",
+  "tag": "section",
+  "class": "section-why-us",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "WHY CHOOSE US?"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Crafted with quality and designed to last."
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#0C2727"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ",
+      "settings": [
+        {
+          "type": "text",
+          "id": "faq_title",
+          "label": "FAQ Title",
+          "default": "Premium Quality"
+        },
+        {
+          "type": "richtext",
+          "id": "faq_content",
+          "label": "FAQ Content",
+          "default": "<p>Share information about this feature here.</p>"
+        },
+        {
+          "type": "image_picker",
+          "id": "faq_image",
+          "label": "FAQ Image"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "Why Us"
+    }
+  ]
+}
+{% endschema %}
