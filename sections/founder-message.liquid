@@ -1,0 +1,79 @@
+{{ 'founder-message.css' | asset_url | stylesheet_tag }}
+
+<section
+  class="founder-message"
+  style="background-color: {{ section.settings.background_color }};"
+>
+  {% assign article = articles[section.settings.article] %}
+
+  {% if article %}
+    <div class="founder-message__container">
+      <div class="founder-message__image">
+        {% if article.image %}
+          {{ article.image | image_url: width: 900 | image_tag: loading: 'lazy' }}
+        {% endif %}
+      </div>
+
+      <div class="founder-message__content">
+        <h2 class="founder-message__title">
+          {{ article.title }}
+        </h2>
+
+        <div class="founder-message__description">
+          {{ article.content }}
+        </div>
+      </div>
+    </div>
+
+    {% if section.blocks.size > 0 %}
+      <div class="founder-message__highlights">
+        {% for block in section.blocks %}
+          <div
+            class="founder-message__highlight"
+            {{ block.shopify_attributes }}
+          >
+            {{ block.settings.text }}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Founder Message",
+  "settings": [
+    {
+      "type": "article",
+      "id": "article",
+      "label": "Founder Article"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#dfdfdf"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "highlight",
+      "name": "Highlight",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "US MADE COOKWARE"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Founder Message"
+    }
+  ]
+}
+{% endschema %}

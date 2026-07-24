@@ -102,6 +102,9 @@
         "articles_to_show": 6,
         "background_color": "#112626"
       }
+    },
+    "founder-message": {
+      "type": "founder-message"
     }
   },
   "order": [
@@ -111,6 +114,7 @@
     "image-with-content",
     "video-banner",
     "recipie-products",
-    "testimonial-slider"
+    "testimonial-slider",
+    "founder-message"
   ]
 }
