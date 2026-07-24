@@ -76,6 +76,9 @@
     },
     "video-banner": {
       "type": "video-banner"
+    },
+    "recipie-products": {
+      "type": "recipie-products"
     }
   },
   "order": [
@@ -83,6 +86,7 @@
     "why-choose-us",
     "product-slider",
     "image-with-content",
-    "video-banner"
+    "video-banner",
+    "recipie-products"
   ]
 }
