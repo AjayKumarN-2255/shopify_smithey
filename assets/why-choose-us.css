@@ -134,7 +134,7 @@
   }
 
   .why-us-subtitle {
-    font-size: 0.6rem;
+    font-size: 0.7rem;
     max-width: unset;
   }
 
@@ -174,5 +174,21 @@
 @media (min-width: 1550px) {
   .why-us-faq-text {
     max-width: 32rem;
+  }
+  .why-us-faq-title {
+    font-size: 1.25rem !important;
+    line-height: 1.0625rem !important;
+  }
+
+  .why-us-faq-text {
+    font-size: 1rem;
+  }
+
+  .why-us-wrapper {
+    padding: 4rem 3.5rem;
+  }
+  .why-us-faq-toggle svg {
+    width: 1.5rem;
+    height: 1.5rem;
   }
 }
