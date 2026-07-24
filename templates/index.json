@@ -61,13 +61,28 @@
       }
     },
     "image-with-content": {
-      "type": "image-with-content"
+      "type": "image-with-content",
+      "settings": {
+        "image": "shopify://shop_images/Frame_1_29.webp",
+        "image_position": "left",
+        "background_color": "#0B2424",
+        "eyebrow": "US MADE COOKWARE",
+        "heading": "<h2>COOK WITH</h2><h2></h2><h2> CONFIDENCE,<br/>NOT CHEMICALS.</h2>",
+        "description": "<p>Smithey is 100% free of PFAS, pre-seasoned only with pure grapeseed oil.</p>",
+        "content": "<p>We believe your cookware shouldn't come with a list of questionable chemicals. No synthetic coatings that flake or break down. No compromises. Just cookware that gets better with every meal and lasts generations.</p>",
+        "button_label": "LEARN MORE",
+        "button_link": "#"
+      }
+    },
+    "video-banner": {
+      "type": "video-banner"
     }
   },
   "order": [
     "banner",
     "why-choose-us",
     "product-slider",
-    "image-with-content"
+    "image-with-content",
+    "video-banner"
   ]
 }

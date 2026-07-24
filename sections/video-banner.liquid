@@ -1,0 +1,155 @@
+<section
+  class="video-banner"
+  style="background-color: {{ section.settings.background_color }};"
+>
+  <div class="video-banner__wrapper">
+    <div class="video-banner__overlay">
+      {% if section.settings.heading != blank %}
+        <h2 class="video-banner__heading">
+          {{ section.settings.heading }}
+        </h2>
+      {% endif %}
+    </div>
+
+    {% if section.settings.video_url != blank %}
+      <div class="video-banner__media">
+        <video
+          class="video-banner__video"
+          muted
+          loop
+          playsinline
+          preload="metadata"
+        >
+          <source
+            src="{{ section.settings.video_url }}"
+            type="video/mp4"
+          >
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const video = document.querySelector('.video-banner__video');
+
+    if (!video) return;
+
+    video.addEventListener('click', () => {
+      if (video.paused) {
+        video.play();
+      } else {
+        video.pause();
+      }
+    });
+  });
+</script>
+
+<style>
+  .video-banner {
+    width: 100%;
+    padding: 1.5rem 1rem;
+    margin: 3.5rem 0;
+  }
+
+  .video-banner__wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .video-banner__media {
+    width: 100%;
+  }
+
+  .video-banner__video {
+    width: 100%;
+    height: 14rem;
+    display: block;
+    object-fit: cover;
+  }
+
+  .video-banner__overlay {
+    {% comment %} position: absolute; {% endcomment %}
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .video-banner__heading {
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  @media (min-width: 920px) {
+    .video-banner {
+      padding: 3rem 1rem ;
+      margin: 2.25rem 0;
+    }
+
+    .video-banner__overlay {
+    position: absolute;
+    }
+
+    .video-banner__wrapper {
+      width: 100%;
+      max-width: 95%;
+      margin: 0 auto;
+    }
+
+    .video-banner__video {
+      width: 100%;
+      height: 42.5rem;
+      object-fit: cover;
+    }
+
+    .video-banner__overlay {
+      justify-content: center;
+      align-items: center;
+    }
+
+    .video-banner__heading {
+      font-size: 2rem;
+      letter-spacing: 0.04em;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Video Banner",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#112626"
+    },
+    {
+      "type": "text",
+      "id": "video_url",
+      "label": "Video URL",
+      "default": "https://cdn.shopify.com/videos/c/o/v/dfb7550f7ace4c94986db2bff645ff21.mp4"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "THE SMITHEY STORY"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video Banner"
+    }
+  ]
+}
+{% endschema %}
