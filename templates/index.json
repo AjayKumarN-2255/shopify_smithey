@@ -65,7 +65,7 @@
       "settings": {
         "image": "shopify://shop_images/Frame_1_29.webp",
         "image_position": "left",
-        "background_color": "#0B2424",
+        "background_color": "#0b2424",
         "eyebrow": "US MADE COOKWARE",
         "heading": "<h2>COOK WITH</h2><h2></h2><h2> CONFIDENCE,<br/>NOT CHEMICALS.</h2>",
         "description": "<p>Smithey is 100% free of PFAS, pre-seasoned only with pure grapeseed oil.</p>",
@@ -75,10 +75,33 @@
       }
     },
     "video-banner": {
-      "type": "video-banner"
+      "type": "video-banner",
+      "settings": {
+        "background_color": "#112626",
+        "video_url": "https://cdn.shopify.com/videos/c/o/v/dfb7550f7ace4c94986db2bff645ff21.mp4",
+        "heading": "THE SMITHEY STORY"
+      }
     },
     "recipie-products": {
-      "type": "recipie-products"
+      "type": "recipie-products",
+      "settings": {
+        "heading": "What's cooking with smithey",
+        "blog": "recipies",
+        "articles_to_show": 6,
+        "button_label": "VIEW ALL RECIPES",
+        "button_link": "",
+        "background_color": "#112626"
+      }
+    },
+    "testimonial-slider": {
+      "type": "testimonial-slider",
+      "settings": {
+        "subtitle": "over 5,000 5-star Reviews",
+        "heading": "<h2>Don’t just take our word.<br/>Take theirs.</h2>",
+        "blog": "testimonial",
+        "articles_to_show": 6,
+        "background_color": "#112626"
+      }
     }
   },
   "order": [
@@ -87,6 +110,7 @@
     "product-slider",
     "image-with-content",
     "video-banner",
-    "recipie-products"
+    "recipie-products",
+    "testimonial-slider"
   ]
 }

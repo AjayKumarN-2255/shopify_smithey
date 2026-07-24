@@ -76,7 +76,7 @@
                       {{ article.metafields.custom.cook_time }}
                     </span>
 
-                    <span class="recipe-card__product"> Default related Product </span>
+                    <span class="recipe-card__product"> {{ article.metafields.custom.related_products.value.title  }} </span>
                   </div>
                 </div>
               </a>
@@ -156,7 +156,7 @@
       "type": "color",
       "id": "background_color",
       "label": "Background Color",
-      "default": "#F3F3F3"
+      "default": "#112626"
     }
   ],
   "presets": [

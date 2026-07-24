@@ -1,0 +1,154 @@
+{{ 'testimonial-slider.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'testimonial-slider.js' | asset_url }}" defer></script>
+<section
+  class="testimonial-slider"
+  style="background-color: {{ section.settings.background_color }};"
+>
+  <div class="testimonial-slider__wrapper">
+    {% if section.settings.subtitle != blank or section.settings.heading != blank %}
+      <div class="testimonial-slider__header">
+        {% if section.settings.subtitle != blank %}
+          <p class="testimonial-slider__subtitle">
+            {{ section.settings.subtitle }}
+          </p>
+        {% endif %}
+
+        {% if section.settings.heading != blank %}
+          <h2 class="testimonial-slider__heading">
+            {{ section.settings.heading }}
+          </h2>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="testimonial-slider__container">
+      <button
+        type="button"
+        class="testimonial-slider__button testimonial-slider__button--prev"
+        aria-label="Previous"
+      >
+        <svg
+          class="w-[30px] max-w-[30px] h-[26px] max-h-[26px]"
+          width="26"
+          height="30"
+          viewBox="0 0 26 30"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M26 14.9432L11.5969 20.5387L-0.000222087 30L2.34005 14.9986L0.000217438 -6.67176e-05L11.332 9.24475L26 14.9432Z" fill="#112626"></path>
+        </svg>
+      </button>
+
+      <div class="testimonial-slider__viewport">
+        <div class="testimonial-slider__rail">
+          {% assign blog = blogs[section.settings.blog] %}
+
+          {% for article in blog.articles limit: section.settings.articles_to_show %}
+            <div class="testimonial-card">
+              <div class="testimonial-card__body">
+                <h4 class="testimonial-card__product-title">
+                  {{ article.metafields.custom.related_products.value.title }}
+                </h4>
+
+                <div class="testimonial-card__rating">
+                  {% assign rating = article.metafields.custom.rating.value | default: 5 %}
+                  {% for i in (1..5) %}
+                    {% if i <= rating %}★{% else %}☆{% endif %}
+                  {% endfor %}
+                </div>
+
+                <div class="testimonial-card__text">
+                  {{ article.content }}
+                </div>
+
+                <div class="testimonial-card__author">
+                  — {{ article.metafields.custom.author_name | default: article.author }}
+                </div>
+              </div>
+
+              <div class="testimonial-card__footer">
+                <h3 href="{{ product.url }}" class="testimonial-product_value">
+                  SHOP THE {{ article.metafields.custom.related_products.value.title }}
+                </h3>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <button
+        type="button"
+        class="testimonial-slider__button testimonial-slider__button--next"
+        aria-label="Next"
+      >
+        <svg
+          class="w-[30px] max-w-[30px] h-[26px] max-h-[26px]"
+          width="26"
+          height="30"
+          viewBox="0 0 26 30"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M26 14.9432L11.5969 20.5387L-0.000222087 30L2.34005 14.9986L0.000217438 -6.67176e-05L11.332 9.24475L26 14.9432Z" fill="#112626"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div class="testimonial-slider__pagination">
+    {% assign blog = blogs[section.settings.blog] %}
+    {% for article in blog.articles limit: section.settings.articles_to_show %}
+      <button
+        class="testimonial-slider__dot{% if forloop.first %} is-active{% endif %}"
+        data-index="{{ forloop.index0 }}"
+        aria-label="Go to slide {{ forloop.index }}"
+      ></button>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonial Slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "over 5,000 5-star Reviews"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<h2>Don’t just take our word.<br>Take theirs.</h2>"
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Testimonials Blog"
+    },
+    {
+      "type": "range",
+      "id": "articles_to_show",
+      "label": "Testimonials to Show",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 6
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#112626"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonial Slider"
+    }
+  ]
+}
+{% endschema %}
