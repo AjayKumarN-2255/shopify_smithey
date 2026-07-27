@@ -150,6 +150,9 @@
         "article": "news/a-message-from-the-founder",
         "background_color": "#dfdfdf"
       }
+    },
+    "comparison-section": {
+      "type": "comparison-section"
     }
   },
   "order": [
@@ -160,6 +163,7 @@
     "video-banner",
     "recipie-products",
     "testimonial-slider",
-    "founder-message"
+    "founder-message",
+    "comparison-section"
   ]
 }

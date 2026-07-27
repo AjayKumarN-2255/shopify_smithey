@@ -1,0 +1,157 @@
+.comparison-section {
+  width: 100%;
+  padding: 3rem 1rem 0;
+}
+
+.comparison-section__eyebrow {
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.1em;
+  color: #112626;
+  text-align: center;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.comparison-section__heading {
+  font-size: 24px;
+  color: #112626;
+  text-align: center;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  max-width: 15rem;
+  margin: auto;
+}
+
+.comparison-section__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.comparison-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.comparison-card__header {
+  display: flex;
+  flex-direction: column;
+}
+
+.comparison-card__title {
+  font-size: 20px;
+  line-height: 111%;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #112626;
+  margin-bottom: 1rem;
+}
+
+.comparison-card__image {
+  width: 100%;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+
+.comparison-card__image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.comparison-card__table {
+  width: 100%;
+  border-collapse: collapse;
+  border-top: 1px solid #9aa3a5;
+  flex: 1;
+}
+
+.comparison-card__table tr {
+  border-bottom: 1px dashed #9aa3a5;
+}
+
+.comparison-card__table th,
+.comparison-card__table td {
+  padding: 1rem 0;
+  vertical-align: top;
+}
+
+.comparison-card__table th {
+  width: 26%;
+  padding-right: 1rem;
+  text-align: left;
+  border-right: 1px dashed #9aa3a5;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: 0.1em;
+  color: #112626;
+}
+
+.comparison-card__table td {
+  padding-left: 1rem;
+  font-size: 14px;
+  color: #112626;
+  font-weight: 500;
+}
+
+.comparison-card__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 3rem;
+  padding: 1rem 0;
+  border: 2px solid #b68b32;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 700;
+  color: #112626;
+}
+
+@media (min-width: 920px) {
+  .comparison-section__eyebrow {
+    margin-bottom: 0.5rem;
+  }
+
+  .comparison-section__heading {
+    font-size: 36px;
+    max-width: unset;
+  }
+
+  .comparison-section__grid {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 3.75rem;
+    max-width: 60.12rem;
+    margin: auto;
+  }
+
+  .comparison-card {
+    flex: 1;
+  }
+
+  .comparison-card__title {
+    font-size: 36px;
+    margin-bottom: 0.5rem;
+  }
+
+  .comparison-card__table td {
+    font-size: 16px;
+  }
+
+  .comparison-card__image {
+    height: 17.57rem;
+  }
+
+  .comparison-card__image img {
+    object-fit: cover;
+  }
+}

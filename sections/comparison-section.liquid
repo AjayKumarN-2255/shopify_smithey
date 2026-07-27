@@ -1,0 +1,122 @@
+{{ 'comparison-section.css' | asset_url | stylesheet_tag }}
+<section
+  class="comparison-section"
+  style="background-color: {{ section.settings.background_color }};"
+>
+  <div class="comparison-section__container">
+    {% if section.settings.eyebrow != blank %}
+      <p class="comparison-section__eyebrow">
+        {{ section.settings.eyebrow }}
+      </p>
+    {% endif %}
+
+    {% if section.settings.heading != blank %}
+      <div class="comparison-section__heading">
+        {{ section.settings.heading }}
+      </div>
+    {% endif %}
+
+    <div class="comparison-section__grid">
+      {% for block in section.blocks %}
+        {% assign article = articles[block.settings.article] %}
+        {% assign comparison = article.metafields.custom.cookware_comparison.value %}
+
+        {% if article and comparison %}
+          <article
+            class="comparison-card"
+            {{ block.shopify_attributes }}
+          >
+            <div class="comparison-card__header">
+              {% if article.image %}
+                <div class="comparison-card__image">
+                  {{ article.image | image_url: width: 900 | image_tag: loading: 'lazy' }}
+                </div>
+              {% endif %}
+
+              <h2 class="comparison-card__title">
+                {{ article.title }}
+              </h2>
+            </div>
+
+            <table class="comparison-card__table">
+              <tr>
+                <th>Material</th>
+                <td>{{ comparison.material }}</td>
+              </tr>
+
+              <tr>
+                <th>Key Differences</th>
+                <td>{{ comparison.key_difference }}</td>
+              </tr>
+
+              <tr>
+                <th>Uses</th>
+                <td>{{ comparison.uses }}</td>
+              </tr>
+
+              <tr>
+                <th>Care</th>
+                <td>{{ comparison.care }}</td>
+              </tr>
+
+              <tr>
+                <th>Why Choose</th>
+                <td>{{ comparison.why_choose }}</td>
+              </tr>
+            </table>
+
+            <a
+              href="{{ comparison.collection.url }}"
+              class="comparison-card__button"
+            >
+              {{ comparison.button_label }}
+            </a>
+          </article>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Comparison Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "COOKWARE COMPARISON"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#DFDFDF"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "comparison_item",
+      "name": "Comparison Item",
+      "settings": [
+        {
+          "type": "article",
+          "id": "article",
+          "label": "Comparison Article"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Comparison Section"
+    }
+  ]
+}
+{% endschema %}
