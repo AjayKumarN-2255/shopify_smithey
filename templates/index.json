@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "banner": {
@@ -100,11 +109,47 @@
         "heading": "<h2>Don’t just take our word.<br/>Take theirs.</h2>",
         "blog": "testimonial",
         "articles_to_show": 6,
-        "background_color": "#112626"
+        "background_color": "#DFDFDF"
       }
     },
     "founder-message": {
-      "type": "founder-message"
+      "type": "founder-message",
+      "blocks": {
+        "highlight_DDNYcq": {
+          "type": "highlight",
+          "settings": {
+            "text": "US MADE COOKWARE"
+          }
+        },
+        "highlight_ajg9yf": {
+          "type": "highlight",
+          "settings": {
+            "text": "LIFETIME GUARANTEE"
+          }
+        },
+        "highlight_C9gecE": {
+          "type": "highlight",
+          "settings": {
+            "text": "FREE EXCHANGES"
+          }
+        },
+        "highlight_F9ypiD": {
+          "type": "highlight",
+          "settings": {
+            "text": "HEIRLOOM QUALITY"
+          }
+        }
+      },
+      "block_order": [
+        "highlight_DDNYcq",
+        "highlight_ajg9yf",
+        "highlight_C9gecE",
+        "highlight_F9ypiD"
+      ],
+      "settings": {
+        "article": "news/a-message-from-the-founder",
+        "background_color": "#dfdfdf"
+      }
     }
   },
   "order": [

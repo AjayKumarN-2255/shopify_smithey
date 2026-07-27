@@ -1,0 +1,196 @@
+{{ 'footer.css' | asset_url | stylesheet_tag }}
+<footer
+  class="footer"
+  style="background-color: {{ section.settings.background_color }};"
+>
+  <div class="footer__container">
+    {% if section.settings.logo != blank %}
+      <div class="footer__branding">
+        <h4 class="footer__title">US MADE COOKWARE</h4>
+
+        <div class="footer__logo">
+          {{ section.settings.logo | image_url: width: 300 | image_tag: loading: 'lazy' }}
+        </div>
+
+        <h4 class="footer__title">USE IT WELL</h4>
+      </div>
+    {% endif %}
+
+    <div class="footer__flex">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'newsletter' %}
+            <div
+              class="footer__column footer__column--newsletter"
+              {{ block.shopify_attributes }}
+              style="--footer-block-width: {{ block.settings.column_width }}%;"
+            >
+              {% if block.settings.heading != blank %}
+                <h3 class="footer__heading">
+                  {{ block.settings.heading }}
+                </h3>
+              {% endif %}
+
+              {% if block.settings.description != blank %}
+                <div class="footer__description">
+                  {{ block.settings.description }}
+                </div>
+              {% endif %}
+
+              {% if block.settings.show_input %}
+                <form class="footer__newsletter-form">
+                  <input
+                    type="email"
+                    name="contact[email]"
+                    class="footer__newsletter-input"
+                    placeholder="Email Address"
+                    required
+                  >
+
+                  <button
+                    type="submit"
+                    class="footer__newsletter-button"
+                  >
+                    SIGN UP
+                  </button>
+                </form>
+              {% endif %}
+            </div>
+
+          {% when 'menu_column' %}
+            <div
+              class="footer__column footer__column--menu"
+              {{ block.shopify_attributes }}
+              style="--footer-block-width: {{ block.settings.column_width }}%;"
+            >
+              {% if block.settings.heading != blank %}
+                <h3 class="footer__heading">
+                  {{ block.settings.heading }}
+                </h3>
+              {% endif %}
+
+              {% if block.settings.menu != blank %}
+                <ul class="footer__menu-list">
+                  {% for link in block.settings.menu.links %}
+                    <li class="footer__menu-item">
+                      <a
+                        href="{{ link.url }}"
+                        class="footer__menu-link"
+                      >
+                        {{ link.title }}
+                      </a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+</footer>
+
+<style>
+  @media (min-width: 992px) {
+    .footer__column {
+      width: var(--footer-block-width);
+      flex: 0 0 var(--footer-block-width);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#0b2626"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Footer Logo"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "newsletter",
+      "name": "Newsletter",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "range",
+          "id": "column_width",
+          "label": "Column Width (%)",
+          "min": 10,
+          "max": 60,
+          "step": 1,
+          "default": 30
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Newsletter"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_input",
+          "label": "Show Email Input",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "menu_column",
+      "name": "Menu Column",
+      "settings": [
+        {
+          "type": "range",
+          "id": "column_width",
+          "label": "Column Width (%)",
+          "min": 10,
+          "max": 60,
+          "step": 1,
+          "default": 20
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Quick Links"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Navigation Menu"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer",
+      "blocks": [
+        {
+          "type": "newsletter"
+        },
+        {
+          "type": "menu_column"
+        },
+        {
+          "type": "menu_column"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

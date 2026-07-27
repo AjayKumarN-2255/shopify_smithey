@@ -1,0 +1,57 @@
+{
+    "type": "footer",
+    "name": "Footer Group",
+    "sections": {
+        "footer": {
+            "type": "footer",
+            "blocks": {
+                "newsletter": {
+                    "type": "newsletter",
+                    "settings": {
+                        "column_width": 30,
+                        "heading": "Newsletter",
+                        "description": "<p>Join our community to be the first to learn about new cookware launches, recipes, and Smithey specials.</p>",
+                        "show_input": true
+                    }
+                },
+                "menu_1": {
+                    "type": "menu_column",
+                    "settings": {
+                        "column_width": 23,
+                        "heading": "Shop",
+                        "menu": "footer-support"
+                    }
+                },
+                "menu_2": {
+                    "type": "menu_column",
+                    "settings": {
+                        "column_width": 23,
+                        "heading": "Support",
+                        "menu": "footer-company"
+                    }
+                },
+                "menu_3": {
+                    "type": "menu_column",
+                    "settings": {
+                        "column_width": 24,
+                        "heading": "Company",
+                        "menu": "footer-quick-links"
+                    }
+                }
+            },
+            "block_order": [
+                "newsletter",
+                "menu_1",
+                "menu_2",
+                "menu_3"
+            ],
+            "settings": {
+                "background_color": "#2e2e2e",
+                "logo": ""
+            }
+        }
+    },
+    "order": [
+        "footer"
+    ]
+}
