@@ -1,8 +1,13 @@
+.testi-main {
+  padding-top: 1.5rem;
+}
+
 .testimonial-slider {
   width: 100%;
   position: relative;
   padding-top: 3rem;
   padding-bottom: 2.5rem;
+  background-color: #0b2626;
 }
 
 .testimonial-slider__container {
