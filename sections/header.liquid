@@ -97,6 +97,26 @@
   </div>
 </header>
 
+<script>
+  const header = document.querySelector('.site-header');
+  const announcementBar = document.querySelector('.announcement-bar');
+
+  const triggerHeight = header.offsetHeight;
+  let isScrolled = false;
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > triggerHeight && !isScrolled) {
+      header.classList.add('header--scrolled');
+      announcementBar.style.display = 'none';
+      isScrolled = true;
+    } else if (window.scrollY <= triggerHeight && isScrolled) {
+      header.classList.remove('header--scrolled');
+      announcementBar.style.display = 'block';
+      isScrolled = false;
+    }
+  });
+</script>
+
 {% schema %}
 {
   "name": "Header",

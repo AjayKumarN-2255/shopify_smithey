@@ -48,7 +48,7 @@
   text-transform: uppercase;
   font-weight: 600;
   color: #112626;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 .comparison-card__image {
@@ -114,6 +114,15 @@
   font-size: 14px;
   font-weight: 700;
   color: #112626;
+}
+
+.header--scrolled {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #112626;
+  z-index: 999;
 }
 
 @media (min-width: 920px) {
