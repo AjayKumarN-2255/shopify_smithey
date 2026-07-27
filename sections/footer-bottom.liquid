@@ -1,0 +1,134 @@
+<section
+  class="footer-bottom"
+  style="background-color: {{ section.settings.background_color }};"
+>
+  <div class="footer-bottom__container">
+    {% if section.settings.logo != blank %}
+      <div class="footer-bottom__logo">
+        {{ section.settings.logo | image_url: width: 2200 | image_tag: loading: 'lazy' }}
+      </div>
+    {% endif %}
+
+    <div class="footer-bottom__content">
+      {% if section.settings.copyright != blank %}
+        <p class="footer-bottom__copyright">
+          {{ section.settings.copyright }}
+        </p>
+      {% endif %}
+
+      {% if section.settings.menu != blank %}
+        <ul class="footer-bottom__menu">
+          {% for link in section.settings.menu.links %}
+            <li>
+              <a href="{{ link.url }}">
+                {{ link.title }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .footer-bottom {
+    width: 100%;
+    padding: 0.5rem;
+  }
+  .footer-bottom__logo {
+    width: 100%;
+    margin: 3rem 0;
+  }
+
+  .footer-bottom__logo img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .footer-bottom__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .footer-bottom__copyright {
+    font-size: 12px;
+    color: #f3f3f3;
+    margin-bottom: 13px;
+    letter-spacing: 0.1em;
+  }
+
+  .footer-bottom__menu {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    max-width: 20rem;
+    margin-bottom: 4rem;
+  }
+
+  .footer-bottom__menu a {
+    color: #f3f3f3;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 450;
+    font-size: 10px;
+    line-height: 12px;
+  }
+
+  @media (min-width: 920px) {
+    .footer-bottom__content {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: start;
+    }
+    .footer-bottom {
+      padding: 1rem;
+    }
+  }
+
+  @media (min-width: 920px) {
+    .footer-bottom {
+      padding: 1.5rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Footer Bottom",
+  "tag": "section",
+  "class": "section-footer-bottom",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#032626"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Large Logo"
+    },
+    {
+      "type": "text",
+      "id": "copyright",
+      "label": "Copyright Text",
+      "default": "COPYRIGHT SMITHEY IRONWARE 2026."
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Bottom Menu"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer Bottom"
+    }
+  ]
+}
+{% endschema %}

@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
     "type": "footer",
     "name": "Footer Group",
@@ -17,7 +26,7 @@
                 "menu_1": {
                     "type": "menu_column",
                     "settings": {
-                        "column_width": 23,
+                        "column_width": 20,
                         "heading": "Shop",
                         "menu": "footer-support"
                     }
@@ -25,7 +34,7 @@
                 "menu_2": {
                     "type": "menu_column",
                     "settings": {
-                        "column_width": 23,
+                        "column_width": 20,
                         "heading": "Support",
                         "menu": "footer-company"
                     }
@@ -33,7 +42,7 @@
                 "menu_3": {
                     "type": "menu_column",
                     "settings": {
-                        "column_width": 24,
+                        "column_width": 20,
                         "heading": "Company",
                         "menu": "footer-quick-links"
                     }
@@ -46,12 +55,21 @@
                 "menu_3"
             ],
             "settings": {
-                "background_color": "#2e2e2e",
-                "logo": ""
+                "background_color": "#0b2626"
+            }
+        },
+        "footer-bottom": {
+            "type": "footer-bottom",
+            "settings": {
+                "background_color": "#032626",
+                "logo": "shopify://shop_images/smithey.svg",
+                "copyright": "COPYRIGHT SMITHEY IRONWARE 2026.",
+                "menu": "footer-bottom-menu"
             }
         }
     },
     "order": [
-        "footer"
+        "footer",
+        "footer-bottom"
     ]
 }
