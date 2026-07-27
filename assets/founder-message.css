@@ -1,3 +1,7 @@
+.founder-message {
+  padding: 1.25rem;
+}
+
 .founder-message-container {
   padding: 1rem;
 }
@@ -33,28 +37,70 @@
 }
 
 .founder-message__description p {
-  font-size: 14px;
+  font-size: 13px;
+  line-height: 15px;
   margin-bottom: 2rem;
 }
 
+.founder-message__description h4 {
+  color: #112626;
+}
+
+.founder-message__highlights {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.founder-message__highlight {
+  margin-top: 1rem;
+  margin-bottom: 0.75rem;
+  font-size: 13px;
+  font-weight: bold;
+  color: #112626;
+}
+
+
 @media (min-width: 920px) {
-  .founder-message__description p {
-    font-size: 15px;
+  .founder-message {
+    padding: 5.5rem 0 1rem 0;
   }
   .founder-message__description p {
     font-size: 15px;
+    line-height: 24px;
     margin-bottom: 1rem;
   }
+  .founder-message__description h4 {
+    font-size: 15px;
+    margin-bottom: 0.75rem;
+  }
   .founder-message__title {
-    font-size: 13px;
     text-transform: uppercase;
     color: #112626;
   }
   .founder-message__container {
     width: 100%;
     flex-direction: row;
-    max-width: 65rem;
+    max-width: 52rem;
     margin: auto;
+    gap: 1.5rem;
+  }
+  .founder-message__image img {
+    height: 34rem;
+  }
+  .founder-message__image {
+    flex: 0 0 45%;
+  }
+  .founder-message__content {
+    flex: 0 0 55%;
+    padding: 2rem 2rem 0 1rem;
+  }
+  .founder-message__highlights {
+    flex-direction: row;
+    justify-content: center;
     gap: 1.5rem;
   }
 }
