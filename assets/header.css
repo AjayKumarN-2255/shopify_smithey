@@ -51,9 +51,26 @@
   font-weight: 500;
 }
 
+.header--scrolled {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #112626;
+  z-index: 999;
+}
+
+.mega-menu-container {
+  display: none;
+}
+
 @media (min-width: 920px) {
   .site-header {
     padding: 0 1.875rem;
+  }
+
+  .header--scrolled .header-wrapper {
+    padding: 0 !important;
   }
 
   .hamberger-menu {
@@ -78,5 +95,11 @@
   .header-right-link,
   .header-icon.user-account {
     display: block;
+  }
+
+  .mega-menu-container {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0;
   }
 }

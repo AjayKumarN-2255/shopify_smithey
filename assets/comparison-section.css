@@ -116,15 +116,6 @@
   color: #112626;
 }
 
-.header--scrolled {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: #112626;
-  z-index: 999;
-}
-
 @media (min-width: 920px) {
   .comparison-section__eyebrow {
     margin-bottom: 0.5rem;

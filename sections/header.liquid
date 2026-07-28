@@ -111,6 +111,21 @@
     </div>
   </div>
 
+  <!-- Mega Menu -->
+  <div class="mega-menu-container">
+    <div class="mega-menu" data-menu="about">
+      {% render 'mega-menu', menu: linklists['about-menu'] %}
+    </div>
+
+    <div class="mega-menu" data-menu="services">
+      {% render 'mega-menu', menu: linklists['services-menu'] %}
+    </div>
+
+    <div class="mega-menu" data-menu="support">
+      {% render 'mega-menu', menu: linklists['support-menu'] %}
+    </div>
+  </div>
+
   <!-- Mobile Menu Logo -->
   {% render 'header-mobile-menu', left_menu: section.settings.left_menu, right_menu: section.settings.right_menu %}
 </header>
