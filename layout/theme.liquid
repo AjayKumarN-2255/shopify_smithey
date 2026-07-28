@@ -70,6 +70,11 @@
         font-weight: 700;
       }
 
+      .template-other .site-header{
+        background-color:#142d2d;
+        position:relative;
+      }
+
       @media screen and (min-width: 992px) {
         html {
           font-size: clamp(
@@ -82,7 +87,7 @@
     </style>
   </head>
 
-  <body>
+  <body class="{% if template == 'index' %}template-home{% else %}template-other{% endif %}">
     {% sections 'header-group' %}
 
     {{ content_for_layout }}

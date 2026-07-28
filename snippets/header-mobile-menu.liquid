@@ -1,0 +1,101 @@
+<div class="mobile-menu__nav">
+  {% if left_menu != blank %}
+    <ul class="mobile-menu_left__link">
+      {% for link in left_menu.links %}
+        <li class="mobile-menu__item">
+          <a href="{{ link.url }}" class="mobile-menu__link">
+            <span class="mobile-menu__title">{{ link.title }}</span>
+            <svg
+              width="15"
+              height="16"
+              viewBox="0 0 15 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              class="flex-shrink-0"
+            >
+              <path d="M6.58789 10.9531L0 16L1.33008 8L6.99381e-07 0L6.43945 4.93164L14.7666 7.96973L6.58789 10.9531Z" fill="#B68B32"></path>
+            </svg>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  {% if right_menu != blank %}
+    <ul class="mobile-menu_right__list">
+      {% for link in right_menu.links %}
+        <li class="mobile-menu__item">
+          <a href="{{ link.url }}" class="mobile-menu_right__link">
+            <span class="mobile-menu__title">{{ link.title }}</span>
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 22 22"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              class="flex-shrink-0 transition-transform duration-300"
+              :class="openMenu === 'other_menu_fmChme' ? 'rotate-45' : ''"
+            >
+              <circle cx="11" cy="11" r="11" fill="white" :fill-opacity="openMenu === 'other_menu_fmChme' ? '0.8' : '0.33'" class="transition-all duration-300" fill-opacity="0.33"></circle>
+              <path d="M5.5 11H16.5" stroke="#112626" stroke-linejoin="round"></path>
+              <path d="M11 5.5V16.5" stroke="#112626" stroke-linejoin="round"></path>
+            </svg>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>
+
+<style>
+  .mobile-menu__nav {
+    width: 100%;
+    background-color: #152f2f;
+    position: fixed;
+    top: 50px;
+    left: 0;
+    padding: 0 1rem;
+    height: 100vh;
+    transform: translateY(-125%);
+    transition: transform 0.3s ease;
+  }
+  .mobile-menu--open {
+    transform: translateX(0);
+  }
+  .mobile-menu_left__link {
+    display: flex;
+    flex-direction: column;
+    margin: 2rem 0;
+    list-style: none;
+  }
+  .mobile-menu__link {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem 0;
+    border-bottom: 2px dotted rgba(255, 255, 255, 0.3);
+  }
+  .mobile-menu__title {
+    letter-spacing: 0.08em;
+    line-height: 1;
+  }
+  .mobile-menu_right__list {
+    display: flex;
+    flex-direction: column;
+    margin: 2rem 0;
+    list-style: none;
+  }
+  .mobile-menu_right__link {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+  }
+  @media (min-width: 920px) {
+    .mobile-menu__nav {
+      display: none;
+    }
+  }
+</style>

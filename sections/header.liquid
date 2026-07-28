@@ -1,7 +1,21 @@
 {{ 'header.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'header.js' | asset_url }}" defer></script>
 <header class="site-header">
   <div class="header-wrapper">
-    <div class="hamberger-menu">
+    <div>
+      <svg
+        x-show="$store.main.navOpened == 'mobile'"
+        width="22"
+        height="22"
+        viewBox="0 0 22 22"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        class="hamberger-close-menu"
+        style="display: none;"
+      >
+        <path d="M17.1875 4.8125L4.8125 17.1875" stroke="#B68B32" stroke-width="2" stroke-linejoin="round"></path>
+        <path d="M17.1875 17.1875L4.8125 4.8125" stroke="#B68B32" stroke-width="2" stroke-linejoin="round"></path>
+      </svg>
       <svg
         x-show="$store.main.navOpened != 'mobile'"
         width="20"
@@ -9,6 +23,7 @@
         viewBox="0 0 20 16"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        class="hamberger-menu"
       >
         <line x1="1" y1="1" x2="19" y2="1" stroke="#B68B32" stroke-width="2"></line>
         <line x1="1" y1="8" x2="19" y2="8" stroke="#B68B32" stroke-width="2"></line>
@@ -95,27 +110,10 @@
       {% endif %}
     </div>
   </div>
+
+  <!-- Mobile Menu Logo -->
+  {% render 'header-mobile-menu', left_menu: section.settings.left_menu, right_menu: section.settings.right_menu %}
 </header>
-
-<script>
-  const header = document.querySelector('.site-header');
-  const announcementBar = document.querySelector('.announcement-bar');
-
-  const triggerHeight = header.offsetHeight;
-  let isScrolled = false;
-
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > triggerHeight && !isScrolled) {
-      header.classList.add('header--scrolled');
-      announcementBar.style.display = 'none';
-      isScrolled = true;
-    } else if (window.scrollY <= triggerHeight && isScrolled) {
-      header.classList.remove('header--scrolled');
-      announcementBar.style.display = 'block';
-      isScrolled = false;
-    }
-  });
-</script>
 
 {% schema %}
 {
