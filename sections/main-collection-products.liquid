@@ -1,0 +1,200 @@
+{{ 'main-collection-products.css' | asset_url | stylesheet_tag }}
+
+<section class="main-collection-products">
+  <div class="main-collection-container">
+    {% assign collection = section.settings.collection %}
+    {% if collection != blank %}
+      <div class="main-collection-products__header">
+        <h2 class="main-collection-products__title">
+          {{ collection.title }}
+        </h2>
+      </div>
+    {% endif %}
+    {% if collection != blank %}
+      <div class="main-collection-products__grid">
+        {% for product in collection.products limit: section.settings.products_to_show %}
+          <article
+            class="
+              product-card
+              {% if forloop.index == section.settings.featured_product_index_desktop %}
+                product-card--featured-desktop
+              {% endif %}
+              {% if forloop.index == section.settings.featured_product_index_mobile %}
+                product-card--featured-mobile
+              {% endif %}
+            "
+            style="
+              {% if forloop.index == section.settings.featured_product_index_desktop %}
+                --featured-column-span-desktop: {{ section.settings.featured_column_span }};
+              {% endif %}
+              {% if forloop.index == section.settings.featured_product_index_mobile %}
+                --featured-column-span-mobile: {{ section.settings.featured_column_span }};
+              {% endif %}
+            "
+          >
+            <a href="{{ product.url }}" class="product-card__link">
+              <div class="product-card__image-wrapper">
+                {{ product.featured_image | image_url: width: 800 | image_tag: loading: 'lazy' }}
+              </div>
+
+              <div class="product-card__content">
+                <h3 class="product-card__title">
+                  {{ product.title }}
+                </h3>
+
+                <div class="product-card__footer">
+                  <p class="product-card__material">
+                    {{ product.metafields.custom.material }}
+                  </p>
+                  <span class="product-card__price_mobile">
+                    {{ product.price | money }}
+                  </span>
+                </div>
+
+                <div class="product-card__footer">
+                  <div class="product-card__reviews">
+                    {% assign rating = product.metafields.custom.rating.value | default: 0 %}
+
+                    <span class="product-card__rating">
+                      {% for i in (1..5) %}
+                        {% if i <= rating %}
+                          ★
+                        {% else %}
+                          ☆
+                        {% endif %}
+                      {% endfor %}
+                    </span>
+
+                    <span class="product-card__review-count">
+                      {{ product.metafields.custom.reviews_count }}
+                      Reviews
+                    </span>
+                  </div>
+
+                  <span class="product-card__price">
+                    {{ product.price | money }}
+                  </span>
+                </div>
+              </div>
+            </a>
+          </article>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+    .main-collection-products__grid {
+      grid-template-columns: repeat({{section.settings.mobile_columns}}, 1fr);
+    }
+
+    .product-card.product-card--featured-mobile {
+    grid-column: span var(--featured-column-span-mobile);
+  }
+
+    @media (min-width: 920px) {
+      .main-collection-products__grid {
+        grid-template-columns: repeat({{section.settings.desktop_columns}}, 1fr);
+      }
+      .product-card.product-card--featured-mobile {
+        grid-column: unset;
+      }
+
+      .product-card.product-card--featured-desktop {
+        grid-column: span var(--featured-column-span-desktop);
+      }
+    }
+</style>
+
+{% schema %}
+{
+  "name": "Main Collection Products",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "Products to show",
+      "min": 1,
+      "max": 24,
+      "step": 1,
+      "default": 8
+    },
+    {
+      "type": "select",
+      "id": "desktop_columns",
+      "label": "Desktop columns",
+      "default": "4",
+      "options": [
+        {
+          "value": "2",
+          "label": "2"
+        },
+        {
+          "value": "3",
+          "label": "3"
+        },
+        {
+          "value": "4",
+          "label": "4"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "mobile_columns",
+      "label": "Mobile columns",
+      "default": "2",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "featured_product_index_desktop",
+      "label": "Featured product position (Desktop)",
+      "info": "1 = first product, 2 = second product, etc.",
+      "min": 1,
+      "max": 24,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "featured_product_index_mobile",
+      "label": "Featured product position (Mobile)",
+      "info": "1 = first product, 2 = second product, etc.",
+      "min": 1,
+      "max": 24,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "featured_column_span",
+      "label": "Featured product column span",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 2
+    }
+  ],
+  "presets": [
+    {
+      "name": "Main Collection Products"
+    }
+  ]
+}
+{% endschema %}
