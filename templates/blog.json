@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
     "sections": {
         "blog-featured": {
@@ -11,7 +20,11 @@
         },
         "blog-grid": {
             "type": "blog-grid",
-            "settings": {}
+            "settings": {
+                "blog": "journal",
+                "limit": 3,
+                "offset": 0
+            }
         },
         "blog_featured_R3ckGG": {
             "type": "blog-featured",

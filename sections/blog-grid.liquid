@@ -1,29 +1,67 @@
 {{ 'blog-grid.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'blog-grid.js' | asset_url }}" defer></script>
 <section class="blog-grid">
   <div class="blog-grid__wrapper">
     <!-- Carousel -->
     <div class="blog-grid__carousel">
-      {% comment %}
+      <button
+        type="button"
+        class="blog-grid__button blog-grid__button--prev"
+        aria-label="Previous"
+      >
+        <svg
+          class="w-[30px] max-w-[30px] h-[26px] max-h-[26px]"
+          width="26"
+          height="30"
+          viewBox="0 0 26 30"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M26 14.9432L11.5969 20.5387L-0.000222087 30L2.34005 14.9986L0.000217438 -6.67176e-05L11.332 9.24475L26 14.9432Z" fill="#112626"></path>
+        </svg>
+      </button>
+      <div class="blog-grid__track">
         {% for article in section.settings.blog.articles
           limit: section.settings.limit
           offset: section.settings.offset
         %}
-          <article class="blog-grid__carousel-card">
-            {% if article.image %}
-              <div class="blog-grid__carousel-image">
-                <img
-                  src="{{ article.image | image_url: width: 1200 }}"
-                  alt="{{ article.image.alt | escape }}"
-                  loading="lazy"
-                >
+          <div class="blog-grid__carousel-image">
+            <img
+              src="{{ article.image | image_url: width: 1200 }}"
+              alt="{{ article.image.alt | escape }}"
+              loading="lazy"
+            >
+            <div class="blog-grid__overlay">
+              <div class="blog-grid-overlay__category">
+                {{ article.metafields.custom.category }}
               </div>
-            {% endif %}
-          </article>
-        {% endfor %}
-      {% endcomment %}
-      first half
-    </div>
 
+              <div class="blog-grid__title">
+                {{ article.title }}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <button
+        type="button"
+        class="blog-grid__button blog-grid__button--next"
+        aria-label="Next"
+      >
+        <svg
+          class="w-[30px] max-w-[30px] h-[26px] max-h-[26px]"
+          width="26"
+          height="30"
+          viewBox="0 0 26 30"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M26 14.9432L11.5969 20.5387L-0.000222087 30L2.34005 14.9986L0.000217438 -6.67176e-05L11.332 9.24475L26 14.9432Z" fill="#112626"></path>
+        </svg>
+      </button>
+    </div>
     <!-- Side List -->
     <div class="blog-grid__list">
       {% for article in section.settings.blog.articles limit: section.settings.limit offset: section.settings.offset %}
@@ -42,7 +80,7 @@
             </div>
 
             <div class="blog-grid-__excerpt">
-              {{ article.excerpt | default: article.content | strip_html | truncate: 50 }}
+              {{ article.title }}
             </div>
           </div>
         </article>
@@ -53,7 +91,7 @@
 
 {% schema %}
 {
-  "name": "Blog Featured",
+  "name": "Blog Grid",
   "settings": [
     {
       "type": "blog",
