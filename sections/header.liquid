@@ -34,9 +34,9 @@
     <nav class="header-left">
       {% if section.settings.left_menu != blank %}
         {% for link in section.settings.left_menu.links %}
-          <a href="{{ link.url }}">
+          <span>
             {{ link.title }}
-          </a>
+          </span>
         {% endfor %}
       {% endif %}
     </nav>
@@ -61,9 +61,12 @@
     <div class="header-right">
       {% if section.settings.right_menu != blank %}
         {% for link in section.settings.right_menu.links %}
-          <a href="{{ link.url }}" class="header-right-link">
+          <span
+            data-menu-trigger="{{ link.handle }}"
+            class="header-right-link"
+          >
             {{ link.title }}
-          </a>
+          </span>
         {% endfor %}
       {% endif %}
 
@@ -116,11 +119,9 @@
     <div class="mega-menu" data-menu="about">
       {% render 'mega-menu', menu: linklists['about-menu'] %}
     </div>
-
     <div class="mega-menu" data-menu="services">
       {% render 'mega-menu', menu: linklists['services-menu'] %}
     </div>
-
     <div class="mega-menu" data-menu="support">
       {% render 'mega-menu', menu: linklists['support-menu'] %}
     </div>

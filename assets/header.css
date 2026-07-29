@@ -18,6 +18,7 @@
   z-index: 999;
   width: 100%;
   background-color: transparent;
+  transition: background-color 0.3s ease;
 }
 
 .header-wrapper {
@@ -64,13 +65,25 @@
   display: none;
 }
 
+.mega-menu {
+  display: none;
+}
+
+.mega-menu--active {
+  display: block;
+}
+
+.site-header.site-header--mega-open {
+  background: #112626;
+}
+
 @media (min-width: 920px) {
   .site-header {
     padding: 0 1.875rem;
   }
 
   .header--scrolled .header-wrapper {
-    padding: 0 !important;
+    padding: 0.5rem !important;
   }
 
   .hamberger-menu {
@@ -86,10 +99,10 @@
     gap: 1rem;
   }
 
-  .header-left a,
-  .header-right a {
-    text-decoration: none;
+  .header-left span,
+  .header-right span {
     color: white;
+    cursor: pointer;
   }
 
   .header-right-link,
@@ -100,6 +113,19 @@
   .mega-menu-container {
     display: flex;
     justify-content: center;
-    padding: 2rem 0;
+    padding: 2.5rem 1rem;
+
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .mega-menu-container--open {
+    max-height: 40rem;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
   }
 }

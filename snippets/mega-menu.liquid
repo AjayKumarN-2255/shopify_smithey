@@ -1,0 +1,97 @@
+<div class="mega-menu__grid">
+  {% for link in menu.links %}
+    {% case link.type %}
+      {% when 'page_link' %}
+        {% assign page = link.object %}
+
+        <a href="{{ page.url }}" class="mega-menu__card">
+          <div class="mega-menu__image">
+            {% if page.metafields.custom.menu_image %}
+              <img
+                src="{{ page.metafields.custom.menu_image | image_url: width: 500 }}"
+                alt="{{ page.title }}"
+                width="300"
+                height="220"
+              >
+            {% endif %}
+          </div>
+          <div class="mega-menu__footer">
+            <h3 class="mega-menu__title">
+              {{ page.title }}
+            </h3>
+            <p class="mega-menu__description">
+              {{ page.metafields.custom.menu_description }}
+            </p>
+          </div>
+        </a>
+
+      {% when 'blog_link' %}
+        {% assign blog = link.object %}
+
+        <a href="{{ blog.url }}" class="mega-menu__card">
+          <div class="mega-menu__image">
+            {% if blog.metafields.custom.menu_image %}
+              <img
+                src="{{ blog.metafields.custom.menu_image | image_url: width: 500 }}"
+                alt="{{ blog.title }}"
+                width="300"
+                height="220"
+              >
+            {% endif %}
+          </div>
+          <div class="mega-menu__footer">
+            <h3 class="mega-menu__title">
+              {{ blog.title }}
+            </h3>
+            <p class="mega-menu__description">
+              {{ blog.metafields.custom.menu_description }}
+            </p>
+          </div>
+        </a>
+    {% endcase %}
+  {% endfor %}
+</div>
+
+<style>
+  .mega-menu__grid {
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+  }
+  .mega-menu__card {
+    text-decoration: none;
+    display: flex;
+    height: 6.52rem;
+    background-color: #2b403f;
+    color: #f3f3f3;
+    border-radius: 2px;
+  }
+  .mega-menu__footer {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .mega-menu__image {
+    width: 10rem;
+    height: 6.52rem;
+    overflow: hidden;
+  }
+  .mega-menu__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .mega-menu__title {
+    font-size: 20px;
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+  }
+  .mega-menu__description {
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: 0.05em;
+    max-width: 16rem;
+  }
+</style>
