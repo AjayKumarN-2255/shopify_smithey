@@ -35,11 +35,19 @@
                 "limit": 3,
                 "offset": 2
             }
+        },
+        "featured-article": {
+            "type": "featured-article",
+            "settings": {
+                "article": "journal/cast-of-characters-stephen",
+                "background_color": "#495A57"
+            }
         }
     },
     "order": [
         "blog-featured",
         "blog-grid",
-        "blog_featured_R3ckGG"
+        "blog_featured_R3ckGG",
+        "featured-article"
     ]
 }

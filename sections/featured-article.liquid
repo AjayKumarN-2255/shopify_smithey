@@ -1,0 +1,98 @@
+<section
+  class="featured-article"
+  style="background-color: {{ section.settings.background_color }};"
+>
+  <div class="featured-article__container">
+    <!-- Image -->
+    <div class="featured-article__media">
+      <img
+        src="{{ section.settings.article.image | image_url: width: 1200 }}"
+        alt="{{ section.settings.article.image.alt | escape }}"
+        loading="lazy"
+      >
+    </div>
+
+    <!-- Content -->
+    <div class="featured-article__content">
+      <div class="featured-article__category">
+        {{ section.settings.article.metafields.custom.category }}
+      </div>
+
+      <h2 class="featured-article__title">
+        {{ section.settings.article.title }}
+      </h2>
+
+      <div class="featured-article__excerpt">
+        {{ section.settings.article.content | strip_html | truncate: 220 }}
+      </div>
+
+      <div class="featured-article__footer">
+        <a
+          href="{{ section.settings.article.url }}"
+          class="featured-article__link"
+        >
+          Read More
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .featured-article {
+    margin: 2rem 0 0 0;
+  }
+  .featured-article__container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .featured-article__media {
+    width: 100%;
+    height: 25rem;
+  }
+
+  .featured-article__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  @media (min-width: 920px) {
+    .featured-article__container {
+      flex-direction: row;
+    }
+    .featured-article__media {
+      height: 34rem;
+    }
+    .featured-article__media,
+    .featured-article__content {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Featured Story",
+  "settings": [
+    {
+      "type": "article",
+      "id": "article",
+      "label": "Select article"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#495a57"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Story"
+    }
+  ]
+}
+{% endschema %}
