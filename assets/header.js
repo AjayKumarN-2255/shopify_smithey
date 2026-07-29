@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         announcementBar.style.display = 'none';
         isScrolled = true;
 
+        document.body.classList.remove('no-scroll');
         mobileMenu.classList.add('mobile-menu--open');
         hamburger.style.display = 'none';
         closeIcon.style.display = 'block';
@@ -46,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     closeIcon.addEventListener('click', () => {
         mobileMenu.classList.remove('mobile-menu--open');
 
+        document.body.classList.remove('no-scroll');
         closeIcon.style.display = 'none';
         hamburger.style.display = 'block';
     });
@@ -87,4 +89,25 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
+
+
+    // mega-menu opening in mobile
+    const menuItems = document.querySelectorAll(".mobile-menu__item");
+
+    menuItems.forEach((item) => {
+        const trigger = item.querySelector(".mobile-menu_right__link");
+        const menu = item.querySelector(".mega-menu-mobile");
+
+        if (!trigger || !menu) return;
+
+        trigger.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            item.classList.toggle("is-open");
+            menu.style.maxHeight = item.classList.contains("is-open")
+                ? `${menu.scrollHeight}px`
+                : "0";
+        });
+    });
+
 });

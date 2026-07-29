@@ -3,7 +3,7 @@
     <ul class="mobile-menu_left__link">
       {% for link in left_menu.links %}
         <li class="mobile-menu__item">
-          <a href="{{ link.url }}" class="mobile-menu__link">
+          <span href="{{ link.url }}" class="mobile-menu__link">
             <span class="mobile-menu__title">{{ link.title }}</span>
             <svg
               width="15"
@@ -15,7 +15,7 @@
             >
               <path d="M6.58789 10.9531L0 16L1.33008 8L6.99381e-07 0L6.43945 4.93164L14.7666 7.96973L6.58789 10.9531Z" fill="#B68B32"></path>
             </svg>
-          </a>
+          </span>
         </li>
       {% endfor %}
     </ul>
@@ -24,9 +24,12 @@
   {% if right_menu != blank %}
     <ul class="mobile-menu_right__list">
       {% for link in right_menu.links %}
+        {% assign menu_handle = link.handle | append: '-menu' %}
+
         <li class="mobile-menu__item">
-          <a href="{{ link.url }}" class="mobile-menu_right__link">
+          <span href="{{ link.url }}" class="mobile-menu_right__link">
             <span class="mobile-menu__title">{{ link.title }}</span>
+
             <svg
               width="22"
               height="22"
@@ -34,13 +37,14 @@
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               class="flex-shrink-0 transition-transform duration-300"
-              :class="openMenu === 'other_menu_fmChme' ? 'rotate-45' : ''"
             >
-              <circle cx="11" cy="11" r="11" fill="white" :fill-opacity="openMenu === 'other_menu_fmChme' ? '0.8' : '0.33'" class="transition-all duration-300" fill-opacity="0.33"></circle>
+              <circle cx="11" cy="11" r="11" fill="white" fill-opacity="0.33"></circle>
               <path d="M5.5 11H16.5" stroke="#112626" stroke-linejoin="round"></path>
               <path d="M11 5.5V16.5" stroke="#112626" stroke-linejoin="round"></path>
             </svg>
-          </a>
+          </span>
+
+          {% render 'mega-menu-mobile', menu: linklists[menu_handle] %}
         </li>
       {% endfor %}
     </ul>
@@ -79,6 +83,7 @@
   .mobile-menu__title {
     letter-spacing: 0.08em;
     line-height: 1;
+    font-weight: bold;
   }
   .mobile-menu_right__list {
     display: flex;
@@ -92,6 +97,13 @@
     display: flex;
     justify-content: space-between;
     padding: 0.75rem 0;
+  }
+  .mobile-menu__item svg {
+    transition: transform 0.3s ease;
+  }
+
+  .mobile-menu__item.is-open svg {
+    transform: rotate(-45deg);
   }
   @media (min-width: 920px) {
     .mobile-menu__nav {

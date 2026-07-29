@@ -1,0 +1,40 @@
+<div class="mega-menu-mobile">
+  {% for link in menu.links %}
+    {% case link.type %}
+      {% when 'page_link' %}
+        {% assign page = link.object %}
+
+        <a href="{{ page.url }}" class="mega-menu-mobile__item">
+          {{ page.title }}
+        </a>
+
+      {% when 'blog_link' %}
+        {% assign blog = link.object %}
+
+        <a href="{{ blog.url }}" class="mega-menu-mobile__item">
+          {{ blog.title }}
+        </a>
+    {% endcase %}
+  {% endfor %}
+</div>
+
+<style>
+  .mega-menu-mobile {
+    display: flex;
+    flex-direction: column;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+  .mobile-menu__item.is-open .mega-menu-mobile {
+    max-height: 500px;
+  }
+  .mega-menu-mobile__item {
+    display: block;
+    padding-top: 0.375rem;
+    padding-bottom: 0.375rem;
+    font-size: 14px;
+    text-decoration: none;
+    color: #f3f3f3;
+  }
+</style>

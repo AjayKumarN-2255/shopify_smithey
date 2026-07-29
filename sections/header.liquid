@@ -116,15 +116,15 @@
 
   <!-- Mega Menu -->
   <div class="mega-menu-container">
-    <div class="mega-menu" data-menu="about">
-      {% render 'mega-menu', menu: linklists['about-menu'] %}
-    </div>
-    <div class="mega-menu" data-menu="services">
-      {% render 'mega-menu', menu: linklists['services-menu'] %}
-    </div>
-    <div class="mega-menu" data-menu="support">
-      {% render 'mega-menu', menu: linklists['support-menu'] %}
-    </div>
+    {% if section.settings.right_menu != blank %}
+      {% for link in section.settings.right_menu.links %}
+        {% assign menu_handle = link.handle | append: '-menu' %}
+
+        <div class="mega-menu" data-menu="{{ link.handle }}">
+          {% render 'mega-menu', menu: linklists[menu_handle] %}
+        </div>
+      {% endfor %}
+    {% endif %}
   </div>
 
   <!-- Mobile Menu Logo -->
