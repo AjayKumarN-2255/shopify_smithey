@@ -1,0 +1,86 @@
+{{ 'blog-grid.css' | asset_url | stylesheet_tag }}
+<section class="blog-grid">
+  <div class="blog-grid__wrapper">
+    <!-- Carousel -->
+    <div class="blog-grid__carousel">
+      {% comment %}
+        {% for article in section.settings.blog.articles
+          limit: section.settings.limit
+          offset: section.settings.offset
+        %}
+          <article class="blog-grid__carousel-card">
+            {% if article.image %}
+              <div class="blog-grid__carousel-image">
+                <img
+                  src="{{ article.image | image_url: width: 1200 }}"
+                  alt="{{ article.image.alt | escape }}"
+                  loading="lazy"
+                >
+              </div>
+            {% endif %}
+          </article>
+        {% endfor %}
+      {% endcomment %}
+      first half
+    </div>
+
+    <!-- Side List -->
+    <div class="blog-grid__list">
+      {% for article in section.settings.blog.articles limit: section.settings.limit offset: section.settings.offset %}
+        <article class="blog-grid__card">
+          <div class="blog-grid__card-image">
+            <img
+              src="{{ article.image | image_url: width: 500 }}"
+              alt="{{ article.image.alt | escape }}"
+              loading="lazy"
+            >
+          </div>
+
+          <div class="blog-grid__card-content">
+            <div class="blog-grid__category">
+              {{ article.metafields.custom.category }}
+            </div>
+
+            <div class="blog-grid-__excerpt">
+              {{ article.excerpt | default: article.content | strip_html | truncate: 50 }}
+            </div>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Blog Featured",
+  "settings": [
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Select blog"
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "label": "Number of articles",
+      "min": 1,
+      "max": 12,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "offset",
+      "label": "Skip articles",
+      "min": 0,
+      "max": 12,
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blog Featured"
+    }
+  ]
+}
+{% endschema %}

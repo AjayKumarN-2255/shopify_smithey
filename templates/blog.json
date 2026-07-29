@@ -8,9 +8,25 @@
                 "limit": 6,
                 "offset": 0
             }
+        },
+        "blog-grid": {
+            "type": "blog-grid",
+            "settings": {}
+        },
+        "blog_featured_R3ckGG": {
+            "type": "blog-featured",
+            "name": "Blog Featured",
+            "settings": {
+                "title": "",
+                "blog": "journal",
+                "limit": 3,
+                "offset": 2
+            }
         }
     },
     "order": [
-        "blog-featured"
+        "blog-featured",
+        "blog-grid",
+        "blog_featured_R3ckGG"
     ]
 }
