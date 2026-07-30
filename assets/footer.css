@@ -172,6 +172,7 @@
   .footer__flex {
     display: flex;
     gap: 2.25rem;
+    justify-content: center;
   }
 
   .footer__description {
