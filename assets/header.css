@@ -76,7 +76,12 @@
 .site-header.site-header--mega-open {
   background: #112626;
 }
-
+.mega-menu__grid > * {
+  flex: 1;
+}
+.mega-menu {
+  width: 100%;
+}
 @media (min-width: 920px) {
   .site-header {
     padding: 0 1.875rem;
@@ -117,7 +122,9 @@
 
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease, padding 0.3s ease;
+    transition:
+      max-height 0.3s ease,
+      padding 0.3s ease;
 
     padding-top: 0;
     padding-bottom: 0;
