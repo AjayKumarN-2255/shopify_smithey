@@ -1,0 +1,17 @@
+{
+    "sections": {
+        "main": {
+            "type": "founder-message",
+            "custom_css": [
+                "@media (min-width: 920px) {.founder-message__image img {height: 41rem; } .founder-message__image {height: 41rem; flex: 0 0 50%; } .founder-message__container {flex-direction: row-reverse; max-width: 57rem; gap: 0; padding: 0; } .founder-message__content {flex: 0 0 50%; padding: 2rem 2rem 0 1.5rem; } .founder-message {padding: 3rem 0 !important; } .founder-message__description p {font-size: 16px; line-height: 27px; margin-bottom: 1rem; color: #112625; }}"
+            ],
+            "settings": {
+                "article": "news/a-message-from-the-founder",
+                "background_color": "#dfdfdf"
+            }
+        }
+    },
+    "order": [
+        "main"
+    ]
+}
