@@ -1,0 +1,88 @@
+<section
+  class="our-story-hero"
+  style="
+    height: {{ section.settings.mobile_height }}vh;
+    {% if section.settings.image %}
+      background-image: url('{{ section.settings.image | image_url: width: 2000 }}');
+    {% endif %}
+  "
+>
+  <div class="our-story-hero__content">
+    <h1 class="our-story-hero__title">{{ section.settings.title }}</h1>
+  </div>
+</section>
+
+<style>
+  .our-story-hero {
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .our-story-hero__title {
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: white;
+  }
+
+  .our-story-hero__content{
+    border:5px solid #b68b32;
+    padding: 10px 30px;
+  }
+
+  @media (min-width: 920px) {
+    .our-story-hero {
+      height: {{ section.settings.desktop_height }}vh !important;
+    }
+
+    .our-story-hero__title {
+      font-size: 36px;
+    }
+  }
+</style>
+{% schema %}
+{
+  "name": "Our Story Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Our Story"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Hero Background Image"
+    },
+    {
+      "type": "range",
+      "id": "desktop_height",
+      "label": "Desktop Section Height",
+      "min": 20,
+      "max": 100,
+      "step": 2,
+      "default": 70,
+      "unit": "vh"
+    },
+    {
+      "type": "range",
+      "id": "mobile_height",
+      "label": "Mobile Section Height",
+      "min": 20,
+      "max": 100,
+      "step": 2,
+      "default": 60,
+      "unit": "vh"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Our Story Hero"
+    }
+  ]
+}
+{% endschema %}

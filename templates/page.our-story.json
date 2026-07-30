@@ -1,0 +1,25 @@
+{
+  "sections": {
+    "our-story-hero": {
+      "type": "our-story-hero",
+      "settings": {
+        "title": "Our Story",
+        "image": "shopify://shop_images/9F69E0DD-5A15-4AF6-B9F0-28AB046165D5_1_105_c_2000x_fa85b017-d7cd-49be-8335-67e2a35f7d9b.webp",
+        "desktop_height": 28,
+        "mobile_height": 40
+      }
+    },
+    "video-banner": {
+      "type": "video-banner",
+      "settings": {
+        "background_color": "#112626",
+        "video_url": "https://cdn.shopify.com/videos/c/o/v/dfb7550f7ace4c94986db2bff645ff21.mp4",
+        "heading": "THE SMITHEY STORY"
+      }
+    }
+  },
+  "order": [
+    "our-story-hero",
+    "video-banner"
+  ]
+}

@@ -28,6 +28,7 @@
 .blog-grid__card {
   display: flex;
   flex-direction: row-reverse;
+  justify-content: space-between;
   padding: 1rem;
   gap: 1rem;
   border-top: 1px dotted gray;
@@ -179,6 +180,7 @@
   .blog-grid__card {
     flex-direction: row;
     align-items: center;
+    justify-content: start;
     border: none;
     padding: 0;
   }

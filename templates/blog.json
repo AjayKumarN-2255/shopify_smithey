@@ -15,7 +15,7 @@
                 "title": "The Smithey Journal",
                 "blog": "journal",
                 "limit": 6,
-                "offset": 0
+                "offset": 1
             }
         },
         "blog-grid": {
@@ -23,7 +23,7 @@
             "settings": {
                 "blog": "journal",
                 "limit": 3,
-                "offset": 0
+                "offset": 1
             }
         },
         "blog_featured_R3ckGG": {
@@ -40,7 +40,7 @@
             "type": "featured-article",
             "settings": {
                 "article": "journal/cast-of-characters-stephen",
-                "background_color": "#495A57"
+                "background_color": "#495a57"
             }
         }
     },
