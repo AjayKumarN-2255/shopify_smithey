@@ -1,0 +1,48 @@
+<div
+  id="content-builder-text-{{ block.id }}"
+  class="content-builder__text"
+  {{ block.shopify_attributes }}
+>
+  {% if block.settings.title != blank %}
+    <h2 class="content-builder__title">
+      {{ block.settings.title }}
+    </h2>
+  {% endif %}
+
+  {% if block.settings.content != blank %}
+    <div class="content-builder__content">
+      {{ block.settings.content }}
+    </div>
+  {% endif %}
+</div>
+
+<style>
+  #content-builder-text-{{ block.id }} .content-builder__title {
+    font-size: {{ block.settings.title_mobile_size }}rem;
+    color: {{ block.settings.title_color }};
+    text-transform: uppercase;
+    max-width: 20rem;
+    margin-bottom: 1rem;
+  }
+
+  #content-builder-text-{{ block.id }} .content-builder__content {
+    font-size: {{ block.settings.content_mobile_size }}rem;
+    color: {{ block.settings.content_color }};
+    line-height: 20px;
+    font-weight: 500;
+  }
+
+  @media (min-width: 920px) {
+    #content-builder-text-{{ block.id }} .content-builder__title {
+      font-size: {{ block.settings.title_desktop_size }}rem;
+      max-width: unset;
+      margin-bottom: 0.5rem;
+    }
+
+    #content-builder-text-{{ block.id }} .content-builder__content {
+      font-size: {{ block.settings.content_desktop_size }}rem;
+      line-height: 22px;
+    }
+  }
+
+</style>

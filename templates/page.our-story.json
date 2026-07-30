@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "our-story-hero": {
@@ -7,6 +16,183 @@
         "image": "shopify://shop_images/9F69E0DD-5A15-4AF6-B9F0-28AB046165D5_1_105_c_2000x_fa85b017-d7cd-49be-8335-67e2a35f7d9b.webp",
         "desktop_height": 28,
         "mobile_height": 40
+      }
+    },
+    "content_builder_kCjJCn": {
+      "type": "content-builder",
+      "blocks": {
+        "text_VewYmW": {
+          "type": "text",
+          "settings": {
+            "title": "The Smithey Story",
+            "title_desktop_size": 1.5,
+            "title_mobile_size": 2.1,
+            "title_color": "#b68b32",
+            "content": "<p>Smithey Ironware is a backyard story. Our founder, Isaac Morton, hatched the idea for Smithey while toying around his woodshed admiring the smooth surfaces and timeless logos of vintage ironware design.  Here, he developed an expertise in restoring old and forgotten pieces into surprisingly stunning cookware, which he would then gift to friends and family.</p>",
+            "content_desktop_size": 0.8,
+            "content_mobile_size": 1,
+            "content_color": "#112626",
+            "position": "left"
+          }
+        },
+        "image_grid_dxDUxt": {
+          "type": "image_grid",
+          "settings": {
+            "image_1": "shopify://shop_images/01222021-SmitheyMiniSkillet-LIFESTYLE2523_1000x1000_8c727d55-5896-400b-8058-965fac965f04.webp",
+            "image_2": "shopify://shop_images/Homescreen_option_1000x1000_551134cc-92ac-4b6f-83f8-a9d7f5fafbc1.webp",
+            "grid_desktop_height": 23.5,
+            "grid_mobile_height": 22.7,
+            "grid_large_desktop_height": 23.5,
+            "position": "left"
+          }
+        },
+        "image_4Fd3Yg": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Smithey_02_2021_0893_1000x1000_d0763c1e-bee6-40fb-a6ad-d74d92017501.jpg",
+            "image_mobile_height": 16.5,
+            "image_desktop_height": 22.2,
+            "image_large_desktop_height": 29,
+            "position": "right"
+          }
+        },
+        "text_WhrJcg": {
+          "type": "text",
+          "settings": {
+            "title": "",
+            "title_desktop_size": 2,
+            "title_mobile_size": 1,
+            "title_color": "#a91010",
+            "content": "<p>After years of studying collector’s books and restoring rusty old skillets to their 19th-century glory, the prospect of creating a something new piqued his curiosity. Building and sharing a cast iron cookware line that honored the classic style of vintage pieces, but also harnessed modern technology and processes, simply felt like a good idea. And from that idea – that a lost art might be restored into a modern icon - Smithey Ironware was born.</p>",
+            "content_desktop_size": 0.8,
+            "content_mobile_size": 1,
+            "content_color": "#112626",
+            "position": "right"
+          }
+        }
+      },
+      "block_order": [
+        "text_VewYmW",
+        "image_grid_dxDUxt",
+        "image_4Fd3Yg",
+        "text_WhrJcg"
+      ],
+      "name": "Content Builder",
+      "settings": {
+        "background_color": "#ffffff",
+        "desktop_padding": 2.5,
+        "mobile_padding": 1
+      }
+    },
+    "content_builder_EgcRme": {
+      "type": "content-builder",
+      "blocks": {
+        "image_4NdYqy": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Forged_farm_3pc_set_left_side_1000x1000_ee4513b2-2b4f-43f1-be4f-ed15a2bec2b3.webp",
+            "image_mobile_height": 16.5,
+            "image_desktop_height": 24.5,
+            "image_large_desktop_height": 29.6,
+            "position": "left"
+          }
+        },
+        "text_89yA4g": {
+          "type": "text",
+          "settings": {
+            "title": "Forging Ahead",
+            "title_desktop_size": 1.5,
+            "title_mobile_size": 2.1,
+            "title_color": "#b68b32",
+            "content": "<p>In collaboration with renown blacksmith (and workshop neighbor) Robert Thomas, Smithey expanded into producing carbon steel cookware in 2018 with our farmhouse collection. Each piece of the farmhouse collection is individually hand-forged and visually unique, while sharing core design features tuned to the Smithey style. The resulting cookware is as beautiful as it is functional.</p>",
+            "content_desktop_size": 0.8,
+            "content_mobile_size": 1,
+            "content_color": "#112626",
+            "position": "right"
+          }
+        }
+      },
+      "block_order": [
+        "image_4NdYqy",
+        "text_89yA4g"
+      ],
+      "custom_css": [
+        "@media (min-width: 920px) {#content-builder-template--21580182683783__content_builder_EgcRme .content-builder__right {justify-content: center; }}"
+      ],
+      "name": "Content Builder",
+      "settings": {
+        "background_color": "#f8f8f8",
+        "desktop_padding": 2.5,
+        "mobile_padding": 1
+      }
+    },
+    "content_builder_6qcbFF": {
+      "type": "content-builder",
+      "blocks": {
+        "text_8MLVda": {
+          "type": "text",
+          "settings": {
+            "title": "OUR PROCESS & COMMITMENT",
+            "title_desktop_size": 1.5,
+            "title_mobile_size": 2.1,
+            "title_color": "#b68b32",
+            "content": "<p>We are proud of what we make. We design and craft our cookware in the USA, and our talented team of craftsmen and women individually inspects every Smithey multiple times throughout our manufacturing process. We guarantee the quality of every Smithey for life. We intend for your Smithey to become a cherished possession, and we are here to support you in your cooking journey. Use it well.</p>",
+            "content_desktop_size": 0.8,
+            "content_mobile_size": 1,
+            "content_color": "#112626",
+            "position": "left"
+          }
+        },
+        "image_grid_VkhFhJ": {
+          "type": "image_grid",
+          "settings": {
+            "image_1": "shopify://shop_images/Forged_farm_set_1000x1000_21475c10-1079-4d0a-b24e-0c69d939d663.webp",
+            "image_2": "shopify://shop_images/01222021-SmitheyMiniSkillet-LIFESTYLE2493_1000x1000_5ab6f278-aaf0-4e5f-9120-6c783aaac2a1.webp",
+            "grid_desktop_height": 23.5,
+            "grid_mobile_height": 22.7,
+            "grid_large_desktop_height": 23.5,
+            "position": "left"
+          }
+        },
+        "image_KqLJ7Y": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/13E867A6-6972-439C-B18F-8D8997A438D0_1000x1000_cb089a0b-eafd-40a9-93d9-fc000b8dcbd0.webp",
+            "image_mobile_height": 16.5,
+            "image_desktop_height": 22.2,
+            "image_large_desktop_height": 29,
+            "position": "right"
+          }
+        },
+        "text_RdPw9n": {
+          "type": "text",
+          "settings": {
+            "title": "",
+            "title_desktop_size": 2,
+            "title_mobile_size": 1,
+            "title_color": "#a91010",
+            "content": "<h2>From the kitchen to the campfire, <em><strong>USE IT WELL.</strong></em></h2>",
+            "content_desktop_size": 2,
+            "content_mobile_size": 1,
+            "content_color": "#112626",
+            "position": "right"
+          }
+        }
+      },
+      "block_order": [
+        "text_8MLVda",
+        "image_grid_VkhFhJ",
+        "image_KqLJ7Y",
+        "text_RdPw9n"
+      ],
+      "custom_css": [
+        "@media (min-width: 920px) {#content-builder-text-text_RdPw9n .content-builder__content {line-height: 65px; } #content-builder-text-text_RdPw9n h2 {font-weight: 400; } #content-builder-text-text_RdPw9n em {color: #b68b32; }}"
+      ],
+      "name": "Content Builder",
+      "settings": {
+        "background_color": "#ffffff",
+        "desktop_padding": 2.5,
+        "mobile_padding": 1
       }
     },
     "video-banner": {
@@ -20,6 +206,9 @@
   },
   "order": [
     "our-story-hero",
+    "content_builder_kCjJCn",
+    "content_builder_EgcRme",
+    "content_builder_6qcbFF",
     "video-banner"
   ]
 }

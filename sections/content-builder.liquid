@@ -1,0 +1,252 @@
+{{ 'content-builder.css' | asset_url | stylesheet_tag }}
+<section
+  id="content-builder-{{ section.id }}"
+  class="content-builder"
+>
+  <div class="content-builder__container">
+    <div class="content-builder__left">
+      {% for block in section.blocks %}
+        {% if block.settings.position == 'left' %}
+          {% case block.type %}
+            {% when 'text' %}
+              {% render 'content-builder-text', block: block %}
+
+            {% when 'image' %}
+              {% render 'content-builder-image', block: block %}
+
+            {% when 'image_grid' %}
+              {% render 'content-builder-image-grid', block: block %}
+          {% endcase %}
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="content-builder__right">
+      {% for block in section.blocks %}
+        {% if block.settings.position == 'right' %}
+          {% case block.type %}
+            {% when 'text' %}
+              {% render 'content-builder-text', block: block %}
+
+            {% when 'image' %}
+              {% render 'content-builder-image', block: block %}
+
+            {% when 'image_grid' %}
+              {% render 'content-builder-image-grid', block: block %}
+          {% endcase %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  #content-builder-{{ section.id }} {
+    background-color: {{ section.settings.background_color }};
+  }
+  .content-builder {
+    padding: {{ section.settings.mobile_padding}}rem;
+  }
+
+  @media (min-width: 920px) {
+    .content-builder {
+      padding: {{ section.settings.desktop_padding }}rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Content Builder",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "number",
+      "id": "desktop_padding",
+      "label": "Desktop Padding (rem)",
+      "default": 2.5
+    },
+    {
+      "type": "number",
+      "id": "mobile_padding",
+      "label": "Mobile Padding (rem)",
+      "default": 1
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "number",
+          "id": "title_desktop_size",
+          "label": "Title Desktop Size (rem)",
+          "default": 2
+        },
+        {
+          "type": "number",
+          "id": "title_mobile_size",
+          "label": "Title Mobile Size (rem)",
+          "default": 1
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Title Color",
+          "default": "#b68b32"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+        },
+        {
+          "type": "number",
+          "id": "content_desktop_size",
+          "label": "Content Desktop Size (rem)",
+          "default": 1
+        },
+        {
+          "type": "number",
+          "id": "content_mobile_size",
+          "label": "Content Mobile Size (rem)",
+          "default": 0.9
+        },
+        {
+          "type": "color",
+          "id": "content_color",
+          "label": "Content Color",
+          "default": "#112626"
+        },
+        {
+          "type": "select",
+          "id": "position",
+          "label": "Position",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "left"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "number",
+          "id": "image_mobile_height",
+          "label": "Image Mobile Height (rem)",
+          "default": 20
+        },
+        {
+          "type": "number",
+          "id": "image_desktop_height",
+          "label": "Image Desktop Height (rem)",
+          "default": 30
+        },
+        {
+          "type": "number",
+          "id": "image_large_desktop_height",
+          "label": "Image Large Desktop Height (rem)",
+          "default": 36
+        },
+        {
+          "type": "select",
+          "id": "position",
+          "label": "Position",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "right"
+        }
+      ]
+    },
+    {
+      "type": "image_grid",
+      "name": "Image Grid",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "Image 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "Image 2"
+        },
+        {
+          "type": "number",
+          "id": "grid_desktop_height",
+          "label": "Grid Desktop Height (rem)",
+          "default": 30
+        },
+        {
+          "type": "number",
+          "id": "grid_mobile_height",
+          "label": "Grid Mobile Height (rem)",
+          "default": 20
+        },
+        {
+          "type": "number",
+          "id": "grid_large_desktop_height",
+          "label": "Grid Large Desktop Height (rem)",
+          "default": 36
+        },
+        {
+          "type": "select",
+          "id": "position",
+          "label": "Position",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "left"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Content Builder"
+    }
+  ]
+}
+{% endschema %}
