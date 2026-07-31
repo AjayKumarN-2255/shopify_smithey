@@ -27,6 +27,7 @@
   }
   .content-builder__left,
   .content-builder__right {
+    width: 50%;
     max-width: 50%;
   }
 }

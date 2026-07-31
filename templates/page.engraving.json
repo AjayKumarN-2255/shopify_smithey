@@ -1,11 +1,117 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "header": {
-      "type": "header",
-      "settings": {}
+    "content_builder_Vzagdc": {
+      "type": "content-builder",
+      "blocks": {
+        "image_aLAwB9": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/3E537CC4-1AFE-406F-868D-3964B3EAD40F_1_201_a.webp",
+            "image_mobile_height": 22.8,
+            "image_desktop_height": 46.8,
+            "image_large_desktop_height": 40,
+            "position": "left",
+            "custom_css": ""
+          }
+        },
+        "text_dBW3iD": {
+          "type": "text",
+          "settings": {
+            "title": "MAKE IT PERSONAL",
+            "title_desktop_size": 1.1,
+            "title_mobile_size": 1,
+            "title_color": "#b68b32",
+            "content": "<h1>SMITHEY ENGRAVING</h1>",
+            "content_desktop_size": 2.1,
+            "content_mobile_size": 2.1,
+            "content_color": "#112626",
+            "position": "right",
+            "custom_css": ".content-builder__content{\n    line-height: 45px;\n    margin-bottom:2rem;\n}\n.content-builder__title{\n   margin-bottom:0.5rem;\n}\n@media (min-width: 920px) {\n  .content-builder__content {\n    line-height: 60px;\n    max-width:20rem;\n    margin-bottom:2rem;\n  }\n}"
+          }
+        },
+        "text_LtwTNx": {
+          "type": "text",
+          "settings": {
+            "title": "",
+            "title_desktop_size": 2,
+            "title_mobile_size": 1,
+            "title_color": "#b68b32",
+            "content": "<p>Personalization has always been at the heart of what we do at Smithey. After all, what's more personal than a piece of heirloom cookware that gets passed down over generations with all manner of precious memories and milestone meals baked in—literally!</p>",
+            "content_desktop_size": 0.8,
+            "content_mobile_size": 1,
+            "content_color": "#112626",
+            "position": "right",
+            "custom_css": ".content-builder__content {\n    margin-bottom: 2rem;\n  }\n@media (min-width: 920px) {\n  .content-builder__content {\n    line-height: 23px;\n    margin-bottom: 2rem;\n    max-width:20rem\n  }\n}"
+          }
+        },
+        "text_YDHx6E": {
+          "type": "text",
+          "settings": {
+            "title": "HERE'S HOW IT WORKS:",
+            "title_desktop_size": 1.1,
+            "title_mobile_size": 1,
+            "title_color": "#112626",
+            "content": "<ol><li><em> Enter your personal message</em></li><li><em>Preview your message, confirm and checkout</em></li><li><em>Our engravers will craft this for you in one week or less</em></li></ol>",
+            "content_desktop_size": 0.8,
+            "content_mobile_size": 1,
+            "content_color": "#112626",
+            "position": "right",
+            "custom_css": ".content-builder__content ol {\n  margin: 0;\n  padding-left: 1rem;\n}\n\n.content-builder__content li {\n  margin-bottom: 0.5rem;\n  max-width: 20rem;\n  line-height:25px;\n  color: #112626; \n}\n\n.content-builder__title {\n  margin-bottom: 1rem;\n}\n\n.content-builder__content li:last-child {\n  margin-bottom: 0;\n}\n\n.content-builder__content li::marker {\n  color: #B68B32; \n  font-weight: 700;\n}\n\n.content-builder__content li em {\n  font-style: italic;\n}"
+          }
+        }
+      },
+      "block_order": [
+        "image_aLAwB9",
+        "text_dBW3iD",
+        "text_LtwTNx",
+        "text_YDHx6E"
+      ],
+      "custom_css": [
+        ".content-builder {padding: 0;}",
+        ".content-builder__image {margin: 0;}",
+        ".content-builder__right {padding: 2rem 1.5rem;}",
+        ".content-builder__container {gap: 0;}",
+        "@media (min-width: 920px) {.content-builder__right {padding: 2.5rem 8.5rem !important; justify-content: start; }}"
+      ],
+      "name": "Content Builder",
+      "settings": {
+        "background_color": "#f7f7f7",
+        "desktop_padding": 2.5,
+        "mobile_padding": 1
+      }
+    },
+    "main_collection_products_KqNY3p": {
+      "type": "main-collection-products",
+      "custom_css": [
+        ".main-collection-products__title {margin-top: 0; margin-bottom: 2rem; font-size: 1.3rem;}",
+        ".main-collection-products {padding-top: 2.5rem;}",
+        "@media (min-width: 920px) {.main-collection-products__title {font-size: 1.5rem; }}"
+      ],
+      "name": "Main Collection Products",
+      "settings": {
+        "custom_title": "Available on select cookware & sets",
+        "background_color": "#F8F8F8",
+        "collection": "cookware",
+        "products_to_show": 10,
+        "desktop_columns": "3",
+        "mobile_columns": "2",
+        "featured_product_index_desktop": 5,
+        "featured_product_index_mobile": 5,
+        "featured_column_span": 2
+      }
     }
   },
   "order": [
-    "header"
+    "content_builder_Vzagdc",
+    "main_collection_products_KqNY3p"
   ]
 }

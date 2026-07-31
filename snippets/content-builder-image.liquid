@@ -13,6 +13,8 @@
   </div>
 {% endif %}
 
+{% assign selector = '#content-builder-image-' | append: block.id %}
+
 <style>
   #content-builder-image-{{ block.id }} {
     width: 100%;
@@ -38,7 +40,9 @@
     #content-builder-image-{{ block.id }} {
       height: {{ block.settings.image_large_desktop_height }}rem;
       margin-top: 0;
-      margin-bottom:4rem;
+      margin-bottom: 4rem;
     }
   }
+
+  {{ block.settings.custom_css | replace: '&', selector }}
 </style>

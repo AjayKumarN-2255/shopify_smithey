@@ -1,12 +1,19 @@
 {{ 'main-collection-products.css' | asset_url | stylesheet_tag }}
 
-<section class="main-collection-products">
+<section
+  class="main-collection-products"
+  style="background-color: {{ section.settings.background_color }};"
+>
   <div class="main-collection-container">
     {% assign collection = section.settings.collection %}
     {% if collection != blank %}
       <div class="main-collection-products__header">
         <h2 class="main-collection-products__title">
-          {{ collection.title }}
+          {% if section.settings.custom_title != blank %}
+            {{ section.settings.custom_title }}
+          {% else %}
+            {{ collection.title }}
+          {% endif %}
         </h2>
       </div>
     {% endif %}
@@ -111,6 +118,17 @@
 {
   "name": "Main Collection Products",
   "settings": [
+    {
+      "type": "text",
+      "id": "custom_title",
+      "label": "Custom Title"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
     {
       "type": "collection",
       "id": "collection",
