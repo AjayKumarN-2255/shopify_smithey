@@ -1,11 +1,156 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "header": {
-      "type": "header",
-      "settings": {}
+    "our_story_hero_awGwYn": {
+      "type": "our-story-hero",
+      "custom_css": [
+        ".our-story-hero__content {border: none;}"
+      ],
+      "name": "Our Story Hero",
+      "settings": {
+        "title": "THE RESTORATION SHOP",
+        "image": "shopify://shop_images/Smithey_1.1_1255.webp",
+        "desktop_height": 32,
+        "mobile_height": 42
+      }
+    },
+    "content_builder_8LwAtU": {
+      "type": "content-builder",
+      "blocks": {
+        "image_ffeTRW": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/qa_-_1_5.webp",
+            "image_mobile_height": 24.2,
+            "image_desktop_height": 50,
+            "image_large_desktop_height": 50,
+            "position": "left",
+            "custom_css": ""
+          }
+        },
+        "text_KqjMQN": {
+          "type": "text",
+          "settings": {
+            "title": "OUR LOVE OF CAST IRON LIVES ON",
+            "title_desktop_size": 1.9,
+            "title_mobile_size": 1.7,
+            "title_color": "#112626",
+            "content": "<p><br/> Smithey Ironware was born out of a passion for collecting, restoring, and cooking with cast iron. We have heard the stories of your friends putting your prized pan through the dishwasher or leaving your favorite skillet by the campfire in the rain. Or maybe you have an old vintage pan passed down through generations that has seen better days.<br/><br/>With the launch of our restoration shop, we will bring your cast iron back to life.<br/></p>",
+            "content_desktop_size": 1,
+            "content_mobile_size": 1,
+            "content_color": "#112626",
+            "position": "right",
+            "custom_css": ".content-builder__title {\n  text-align: center;\n  margin: 1.5rem auto 0;\n}\n\n@media (min-width: 920px) {\n  .content-builder__title {\n    text-align: left;\n    margin: 1.5rem 0;\n    max-width:28rem;\n  }\n  .content-builder__content {\n     font-size: 0.9rem;\n      line-height: 27px;\n      word-spacing: 4px;\n      max-width: 26rem;\n      margin-bottom:1rem\n  }\n}\n\n@media (min-width: 1700px) {\n  .content-builder__title {\n    max-width: 32rem;\n  }\n  .content-builder__content {\n    max-width: 30rem;\n  }\n}"
+          }
+        },
+        "button_YqxwKt": {
+          "type": "button",
+          "settings": {
+            "button_text": "SHOP RESTORATION",
+            "button_link": "shopify://products/indian-pan",
+            "button_bg_color": "#b68b32",
+            "button_text_color": "#112626",
+            "position": "right",
+            "btn_position_desktop": "left",
+            "btn_position_mobile": "center"
+          }
+        }
+      },
+      "block_order": [
+        "image_ffeTRW",
+        "text_KqjMQN",
+        "button_YqxwKt"
+      ],
+      "custom_css": [
+        ".content-builder__image {margin: 0;}",
+        ".content-builder__container {gap: 0;}",
+        ".content-builder {padding: 1.2rem;}",
+        "@media (min-width: 920px) {.content-builder {padding: 2.5rem 0; } .content-builder__right {padding: 4rem; justify-content: center; }}"
+      ],
+      "name": "Content Builder",
+      "settings": {
+        "background_color": "#ffffff",
+        "desktop_padding": 2.5,
+        "mobile_padding": 1
+      }
+    },
+    "video_banner_QwbqWG": {
+      "type": "video-banner",
+      "custom_css": [
+        ".video-banner {padding: 0 1rem; margin: 0;}",
+        ".video-banner__heading {font-size: 1.75rem; color: #112626; margin-bottom: 0.5rem;}",
+        "@media (min-width: 920px) {.video-banner__video {height: 38rem; } .video-banner__overlay {position: relative; }}"
+      ],
+      "name": "Video Banner",
+      "settings": {
+        "background_color": "#ffffff",
+        "video_url": "https://cdn.shopify.com/videos/c/o/v/dfb7550f7ace4c94986db2bff645ff21.mp4",
+        "heading": "WATCH THE PROCESS"
+      }
+    },
+    "faq-section": {
+      "type": "faq-section",
+      "blocks": {
+        "faq_qzXeeP": {
+          "type": "faq",
+          "settings": {
+            "question": "WHAT TYPES OF CAST IRON DO YOU RESTORE?",
+            "answer": "<p>We restore all types of cast iron cookware, including skillets, Dutch ovens, griddles, and more. Whether it's a vintage piece or a modern Smithey that needs some love, we can bring it back to life.</p>"
+          }
+        },
+        "faq_iaHBE4": {
+          "type": "faq",
+          "settings": {
+            "question": "HOW LONG DOES THE RESTORATION PROCESS TAKE?",
+            "answer": "<p>The restoration process typically takes 2-4 weeks from the time we receive your cookware. This includes inspection, stripping, re-seasoning, and quality control before shipping back to you.</p>"
+          }
+        },
+        "faq_NYDP7B": {
+          "type": "faq",
+          "settings": {
+            "question": "HOW DO I SHIP MY CAST IRON TO YOU?",
+            "answer": "<p>After placing your restoration order, you'll receive detailed shipping instructions. We recommend wrapping your cookware securely and using a sturdy box. Shipping costs to our facility are the customer's responsibility.</p>"
+          }
+        },
+        "faq_4TXYcV": {
+          "type": "faq",
+          "settings": {
+            "question": "WHAT IS INCLUDED IN THE RESTORATION?",
+            "answer": "<p>Our restoration service includes a complete strip of old seasoning, rust removal, surface smoothing if needed, and multiple layers of our signature seasoning. Your piece will be returned ready to cook.</p>"
+          }
+        },
+        "faq_67k7Jx": {
+          "type": "faq",
+          "settings": {
+            "question": "DO YOU OFFER A WARRANTY ON RESTORED PIECES?",
+            "answer": "<p>Yes! All restored cookware comes with our satisfaction guarantee. If you're not happy with the restoration, contact us within 30 days and we'll make it right.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_qzXeeP",
+        "faq_iaHBE4",
+        "faq_NYDP7B",
+        "faq_4TXYcV",
+        "faq_67k7Jx"
+      ],
+      "settings": {
+        "title": "Frequently Asked Questions"
+      }
     }
   },
   "order": [
-    "header"
+    "our_story_hero_awGwYn",
+    "content_builder_8LwAtU",
+    "video_banner_QwbqWG",
+    "faq-section"
   ]
 }

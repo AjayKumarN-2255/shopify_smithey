@@ -16,6 +16,9 @@
 
             {% when 'image_grid' %}
               {% render 'content-builder-image-grid', block: block %}
+
+            {% when 'button' %}
+              {% render 'content-builder-button', block: block %}
           {% endcase %}
         {% endif %}
       {% endfor %}
@@ -33,6 +36,9 @@
 
             {% when 'image_grid' %}
               {% render 'content-builder-image-grid', block: block %}
+
+            {% when 'button' %}
+              {% render 'content-builder-button', block: block %}
           {% endcase %}
         {% endif %}
       {% endfor %}
@@ -251,6 +257,91 @@
             }
           ],
           "default": "left"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Learn More"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        },
+        {
+          "type": "color",
+          "id": "button_bg_color",
+          "label": "Button Background Color",
+          "default": "#112626"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "Button Text Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "select",
+          "id": "position",
+          "label": "Position",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "select",
+          "id": "btn_position_desktop",
+          "label": "Button Position Desktop",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "select",
+          "id": "btn_position_mobile",
+          "label": "Button Position Mobile",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "center"
         }
       ]
     }

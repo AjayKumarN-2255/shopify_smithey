@@ -1,0 +1,95 @@
+<section class="faq">
+  <div class="faq__container page-width">
+    {% if section.settings.title != blank %}
+      <h2 class="faq__title">
+        {{ section.settings.title }}
+      </h2>
+    {% endif %}
+
+    <div class="faq__items">
+      {% for block in section.blocks %}
+        {% render 'faq-item', block: block %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq {
+    width: 100%;
+    padding: 3rem 1rem;
+    color: #112626;
+  }
+
+  .faq__title {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 24px;
+    margin-bottom: 2rem;
+  }
+
+  @media (min-width: 920px) {
+    .faq {
+      padding: 4rem 1rem;
+    }
+    .faq__title {
+      font-size: 38px;
+    }
+    .faq__container {
+      margin: auto;
+      max-width: 65rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "FAQ",
+  "tag": "section",
+  "class": "faq-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Frequently Asked Questions"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "What is your return policy?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>We accept returns within 30 days of purchase.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ",
+      "blocks": [
+        {
+          "type": "faq"
+        },
+        {
+          "type": "faq"
+        },
+        {
+          "type": "faq"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
