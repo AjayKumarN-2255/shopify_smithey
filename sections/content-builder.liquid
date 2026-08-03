@@ -44,6 +44,16 @@
       {% endfor %}
     </div>
   </div>
+
+  {% if section.settings.show_features %}
+    <div class="content-builder__features">
+      {% for block in section.blocks %}
+        {% if block.type == 'feature' %}
+          {% render 'content-builder-feature', block: block %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
 </section>
 
 <style>
@@ -51,13 +61,18 @@
     background-color: {{ section.settings.background_color }};
   }
 
-  #content-builder-{{ section.id }} .content-builder__container {
+  #content-builder-{{ section.id }} .content-builder__container,
+  #content-builder-{{ section.id }} .content-builder__features {
     padding: {{ section.settings.mobile_padding }}rem;
   }
 
   @media (min-width: 920px) {
-    #content-builder-{{ section.id }} .content-builder__container {
+    #content-builder-{{ section.id }} .content-builder__container,
+    #content-builder-{{ section.id }} .content-builder__features {
       padding: {{ section.settings.desktop_padding }}rem;
+    }
+    #content-builder-{{ section.id }} .content-builder__features {
+      padding-top: {{ section.settings.desktop_padding | divided_by: 2 }}rem;
     }
   }
 </style>
@@ -83,6 +98,12 @@
       "id": "mobile_padding",
       "label": "Mobile Padding (rem)",
       "default": 1
+    },
+    {
+      "type": "checkbox",
+      "id": "show_features",
+      "label": "Show Feature Section",
+      "default": false
     }
   ],
   "blocks": [
@@ -349,6 +370,70 @@
             }
           ],
           "default": "center"
+        }
+      ]
+    },
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo / Icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Feature Title"
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Title Color",
+          "default": "#112626"
+        },
+        {
+          "type": "number",
+          "id": "title_desktop_size",
+          "label": "Title Desktop Size (rem)",
+          "default": 1.5
+        },
+        {
+          "type": "number",
+          "id": "title_mobile_size",
+          "label": "Title Mobile Size (rem)",
+          "default": 1.2
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+        },
+        {
+          "type": "color",
+          "id": "content_color",
+          "label": "Content Color",
+          "default": "#000000"
+        },
+        {
+          "type": "number",
+          "id": "content_desktop_size",
+          "label": "Content Desktop Size (rem)",
+          "default": 1
+        },
+        {
+          "type": "number",
+          "id": "content_mobile_size",
+          "label": "Content Mobile Size (rem)",
+          "default": 0.9
+        },
+        {
+          "type": "textarea",
+          "id": "custom_css",
+          "label": "Custom CSS",
+          "info": "Write CSS properties only. Example: margin-top: 2rem;"
         }
       ]
     }

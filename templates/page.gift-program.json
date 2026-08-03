@@ -65,11 +65,105 @@
             "settings": {
                 "background_color": "#d9d9d9",
                 "desktop_padding": 2.5,
-                "mobile_padding": 1.5
+                "mobile_padding": 1.5,
+                "show_features": false
+            }
+        },
+        "content_builder_KwMaUp": {
+            "type": "content-builder",
+            "blocks": {
+                "text_6Ewx8T": {
+                    "type": "text",
+                    "settings": {
+                        "title": "gifting program",
+                        "title_desktop_size": 1,
+                        "title_mobile_size": 1.3,
+                        "title_color": "#b68b32",
+                        "content": "<h1><strong>how it works</strong></h1>",
+                        "content_desktop_size": 1.5,
+                        "content_mobile_size": 1.1,
+                        "content_color": "#ffffff",
+                        "position": "left",
+                        "custom_css": ".content-builder__content{\n  text-transform:uppercase;\n}\n@media (min-width: 920px) {\n  .content-builder__content {\n    margin:1.5rem 0 2rem 0;\n  }\n}"
+                    }
+                },
+                "image_pCjaYg": {
+                    "type": "image",
+                    "settings": {
+                        "image": "shopify://shop_images/Screenshot_2024-03-14_at_8.22_2.webp",
+                        "image_mobile_height": 8.7,
+                        "image_desktop_height": 19.4,
+                        "image_large_desktop_height": 25,
+                        "position": "left",
+                        "custom_css": "& {\n  max-width: 55rem;\n}\n\n@media (min-width: 1700px) {\n  & {\n    max-width: 69rem;\n  }\n  &{\n    margin-bottom:1rem;\n  }\n}"
+                    }
+                },
+                "feature_VWeYkb": {
+                    "type": "feature",
+                    "settings": {
+                        "logo": "shopify://shop_images/check_corporate_gift.webp",
+                        "title": "connect with your personal gift concierge",
+                        "title_color": "#B68B32",
+                        "title_desktop_size": 1,
+                        "title_mobile_size": 1.3,
+                        "content": "<p>Fill out our interest form below, and our team will reach out to you shortly</p>",
+                        "content_color": "#FFFFFF",
+                        "content_desktop_size": 0.9,
+                        "content_mobile_size": 1
+                    }
+                },
+                "feature_eW4MzD": {
+                    "type": "feature",
+                    "settings": {
+                        "logo": "shopify://shop_images/check_corporate_gift.webp",
+                        "title": "select your perfect gift",
+                        "title_color": "#B68B32",
+                        "title_desktop_size": 1,
+                        "title_mobile_size": 1.3,
+                        "content": "<p>You’ll work one-on-one with our team and help you curate the best gift for your occasion.</p>",
+                        "content_color": "#FFFFFF",
+                        "content_desktop_size": 0.9,
+                        "content_mobile_size": 1
+                    }
+                },
+                "feature_4cF63i": {
+                    "type": "feature",
+                    "settings": {
+                        "logo": "shopify://shop_images/check_corporate_gift.webp",
+                        "title": "create a lasting impression",
+                        "title_color": "#B68B32",
+                        "title_desktop_size": 1,
+                        "title_mobile_size": 1.3,
+                        "content": "<p>When you gift a Smithey, you give a gift that lasts a lifetime. They are sure to think of you every time they use it!</p>",
+                        "content_color": "#FFFFFF",
+                        "content_desktop_size": 0.9,
+                        "content_mobile_size": 1
+                    }
+                }
+            },
+            "block_order": [
+                "text_6Ewx8T",
+                "image_pCjaYg",
+                "feature_VWeYkb",
+                "feature_eW4MzD",
+                "feature_4cF63i"
+            ],
+            "custom_css": [
+                "#content-builder-template--21582567276679__content_builder_KwMaUp :is(.content-builder__right) {display: none;}",
+                "#content-builder-template--21582567276679__content_builder_KwMaUp :is(.content-builder__left) {width: 100%; max-width: unset; text-align: center; display: flex; flex-direction: column; align-items: center;}",
+                "#content-builder-template--21582567276679__content_builder_KwMaUp :is(.content-builder__container) {padding-bottom: 0;}"
+            ],
+            "name": "Content Builder",
+            "settings": {
+                "background_color": "#0c2727",
+                "desktop_padding": 3.8,
+                "mobile_padding": 1.5,
+                "show_features": true
             }
         }
     },
     "order": [
-        "content_builder_nLDVK9"
+        "content_builder_nLDVK9",
+        "content_builder_KwMaUp"
     ]
 }

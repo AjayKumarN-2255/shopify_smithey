@@ -1,0 +1,98 @@
+<div
+  id="content-builder-feature-{{ block.id }}"
+  class="content-builder__feature"
+  {{ block.shopify_attributes }}
+>
+  {% if block.settings.logo != blank %}
+    <div class="content-builder__feature-logo">
+      <img
+        src="{{ block.settings.logo | image_url }}"
+        alt="{{ block.settings.title | escape }}"
+      >
+    </div>
+  {% endif %}
+
+  <div class="content-builder__feature-content">
+    {% if block.settings.title != blank %}
+      <h3 class="content-builder__feature-title">
+        {{ block.settings.title }}
+      </h3>
+    {% endif %}
+
+    {% if block.settings.content != blank %}
+      <div class="content-builder__feature-description">
+        {{ block.settings.content }}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% assign selector = '#content-builder-feature-' | append: block.id %}
+
+<style>
+  {{ selector }}.content-builder__feature {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  {{ selector }} .content-builder__feature-logo {
+    width: 2.4rem;
+    height: 2.4rem;
+    flex-shrink: 0;
+  }
+
+  {{ selector }} .content-builder__feature-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  {{ selector }} .content-builder__feature-title {
+    font-size: {{ block.settings.title_mobile_size }}rem;
+    margin-bottom: 0.25rem;
+    color: {{ block.settings.title_color }};
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+  }
+
+  {{ selector }} .content-builder__feature-description {
+    font-size: {{ block.settings.content_mobile_size }}rem;
+    color: {{ block.settings.content_color }};
+    max-width: 30rem;
+    line-height: 1.3;
+    font-weight: 500;
+  }
+
+  @media (min-width: 920px) {
+      {{ selector }}.content-builder__feature {
+          flex-direction: row;
+          text-align: start;
+          align-items: flex-start;
+          gap: 0.5rem;
+          margin-bottom: 1.5rem;
+      }
+
+    {{ selector }} .content-builder__feature-logo {
+      width: 2.4rem;
+      height: 2.4rem;
+    }
+
+    {{ selector }} .content-builder__feature-title {
+      font-size: {{ block.settings.title_desktop_size }}rem;
+      margin-bottom: 0.5rem;
+    }
+
+    {{ selector }} .content-builder__feature-description {
+      font-size: {{ block.settings.content_desktop_size }}rem;
+      line-height: 1.4;
+    }
+
+  }
+
+  {{ block.settings.custom_css | replace: '&', selector }}
+</style>
