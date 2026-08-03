@@ -1,4 +1,7 @@
+{% assign selector = '#content-builder-button-' | append: block.id %}
+
 <div
+  id="content-builder-button-{{ block.id }}"
   class="
     content-builder__button
     content-builder__button--desktop-{{ block.settings.btn_position_desktop }}
@@ -21,25 +24,25 @@
 </div>
 
 <style>
-  .content-builder__button {
+  {{ selector }} {
     width: 100%;
     display: flex;
     margin-top: 1.5rem;
   }
 
-  .content-builder__button--mobile-left {
+  {{ selector }}.content-builder__button--mobile-left {
     justify-content: flex-start;
   }
 
-  .content-builder__button--mobile-center {
+  {{ selector }}.content-builder__button--mobile-center {
     justify-content: center;
   }
 
-  .content-builder__button--mobile-right {
+  {{ selector }}.content-builder__button--mobile-right {
     justify-content: flex-end;
   }
 
-  .content-builder__button-link {
+  {{ selector }} .content-builder__button-link {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -49,25 +52,27 @@
     margin: 1rem 0;
   }
 
-  .content-builder__button-link:hover {
+  {{ selector }} .content-builder__button-link:hover {
     opacity: 0.9;
   }
 
   @media (min-width: 920px) {
-    .content-builder__button--desktop-left {
+    {{ selector }}.content-builder__button--desktop-left {
       justify-content: flex-start;
     }
 
-    .content-builder__button--desktop-center {
+    {{ selector }}.content-builder__button--desktop-center {
       justify-content: center;
     }
 
-    .content-builder__button--desktop-right {
+    {{ selector }}.content-builder__button--desktop-right {
       justify-content: flex-end;
     }
 
-    .content-builder__button-link {
+    {{ selector }} .content-builder__button-link {
       font-size: 0.9rem;
     }
   }
+
+  {{ block.settings.custom_css | replace: '&', selector }}
 </style>
