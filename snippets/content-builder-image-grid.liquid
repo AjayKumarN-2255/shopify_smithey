@@ -26,6 +26,8 @@
   {% endif %}
 </div>
 
+{% assign selector = '#content-builder-image-grid-' | append: block.id %}
+
 <style>
   #content-builder-image-grid-{{ block.id }} {
     width: 100%;
@@ -50,14 +52,16 @@
   @media (min-width: 920px) {
     #content-builder-image-grid-{{ block.id }} {
       height: {{ block.settings.grid_desktop_height }}rem;
-      margin-top:4rem
+      margin-top: 4rem;
     }
   }
 
   @media (min-width: 1700px) {
     #content-builder-image-grid-{{ block.id }} {
       height: {{ block.settings.grid_large_desktop_height }}rem;
-      margin-top:4rem
+      margin-top: 4rem;
     }
   }
+
+  {{ block.settings.custom_css | replace: '&', selector }}
 </style>

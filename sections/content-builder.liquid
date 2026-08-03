@@ -50,12 +50,13 @@
   #content-builder-{{ section.id }} {
     background-color: {{ section.settings.background_color }};
   }
-  .content-builder {
-    padding: {{ section.settings.mobile_padding}}rem;
+
+  #content-builder-{{ section.id }} .content-builder__container {
+    padding: {{ section.settings.mobile_padding }}rem;
   }
 
   @media (min-width: 920px) {
-    .content-builder {
+    #content-builder-{{ section.id }} .content-builder__container {
       padding: {{ section.settings.desktop_padding }}rem;
     }
   }
@@ -257,6 +258,12 @@
             }
           ],
           "default": "left"
+        },
+        {
+          "type": "textarea",
+          "id": "custom_css",
+          "label": "Custom CSS",
+          "info": "Write CSS properties only. Example: margin-top: 2rem;"
         }
       ]
     },

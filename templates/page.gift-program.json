@@ -1,11 +1,75 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
     "sections": {
-        "header": {
-            "type": "header",
-            "settings": {}
+        "content_builder_nLDVK9": {
+            "type": "content-builder",
+            "blocks": {
+                "text_yffqxp": {
+                    "type": "text",
+                    "settings": {
+                        "title": "engrave your gift",
+                        "title_desktop_size": 2.4,
+                        "title_mobile_size": 1.7,
+                        "title_color": "#b68b32",
+                        "content": "<p><strong>Personalization has always been at the heart of what we do at Smithey. After all, what’s more personal than a piece of heirloom cookware that will get passed down for generations, with all manner of precious memories and milestone meals baked in–literally!</strong></p><p>Customize your messages to mark special occasions - think birthdays, holidays, graduations, marathons, weddings, and more! Character counts are not limitless but the possibilities are...</p>",
+                        "content_desktop_size": 1.2,
+                        "content_mobile_size": 1.2,
+                        "content_color": "#112626",
+                        "position": "left",
+                        "custom_css": ".content-builder__title {\n   margin:2rem auto ;\n   text-align:center;\n}\n.content-builder__content{\n  text-align:center;\n   max-width: 20rem;\n   line-height: 18px;\n}\n.content-builder__content p{\nmargin-bottom:1rem;\n}\n@media (min-width: 920px) {\n  .content-builder__title {\n    margin: 3rem 0 1.25rem 0;\n    text-align:start;\n  }\n.content-builder__content p{\nmargin-bottom:2rem;\n}\n  .content-builder__content{\n  text-align:start;\n   max-width: unset;\n   line-height: 28px;\n }\n}\n@media (min-width: 1700px) {\n.content-builder__content{\n   max-width: 38rem;\n   line-height:30px;\n }\n}"
+                    }
+                },
+                "image_KYG6EG": {
+                    "type": "image",
+                    "settings": {
+                        "image": "shopify://shop_images/Engraving_overhead_back.webp",
+                        "image_mobile_height": 14.2,
+                        "image_desktop_height": 19.5,
+                        "image_large_desktop_height": 25.5,
+                        "position": "right",
+                        "custom_css": "@media (min-width: 1700px) {\n  & {\n    margin-bottom: 1rem;\n  }\n}"
+                    }
+                },
+                "image_grid_d6qhzX": {
+                    "type": "image_grid",
+                    "settings": {
+                        "image_1": "shopify://shop_images/engraving_example_14_corporate_gift.jpg",
+                        "image_2": "shopify://shop_images/engraved_skillet_dad_0d83cc6f-335e-4703-887a-24bc8ff3f69a.webp",
+                        "grid_desktop_height": 14.1,
+                        "grid_mobile_height": 9.7,
+                        "grid_large_desktop_height": 18.8,
+                        "position": "right",
+                        "custom_css": "& {\n  margin: 0 !important;\n}\n\n@media (min-width: 920px) {\n  & {\n    margin: 0 !important;\n  }\n}\n\n@media (min-width: 1700px) {\n  & {\n    margin: 0 !important;\n  }\n}"
+                    }
+                }
+            },
+            "block_order": [
+                "text_yffqxp",
+                "image_KYG6EG",
+                "image_grid_d6qhzX"
+            ],
+            "custom_css": [
+                "#content-builder-template--21582567276679__content_builder_nLDVK9 .content-builder__container {background-color: white; flex-direction: column-reverse;}",
+                "#content-builder-template--21582567276679__content_builder_nLDVK9 {padding: 1.75rem 1.25rem;}",
+                "@media (min-width: 920px) {#content-builder-template--21582567276679__content_builder_nLDVK9 {padding: 3.6rem; } #content-builder-template--21582567276679__content_builder_nLDVK9 .content-builder__container {padding: 2.5rem 3.75rem; gap: 1.5rem; flex-direction: row; }}"
+            ],
+            "name": "Content Builder",
+            "settings": {
+                "background_color": "#d9d9d9",
+                "desktop_padding": 2.5,
+                "mobile_padding": 1.5
+            }
         }
     },
     "order": [
-        "header"
+        "content_builder_nLDVK9"
     ]
 }
