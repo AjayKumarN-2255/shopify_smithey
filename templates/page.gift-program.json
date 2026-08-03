@@ -9,6 +9,53 @@
  */
 {
     "sections": {
+        "content_builder_rwG73h": {
+            "type": "content-builder",
+            "blocks": {
+                "text_GYwzqp": {
+                    "type": "text",
+                    "settings": {
+                        "title": "why give a smithey?",
+                        "title_desktop_size": 2,
+                        "title_mobile_size": 1,
+                        "title_color": "#b68b32",
+                        "content": "",
+                        "content_desktop_size": 1,
+                        "content_mobile_size": 0.9,
+                        "content_color": "#112626",
+                        "position": "left",
+                        "custom_css": ""
+                    }
+                },
+                "feature_TL4iMG": {
+                    "type": "feature",
+                    "settings": {
+                        "logo": "shopify://shop_images/heirloom_quality.webp",
+                        "title": "heirloom-quality",
+                        "title_color": "#B68B32",
+                        "title_desktop_size": 1.5,
+                        "title_mobile_size": 1.3,
+                        "content": "<p>Destined to be passed<br/>down for generations</p>",
+                        "content_color": "#FFFFFF",
+                        "content_desktop_size": 1,
+                        "content_mobile_size": 1.1,
+                        "custom_css": "& .content-builder__feature-logo{\n    width:48px;\n    height:48px;\n}"
+                    }
+                }
+            },
+            "block_order": [
+                "text_GYwzqp",
+                "feature_TL4iMG"
+            ],
+            "custom_css": [],
+            "name": "Content Builder",
+            "settings": {
+                "background_color": "#0c2727",
+                "desktop_padding": 3.6,
+                "mobile_padding": 1,
+                "show_features": true
+            }
+        },
         "content_builder_nLDVK9": {
             "type": "content-builder",
             "blocks": {
@@ -103,13 +150,14 @@
                     "settings": {
                         "logo": "shopify://shop_images/check_corporate_gift.webp",
                         "title": "connect with your personal gift concierge",
-                        "title_color": "#B68B32",
+                        "title_color": "#b68b32",
                         "title_desktop_size": 1,
                         "title_mobile_size": 1.3,
                         "content": "<p>Fill out our interest form below, and our team will reach out to you shortly</p>",
-                        "content_color": "#FFFFFF",
+                        "content_color": "#ffffff",
                         "content_desktop_size": 0.9,
-                        "content_mobile_size": 1
+                        "content_mobile_size": 1,
+                        "custom_css": ""
                     }
                 },
                 "feature_eW4MzD": {
@@ -117,13 +165,14 @@
                     "settings": {
                         "logo": "shopify://shop_images/check_corporate_gift.webp",
                         "title": "select your perfect gift",
-                        "title_color": "#B68B32",
+                        "title_color": "#b68b32",
                         "title_desktop_size": 1,
                         "title_mobile_size": 1.3,
                         "content": "<p>You’ll work one-on-one with our team and help you curate the best gift for your occasion.</p>",
-                        "content_color": "#FFFFFF",
+                        "content_color": "#ffffff",
                         "content_desktop_size": 0.9,
-                        "content_mobile_size": 1
+                        "content_mobile_size": 1,
+                        "custom_css": ""
                     }
                 },
                 "feature_4cF63i": {
@@ -131,13 +180,14 @@
                     "settings": {
                         "logo": "shopify://shop_images/check_corporate_gift.webp",
                         "title": "create a lasting impression",
-                        "title_color": "#B68B32",
+                        "title_color": "#b68b32",
                         "title_desktop_size": 1,
                         "title_mobile_size": 1.3,
                         "content": "<p>When you gift a Smithey, you give a gift that lasts a lifetime. They are sure to think of you every time they use it!</p>",
-                        "content_color": "#FFFFFF",
+                        "content_color": "#ffffff",
                         "content_desktop_size": 0.9,
-                        "content_mobile_size": 1
+                        "content_mobile_size": 1,
+                        "custom_css": ""
                     }
                 }
             },
@@ -163,6 +213,7 @@
         }
     },
     "order": [
+        "content_builder_rwG73h",
         "content_builder_nLDVK9",
         "content_builder_KwMaUp"
     ]
