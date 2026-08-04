@@ -34,7 +34,9 @@
     <nav class="header-left">
       {% if section.settings.left_menu != blank %}
         {% for link in section.settings.left_menu.links %}
-          <span>
+          <span
+            data-menu-trigger="{{ link.handle }}"
+          >
             {{ link.title }}
           </span>
         {% endfor %}
@@ -116,6 +118,15 @@
 
   <!-- Mega Menu -->
   <div class="mega-menu-container">
+    {% if section.settings.left_menu != blank %}
+      {% for link in section.settings.left_menu.links %}
+        {% assign menu_handle = link.handle | append: '-menu' %}
+
+        <div class="mega-menu" data-menu="{{ link.handle }}">
+          {% render 'mega-menu', menu: linklists[menu_handle] %}
+        </div>
+      {% endfor %}
+    {% endif %}
     {% if section.settings.right_menu != blank %}
       {% for link in section.settings.right_menu.links %}
         {% assign menu_handle = link.handle | append: '-menu' %}
