@@ -1,0 +1,169 @@
+{{ 'testimonial-cards.css' | asset_url | stylesheet_tag }}
+<section
+  class="testimonial-cards"
+  style="background-color: {{ section.settings.background_color }};"
+>
+  {% if section.settings.enable_marquee %}
+    <div class="testimonial-cards__marquee">
+      <div class="testimonial-cards__marquee-track">
+        {% for block in section.blocks %}
+          {% if block.type == 'logo' %}
+            <div
+              class="testimonial-cards__logo"
+              {{ block.shopify_attributes }}
+            >
+              <img
+                class="testimonial-cards__logo-image"
+                src="{{ block.settings.image | image_url }}"
+                alt="{{ block.settings.alt | escape }}"
+              >
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  {% if section.settings.subtitle != blank or section.settings.heading != blank %}
+    <div class="testimonial-cards__header">
+      {% if section.settings.subtitle != blank %}
+        <p class="testimonial-cards__subtitle">
+          {{ section.settings.subtitle }}
+        </p>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <h2 class="testimonial-cards__heading">
+          {{ section.settings.heading }}
+        </h2>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <div class="testimonial-cards__wrapper">
+    <div class="testimonial-cards__grid">
+      {% for block in section.blocks %}
+        {% if block.type == 'testimonial' %}
+          {% assign article = block.settings.article %}
+
+          {% if article != blank %}
+            <article
+              class="testimonial-card"
+              {{ block.shopify_attributes }}
+            >
+              <div class="testimonial-card__logo-wrapper">
+                <img
+                  class="testimonial-card__logo"
+                  src="{{ article.image | image_url: width: 200 }}"
+                  alt="{{ article.title | escape }}"
+                >
+              </div>
+
+              <div class="testimonial-card__content">
+                {% if article.content != blank %}
+                  <div class="testimonial-card__quote">
+                    {{ article.content }}
+                  </div>
+                {% endif %}
+
+                {% assign author = article.metafields.custom.author_name | default: article.author %}
+
+                {% if author != blank %}
+                  <p class="testimonial-card__author">- {{ author }}</p>
+                {% endif %}
+              </div>
+            </article>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonial Cards",
+  "tag": "section",
+  "class": "section-testimonial-cards",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "TESTIMONIALS"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#E8E8E8"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_marquee",
+      "label": "Enable Logo Marquee",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "marquee_speed",
+      "label": "Marquee Speed",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "s",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "cards_per_row",
+      "label": "Cards Per Row",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 2
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "limit": 30,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Logo"
+        },
+        {
+          "type": "text",
+          "id": "alt",
+          "label": "Alt Text"
+        }
+      ]
+    },
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "limit": 20,
+      "settings": [
+        {
+          "type": "article",
+          "id": "article",
+          "label": "Testimonial Article"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonial Cards"
+    }
+  ]
+}
+{% endschema %}

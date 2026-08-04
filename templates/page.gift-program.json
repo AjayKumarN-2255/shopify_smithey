@@ -9,6 +9,66 @@
  */
 {
     "sections": {
+        "content_builder_b7Xn97": {
+            "type": "content-builder",
+            "blocks": {
+                "text_b8bEJb": {
+                    "type": "text",
+                    "settings": {
+                        "title": "GIVE THE GIFT OF SMITHEY TODAY!",
+                        "title_desktop_size": 3.2,
+                        "title_mobile_size": 1.8,
+                        "title_color": "#112626",
+                        "content": "<p>Give your clients, employees, and friends a memorable gift that will last them a lifetime. </p>",
+                        "content_desktop_size": 1,
+                        "content_mobile_size": 1.3,
+                        "content_color": "#333333",
+                        "position": "left",
+                        "custom_css": ".content-builder__title {\n  text-align: center;\n}\n.content-builder__content{\ntext-align:center;\n}\n\n@media (min-width: 920px) {\n  .content-builder__title {\n    text-align: left;\n    max-width: 29rem;\n  }\n .content-builder__content{\n   text-align:start;\n    max-width: 28rem;\n    line-height: 25px;\n    letter-spacing: 1px;\n }\n}\n\n@media (min-width: 1700px) {\n  .content-builder__title {\n    max-width: 32rem;\n  }\n}"
+                    }
+                },
+                "button_QMJw9J": {
+                    "type": "button",
+                    "settings": {
+                        "button_text": "Start Gifting",
+                        "button_link": "#",
+                        "button_bg_color": "#b68b32",
+                        "button_text_color": "#112626",
+                        "position": "left",
+                        "btn_position_desktop": "left",
+                        "btn_position_mobile": "center",
+                        "custom_css": "&.content-builder__button{\ntext-transform:uppercase;\n}"
+                    }
+                },
+                "image_YXHPHk": {
+                    "type": "image",
+                    "settings": {
+                        "image": "shopify://shop_images/smithey_hero_image_gifting_page.webp",
+                        "image_mobile_height": 30,
+                        "image_desktop_height": 36,
+                        "image_large_desktop_height": 38,
+                        "position": "right",
+                        "custom_css": "@media (min-width: 920px) {\n  & {\n   width:90%;\n    position: absolute;\n    top: -4rem;\n    right: 5rem;\n  }\n}\n\n@media (min-width: 1700px) {\n&{\n    width: 75%;\n    position: absolute;\n    top: -4rem;\n    right: 5rem;\n  }\n& img {\n  object-fit: fill;\n}\n}"
+                    }
+                }
+            },
+            "block_order": [
+                "text_b8bEJb",
+                "button_QMJw9J",
+                "image_YXHPHk"
+            ],
+            "custom_css": [
+                "#content-builder-template--21582567276679__content_builder_b7Xn97 .content-builder__container {flex-direction: column-reverse;}",
+                "@media (min-width: 920px) {#content-builder-template--21582567276679__content_builder_b7Xn97 .content-builder__container {flex-direction: row; } #content-builder-template--21582567276679__content_builder_b7Xn97 .content-builder__right {position: relative; }}"
+            ],
+            "name": "Content Builder",
+            "settings": {
+                "background_color": "#ffffff",
+                "desktop_padding": 4.5,
+                "mobile_padding": 2,
+                "show_features": false
+            }
+        },
         "content_builder_rwG73h": {
             "type": "content-builder",
             "blocks": {
@@ -16,15 +76,15 @@
                     "type": "text",
                     "settings": {
                         "title": "why give a smithey?",
-                        "title_desktop_size": 2,
-                        "title_mobile_size": 1,
-                        "title_color": "#b68b32",
+                        "title_desktop_size": 2.1,
+                        "title_mobile_size": 1.9,
+                        "title_color": "#ffffff",
                         "content": "",
                         "content_desktop_size": 1,
                         "content_mobile_size": 0.9,
                         "content_color": "#112626",
                         "position": "left",
-                        "custom_css": ""
+                        "custom_css": ".content-builder__title{\n  text-align: center;\n  margin: auto;\n}\n\n@media (min-width: 920px){\n  .content-builder__title{\n    text-align: left;\n    margin: unset;\n    margin-bottom: 1rem;\n  }\n}"
                     }
                 },
                 "feature_TL4iMG": {
@@ -32,27 +92,61 @@
                     "settings": {
                         "logo": "shopify://shop_images/heirloom_quality.webp",
                         "title": "heirloom-quality",
-                        "title_color": "#B68B32",
-                        "title_desktop_size": 1.5,
+                        "title_color": "#b68b32",
+                        "title_desktop_size": 1,
                         "title_mobile_size": 1.3,
                         "content": "<p>Destined to be passed<br/>down for generations</p>",
-                        "content_color": "#FFFFFF",
+                        "content_color": "#ffffff",
                         "content_desktop_size": 1,
                         "content_mobile_size": 1.1,
-                        "custom_css": "& .content-builder__feature-logo{\n    width:48px;\n    height:48px;\n}"
+                        "custom_css": "& .content-builder__feature-logo{\n    width:48px;\n    height:48px;\n}\n& .content-builder__feature-title{\nmargin-top:0.5rem;\n}\n&.content-builder__feature {\n  gap: 0.25rem;\n}\n@media (min-width: 920px) {\n  &.content-builder__feature {\n    gap: 0.75rem;\n  }\n}"
+                    }
+                },
+                "feature_PARf3V": {
+                    "type": "feature",
+                    "settings": {
+                        "logo": "shopify://shop_images/personalization_icon_105d3b73-fce8-491a-9066-679c56d55d45.avif",
+                        "title": "personalization",
+                        "title_color": "#b68b32",
+                        "title_desktop_size": 1,
+                        "title_mobile_size": 1.3,
+                        "content": "<p>Make anyone feel special<br/>with a custom engraving</p>",
+                        "content_color": "#ffffff",
+                        "content_desktop_size": 1,
+                        "content_mobile_size": 1.1,
+                        "custom_css": "& .content-builder__feature-logo{\n    width:48px;\n    height:48px;\n}\n& .content-builder__feature-title{\nmargin-top:0.5rem;\n}\n&.content-builder__feature {\n  gap: 0.25rem;\n}\n@media (min-width: 920px) {\n  &.content-builder__feature {\n    gap: 0.75rem;\n  }\n}"
+                    }
+                },
+                "feature_KA3aJp": {
+                    "type": "feature",
+                    "settings": {
+                        "logo": "shopify://shop_images/Untitled_design_1_1.webp",
+                        "title": "Made In USA",
+                        "title_color": "#b68b32",
+                        "title_desktop_size": 1,
+                        "title_mobile_size": 1.3,
+                        "content": "<p>Handcrafted and thoughtfully<br/>designed in the US</p>",
+                        "content_color": "#ffffff",
+                        "content_desktop_size": 1,
+                        "content_mobile_size": 1.1,
+                        "custom_css": "& .content-builder__feature-logo{\n    width:48px;\n    height:48px;\n}\n& .content-builder__feature-title{\nmargin-top:0.5rem;\n}\n&.content-builder__feature {\n  gap: 0.25rem;\n}\n@media (min-width: 920px) {\n  &.content-builder__feature {\n    gap: 0.75rem;\n  }\n}"
                     }
                 }
             },
             "block_order": [
                 "text_GYwzqp",
-                "feature_TL4iMG"
+                "feature_TL4iMG",
+                "feature_PARf3V",
+                "feature_KA3aJp"
             ],
-            "custom_css": [],
+            "custom_css": [
+                "@media (min-width: 920px) {#content-builder-template--21582567276679__content_builder_rwG73h .content-builder__container {padding-bottom: 1rem; }}"
+            ],
             "name": "Content Builder",
             "settings": {
                 "background_color": "#0c2727",
                 "desktop_padding": 3.6,
-                "mobile_padding": 1,
+                "mobile_padding": 2,
                 "show_features": true
             }
         },
@@ -210,11 +304,182 @@
                 "mobile_padding": 1.5,
                 "show_features": true
             }
+        },
+        "testimonial-cards": {
+            "type": "testimonial-cards",
+            "blocks": {
+                "logo_NDMQEJ": {
+                    "type": "logo",
+                    "settings": {
+                        "image": "shopify://shop_images/epicurious.webp",
+                        "alt": ""
+                    }
+                },
+                "logo_arNFNh": {
+                    "type": "logo",
+                    "settings": {
+                        "image": "shopify://shop_images/gq_4f8ddbc4-1d9a-40a9-86c9-b7106bd8d3b3.avif",
+                        "alt": ""
+                    }
+                },
+                "logo_b74TMY": {
+                    "type": "logo",
+                    "settings": {
+                        "image": "shopify://shop_images/today_1.avif",
+                        "alt": ""
+                    }
+                },
+                "logo_efqyxe": {
+                    "type": "logo",
+                    "settings": {
+                        "image": "shopify://shop_images/epicurious.webp",
+                        "alt": ""
+                    }
+                },
+                "logo_jYEHd6": {
+                    "type": "logo",
+                    "settings": {
+                        "image": "shopify://shop_images/better_home.avif",
+                        "alt": ""
+                    }
+                },
+                "logo_pkVqWe": {
+                    "type": "logo",
+                    "settings": {
+                        "image": "shopify://shop_images/today_1.avif",
+                        "alt": ""
+                    }
+                },
+                "logo_Rzb4c7": {
+                    "type": "logo",
+                    "settings": {
+                        "image": "shopify://shop_images/gq_4f8ddbc4-1d9a-40a9-86c9-b7106bd8d3b3.avif",
+                        "alt": ""
+                    }
+                },
+                "logo_qdeRgP": {
+                    "type": "logo",
+                    "settings": {
+                        "image": "shopify://shop_images/better_home.avif",
+                        "alt": ""
+                    }
+                },
+                "testimonial_RegT3a": {
+                    "type": "testimonial",
+                    "settings": {
+                        "article": "testimonial/testimonial_first"
+                    }
+                },
+                "testimonial_gGNBdq": {
+                    "type": "testimonial",
+                    "settings": {
+                        "article": "testimonial/testimonial_sec"
+                    }
+                }
+            },
+            "block_order": [
+                "logo_NDMQEJ",
+                "logo_arNFNh",
+                "logo_b74TMY",
+                "logo_efqyxe",
+                "logo_jYEHd6",
+                "logo_pkVqWe",
+                "logo_Rzb4c7",
+                "logo_qdeRgP",
+                "testimonial_RegT3a",
+                "testimonial_gGNBdq"
+            ],
+            "settings": {
+                "subtitle": "",
+                "heading": "TESTIMONIALS",
+                "background_color": "#D9D9D9",
+                "enable_marquee": true,
+                "marquee_speed": 25,
+                "cards_per_row": 2
+            }
+        },
+        "content_builder_a69zHk": {
+            "type": "content-builder",
+            "blocks": {
+                "text_3w33MT": {
+                    "type": "text",
+                    "settings": {
+                        "title": "fill out our gifting form",
+                        "title_desktop_size": 1,
+                        "title_mobile_size": 1.3,
+                        "title_color": "#b68b32",
+                        "content": "<p>get started here</p>",
+                        "content_desktop_size": 2.1,
+                        "content_mobile_size": 2,
+                        "content_color": "#ffffff",
+                        "position": "left",
+                        "custom_css": ".content-builder__content{\n   text-transform:uppercase;\n   font-weight:bold;\n   text-align:center;\n}\n.content-builder__title{\n   text-align:center;\n   margin:auto;\n   margin-bottom:1rem;\n}"
+                    }
+                },
+                "banner_9dwBwF": {
+                    "type": "banner",
+                    "settings": {
+                        "background_image": "shopify://shop_images/default-firstframe.jpg",
+                        "desktop_height": 30,
+                        "mobile_height": 42.3,
+                        "overlay_color": "#000000",
+                        "overlay_opacity": 25,
+                        "title": "Corporate Gifting + Bulk Gifting Inquiry",
+                        "title_desktop_size": 1.3,
+                        "title_mobile_size": 1.6,
+                        "title_color": "#ffffff",
+                        "content": "<p>Smithey Ironware makes heirloom quality premium cast iron and carbon steel cookware that is an ideal gift for individuals and families at any stage of their lives. </p>",
+                        "content_desktop_size": 0.9,
+                        "content_mobile_size": 1,
+                        "content_color": "#d1d6d4",
+                        "button_text": "Continue",
+                        "button_link": "#",
+                        "button_bg_color": "#d1d6d4",
+                        "button_text_color": "#112626",
+                        "position": "left",
+                        "custom_css": "&{\n  margin:2.5rem 0;\n  border-radius:8px;\n  overflow:hidden;\n}\n& .content-builder__banner-title{\n  font-weight:400;\n  max-width:20rem;\n}\n& .content-builder__banner-description {\n  max-width: 20rem;\n}\n& .content-builder__banner-button {\n  padding: 1rem 7.5rem;\n  border-radius: 0.625rem;\n}\n@media (min-width: 920px) {\n  & .content-builder__banner-description {\n    max-width: 36rem;\n  }\n& .content-builder__banner-title{\n  max-width:unset;\n}\n& .content-builder__banner-button {\n  padding: 0.5rem 1rem;\n}\n}"
+                    }
+                },
+                "text_HVgRjR": {
+                    "type": "text",
+                    "settings": {
+                        "title": "get in touch",
+                        "title_desktop_size": 2,
+                        "title_mobile_size": 1.5,
+                        "title_color": "#b68b32",
+                        "content": "<p>1061 Everglades Dr<br/>North Charleston, SC 29405<br/>gifting@smithey.com</p>",
+                        "content_desktop_size": 1.2,
+                        "content_mobile_size": 1.2,
+                        "content_color": "#ffffff",
+                        "position": "left",
+                        "custom_css": ".content-builder__content{\n   text-transform:uppercase;\n   text-align:center;\n}\n.content-builder__title{\n   text-align:center;\n   margin:auto;\n   margin-bottom:0.5rem;\n}\n@media (min-width: 920px) {\n  .content-builder__title {\n    margin-bottom: 1rem;\n  }\n .content-builder__content{\n   line-height:30px;\n  }\n}"
+                    }
+                }
+            },
+            "block_order": [
+                "text_3w33MT",
+                "banner_9dwBwF",
+                "text_HVgRjR"
+            ],
+            "custom_css": [
+                "#content-builder-template--21582567276679__content_builder_a69zHk .content-builder__left {display: flex; flex-direction: column; width: 100%; align-items: center; max-width: 100%;}",
+                "#content-builder-template--21582567276679__content_builder_a69zHk .content-builder__right {display: none;}"
+            ],
+            "name": "Content Builder",
+            "settings": {
+                "background_color": "#0c2727",
+                "desktop_padding": 3.7,
+                "mobile_padding": 1,
+                "show_features": false
+            }
         }
     },
     "order": [
+        "content_builder_b7Xn97",
         "content_builder_rwG73h",
         "content_builder_nLDVK9",
-        "content_builder_KwMaUp"
+        "content_builder_KwMaUp",
+        "testimonial-cards",
+        "content_builder_a69zHk"
     ]
 }

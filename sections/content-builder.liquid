@@ -19,6 +19,9 @@
 
             {% when 'button' %}
               {% render 'content-builder-button', block: block %}
+
+            {% when 'banner' %}
+              {% render 'content-builder-banner', block: block %}
           {% endcase %}
         {% endif %}
       {% endfor %}
@@ -39,6 +42,9 @@
 
             {% when 'button' %}
               {% render 'content-builder-button', block: block %}
+
+            {% when 'banner' %}
+              {% render 'content-builder-banner', block: block %}
           {% endcase %}
         {% endif %}
       {% endfor %}
@@ -440,6 +446,136 @@
           "id": "custom_css",
           "label": "Custom CSS",
           "info": "Write CSS properties only. Example: margin-top: 2rem;"
+        }
+      ]
+    },
+    {
+      "type": "banner",
+      "name": "Banner",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "background_image",
+          "label": "Background Image"
+        },
+        {
+          "type": "number",
+          "id": "desktop_height",
+          "label": "Desktop Height (rem)",
+          "default": 32
+        },
+        {
+          "type": "number",
+          "id": "mobile_height",
+          "label": "Mobile Height (rem)",
+          "default": 24
+        },
+        {
+          "type": "color",
+          "id": "overlay_color",
+          "label": "Overlay Color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "overlay_opacity",
+          "label": "Overlay Opacity",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "unit": "%",
+          "default": 40
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "number",
+          "id": "title_desktop_size",
+          "label": "Title Desktop Size (rem)",
+          "default": 2.5
+        },
+        {
+          "type": "number",
+          "id": "title_mobile_size",
+          "label": "Title Mobile Size (rem)",
+          "default": 1.6
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Title Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+        },
+        {
+          "type": "number",
+          "id": "content_desktop_size",
+          "label": "Content Desktop Size (rem)",
+          "default": 1
+        },
+        {
+          "type": "number",
+          "id": "content_mobile_size",
+          "label": "Content Mobile Size (rem)",
+          "default": 0.9
+        },
+        {
+          "type": "color",
+          "id": "content_color",
+          "label": "Content Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Continue"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        },
+        {
+          "type": "color",
+          "id": "button_bg_color",
+          "label": "Button Background Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "Button Text Color",
+          "default": "#112626"
+        },
+        {
+          "type": "select",
+          "id": "position",
+          "label": "Position",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "textarea",
+          "id": "custom_css",
+          "label": "Custom CSS",
+          "info": "Use '&' to target this block. Example: '& { margin-top: 2rem; }'"
         }
       ]
     }

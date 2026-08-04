@@ -1,0 +1,129 @@
+{% assign selector = '#content-builder-banner-' | append: block.id %}
+
+<div
+  id="content-builder-banner-{{ block.id }}"
+  class="content-builder__banner"
+  {{ block.shopify_attributes }}
+>
+  <div class="content-builder__banner-image">
+    {% if block.settings.background_image != blank %}
+      <img
+        src="{{ block.settings.background_image | image_url: width: 2000 }}"
+        alt="{{ block.settings.title | escape }}"
+      >
+    {% endif %}
+  </div>
+
+  <div
+    class="content-builder__banner-overlay"
+    style="
+      background-color: {{ block.settings.overlay_color }};
+      opacity: {{ block.settings.overlay_opacity | times: 0.01 }};
+    "
+  ></div>
+
+  <div class="content-builder__banner-content">
+    {% if block.settings.title != blank %}
+      <h2 class="content-builder__banner-title">
+        {{ block.settings.title }}
+      </h2>
+    {% endif %}
+
+    {% if block.settings.content != blank %}
+      <div class="content-builder__banner-description">
+        {{ block.settings.content }}
+      </div>
+    {% endif %}
+
+    {% if block.settings.button_text != blank and block.settings.button_link != blank %}
+      <a
+        href="{{ block.settings.button_link }}"
+        class="content-builder__banner-button"
+        style="
+          background-color: {{ block.settings.button_bg_color }};
+          color: {{ block.settings.button_text_color }};
+        "
+      >
+        {{ block.settings.button_text }}
+      </a>
+    {% endif %}
+  </div>
+</div>
+
+<style>
+  {{ selector }} {
+    position: relative;
+    width: 100%;
+    height: {{ block.settings.mobile_height }}rem;
+    overflow: hidden;
+  }
+
+  {{ selector }} .content-builder__banner-image,
+  {{ selector }} .content-builder__banner-overlay,
+  {{ selector }} .content-builder__banner-content {
+    position: absolute;
+    inset: 0;
+  }
+
+  {{ selector }} .content-builder__banner-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  {{ selector }} .content-builder__banner-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    text-align: start;
+    width: fit-content;
+    margin: auto;
+    z-index: 2;
+  }
+
+  {{ selector }} .content-builder__banner-title {
+    color: {{ block.settings.title_color }};
+    font-size: {{ block.settings.title_mobile_size }}rem;
+    margin-bottom: 1rem;
+  }
+
+  {{ selector }} .content-builder__banner-description {
+    color: {{ block.settings.content_color }};
+    font-size: {{ block.settings.content_mobile_size }}rem;
+    margin-bottom: 1.5rem;
+  }
+
+  {{ selector }} .content-builder__banner-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  @media (min-width: 920px) {
+    {{ selector }} {
+      height: {{ block.settings.desktop_height }}rem;
+    }
+
+    {{ selector }} .content-builder__banner-title {
+      font-size: {{ block.settings.title_desktop_size }}rem;
+      margin-bottom: 0.5rem;
+    }
+
+    {{ selector }} .content-builder__banner-description {
+      font-size: {{ block.settings.content_desktop_size }}rem;
+    }
+
+    {{ selector }} .content-builder__banner-button {
+      font-size: 0.75rem;
+    }
+
+  }
+
+  {{ block.settings.custom_css | replace: '&', selector }}
+</style>
