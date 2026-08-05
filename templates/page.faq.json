@@ -9,6 +9,54 @@
  */
 {
     "sections": {
+        "our_story_hero_Ty3EBq": {
+            "type": "our-story-hero",
+            "custom_css": [
+                ".our-story-hero__content {border: none;}"
+            ],
+            "name": "Our Story Hero",
+            "settings": {
+                "title": "Frequently Asked Questions",
+                "subtitle": "",
+                "image": "shopify://shop_images/Screen_Shot_2021-06-09_at_4.51.33_PM.webp",
+                "desktop_height": 42,
+                "mobile_height": 56
+            }
+        },
+        "content_builder_4686UV": {
+            "type": "content-builder",
+            "blocks": {
+                "text_NaHPRn": {
+                    "type": "text",
+                    "settings": {
+                        "title": "",
+                        "title_desktop_size": 0,
+                        "title_mobile_size": 0,
+                        "title_color": "#b68b32",
+                        "content": "<p><br/>  Questions about Smithey? We've got answers! If you need to contact us, please email  <a href=\"mailto:support@smithey.com\">support@smithey.com</a>.<br/></p>",
+                        "content_desktop_size": 0.8,
+                        "content_mobile_size": 1,
+                        "content_color": "#112626",
+                        "position": "left",
+                        "custom_css": ".content-builder__content a {\n color:#747474;\n}\n\n@media (min-width: 920px) {\n  .content-builder__content {\n    margin: 0.5rem;\n  }\n}"
+                    }
+                }
+            },
+            "block_order": [
+                "text_NaHPRn"
+            ],
+            "custom_css": [
+                "#content-builder-template--21635132162183__content_builder_4686UV .content-builder__right {display: none;}",
+                "#content-builder-template--21635132162183__content_builder_4686UV .content-builder__left {width: 100%; max-width: 45rem; margin: 0 auto; flex: 0 0 100%;}"
+            ],
+            "name": "Content Builder",
+            "settings": {
+                "background_color": "#ffffff",
+                "desktop_padding": 0,
+                "mobile_padding": 1.5,
+                "show_features": false
+            }
+        },
         "faq_categories_yjJ47X": {
             "type": "faq-categories",
             "blocks": {
@@ -151,13 +199,15 @@
             "settings": {
                 "background_color": "#ffffff",
                 "container_padding_desktop": "2rem",
-                "container_padding_mobile": "2rem",
+                "container_padding_mobile": "1.5rem",
                 "left_width": 75,
                 "right_width": 25
             }
         }
     },
     "order": [
+        "our_story_hero_Ty3EBq",
+        "content_builder_4686UV",
         "faq_categories_yjJ47X"
     ]
 }
