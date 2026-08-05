@@ -22,6 +22,9 @@
 
             {% when 'banner' %}
               {% render 'content-builder-banner', block: block %}
+
+            {% when 'faq' %}
+              {% render 'faq-item', block: block %}
           {% endcase %}
         {% endif %}
       {% endfor %}
@@ -45,6 +48,9 @@
 
             {% when 'banner' %}
               {% render 'content-builder-banner', block: block %}
+
+            {% when 'faq' %}
+              {% render 'faq-item', block: block %}
           {% endcase %}
         {% endif %}
       {% endfor %}
@@ -554,6 +560,46 @@
           "id": "button_text_color",
           "label": "Button Text Color",
           "default": "#112626"
+        },
+        {
+          "type": "select",
+          "id": "position",
+          "label": "Position",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "textarea",
+          "id": "custom_css",
+          "label": "Custom CSS",
+          "info": "Use '&' to target this block. Example: '& { margin-top: 2rem; }'"
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "What is your return policy?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>We accept returns within 30 days of purchase.</p>"
         },
         {
           "type": "select",

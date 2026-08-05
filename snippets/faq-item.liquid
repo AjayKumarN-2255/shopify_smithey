@@ -1,4 +1,7 @@
+{% assign selector = '#content-builder-faq-' | append: block.id %}
+
 <div
+  id="content-builder-faq-{{ block.id }}"
   class="faq__item"
   {{ block.shopify_attributes }}
 >
@@ -7,8 +10,8 @@
       {{ block.settings.question }}
     </span>
 
-    <span class="faq__icon"> + </span>
-    <span class="faq__icon faq-hide"> − </span>
+    <span class="faq__icon">+</span>
+    <span class="faq__icon faq-hide">−</span>
   </div>
 
   <div class="faq__answer">
@@ -39,13 +42,15 @@
 <style>
   .faq__item {
     width: 100%;
-    border-top: 3px solid black;
+    border-top: 3px solid #000;
     padding: 1rem 0;
   }
 
   .faq__question {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
   }
 
   .faq-hide {
@@ -99,3 +104,9 @@
     }
   }
 </style>
+
+{% if block.settings.custom_css != blank %}
+  <style>
+    {{ block.settings.custom_css | replace: '&', selector }}
+  </style>
+{% endif %}

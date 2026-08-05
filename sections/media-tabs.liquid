@@ -1,0 +1,323 @@
+{{ 'media-tabs.css' | asset_url | stylesheet_tag }}
+<section
+  id="media-tabs-{{ section.id }}"
+  class="media-tabs"
+>
+  <div class="media-tabs__container">
+    <!-- Left -->
+    <div class="media-tabs__left">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'text' %}
+            <div
+              class="media-tabs__text"
+              {{ block.shopify_attributes }}
+            >
+              {% render 'content-builder-text', block: block %}
+            </div>
+
+          {% when 'video' %}
+            <div
+              class="media-tabs__video"
+              {{ block.shopify_attributes }}
+            >
+              {% render 'content-builder-video', block: block %}
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+
+    <!-- Right -->
+    <div class="media-tabs__right">
+      <!-- Tab Navigation -->
+      <div class="media-tabs__navigation">
+        {% assign tab_index = 0 %}
+
+        {% for block in section.blocks %}
+          {% if block.type == 'tab_item' %}
+            <button
+              class="media-tabs__tab-button{% if tab_index == 0 %} is-active{% endif %}"
+              type="button"
+              data-tab="{{ tab_index }}"
+              {{ block.shopify_attributes }}
+            >
+              {{ block.settings.tab_name }}
+            </button>
+
+            {% assign tab_index = tab_index | plus: 1 %}
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <!-- Tab Panels -->
+      <div class="media-tabs__panels">
+        {% assign tab_index = 0 %}
+
+        {% for block in section.blocks %}
+          {% if block.type == 'tab_item' %}
+            <div
+              class="media-tabs__panel{% if tab_index == 0 %} is-active{% endif %}"
+              data-panel="{{ tab_index }}"
+            >
+              {% if block.settings.title != blank %}
+                <h3 class="media-tabs__panel-title">
+                  {{ block.settings.title }}
+                </h3>
+              {% endif %}
+
+              {% if block.settings.subtitle != blank %}
+                <p class="media-tabs__panel-subtitle">
+                  {{ block.settings.subtitle }}
+                </p>
+              {% endif %}
+
+              {% if block.settings.content != blank %}
+                <div class="media-tabs__panel-content">
+                  {{ block.settings.content }}
+                </div>
+              {% endif %}
+            </div>
+
+            {% assign tab_index = tab_index | plus: 1 %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  #media-tabs-{{ section.id }} {
+    background: {{ section.settings.background_color }};
+  }
+
+  #media-tabs-{{ section.id }} .media-tabs__container {
+    padding: {{ section.settings.container_padding_mobile }};
+  }
+
+  @media screen and (min-width: 920px) {
+    #media-tabs-{{ section.id }} .media-tabs__container {
+      padding: {{ section.settings.container_padding_desktop }};
+    }
+  }
+  .media-tabs__panel {
+  display: none;
+  }
+
+  .media-tabs__panel.is-active {
+  display: block;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.media-tabs').forEach((section) => {
+      const buttons = section.querySelectorAll('.media-tabs__tab-button');
+      const panels = section.querySelectorAll('.media-tabs__panel');
+
+      buttons.forEach((button, index) => {
+        button.addEventListener('click', () => {
+          buttons.forEach((btn) => btn.classList.remove('is-active'));
+          panels.forEach((panel) => panel.classList.remove('is-active'));
+
+          button.classList.add('is-active');
+          panels[index].classList.add('is-active');
+        });
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Media Tabs",
+  "tag": "section",
+  "class": "media-tabs",
+  "settings": [
+    {
+      "type": "text",
+      "id": "container_padding_mobile",
+      "label": "Container Padding (Mobile)",
+      "default": "0rem 1rem",
+      "info": "Example: 0rem 1rem or 1rem 1.5rem 2rem"
+    },
+    {
+      "type": "text",
+      "id": "container_padding_desktop",
+      "label": "Container Padding (Desktop)",
+      "default": "0rem 2rem",
+      "info": "Example: 0rem 2rem or 2rem 3rem 1rem"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "number",
+          "id": "title_desktop_size",
+          "label": "Title Desktop Size (rem)",
+          "default": 2
+        },
+        {
+          "type": "number",
+          "id": "title_mobile_size",
+          "label": "Title Mobile Size (rem)",
+          "default": 1
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Title Color",
+          "default": "#b68b32"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+        },
+        {
+          "type": "number",
+          "id": "content_desktop_size",
+          "label": "Content Desktop Size (rem)",
+          "default": 1
+        },
+        {
+          "type": "number",
+          "id": "content_mobile_size",
+          "label": "Content Mobile Size (rem)",
+          "default": 0.9
+        },
+        {
+          "type": "color",
+          "id": "content_color",
+          "label": "Content Color",
+          "default": "#112626"
+        },
+        {
+          "type": "select",
+          "id": "position",
+          "label": "Position",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "textarea",
+          "id": "custom_css",
+          "label": "Custom CSS",
+          "info": "Write CSS properties only. Example: margin-top: 2rem;"
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "name": "Video",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Shopify Video"
+        },
+        {
+          "type": "text",
+          "id": "video_url",
+          "label": "Video URL",
+          "default": "https://cdn.shopify.com/videos/c/o/v/45adf71f175249218edd70c67b3fc294.mp4"
+        },
+        {
+          "type": "image_picker",
+          "id": "poster",
+          "label": "Poster Image"
+        },
+        {
+          "type": "number",
+          "id": "mobile_height",
+          "label": "Mobile Height (rem)",
+          "default": 20
+        },
+        {
+          "type": "number",
+          "id": "desktop_height",
+          "label": "Desktop Height (rem)",
+          "default": 30
+        },
+        {
+          "type": "number",
+          "id": "large_desktop_height",
+          "label": "Large Desktop Height (rem)",
+          "default": 36
+        },
+        {
+          "type": "checkbox",
+          "id": "show_overlay",
+          "label": "Show Overlay",
+          "default": true
+        },
+        {
+          "type": "range",
+          "id": "overlay_opacity",
+          "label": "Overlay Opacity",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "unit": "%",
+          "default": 35
+        }
+      ]
+    },
+    {
+      "type": "tab_item",
+      "name": "Tab Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_name",
+          "label": "Tab Name",
+          "default": "Tab"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Media Tabs"
+    }
+  ]
+}
+{% endschema %}

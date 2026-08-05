@@ -1,10 +1,160 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
     "sections": {
-        "header": {
-            "type": "header",
+        "our_story_hero_Vaxz3V": {
+            "type": "our-story-hero",
+            "custom_css": [
+                ".our-story-hero {display: flex; align-items: flex-end; justify-content: flex-start; padding: 2.5rem 0;}",
+                ".our-story-hero__content {padding: 20px; border: none; color: #ffffff;}",
+                ".our-story-hero__title {font-size: 2.5rem; line-height: 32px; margin-bottom: 1rem;}",
+                "@media (min-width: 920px) {.our-story-hero {padding: 2.5rem 1rem; } .our-story-hero__title {font-size: 3rem; max-width: 30rem; line-height: 52px; } .our-story-hero__subtitle {max-width: 25rem; }}"
+            ],
+            "name": "Our Story Hero",
+            "settings": {
+                "title": "Seasoning your smithey",
+                "subtitle": "Like a classic car or a well-tended garden, your Smithey gives back what you put into it.",
+                "image": "shopify://shop_images/Smithey_1.1_1255.webp",
+                "desktop_height": 56,
+                "mobile_height": 64
+            }
+        },
+        "media_tabs_nYT7NX": {
+            "type": "media-tabs",
+            "blocks": {
+                "text_mJMDfH": {
+                    "type": "text",
+                    "settings": {
+                        "title": "SEASONING METHODS",
+                        "title_desktop_size": 2,
+                        "title_mobile_size": 2.5,
+                        "title_color": "#112626",
+                        "content": "",
+                        "content_desktop_size": 1,
+                        "content_mobile_size": 0.9,
+                        "content_color": "#112626",
+                        "position": "left",
+                        "custom_css": ".content-builder__title {\n  text-align: center;\n  margin:0 auto 1rem auto;\n}\n\n@media (min-width: 920px) {\n  .content-builder__title {\n    text-align: left;\n    margin:unset;\n  }\n}"
+                    }
+                },
+                "video_aHmkKk": {
+                    "type": "video",
+                    "settings": {
+                        "video_url": "https://cdn.shopify.com/videos/c/o/v/45adf71f175249218edd70c67b3fc294.mp4",
+                        "mobile_height": 13.3,
+                        "desktop_height": 18.6,
+                        "large_desktop_height": 18.6,
+                        "show_overlay": true,
+                        "overlay_opacity": 35
+                    }
+                },
+                "tab_item_UWfMzX": {
+                    "type": "tab_item",
+                    "settings": {
+                        "tab_name": "STOVETOP METHOD",
+                        "title": "SEASONING ON THE STOVETOP",
+                        "subtitle": "Step-by-Step Guide",
+                        "content": "<ol><li> To a clean, dry, Smithey apply a very thin layer of seasoning oil or a dime-sized amount of a high-smoke-point oil, covering the entire cooking surface.</li><li> Place the lightly oiled pan over medium-high heat until it begins to smoke.</li><li> Repeat this process with another thin layer of oil. Be careful—your pan will be hot. Turn off the heat, and you're done!</li></ol>"
+                    }
+                },
+                "tab_item_DBYXGz": {
+                    "type": "tab_item",
+                    "settings": {
+                        "tab_name": "Oven METHOD",
+                        "title": "SEASONING IN THE OVEN",
+                        "subtitle": "Step-by-Step Guide",
+                        "content": "<ol><li> To a clean, dry, Smithey apply a very thin layer of seasoning oil or a dime-sized amount of a high-smoke-point oil, covering the entire cooking surface.</li><li> Place the lightly oiled pan in a 475°F oven for one hour.</li><li> Turn off your oven and let your Smithey cool completely.</li></ol>"
+                    }
+                }
+            },
+            "block_order": [
+                "text_mJMDfH",
+                "video_aHmkKk",
+                "tab_item_UWfMzX",
+                "tab_item_DBYXGz"
+            ],
+            "name": "Media Tabs",
+            "settings": {
+                "container_padding_mobile": "3.5rem 1.25rem",
+                "container_padding_desktop": "4rem 2.1rem",
+                "background_color": "#f3f3f3"
+            }
+        },
+        "content_builder_Vy43YA": {
+            "type": "content-builder",
+            "blocks": {
+                "text_Q4Vcwf": {
+                    "type": "text",
+                    "settings": {
+                        "title": "COmmon Questions",
+                        "title_desktop_size": 1.6,
+                        "title_mobile_size": 2,
+                        "title_color": "#b68b32",
+                        "content": "<p>Give your skillet a quick wash with mild dish soap and warm water to remove any debris, or caked-on food. (Yes, using dish soap is fine!). Rinse and dry your Smithey </p>",
+                        "content_desktop_size": 0.7,
+                        "content_mobile_size": 0.9,
+                        "content_color": "#112626",
+                        "position": "left",
+                        "custom_css": ".content-builder__title{\n  margin:1rem 0;\n}\n.content-builder__content {\n    margin-bottom:2rem;\n}\n@media (min-width: 920px) {\n  .content-builder__content {\n    max-width: 25rem;\n  }\n}\n\n@media (min-width: 1700px) {\n  .content-builder__content {\n    max-width: 28rem;\n  }\n}"
+                    }
+                },
+                "faq_dRUHAe": {
+                    "type": "faq",
+                    "settings": {
+                        "question": "How often do I need to season my skillet?",
+                        "answer": "<p>Occasionally, your Smithey may need a fresh layer of seasoning, especially after cooking acidic foods or giving it a thorough scrub to remove stuck-on food. With regular use, your skillet will continue to season naturally, developing a darker, smoother cooking surface over time. If your seasoning has been stripped, simply follow one of the seasoning methods above to restore it.</p>",
+                        "position": "right",
+                        "custom_css": ".faq__question-text {\n  color: #112626;\n  font-size: 18px;\n  padding-right:1rem;\n}\n\n.faq__item {\n  border-top: 2px dotted #7e899280;\n  border-bottom: none;\n}\n\n.faq__answer {\n  font-size: 13px;\n  word-spacing: 2px;\n}\n\n@media (min-width: 920px) {\n  .faq__item {\n    border-top: none;\n    max-width: 28rem;\n    border-bottom: 2px dotted #7e899280;\n  }\n\n  .faq__question-text {\n    font-size: 22px;\n  }\n\n  .faq__answer {\n    word-spacing: unset;\n  }\n\n  .faq__question {\n    align-items: start;\n  }\n}\n\n@media (min-width: 1700px) {\n  .faq__item {\n    max-width: 38rem;\n  }\n}"
+                    }
+                },
+                "faq_4XUhdR": {
+                    "type": "faq",
+                    "settings": {
+                        "question": "Can I cook acidic foods in my Smithey?",
+                        "answer": "<p>Yes! You can absolutely cook acidic foods in your Smithey. Dishes made with ingredients like tomatoes, lemons, or vinegar may strip or discolor the seasoning, especially on a newer skillet before the seasoning has fully matured. This is completely normal and nothing to worry about—you can simply re-season your Smithey and keep cooking. As your seasoning continues to develop, acidic foods will have less of an effect on the cooking surface.</p>",
+                        "position": "right",
+                        "custom_css": ".faq__question-text {\n  color: #112626;\n  font-size: 18px; \n  padding-right:1rem;\n}\n\n.faq__item {\n  border-top: 2px dotted #7e899280;\n  border-bottom: none;\n}\n\n.faq__answer {\n  font-size: 13px;\n  word-spacing: 2px;\n}\n\n@media (min-width: 920px) {\n  .faq__item {\n    border-top: none;\n    max-width: 28rem;\n    border-bottom: 2px dotted #7e899280;\n  }\n\n  .faq__question-text {\n    font-size: 22px;\n  }\n\n  .faq__answer {\n    word-spacing: unset;\n  }\n\n  .faq__question {\n    align-items: start;\n  }\n}\n\n@media (min-width: 1700px) {\n  .faq__item {\n    max-width: 38rem;\n  }\n}"
+                    }
+                },
+                "faq_4qcnFn": {
+                    "type": "faq",
+                    "settings": {
+                        "question": "Why is my skillet changing color?",
+                        "answer": "<p>As you cook with your Smithey, it's normal for the appearance of the seasoning to change. Certain foods—especially acidic ingredients—can strip away a small amount of seasoning. This is completely normal and easy to restore by adding another layer of seasoning. Over time, your Smithey's cooking surface will continue to mature, becoming darker, smoother, and more naturally nonstick. Eventually, it will develop the deep jet-black color that cast iron enthusiasts love—that's the goal!</p>",
+                        "position": "right",
+                        "custom_css": ".faq__question-text {\n  color: #112626;\n  font-size: 18px;\n  padding-right:1rem;\n}\n\n.faq__item {\n  border-top: 2px dotted #7e899280;\n  border-bottom: none;\n}\n\n.faq__answer {\n  font-size: 13px;\n  word-spacing: 2px;\n}\n\n@media (min-width: 920px) {\n  .faq__item {\n    border-top: none;\n    max-width: 28rem;\n    border-bottom: 2px dotted #7e899280;\n  }\n\n  .faq__question-text {\n    font-size: 22px;\n  }\n\n  .faq__answer {\n    word-spacing: unset;\n  }\n\n  .faq__question {\n    align-items: start;\n  }\n}\n\n@media (min-width: 1700px) {\n  .faq__item {\n    max-width: 38rem;\n  }\n}"
+                    }
+                }
+            },
+            "block_order": [
+                "text_Q4Vcwf",
+                "faq_dRUHAe",
+                "faq_4XUhdR",
+                "faq_4qcnFn"
+            ],
+            "custom_css": [
+                "#content-builder-template--21635132194951__content_builder_Vy43YA .content-builder__right {padding-bottom: 2rem;}",
+                "@media (min-width: 920px) {#content-builder-template--21635132194951__content_builder_Vy43YA .content-builder__container {gap: 0; } #content-builder-template--21635132194951__content_builder_Vy43YA .content-builder__left {align-items: center; } #content-builder-template--21635132194951__content_builder_Vy43YA .content-builder__right {padding: 0.25rem 0 5rem; }}"
+            ],
+            "name": "Content Builder",
+            "settings": {
+                "background_color": "#ffffff",
+                "desktop_padding": 1.6,
+                "mobile_padding": 0.8,
+                "show_features": false
+            }
         }
     },
     "order": [
-        "header"
+        "our_story_hero_Vaxz3V",
+        "media_tabs_nYT7NX",
+        "content_builder_Vy43YA"
     ]
 }
