@@ -1,0 +1,237 @@
+<section
+  id="faq-categories-{{ section.id }}"
+  class="faq-categories"
+  style="background-color: {{ section.settings.background_color }};"
+>
+  <div class="faq-categories__container">
+    <div
+      class="faq-categories__left"
+      style="--left-width: {{ section.settings.left_width }}%;"
+    >
+      {% for category in section.blocks %}
+        {% if category.type == 'category' %}
+          <div
+            id="faq-category-{{ category.settings.category_id }}"
+            class="faq-categories__group"
+          >
+            <h2 class="faq-categories__heading">
+              {{ category.settings.title }}
+            </h2>
+
+            <div class="faq-categories__items">
+              {% for faq in section.blocks %}
+                {% if faq.type == 'faq' and faq.settings.category_id == category.settings.category_id %}
+                  {% render 'faq-item', block: faq %}
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <aside
+      class="faq-categories__right"
+      style="--right-width: {{ section.settings.right_width }}%;"
+    >
+      <ul class="faq-categories__nav">
+        {% for category in section.blocks %}
+          {% if category.type == 'category' %}
+            <li>
+              <a href="#faq-category-{{ category.settings.category_id }}">
+                {{ category.settings.title }}
+              </a>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<style>
+  #faq-categories-{{ section.id }} {
+    padding: {{ section.settings.container_padding_mobile }};
+  }
+
+  .faq-categories__container {
+    display: flex;
+    width: 100%;
+    flex-direction: column-reverse;
+    gap: 2rem;
+  }
+
+  .faq-categories__nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .faq-categories__nav li{
+    padding: 0.75rem 0;
+    min-width:40px;
+    display: inline-block;
+    width: 100%;
+    border-bottom: 1px solid rgba(17, 38, 38, 0.15);
+  }
+  .faq-categories__nav a,
+  .faq-categories__heading{
+    padding:1rem 0;
+    text-decoration: none;
+    font-weight: 600;
+    font-size:16px;
+    text-transform: uppercase;
+    color:#112626;
+  }
+
+  .faq__item {
+    border-top: 1px solid #000 !important;
+  }
+
+  @media (min-width: 920px) {
+
+    #faq-categories-{{ section.id }} {
+      padding: {{ section.settings.container_padding_desktop }};
+    }
+
+    .faq-categories__container {
+      flex-direction: row;
+      max-width: 45rem;
+      margin: 0 auto;
+      gap: 2rem;
+      align-items: flex-start;
+    }
+
+    .faq-categories__left {
+      width: var(--left-width);
+      flex: 0 0 var(--left-width);
+    }
+
+    .faq-categories__right {
+      width: var(--right-width);
+      flex: 0 0 var(--right-width);
+      position: sticky;
+      top: 2rem;
+    }
+
+    .faq__question-text{
+      font-size: 18px !important;
+    }
+    .faq__answer{
+      font-size: 16px !important;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const faqItems = document.querySelectorAll('.faq__item');
+
+    faqItems.forEach((item) => {
+      const question = item.querySelector('.faq__question');
+
+      question.addEventListener('click', () => {
+        const isOpen = item.classList.contains('is-open');
+
+        faqItems.forEach((faq) => faq.classList.remove('is-open'));
+
+        if (!isOpen) {
+          item.classList.add('is-open');
+        }
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "FAQ Categories",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "container_padding_desktop",
+      "label": "Desktop Container Padding",
+      "default": "2rem",
+      "info": "Enter any valid CSS padding value. Examples: 2rem, 4rem 2rem, 4rem 2rem 3rem 1rem."
+    },
+    {
+      "type": "text",
+      "id": "container_padding_mobile",
+      "label": "Mobile Container Padding",
+      "default": "2rem",
+      "info": "Enter any valid CSS padding value. Examples: 2rem, 2rem 1rem, 3rem 1.5rem 2rem 1rem."
+    },
+    {
+      "type": "range",
+      "id": "left_width",
+      "label": "Left Column Width",
+      "min": 50,
+      "max": 80,
+      "step": 5,
+      "default": 70,
+      "unit": "%"
+    },
+    {
+      "type": "range",
+      "id": "right_width",
+      "label": "Right Column Width",
+      "min": 20,
+      "max": 50,
+      "step": 5,
+      "default": 30,
+      "unit": "%"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "text",
+          "id": "category_id",
+          "label": "Category ID",
+          "info": "Example: cooking"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Category Title"
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "name": "FAQ",
+      "settings": [
+        {
+          "type": "text",
+          "id": "category_id",
+          "label": "Category ID",
+          "info": "Must match a Category ID above."
+        },
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ Categories"
+    }
+  ]
+}
+{% endschema %}

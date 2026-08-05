@@ -19,26 +19,6 @@
   </div>
 </div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const faqItems = document.querySelectorAll('.faq__item');
-
-    faqItems.forEach((item) => {
-      const question = item.querySelector('.faq__question');
-
-      question.addEventListener('click', () => {
-        const isOpen = item.classList.contains('is-open');
-
-        faqItems.forEach((faq) => faq.classList.remove('is-open'));
-
-        if (!isOpen) {
-          item.classList.add('is-open');
-        }
-      });
-    });
-  });
-</script>
-
 <style>
   .faq__item {
     width: 100%;

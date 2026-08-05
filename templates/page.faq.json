@@ -1,10 +1,163 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
     "sections": {
-        "header": {
-            "type": "header",
+        "faq_categories_yjJ47X": {
+            "type": "faq-categories",
+            "blocks": {
+                "category_NnzTek": {
+                    "type": "category",
+                    "settings": {
+                        "category_id": "1",
+                        "title": "Cooking"
+                    }
+                },
+                "category_jfNPAq": {
+                    "type": "category",
+                    "settings": {
+                        "category_id": "2",
+                        "title": "Cleaning & Care"
+                    }
+                },
+                "category_XTQ8mf": {
+                    "type": "category",
+                    "settings": {
+                        "category_id": "3",
+                        "title": "Shipping & Returns"
+                    }
+                },
+                "faq_4gt3M3": {
+                    "type": "faq",
+                    "settings": {
+                        "category_id": "1",
+                        "question": "Why Is Food Sticking To My Smithey?",
+                        "answer": "<p>If your food is sticking to your skillet, especially when cooking lean proteins like eggs or fish, it likely means your skillet’s seasoning needs a little reinforcement. Think of seasoning like a savings account—each time you cook, you’re ideally making a deposit. But some dishes (especially acidic sauces or low-fat meals) can make a withdrawal instead. When more seasoning comes off than goes on, you may notice food clinging to the pan more than you’d like.The good news? Sticking is fixable and often short-lived. It’s just your skillet’s way of asking for a little TLC. Whether it’s a brand new Smithey or a well-loved one, a simple at-home refresh can restore performance and get things back on track. Regular care and a bit of patience are the keys to achieving that perfect non-stick patina.Here’s our recommended touch-up routine:</p><ol><li>Warm your skillet over medium heat for about 5 minutes.</li><li>Add a small amount of high-smoke-point oil (grapeseed, flaxseed, or even beef tallow work well).</li><li>Using a paper towel, rub the oil all over the skillet—inside, outside, and handle.</li><li>Wipe away <strong>all</strong> excess oil—less is definitely more here.</li><li>Let the skillet heat until it begins to smoke (this takes 1–2 minutes).</li><li>Turn off the heat and allow it to cool naturally.</li></ol><p>This process lays down a thin layer of polymerized oil that bonds to the iron surface—essentially adding a building block to your skillet’s seasoning. Over time, consistent use and care like this will result in a naturally non-stick finish. Until then, we recommend using a healthy amount of oil or fat when cooking and avoid scrubbing too harshly during cleanup.</p>"
+                    }
+                },
+                "faq_RYYrRe": {
+                    "type": "faq",
+                    "settings": {
+                        "category_id": "1",
+                        "question": "Can I Bake In My Smithey?",
+                        "answer": "<p>Yes,<strong>cast iron is excellent for baking</strong>, and your Smithey is right at home in the oven. From golden cornbread to skillet cookies to rustic sourdough, cast iron offers incredible heat retention and even baking results that many traditional baking pans can’t match.Smithey skillets, Dutch ovens, and roasters are<strong>oven-safe and made for high heat</strong>, making them ideal for everything from crisping edges to baking bread with a beautiful crust. The heavy walls distribute heat evenly, which reduces the chances of burning or undercooking.<strong>A few tips for success:</strong></p><ul><li>Always preheat the skillet or oven with the cast iron inside for even baking.</li><li>For breads or baked goods, lightly oil or butter the surface - or use parchment paper for extra ease.</li><li>Remember that cast iron stays hot well after it comes out of the oven, so let it cool before handling or slicing directly inside the pan.</li></ul><p>Whether you are baking biscuits or roasting root vegetables, cast iron delivers excellent results with just a bit of prep - and it looks beautiful on the table, too.</p>"
+                    }
+                },
+                "faq_bxM8bA": {
+                    "type": "faq",
+                    "settings": {
+                        "category_id": "1",
+                        "question": "Can I Use My Smithey On An Induction Cooktop?",
+                        "answer": "<p>Yes,<strong>all Smithey cookware is fully compatible with induction cooktops</strong>. In fact, cast iron is one of the best materials for induction cooking because it contains enough iron to interact directly with the magnetic field and generate heat.That said, there are a few things you should know for best results:</p><ul><li><strong>Start slow.</strong> Induction burners heat quickly and intensely. For best results (and to protect your seasoning), encourage customers to start on low-to-medium heat and gradually bring the skillet up to temperature.</li><li><strong>Don’t drag the skillet.</strong> To protect glass cooktops, always lift your Smithey instead of sliding it. Cast iron is heavy and can scratch if not handled with care.</li></ul>"
+                    }
+                },
+                "faq_U3HXUA": {
+                    "type": "faq",
+                    "settings": {
+                        "category_id": "1",
+                        "question": "Why Does My Smithey Take So Long to Heat Up?",
+                        "answer": "<p>It’s not broken - it’s just cast iron being cast iron. One of the hallmarks of cast iron cookware is its density and weight, which means it naturally takes longer to heat up than thinner materials like aluminum or stainless steel. That’s a feature, not a flaw.Cast iron heats slowly and evenly, which is exactly what makes it so great for searing, baking, and retaining heat over time. The trick is patience: let your Smithey preheat over low-to-medium heat for about 5 minutes before adding any oil or food. Rushing this step can cause food to stick or brown unevenly.It’s also important to remember that cast iron holds heat longer, which means you don’t need to crank the burner. A medium setting on cast iron often delivers the same surface temp as high heat on other pans - but more stable and controlled.If you are switching from a lighter pan or a nonstick surface, this difference in heating time is totally normal. Stick with it - because once cast iron is hot, it stays hot, and that’s where the magic happens.</p>"
+                    }
+                },
+                "faq_6NLzJH": {
+                    "type": "faq",
+                    "settings": {
+                        "category_id": "2",
+                        "question": "How Often Should I Season My Skillet?",
+                        "answer": "<p>The short answer:<strong>not very often.</strong>If a Smithey is being used regularly, especially for cooking with oils or fats, it will naturally continue to season itself through use. There’s no need to re-season your skillet on a strict schedule—only when you start noticing performance issues.A good rule of thumb is to<strong>re-season when food starts sticking more than usual</strong>, or if you see<strong>bare or silvery patches</strong>where the seasoning has worn away. These are signs that the seasoning layer is thinning or uneven, and a quick touch-up will help restore your skillet’s non-stick performance and protect the iron underneath.If needed, re-seasoning is simple: clean and dry the pan, apply a<strong>very thin layer of high-smoke-point oil</strong>, and heat it until it smokes. Let it cool, and you’ve added a fresh layer of seasoning. Just make sure to<strong>wipe away any excess oil</strong>before heating to avoid a sticky finish.Otherwise, keep cooking! With regular use and good care (drying thoroughly, storing properly, and avoiding overly acidic or low-fat cooking early on), your Smithey will maintain and improve its seasoning naturally over time.</p>"
+                    }
+                },
+                "faq_TwLQfC": {
+                    "type": "faq",
+                    "settings": {
+                        "category_id": "2",
+                        "question": "How To Remove Rust?",
+                        "answer": "<p>Rust happens—and it doesn’t mean your skillet is ruined. Cast iron is incredibly resilient, and even a rusty pan can be brought back to life with a little elbow grease and the right steps. Surface rust usually forms when a skillet has been exposed to moisture without enough oil protection, but it’s easy to fix.<strong>To remove light to moderate rust:</strong></p><ol><li>Scrub the rusted area with steel wool, a chainmail scrubber, or a coarse salt paste.</li><li>Rinse and repeat until the rust is gone and the surface feels smooth.</li><li>Dry the pan completely with a towel, then heat it on the stove or in the oven to evaporate any hidden moisture.</li><li>Apply a very thin layer of high-smoke-point oil (like grapeseed or vegetable), wipe away the excess, and heat the pan to begin rebuilding your seasoning.</li></ol><p><strong>For heavier rust:</strong>If the whole skillet is affected, you may need to do a full re-seasoning—strip it down, clean thoroughly, and apply 2–3 fresh layers of seasoning in the oven.<strong>To prevent rust going forward:</strong></p><ul><li>Always dry your skillet immediately after washing.</li><li>Don’t let it soak in water.</li><li>Finish every clean with a thin layer of oil.</li><li>Store in a dry place—if it’s especially humid, place a paper towel inside the pan to absorb excess moisture.</li></ul><p>Rust is reversible. With proper care, your Smithey can look and cook like new again—no matter what it’s been through.</p>"
+                    }
+                },
+                "faq_mgfXm8": {
+                    "type": "faq",
+                    "settings": {
+                        "category_id": "2",
+                        "question": "Can I Deglaze My Smithey?",
+                        "answer": "<p>Deglazing is a simple, effective way to clean your cast iron after cooking—especially when dealing with charred bits, sticky sauces, or stubborn fond. It’s not just for building flavor in a dish; it’s also a great maintenance step that keeps your skillet performing at its best without harsh scrubbing.<strong>Here’s the method:</strong>Right after cooking (while the pan is still hot), slowly pour small<strong>amounts of room temperature water</strong>into the skillet—just a few tablespoons at a time. The water will bubble and steam, loosening stuck-on food. After 5–6 rounds, once the bubbling starts to ease, you can pour in a bit more water to fully cover any remaining bits. If you’d like, you can let it sit for 30–60 minutes while you eat, but it’s not necessary—many people move straight to scrubbing once deglazing is done.After that, pour off the water, give the pan a gentle scrub with a<strong>sponge and a bit of dish soap</strong>, dry thoroughly with a towel, then heat it on the stove to remove moisture. Finish by applying a light layer of oil, turn off the heat, and you’re done.<strong>Important notes:</strong></p><ul><li>This process will <strong>not crack your cast iron</strong>. Cracking is only a risk if extremely cold water is poured onto extremely hot iron (like an ice bath scenario). Slow, room-temp water deglazing is totally safe.</li><li><strong>Soap is fine</strong>—it won’t harm your seasoning when used properly.</li><li>There’s <strong>no need for metal scrapers</strong>; this method softens residue so even the most stubborn bits come off with ease.</li></ul><p>Deglazing is quick, satisfying, and cast iron safe.  We encourage you to use this method often—it’s a pro move that keeps cookware clean without compromising seasoning.</p>"
+                    }
+                },
+                "faq_nTMRhW": {
+                    "type": "faq",
+                    "settings": {
+                        "category_id": "2",
+                        "question": "Should I Avoid Using Soap On My Cast Iron?",
+                        "answer": "<p>Nope, you don’t need to be afraid of a little soap. It’s one of the most persistent myths out there, but the truth is:<strong>a small amount of dish soap will not harm your cast iron seasoning</strong>when used properly. Seasoning is a bond of polymerized oil—it’s a physical layer, not a loose grease coating—so it won’t simply wash away with suds.In fact, soap can be helpful after cooking particularly greasy or strongly flavored meals. A quick wash with mild dish soap and a soft sponge helps clean the surface without damaging your skillet or breaking down that hard-earned seasoning.What’s more important than avoiding soap is what you do<strong>after</strong>washing:</p><ul><li>Dry your skillet thoroughly (don’t air dry)</li><li>Warm it briefly on the stovetop to evaporate any leftover moisture</li><li>And wipe it with a thin coat of oil to protect against rust</li></ul><p>Think of soap as a<strong>tool</strong>, not a threat. Heavy-duty scrubbing or soaking in water for hours? That’s a problem. But a little soap and a lot of care? Totally cast iron–approved.</p>"
+                    }
+                },
+                "faq_nnrQ33": {
+                    "type": "faq",
+                    "settings": {
+                        "category_id": "3",
+                        "question": "When Will My Order Ship?",
+                        "answer": "<p>Customers will automatically receive an email with tracking information once their order ships. Orders can also be tracked at anytime by entering the order number and customer email into the \"Order Status\" box in Chat, and clicking the button labeled<em>Find An Order</em>.  If you made a purchase, but haven’t received a tracking link yet, the order may still be in our fulfillment queue - but check your spam/junk folders just in case.Smithey aims to ship all standard (non-engraved) orders within four business days of purchase. If an order is placed before 12:00 PM EST on a business day, it often ships that same day (excluding personalized items and holiday closures). For engraved cookware, our team typically ships within 3 business days, though this can vary slightly during peak seasons.Shipping Methods & Transit Times:</p><ul><li>Ground Shipping: Delivers in 3–5 business days after the order leaves our warehouse. Does not apply to personalized items.</li><li>Express Shipping (2-Day): Orders placed after 12:00 PM EST will ship the following business day. <em>Weekend delivery not included.</em></li><li>Overnight Shipping: Orders placed after 12:00 PM EST will ship the next business day and arrive the day after that. <em>No weekend delivery available</em></li></ul><p>Orders placed after 11:30 AM EST on Friday or during the weekend will begin processing and shipping on Monday.</p>"
+                    }
+                },
+                "faq_84yN9d": {
+                    "type": "faq",
+                    "settings": {
+                        "category_id": "3",
+                        "question": "What If My Package Is Missing An Item?",
+                        "answer": "<p>If you believe that an accessory or other item is missing from your order, the first step is to check the packing slip included in the shipment. Sometimes, an item may not have shipped at all - so confirming whether it’s actually listed on the packing slip can help determine if the accessory was included in this delivery.If the accessory is listed, it’s time for a little unpacking scavenger hunt. Smaller accessories (like glass lids, chainmail, spatula or leather potholders or sleeves) are often packed inside the cookware itself - nested in paper padding or tucked in for safe transport.  So, peek inside any skillets, Dutch ovens, or other boxes that may have been included in the shipment.If the accessory still isn’t found, our Customer Service Team can initiate a reshipment or issue a store credit depending on the item and situation.Lost accessories can be frustrating, but the fix is usually quick once we’ve got the right info in hand.</p>"
+                    }
+                },
+                "faq_FRHpxr": {
+                    "type": "faq",
+                    "settings": {
+                        "category_id": "3",
+                        "question": "Do You Ship To Other Countries?",
+                        "answer": "<p>Outside of the contiguous United States and Puerto Rico, customers in Canada and the European Union can now place orders directly at our website.  All duties, taxes, and shipping fees included at checkout. Prices will be displayed in the local currency.   On all international orders, UPS Expedited is the only carrier option - whether the order includes a full cookware set or just a single accessory. The shipping cost shown is a<em>live rate</em>, calculated based on the customer's location and the items in their cart.For other countries, we have limited international shipping capabilities, but we’re happy to help look into getting a quote built for you.  After you complete our<a href=\"https://smithey.typeform.com/to/N35vqAJY?typeform-source=smithey.reamaze.com\">International Shipping Quote</a>form, we will circle back to you soon with a custom quote, including shipping and any applicable customs or duty fees.</p>"
+                    }
+                },
+                "faq_8pzawd": {
+                    "type": "faq",
+                    "settings": {
+                        "category_id": "3",
+                        "question": "What Is Your Return Policy?",
+                        "answer": "<p>Smithey Ironware accepts returns on<strong>new and unused cookware</strong>within<strong>45 days of delivery</strong>, with a few exceptions. Items that are engraved or marked as Factory Seconds are considered final sale and are not eligible for return or exchange. All refunds will be issued back to the original payment method or as store credit, and will not include any shipping fees.For a return to be approved, the cookware must be in its original, unused condition - meaning it has not been cooked in, seasoned, or washed. If an item is returned in a condition that does not meet our return policy, Smithey reserves the right to either send the item back to the customer or adjust the refund method accordingly. Please note that international customers are responsible for arranging and paying for their own return shipping, as we are unable to issue international return labels.</p>"
+                    }
+                }
+            },
+            "block_order": [
+                "category_NnzTek",
+                "category_jfNPAq",
+                "category_XTQ8mf",
+                "faq_4gt3M3",
+                "faq_RYYrRe",
+                "faq_bxM8bA",
+                "faq_U3HXUA",
+                "faq_6NLzJH",
+                "faq_TwLQfC",
+                "faq_mgfXm8",
+                "faq_nTMRhW",
+                "faq_nnrQ33",
+                "faq_84yN9d",
+                "faq_FRHpxr",
+                "faq_8pzawd"
+            ],
+            "name": "FAQ Categories",
+            "settings": {
+                "background_color": "#ffffff",
+                "container_padding_desktop": "2rem",
+                "container_padding_mobile": "2rem",
+                "left_width": 75,
+                "right_width": 25
+            }
         }
     },
     "order": [
-        "header"
+        "faq_categories_yjJ47X"
     ]
 }
