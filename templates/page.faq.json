@@ -11,6 +11,37 @@
     "sections": {
         "our_story_hero_Ty3EBq": {
             "type": "our-story-hero",
+            "blocks": {
+                "input_ncnheQ": {
+                    "type": "input",
+                    "settings": {
+                        "placeholder": "WHAT CAN WE HELP YOU WITH?"
+                    }
+                },
+                "contact_card_6jdCGg": {
+                    "type": "contact_card",
+                    "settings": {
+                        "icon": "shopify://shop_images/email.png",
+                        "title": "Email Smithey Support",
+                        "text": "support@smithey.com",
+                        "link": "#"
+                    }
+                },
+                "contact_card_Awh4Rg": {
+                    "type": "contact_card",
+                    "settings": {
+                        "icon": "shopify://shop_images/phone.png",
+                        "title": "Give us a Call!",
+                        "text": "+1-843-619-0082",
+                        "link": "#"
+                    }
+                }
+            },
+            "block_order": [
+                "input_ncnheQ",
+                "contact_card_6jdCGg",
+                "contact_card_Awh4Rg"
+            ],
             "custom_css": [
                 ".our-story-hero__content {border: none;}"
             ],

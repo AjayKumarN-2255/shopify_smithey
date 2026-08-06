@@ -23,12 +23,49 @@
     {% for block in section.blocks %}
       {% case block.type %}
         {% when 'input' %}
-          <!-- Search/Input block -->
-
-        {% when 'contact_card' %}
-          <!-- Email / Phone block -->
+          <div class="contact-input" {{ block.shopify_attributes }}>
+            <input
+              type="text"
+              class="contact-input__field"
+              placeholder="{{ block.settings.placeholder }}"
+            >
+          </div>
       {% endcase %}
     {% endfor %}
+
+    <div class="contact-card-container">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'contact_card' %}
+            <div class="contact-card" {{ block.shopify_attributes }}>
+              {% if block.settings.icon != blank %}
+                <div class="contact-card__icon">
+                  <img
+                    src="{{ block.settings.icon | image_url }}"
+                    alt="{{ block.settings.title }}"
+                    width="40"
+                    height="40"
+                  >
+                </div>
+              {% endif %}
+
+              <div class="contact-card__content">
+                {% if block.settings.title != blank %}
+                  <h3 class="contact-card__title">
+                    {{ block.settings.title }}
+                  </h3>
+                {% endif %}
+
+                {% if block.settings.text != blank %}
+                  <p class="contact-card__text">
+                    {{ block.settings.text }}
+                  </p>
+                {% endif %}
+              </div>
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
   </div>
 </section>
 
@@ -53,6 +90,47 @@
     padding: 10px 30px;
   }
 
+  .contact-input input{
+    width: 100%;
+    padding: 0.75rem;
+    margin: 2rem 0;
+    border-radius: 10px;
+    font-size: 14px;
+    padding: 1rem;
+    border: none;
+    outline: none;
+  }
+
+  .contact-card-container{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:2rem;
+  }
+
+  .contact-card{
+    display:flex;
+    gap:1rem;
+    color:white;
+  }
+
+  .contact-card__icon img {
+    display: inline-block;
+    max-width: 28px;
+    height: 28px;
+  }
+
+  .contact-card__content{
+    display:flex;
+    flex-direction:column;
+    gap:0.25rem;
+  }
+
+  .contact-card__title,
+  .contact-card__text{
+    font-size:14px;
+  }
+
   @media (min-width: 920px) {
     .our-story-hero {
       height: {{ section.settings.desktop_height }}vh !important;
@@ -60,6 +138,25 @@
 
     .our-story-hero__title {
       font-size: 36px;
+    }
+
+    .contact-card-container {
+      flex-direction:row;
+      justify-content:center;
+    }
+
+    .contact-card{
+      gap:0.75rem;
+    }
+
+    .contact-card__icon img {
+      max-width: 34px;
+      height:34px;
+    }
+
+    .contact-card__title,
+    .contact-card__text{
+      font-size:16px;
     }
   }
 </style>
@@ -135,11 +232,6 @@
           "type": "text",
           "id": "text",
           "label": "Text"
-        },
-        {
-          "type": "url",
-          "id": "link",
-          "label": "Link"
         }
       ]
     }
