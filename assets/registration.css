@@ -82,9 +82,12 @@
 }
 
 .registration__radio-group {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  display: grid;
+  margin-top: 5px;
+}
+
+.col-3 {
+  grid-template-columns: 1fr;
 }
 
 .registration__radio-group span,
@@ -162,5 +165,8 @@
   }
   .registration__checkbox-group {
     grid-template-columns: repeat(4, 1fr);
+  }
+  .col-3 {
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }
