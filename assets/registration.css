@@ -1,0 +1,166 @@
+.registration {
+  padding: 2.5rem 1.5rem;
+}
+
+.registration input[type="text"],
+.registration input[type="email"] {
+  line-height: 1.6;
+  color: #112626;
+  font-weight: 400;
+  font-size: 1rem;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  font-family: Gotham, ui-sans-serif, sans-serif;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  height: 62px;
+  border: 2px solid;
+  --tw-border-opacity: 1;
+  border-color: #f3f3f3;
+  transition: all 0.2s ease-in-out;
+  border-radius: 3px;
+  max-width: 100%;
+  padding: 9px 16px;
+  margin: 7px 0;
+  background-color: #fff;
+  box-shadow: none;
+  width: 100%;
+}
+
+.registration input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #112626;
+  cursor: pointer;
+}
+
+.registration input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #b68b32;
+}
+
+.registration__title {
+  text-align: center;
+  margin: 1rem 0 3rem 0;
+  color: #112626;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.registration__form,
+.registration__section {
+  width: 100%;
+  max-width: 40rem;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.registration__field {
+  display: flex;
+  flex-direction: column;
+}
+
+.registration__row {
+  display: flex;
+  flex-direction: column;
+}
+
+.registration__label {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.registration__radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.registration__radio-group span,
+.registration__option-label span {
+  font-size: 16px;
+}
+
+.registration__option-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.registration__section-title {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 19px;
+}
+
+.registration__checkbox-group {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding: 0.5rem 0;
+}
+
+.registration__description {
+  font-size: 14px;
+  text-transform: uppercase;
+  line-height: 20px;
+  margin-bottom: 0.5rem;
+  color: black;
+}
+
+.registration__description a {
+  text-decoration: none;
+  color: black;
+}
+
+.registration__option-label {
+  font-size: 13px;
+}
+
+.registration__button {
+  text-transform: uppercase;
+  padding: 0.75rem;
+  font-size: 14px;
+  color: white;
+  background-color: #b68b32;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+@media (min-width: 920px) {
+  .registration__title {
+    font-size: 1.5rem;
+    margin-top: 0;
+  }
+  .registration__row {
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+  .registration__row > * {
+    flex: 1;
+  }
+  .registration__label {
+    font-size: 0.8rem;
+  }
+  .registration__radio-group {
+    gap: 0.5rem;
+  }
+  .registration__option-label {
+    gap: 0.5rem;
+  }
+  .registration__checkbox-group {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

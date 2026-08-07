@@ -1,0 +1,451 @@
+{{ 'registration.css' | asset_url | stylesheet_tag }}
+
+<div class="registration">
+  <div class="registration__container">
+    <header class="registration__header">
+      <h1 class="registration__title">Registration</h1>
+    </header>
+
+    <form id="registration-form" class="registration__form" novalidate>
+      <!-- Name -->
+      <div class="registration__row">
+        <div class="registration__field">
+          <label for="firstName" class="registration__label">
+            First Name <span class="registration__required">*</span>
+          </label>
+          <input
+            id="firstName"
+            name="firstName"
+            type="text"
+            placeholder="First Name"
+            required
+            class="registration__input"
+          >
+          {% comment %} <p class="registration__error registration__hidden" data-error-for="firstName">Please fill in field</p> {% endcomment %}
+        </div>
+        <div class="registration__field">
+          <label for="lastName" class="registration__label">
+            Last Name <span class="registration__required">*</span>
+          </label>
+          <input
+            id="lastName"
+            name="lastName"
+            type="text"
+            placeholder="Last Name"
+            required
+            class="registration__input"
+          >
+          {% comment %} <p class="registration__error registration__hidden" data-error-for="lastName">Please fill in field</p> {% endcomment %}
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="registration__field">
+        <label for="email" class="registration__label"> Email <span class="registration__required">*</span> </label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          placeholder="Email"
+          required
+          class="registration__input"
+        >
+        {% comment %} <p class="registration__error registration__hidden" data-error-for="email">Invalid email</p> {% endcomment %}
+      </div>
+
+      <!-- Address -->
+      <div class="registration__section">
+        <div class="registration__field">
+          <label for="address1" class="registration__label">Address Line 1</label>
+          <input
+            id="address1"
+            name="address1"
+            type="text"
+            placeholder="Address Line 1"
+            class="registration__input"
+          >
+        </div>
+        <div class="registration__field">
+          <label for="address2" class="registration__label">Address Line 2</label>
+          <input
+            id="address2"
+            name="address2"
+            type="text"
+            placeholder="Address Line 2"
+            class="registration__input"
+          >
+        </div>
+        <div class="registration__row">
+          <div class="registration__field">
+            <label for="city" class="registration__label">City</label>
+            <input
+              id="city"
+              name="city"
+              type="text"
+              placeholder="City"
+              class="registration__input"
+            >
+          </div>
+          <div class="registration__field">
+            <label for="state" class="registration__label">State</label>
+            <input
+              id="state"
+              name="state"
+              type="text"
+              placeholder="State"
+              class="registration__input"
+            >
+          </div>
+          <div class="registration__field">
+            <label for="postal" class="registration__label">Postal/Zip</label>
+            <input
+              id="postal"
+              name="postal"
+              type="text"
+              placeholder="Postal/Zip"
+              class="registration__input"
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Purchase source -->
+      <div class="registration__field">
+        <legend class="registration__label">
+          Where did you purchase your Smithey?
+          <span class="registration__required">*</span>
+        </legend>
+        <div class="registration__radio-group">
+          <label class="registration__option-label">
+            <input
+              type="radio"
+              name="purchaseSource"
+              value="Smithey website (smithey.com)"
+              required
+              class="registration__option"
+            >
+            <span>Smithey website (smithey.com)</span>
+          </label>
+          <label class="registration__option-label">
+            <input
+              type="radio"
+              name="purchaseSource"
+              value="From a retailer"
+              class="registration__option"
+            >
+            <span>From a retailer</span>
+          </label>
+          <label class="registration__option-label">
+            <input
+              type="radio"
+              name="purchaseSource"
+              value="I received my Smithey as a gift"
+              class="registration__option"
+            >
+            <span>I received my Smithey as a gift</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- How they learned -->
+      <div class="registration__field">
+        <legend class="registration__label">Where did you first learn about Smithey?</legend>
+        <div class="registration__radio-group">
+          <label class="registration__option-label">
+            <input type="radio" name="learnAbout" value="Friend or family" class="registration__option">
+            <span>Friend or family</span>
+          </label>
+          <label class="registration__option-label">
+            <input type="radio" name="learnAbout" value="In a store" class="registration__option">
+            <span>In a store</span>
+          </label>
+          <label class="registration__option-label">
+            <input type="radio" name="learnAbout" value="Other" class="registration__option">
+            <span>Other</span>
+          </label>
+          <label class="registration__option-label">
+            <input type="radio" name="learnAbout" value="Facebook/Instagram" class="registration__option">
+            <span>Facebook/Instagram</span>
+          </label>
+          <label class="registration__option-label">
+            <input type="radio" name="learnAbout" value="Magazine/Print" class="registration__option">
+            <span>Magazine/Print</span>
+          </label>
+          <label class="registration__option-label">
+            <input type="radio" name="learnAbout" value="Another website" class="registration__option">
+            <span>Another website</span>
+          </label>
+        </div>
+      </div>
+
+      <hr class="registration__divider">
+
+      <!-- Products -->
+      <section class="registration__section">
+        <h2 class="registration__section-title">Select your Smitheys</h2>
+
+        <div class="registration__field">
+          <h3 class="registration__label">Cast Iron</h3>
+          <div class="registration__checkbox-group">
+            <label class="registration__option-label"
+              ><input type="checkbox" name="castIron" value="No. 6 Skillet" class="registration__option"
+              ><span>No. 6 Skillet</span></label
+            >
+            <label class="registration__option-label"
+              ><input type="checkbox" name="castIron" value="No. 8 Chef Skillet" class="registration__option"
+              ><span>No. 8 Chef Skillet</span></label
+            >
+            <label class="registration__option-label"
+              ><input type="checkbox" name="castIron" value="No. 10 Chef Skillet" class="registration__option"
+              ><span>No. 10 Chef Skillet</span></label
+            >
+            <label class="registration__option-label"
+              ><input type="checkbox" name="castIron" value="No. 10 Flat Top Griddle" class="registration__option"
+              ><span>No. 10 Flat Top Griddle</span></label
+            >
+            <label class="registration__option-label"
+              ><input type="checkbox" name="castIron" value="No. 10 Skillet" class="registration__option"
+              ><span>No. 10 Skillet</span></label
+            >
+            <label class="registration__option-label"
+              ><input type="checkbox" name="castIron" value="No. 11 Deep Skillet" class="registration__option"
+              ><span>No. 11 Deep Skillet</span></label
+            >
+            <label class="registration__option-label"
+              ><input
+                type="checkbox"
+                name="castIron"
+                value="No. 11 American Anniversary Skillet"
+                class="registration__option"
+
+              ><span>No. 11 American Anniversary Skillet</span></label
+            >
+            <label class="registration__option-label"
+              ><input type="checkbox" name="castIron" value="No. 11 Yellowstone Skillet" class="registration__option"
+              ><span>No. 11 Yellowstone Skillet</span></label
+            >
+            <label class="registration__option-label"
+              ><input type="checkbox" name="castIron" value="No. 12 Skillet" class="registration__option"
+              ><span>No. 12 Skillet</span></label
+            >
+            <label class="registration__option-label"
+              ><input type="checkbox" name="castIron" value="No. 12 Flat Top Griddle" class="registration__option"
+              ><span>No. 12 Flat Top Griddle</span></label
+            >
+            <label class="registration__option-label"
+              ><input type="checkbox" name="castIron" value="No. 12 Grill Pan" class="registration__option"
+              ><span>No. 12 Grill Pan</span></label
+            >
+            <label class="registration__option-label"
+              ><input type="checkbox" name="castIron" value="No. 14 Dual Handle Skillet" class="registration__option"
+              ><span>No. 14 Dual Handle Skillet</span></label
+            >
+            <label class="registration__option-label"
+              ><input type="checkbox" name="castIron" value="No. 14 Traditional Skillet" class="registration__option"
+              ><span>No. 14 Traditional Skillet</span></label
+            >
+            <label class="registration__option-label"
+              ><input type="checkbox" name="castIron" value="3.5 QT Dutch Oven" class="registration__option"
+              ><span>3.5 QT Dutch Oven</span></label
+            >
+            <label class="registration__option-label"
+              ><input type="checkbox" name="castIron" value="5.5 QT Dutch Oven" class="registration__option"
+              ><span>5.5 QT Dutch Oven</span></label
+            >
+            <label class="registration__option-label"
+              ><input type="checkbox" name="castIron" value="7.25 QT Dutch Oven" class="registration__option"
+              ><span>7.25 QT Dutch Oven</span></label
+            >
+            <label class="registration__option-label"
+              ><input type="checkbox" name="castIron" value="Double Burner Griddle" class="registration__option"
+              ><span>Double Burner Griddle</span></label
+            >
+            <label class="registration__option-label"
+              ><input type="checkbox" name="castIron" value="No. 6 Dual Handle Skillet" class="registration__option"
+              ><span>No. 6 Dual Handle Skillet</span></label
+            >
+            <label class="registration__option-label"
+              ><input type="checkbox" name="castIron" value="No. 12 Dual Handle Skillet" class="registration__option"
+              ><span>No. 12 Dual Handle Skillet</span></label
+            >
+            <label class="registration__option-label"
+              ><input type="checkbox" name="castIron" value="1 Qt Saucepan" class="registration__option"
+              ><span>1 Qt Saucepan</span></label
+            >
+          </div>
+        </div>
+
+        <div class="registration__field">
+          <h3 class="registration__label">Carbon Steel</h3>
+          <div class="registration__checkbox-group">
+            <label class="registration__option-label"
+              ><input type="checkbox" name="carbonSteel" value="Farmhouse Skillet" class="registration__option"
+              ><span>Farmhouse Skillet</span></label
+            >
+            <label class="registration__option-label"
+              ><input type="checkbox" name="carbonSteel" value="Wok" class="registration__option"
+              ><span>Wok</span></label
+            >
+            <label class="registration__option-label"
+              ><input type="checkbox" name="carbonSteel" value="Paella Pan" class="registration__option"
+              ><span>Paella Pan</span></label
+            >
+            <label class="registration__option-label"
+              ><input type="checkbox" name="carbonSteel" value="Oval Roaster" class="registration__option"
+              ><span>Oval Roaster</span></label
+            >
+            <label class="registration__option-label"
+              ><input type="checkbox" name="carbonSteel" value="Round Roaster" class="registration__option"
+              ><span>Round Roaster</span></label
+            >
+            <label class="registration__option-label"
+              ><input type="checkbox" name="carbonSteel" value="Deep Farmhouse Skillet" class="registration__option"
+              ><span>Deep Farmhouse Skillet</span></label
+            >
+            <label class="registration__option-label"
+              ><input type="checkbox" name="carbonSteel" value="Little Farmhouse Skillet" class="registration__option"
+              ><span>Little Farmhouse Skillet</span></label
+            >
+            <label class="registration__option-label"
+              ><input type="checkbox" name="carbonSteel" value="Fish Skillet" class="registration__option"
+              ><span>Fish Skillet</span></label
+            >
+            <label class="registration__option-label"
+              ><input type="checkbox" name="carbonSteel" value="The Carbon Steel Lid" class="registration__option"
+              ><span>The Carbon Steel Lid</span></label
+            >
+          </div>
+        </div>
+      </section>
+
+      <hr class="registration__divider">
+
+      <!-- Consent -->
+      <div class="registration__field">
+        <p class="registration__description">
+          By submitting this form, you agree to receive occasional emails with the latest Smithey news, tips and tricks,
+          seasonal recipes. You agree that you have read our
+          <a
+            href="https://smithey.com/pages/privacy-policy"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="registration__link"
+            >Privacy Policy</a
+          >. Submission of this registration form is not a requirement for warranty activation. You can unsubscribe at
+          any time.
+        </p>
+        <label class="registration__option-label">
+          <input
+            id="consent"
+            type="checkbox"
+            name="consent"
+            value="I agree, keep me in the loop with occasional emails!"
+            required
+            checked
+            class="registration__option"
+          >
+          <span>I agree, keep me in the loop with occasional emails!</span>
+        </label>
+        {% comment %} <p class="registration__error registration__hidden" data-error-for="consent">Please fill in field</p> {% endcomment %}
+      </div>
+
+      <button
+        type="submit"
+        class="registration__button"
+      >
+        Submit
+      </button>
+    </form>
+
+    <div
+      id="success-message"
+      class="registration__success registration__hidden"
+    >
+      {% comment %} <p class="registration__description">Thanks for registering your Smithey! Use it well.</p> {% endcomment %}
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('registration-form');
+    const retailerField = document.getElementById('retailer-field');
+    const magazineField = document.getElementById('magazine-field');
+    const websiteField = document.getElementById('website-field');
+    const successMessage = document.getElementById('success-message');
+
+    function showError(name, show) {
+      const el = document.querySelector(`[data-error-for="${name}"]`);
+      if (el) el.classList.toggle('registration__hidden', !show);
+    }
+
+    function clearErrors() {
+      document.querySelectorAll('.registration__error').forEach((el) => {
+        el.classList.add('registration__hidden');
+      });
+    }
+
+    document.querySelectorAll('input[name="purchaseSource"]').forEach((input) => {
+      input.addEventListener('change', () => {
+        const isRetailer = input.value === 'From a retailer' && input.checked;
+        retailerField.classList.toggle('registration__hidden', !isRetailer);
+        if (!isRetailer) document.getElementById('retailer').value = '';
+      });
+    });
+
+    document.querySelectorAll('input[name="learnAbout"]').forEach((input) => {
+      input.addEventListener('change', () => {
+        magazineField.classList.toggle('registration__hidden', input.value !== 'Magazine/Print');
+        websiteField.classList.toggle('registration__hidden', input.value !== 'Another website');
+        if (input.value !== 'Magazine/Print') {
+          document.getElementById('magazine').value = '';
+        }
+        if (input.value !== 'Another website') {
+          document.getElementById('website').value = '';
+        }
+      });
+    });
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      clearErrors();
+
+      let valid = true;
+      const firstName = form.firstName.value.trim();
+      const lastName = form.lastName.value.trim();
+      const email = form.email.value.trim();
+      const purchaseSource = form.querySelector('input[name="purchaseSource"]:checked');
+      const consent = form.consent.checked;
+
+      if (!firstName) {
+        showError('firstName', true);
+        valid = false;
+      }
+      if (!lastName) {
+        showError('lastName', true);
+        valid = false;
+      }
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showError('email', true);
+        valid = false;
+      }
+      if (!purchaseSource) {
+        showError('purchaseSource', true);
+        valid = false;
+      }
+      if (!consent) {
+        showError('consent', true);
+        valid = false;
+      }
+
+      if (!valid) return;
+
+      const data = Object.fromEntries(new FormData(form).entries());
+      data.castIron = [...form.querySelectorAll('input[name="castIron"]:checked')].map((el) => el.value);
+      data.carbonSteel = [...form.querySelectorAll('input[name="carbonSteel"]:checked')].map((el) => el.value);
+
+      console.log('Registration submitted:', data);
+
+      form.classList.add('registration__hidden');
+      successMessage.classList.remove('registration__hidden');
+    });
+  </script>
+</div>

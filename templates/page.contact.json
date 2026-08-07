@@ -1,10 +1,157 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
     "sections": {
-        "header": {
-            "type": "header"
+        "our_story_hero_GKKVKx": {
+            "type": "our-story-hero",
+            "custom_css": [
+                ".our-story-hero__content {border: none;}",
+                ".our-story-hero__title {font-size: 28px; letter-spacing: 1px; margin-bottom: 0.5rem;}",
+                ".our-story-hero__subtitle {color: #b68b32; text-align: center; font-size: 20px; font-style: italic;}",
+                "@media (min-width: 920px) {.our-story-hero__title {font-size: 42px; } .our-story-hero__subtitle {font-size: 26px; }}"
+            ],
+            "name": "Our Story Hero",
+            "settings": {
+                "title": "Questions?",
+                "subtitle": "We can help!",
+                "image": "shopify://shop_images/smithey-texture-dark.webp",
+                "desktop_height": 42,
+                "mobile_height": 36
+            }
+        },
+        "content_builder_WMcbeV": {
+            "type": "content-builder",
+            "blocks": {
+                "image_nHhAPz": {
+                    "type": "image",
+                    "settings": {
+                        "image": "shopify://shop_images/qa_-_1_6_1000x_87322a74-3d42-4da8-a1a0-c54176668898.webp",
+                        "image_mobile_height": 13.4,
+                        "image_desktop_height": 18.6,
+                        "image_large_desktop_height": 18.6,
+                        "position": "right",
+                        "custom_css": "@media (min-width: 920px) {\n  & {\n    margin: 0;\n  }\n\n  #content-builder-template--21669638897799__content_builder_WMcbeV .content-builder__left {\n    justify-content: space-evenly;\n  }\n}"
+                    }
+                },
+                "text_qLCxPm": {
+                    "type": "text",
+                    "settings": {
+                        "title": "How to Season Your Smithey",
+                        "title_desktop_size": 2,
+                        "title_mobile_size": 2,
+                        "title_color": "#b68b32",
+                        "content": "<p>Hint: it's easier than you think! Watch our video tutorial on how to season your Smithey at home.</p>",
+                        "content_desktop_size": 1,
+                        "content_mobile_size": 0.9,
+                        "content_color": "#112626",
+                        "position": "left",
+                        "custom_css": ".content-builder__title{\n text-align : center;\n margin:1rem auto;\n}\n.content-builder__content{\n text-align:center;\n  word-spacing: 2px;\n}\n@media (min-width: 920px) {\n  .content-builder__title {\n    text-align: left; \n  }\n.content-builder__content{\n text-align:start;\n  word-spacing: unset;\n  max-width:22rem;\n font-size:0.85rem\n}\n}"
+                    }
+                },
+                "button_YnH8hi": {
+                    "type": "button",
+                    "settings": {
+                        "button_text": "SEE MORE",
+                        "button_link": "shopify://pages/seasoning",
+                        "button_bg_color": "#b68b32",
+                        "button_text_color": "#112626",
+                        "position": "left",
+                        "btn_position_desktop": "left",
+                        "btn_position_mobile": "center",
+                        "custom_css": "& {\n  margin-top: 0;\n}\n\n.content-builder__button-link {\n  width: 100%;\n  margin-top: 0;\n}\n\n@media (min-width: 920px) {\n  &  .content-builder__button-link {\n    width: auto;\n    margin-top: unset;\n    font-size: 0.75rem !important;\n    padding: 0.75rem 3.5rem !important;\n  }\n}"
+                    }
+                }
+            },
+            "block_order": [
+                "image_nHhAPz",
+                "text_qLCxPm",
+                "button_YnH8hi"
+            ],
+            "custom_css": [
+                "#content-builder-template--21669638897799__content_builder_WMcbeV .content-builder__container {flex-direction: column-reverse; padding-top: 2rem; padding-bottom: 2rem;}",
+                "@media (min-width: 920px) {#content-builder-template--21669638897799__content_builder_WMcbeV .content-builder__container {flex-direction: row; padding-top: 4rem; padding-bottom: 4rem; }}",
+                "@media (min-width: 1700px) {#content-builder-template--21669638897799__content_builder_WMcbeV .content-builder__container {max-width: 80rem; margin: 0 auto; }}"
+            ],
+            "name": "Content Builder",
+            "settings": {
+                "background_color": "#f3f3f3",
+                "desktop_padding": 2.5,
+                "mobile_padding": 1.4,
+                "show_features": false
+            }
+        },
+        "content_builder_W8QDa9": {
+            "type": "content-builder",
+            "blocks": {
+                "image_dekbHi": {
+                    "type": "image",
+                    "settings": {
+                        "image": "shopify://shop_images/96df83f4650f1bea3cde784ae6c4fd83b40e657c.webp",
+                        "image_mobile_height": 18,
+                        "image_desktop_height": 25.2,
+                        "image_large_desktop_height": 25.2,
+                        "position": "left",
+                        "custom_css": "@media (min-width: 920px) {\n  #content-builder-template--21669638897799__content_builder_W8QDa9 .content-builder__right {\n    justify-content: space-evenly;\n  }\n}\n\n@media (min-width: 1700px) {\n  & {\n    margin-top: 0;\n    margin-bottom: 0;\n  }\n}"
+                    }
+                },
+                "text_6LyiX6": {
+                    "type": "text",
+                    "settings": {
+                        "title": "Register your Smithey",
+                        "title_desktop_size": 2,
+                        "title_mobile_size": 2,
+                        "title_color": "#b68b32",
+                        "content": "<p>Receive customized care tips, seasonal recipes, and first access to new product launches and promotions.</p>",
+                        "content_desktop_size": 1,
+                        "content_mobile_size": 0.9,
+                        "content_color": "#112626",
+                        "position": "right",
+                        "custom_css": ".content-builder__title{\n text-align : center;\n margin:1rem auto;\n}\n.content-builder__content{\n text-align:center;\n  word-spacing: 2px;\n}\n@media (min-width: 920px) {\n  .content-builder__title {\n    text-align: left; \n  }\n.content-builder__content{\n text-align:start;\n  word-spacing: unset;\n  max-width:28rem;\n font-size:0.85rem\n}\n}"
+                    }
+                },
+                "button_jqYfUn": {
+                    "type": "button",
+                    "settings": {
+                        "button_text": "SEE MORE",
+                        "button_link": "shopify://pages/registration",
+                        "button_bg_color": "#b68b32",
+                        "button_text_color": "#112626",
+                        "position": "right",
+                        "btn_position_desktop": "left",
+                        "btn_position_mobile": "center",
+                        "custom_css": "& {\n  margin-top: 0;\n}\n\n.content-builder__button-link {\n  width: 100%;\n  margin-top: 0;\n}\n\n@media (min-width: 920px) {\n  &  .content-builder__button-link {\n    width: auto;\n    margin-top: unset;\n    font-size: 0.75rem !important;\n    padding: 0.75rem 3.5rem !important;\n  }\n}"
+                    }
+                }
+            },
+            "block_order": [
+                "image_dekbHi",
+                "text_6LyiX6",
+                "button_jqYfUn"
+            ],
+            "custom_css": [
+                "#content-builder-template--21669638897799__content_builder_W8QDa9 .content-builder__container {padding-top: 2rem; padding-bottom: 2rem;}",
+                "@media (min-width: 920px) {#content-builder-template--21669638897799__content_builder_W8QDa9 .content-builder__container {padding-top: 4rem; padding-bottom: 4rem; }}",
+                "@media (min-width: 1700px) {#content-builder-template--21669638897799__content_builder_W8QDa9 .content-builder__container {max-width: 80rem; margin: 0 auto; }}"
+            ],
+            "name": "Content Builder",
+            "settings": {
+                "background_color": "#e4dfda",
+                "desktop_padding": 2.5,
+                "mobile_padding": 1,
+                "show_features": false
+            }
         }
     },
     "order": [
-        "header"
+        "our_story_hero_GKKVKx",
+        "content_builder_WMcbeV",
+        "content_builder_W8QDa9"
     ]
 }
