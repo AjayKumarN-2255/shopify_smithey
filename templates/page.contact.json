@@ -11,6 +11,15 @@
     "sections": {
         "our_story_hero_GKKVKx": {
             "type": "our-story-hero",
+            "blocks": {
+                "contact_tab_3mkpbf": {
+                    "type": "contact_tab",
+                    "settings": {}
+                }
+            },
+            "block_order": [
+                "contact_tab_3mkpbf"
+            ],
             "custom_css": [
                 ".our-story-hero__content {border: none;}",
                 ".our-story-hero__title {font-size: 28px; letter-spacing: 1px; margin-bottom: 0.5rem;}",
@@ -147,11 +156,22 @@
                 "mobile_padding": 1,
                 "show_features": false
             }
+        },
+        "blog_slider_QwV3Bw": {
+            "type": "blog-slider",
+            "name": "Blog Slider",
+            "settings": {
+                "heading": "WHAT'S SIMMERING WITH SMITHEY",
+                "description": "Read our journal to follow the people, places, and ideas shaping what's next.",
+                "blog": "journal",
+                "articles_to_show": 6
+            }
         }
     },
     "order": [
         "our_story_hero_GKKVKx",
         "content_builder_WMcbeV",
-        "content_builder_W8QDa9"
+        "content_builder_W8QDa9",
+        "blog_slider_QwV3Bw"
     ]
 }

@@ -1,7 +1,7 @@
 <section
   class="our-story-hero"
   style="
-    height: {{ section.settings.mobile_height }}vh;
+    min-height: {{ section.settings.mobile_height }}vh;
     {% if section.settings.image %}
       background-image: url('{{ section.settings.image | image_url: width: 2000 }}');
     {% endif %}
@@ -66,6 +66,11 @@
         {% endcase %}
       {% endfor %}
     </div>
+    {% for block in section.blocks %}
+      {% if block.type == 'contact_tab' %}
+        {% render 'contact-tab' %}
+      {% endif %}
+    {% endfor %}
   </div>
 </section>
 
@@ -133,7 +138,7 @@
 
   @media (min-width: 920px) {
     .our-story-hero {
-      height: {{ section.settings.desktop_height }}vh !important;
+      min-height: {{ section.settings.desktop_height }}vh !important;
     }
 
     .our-story-hero__title {
@@ -234,6 +239,10 @@
           "label": "Text"
         }
       ]
+    },
+    {
+      "type": "contact_tab",
+      "name": "Contact tab"
     }
   ],
   "presets": [
