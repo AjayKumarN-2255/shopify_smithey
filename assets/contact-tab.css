@@ -46,12 +46,18 @@
 }
 
 .contact-tab__content {
-  display: none;
   width: 100%;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition:
+    max-height 0.75s ease,
+    opacity 1s ease;
 }
 
 .contact-tab__content.is-active {
-  display: block;
+  max-height: 1000px;
+  opacity: 1;
 }
 
 /* content when click styling  */
