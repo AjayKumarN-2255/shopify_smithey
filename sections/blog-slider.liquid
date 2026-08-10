@@ -21,7 +21,10 @@
     <div class="blog-slider__container">
       <div class="blog-slider__viewport">
         <div class="blog-slider__rail">
-          {% for article in blog.articles limit: section.settings.articles_to_show %}
+          {% for article in section.settings.blog.articles
+            limit: section.settings.limit
+            offset: section.settings.offset
+          %}
             <article class="blog-card">
               {% if article.image %}
                 <div class="blog-card__image">
@@ -37,11 +40,21 @@
                 <p class="blog-card__excerpt">
                   {{ article.excerpt_or_content | strip_html | truncate: 120 }}
                 </p>
-
               </div>
-
-              <a href="{{ article.url }}" class="blog-card__link"> Read More </a>
+              <div class="blog-card__footer">
+                <a href="{{ article.url }}" class="blog-card__link"> Read More </a>
+              </div>
             </article>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="blog-slider__pagination">
+        <div class="blog-slider__dots">
+          {% for i in (1..section.settings.limit) %}
+            <span
+              class="blog-slider__dot{% if forloop.first %} active{% endif %}"
+              aria-label="Go to slide {{ i }}"
+            ></span>
           {% endfor %}
         </div>
       </div>
@@ -59,6 +72,224 @@
     {% endif %}
   </div>
 {% endif %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.blog-slider').forEach((slider) => {
+      const viewport = slider.querySelector('.blog-slider__viewport');
+      const rail = slider.querySelector('.blog-slider__rail');
+      const cards = rail ? Array.from(rail.querySelectorAll('.blog-card')) : [];
+      const dots = Array.from(slider.querySelectorAll('.blog-slider__dot'));
+
+      if (!viewport || !rail || !cards.length) return;
+
+      let currentIndex = 0;
+      let pointerId = null;
+      let isPointerDown = false;
+      let isDragging = false;
+      let hasDragged = false;
+      let startX = 0;
+      let startY = 0;
+      let startTranslate = 0;
+
+      const getGap = () => {
+        const styles = getComputedStyle(rail);
+        return parseFloat(styles.columnGap || styles.gap) || 0;
+      };
+
+      const getStep = () => {
+        const width = cards[0].getBoundingClientRect().width;
+        return width + getGap();
+      };
+
+      const getVisibleCount = () => {
+        const step = getStep();
+        if (step <= 0) return 1;
+
+        const gap = getGap();
+        return Math.max(1, Math.round((viewport.clientWidth + gap) / step));
+      };
+
+      const getMaxIndex = () => Math.max(0, cards.length - getVisibleCount());
+
+      const clampIndex = (index) => Math.max(0, Math.min(index, getMaxIndex()));
+
+      const getTranslateForIndex = (index) => -(index * getStep());
+
+      const setTranslate = (px, animate) => {
+        rail.style.transition = animate ? '' : 'none';
+        rail.style.transform = `translateX(${px}px)`;
+      };
+
+      const getLastVisibleCardIndex = (useLiveRect = false) => {
+        let lastVisibleIndex = 0;
+        const tolerance = 2;
+
+        if (useLiveRect) {
+          const viewportRect = viewport.getBoundingClientRect();
+
+          cards.forEach((card, index) => {
+            const rect = card.getBoundingClientRect();
+            const visibleWidth =
+              Math.min(rect.right, viewportRect.right) - Math.max(rect.left, viewportRect.left);
+
+            if (visibleWidth > tolerance) {
+              lastVisibleIndex = index;
+            }
+          });
+
+          return lastVisibleIndex;
+        }
+
+        const viewportWidth = viewport.clientWidth;
+        const translateX = getTranslateForIndex(currentIndex);
+        const gap = getGap();
+        const paddingLeft = parseFloat(getComputedStyle(rail).paddingLeft) || 0;
+        let cardLeft = paddingLeft;
+
+        cards.forEach((card, index) => {
+          const width = card.offsetWidth;
+          const left = cardLeft + translateX;
+          const right = left + width;
+
+          if (left < viewportWidth - tolerance && right > tolerance) {
+            lastVisibleIndex = index;
+          }
+
+          cardLeft += width + gap;
+        });
+
+        return lastVisibleIndex;
+      };
+
+      const updateDots = (useLiveRect = false) => {
+        if (!dots.length) return;
+
+        const activeDot = Math.min(getLastVisibleCardIndex(useLiveRect), dots.length - 1);
+        dots.forEach((dot, index) => {
+          dot.classList.toggle('active', index === activeDot);
+        });
+      };
+
+      const goToIndex = (index, animate = true) => {
+        currentIndex = clampIndex(index);
+        setTranslate(getTranslateForIndex(currentIndex), animate);
+        updateDots();
+      };
+
+      const endDrag = (clientX) => {
+        if (!isPointerDown) return;
+
+        isPointerDown = false;
+        pointerId = null;
+
+        if (!isDragging) {
+          hasDragged = false;
+          return;
+        }
+
+        const dx = clientX - startX;
+        const threshold = Math.min(50, getStep() * 0.2);
+
+        if (Math.abs(dx) > threshold) {
+          currentIndex += dx < 0 ? 1 : -1;
+        }
+
+        goToIndex(currentIndex, true);
+        isDragging = false;
+
+        // Keep hasDragged true through the synthetic click that follows a drag.
+        window.setTimeout(() => {
+          hasDragged = false;
+        }, 0);
+      };
+
+      viewport.addEventListener('pointerdown', (event) => {
+        if (event.pointerType === 'mouse' && event.button !== 0) return;
+
+        isPointerDown = true;
+        isDragging = false;
+        hasDragged = false;
+        pointerId = event.pointerId;
+        startX = event.clientX;
+        startY = event.clientY;
+        startTranslate = getTranslateForIndex(currentIndex);
+      });
+
+      viewport.addEventListener('pointermove', (event) => {
+        if (!isPointerDown || event.pointerId !== pointerId) return;
+
+        const dx = event.clientX - startX;
+        const dy = event.clientY - startY;
+
+        if (!isDragging) {
+          if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return;
+
+          // Let vertical page scroll win when movement is mostly vertical.
+          if (Math.abs(dy) > Math.abs(dx)) {
+            isPointerDown = false;
+            pointerId = null;
+            return;
+          }
+
+          isDragging = true;
+          hasDragged = true;
+          viewport.setPointerCapture(event.pointerId);
+          rail.style.transition = 'none';
+        }
+
+        event.preventDefault();
+
+        const minTranslate = getTranslateForIndex(getMaxIndex());
+        const maxTranslate = 0;
+        let next = startTranslate + dx;
+
+        if (next > maxTranslate) {
+          next = maxTranslate + (next - maxTranslate) * 0.25;
+        } else if (next < minTranslate) {
+          next = minTranslate + (next - minTranslate) * 0.25;
+        }
+
+        setTranslate(next, false);
+        updateDots(true);
+      });
+
+      viewport.addEventListener('pointerup', (event) => {
+        if (event.pointerId !== pointerId) return;
+        endDrag(event.clientX);
+      });
+
+      viewport.addEventListener('pointercancel', (event) => {
+        if (event.pointerId !== pointerId) return;
+        endDrag(event.clientX);
+      });
+
+      viewport.addEventListener(
+        'click',
+        (event) => {
+          if (!hasDragged) return;
+          event.preventDefault();
+          event.stopPropagation();
+        },
+        true
+      );
+
+      rail.querySelectorAll('img').forEach((img) => {
+        img.draggable = false;
+      });
+
+      let resizeTimer = null;
+      window.addEventListener('resize', () => {
+        window.clearTimeout(resizeTimer);
+        resizeTimer = window.setTimeout(() => {
+          goToIndex(currentIndex, false);
+        }, 100);
+      });
+
+      goToIndex(0, false);
+    });
+  });
+</script>
 
 {% schema %}
 {
@@ -83,12 +314,19 @@
     },
     {
       "type": "range",
-      "id": "articles_to_show",
-      "label": "Articles to show",
-      "min": 3,
+      "id": "limit",
+      "label": "Number of articles",
+      "min": 1,
       "max": 12,
-      "step": 1,
-      "default": 6
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "offset",
+      "label": "Skip articles",
+      "min": 0,
+      "max": 12,
+      "default": 0
     }
   ],
   "presets": [
