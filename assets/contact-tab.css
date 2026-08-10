@@ -1,0 +1,220 @@
+/* main section styling  */
+
+.contact-tab__actions {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.contact-tab__actions button {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.contact-tab__icon {
+  width: 2rem;
+  height: 2rem;
+  color: white;
+}
+
+.contact-tab__label {
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid transparent;
+  color: #f3f3f3;
+}
+
+.contact-tab__label.is-active {
+  color: #b68b32;
+}
+
+.contact-tab__icon.is-active {
+  color: #b68b32;
+}
+
+.contact-tab__contents {
+  width: 100%;
+  padding: 1.5rem;
+}
+
+.contact-tab__content {
+  display: none;
+  width: 100%;
+}
+
+.contact-tab__content.is-active {
+  display: block;
+}
+
+/* content when click styling  */
+.contact-tab__contents {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-tab__content {
+  max-width: 32rem;
+  width: 100%;
+  margin: auto;
+}
+
+/* tab email form styling  */
+.contact-tab__form-label {
+  cursor: pointer;
+  color: #f3f3f3;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 11px;
+  margin-bottom: 0.75rem;
+}
+
+.contact-tab__form-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+}
+
+.contact-tab__form-field input,
+.contact-tab__form-field textarea {
+  color: #112626;
+  font-size: 12px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background-color: #fff;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  width: 100%;
+  height: 3rem;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.contact-tab__form-field textarea {
+  height: 6rem;
+}
+
+.contact-tab__form-submit {
+  opacity: 0.5;
+  cursor: not-allowed;
+  color: #112626;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 14px;
+  font-family: Gotham, ui-sans-serif, sans-serif;
+  background-color: #b68b32;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  width: 100%;
+  height: 52px;
+  display: flex;
+  border: none;
+  outline: none;
+}
+
+/* tab call and text styling */
+
+.contact-tab__call-number,
+.contact-tab__text-number {
+  display: inline-block;
+  text-underline-offset: 4px;
+  text-decoration-line: underline;
+  color: #f3f3f3;
+  letter-spacing: 0.02em;
+  font-weight: 700;
+  font-size: 22px;
+  cursor: pointer;
+  margin: auto;
+  margin-bottom: 1.25rem;
+}
+
+.contact-tab__text-content,
+.contact-tab__call-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-tab__call-description,
+.contact-tab__text-description {
+  color: #f3f3f3;
+  line-height: 1.3;
+  font-size: 13px;
+  text-align: center;
+  max-width: 23rem;
+  margin-bottom: 1.25rem;
+}
+
+.contact-tab__text-button,
+.contact-tab__call-button {
+  color: #112626;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 14px;
+  font-family: Gotham, ui-sans-serif, sans-serif;
+  background-color: #b68b32;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 52px;
+  text-decoration: none;
+  display: flex;
+  margin-bottom: 1.25rem;
+}
+
+@media (min-width: 920px) {
+  .contact-tab__actions {
+    gap: 3.25rem;
+  }
+
+  .contact-tab__icon {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .contact-tab__icon {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  .contact-tab__label {
+    font-size: 12px;
+  }
+
+  .contact-tab__form-field input {
+    height: 2rem;
+  }
+
+  .contact-tab__form-row {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .contact-tab__form-row > * {
+    flex: 1;
+  }
+
+  .contact-tab__call-number,
+  .contact-tab__text-number {
+    font-size: 28px;
+  }
+
+  .contact-tab__call-description,
+  .contact-tab__text-description {
+    font-size: 16px;
+    max-width: unset;
+  }
+}

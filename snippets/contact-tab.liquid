@@ -1,0 +1,218 @@
+{{ 'contact-tab.css' | asset_url | stylesheet_tag }}
+
+<div class="contact-tab">
+  <!-- Tab buttons -->
+  <div class="contact-tab__actions">
+    <div class="contact-tab__item">
+      <button
+        type="button"
+        class="contact-tab__button"
+        data-tab="email"
+      >
+        <svg
+          class="contact-tab__icon"
+          viewBox="0 0 28 28"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          aria-hidden="true"
+        >
+          <rect x="2" y="6" width="24" height="17"></rect>
+          <path d="M2 7l12 9 12-9"></path>
+        </svg>
+
+        <span class="contact-tab__label"> Email Us </span>
+      </button>
+    </div>
+
+    <div class="contact-tab__item">
+      <button
+        type="button"
+        class="contact-tab__button"
+        data-tab="call"
+      >
+        <svg
+          class="contact-tab__icon"
+          viewBox="0 0 28 28"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          aria-hidden="true"
+        >
+          <path d="M6 3h5l2 6-3 2.5a16 16 0 006.5 6.5L19 15l6 2v5a2 2 0 01-2 2A20 20 0 014 5a2 2 0 012-2z"></path>
+        </svg>
+
+        <span class="contact-tab__label"> Call Us </span>
+      </button>
+    </div>
+
+    <div class="contact-tab__item">
+      <button
+        type="button"
+        class="contact-tab__button"
+        data-tab="text"
+      >
+        <svg
+          class="contact-tab__icon"
+          viewBox="0 0 28 28"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          aria-hidden="true"
+        >
+          <path d="M26 4H2v17h6v5l6-5h12V4z"></path>
+          <path d="M8 10h12M8 14h8"></path>
+        </svg>
+
+        <span class="contact-tab__label"> Text Us </span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Full-width content -->
+  <div class="contact-tab__contents">
+    <div
+      class="contact-tab__content"
+      data-content="email"
+    >
+      <div class="contact-tab__form-row">
+        <div class="contact-tab__form-field">
+          <label class="contact-tab__form-label"> Name* </label>
+          <input
+            class="contact-tab__form-input"
+            type="text"
+            name="contact[name]"
+            required
+          >
+        </div>
+        <div class="contact-tab__form-field">
+          <label class="contact-tab__form-label"> Email* </label>
+
+          <div class="contact-tab__form-input-wrapper">
+            <input
+              class="contact-tab__form-input"
+              type="email"
+              name="contact[email]"
+              required
+            >
+          </div>
+        </div>
+      </div>
+      <div class="contact-tab__form-field">
+        <label class="contact-tab__form-label"> Order Number (Optional) </label>
+        <input
+          class="contact-tab__form-input"
+          type="text"
+          name="contact[Order Number]"
+        >
+      </div>
+      <div class="contact-tab__form-field">
+        <label class="contact-tab__form-label"> How Can We Help?* </label>
+        <textarea
+          class="contact-tab__form-textarea"
+          name="contact[body]"
+          rows="6"
+          required
+        ></textarea>
+      </div>
+      <button
+        type="submit"
+        class="contact-tab__form-submit"
+      >
+        Send Message
+      </button>
+    </div>
+
+    <div
+      class="contact-tab__content"
+      data-content="call"
+    >
+      <div class="contact-tab__call-content">
+        <a
+          href="tel:+18436190082"
+          class="contact-tab__call-number"
+        >
+          (843) 619-0082
+        </a>
+
+        <p class="contact-tab__call-description">
+          Want to chat with a real person? Our support team is here to help Monday through Friday, from 9:00 AM to 5:00
+          PM EST.
+        </p>
+
+        <a
+          href="tel:+18436190082"
+          class="contact-tab__call-button"
+        >
+          Call Now
+        </a>
+      </div>
+    </div>
+
+    <div
+      class="contact-tab__content"
+      data-content="text"
+    >
+      <div class="contact-tab__text-content">
+        <a
+          href="sms:+18436190082"
+          class="contact-tab__text-number"
+        >
+          (843) 619-0082
+        </a>
+
+        <p class="contact-tab__text-description">
+          Quick question? Shoot us a text and we will get back to you as soon as we can!
+        </p>
+
+        <a
+          href="sms:+18436190082"
+          class="contact-tab__text-button"
+        >
+          Text Us
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const tabs = document.querySelectorAll('.contact-tab__item');
+    const contents = document.querySelectorAll('.contact-tab__content');
+
+    tabs.forEach((tab) => {
+      const button = tab.querySelector('.contact-tab__button');
+      const icon = tab.querySelector('.contact-tab__icon');
+      const label = tab.querySelector('.contact-tab__label');
+
+      button.addEventListener('click', () => {
+        const target = button.dataset.tab;
+        const isActive = tab.classList.contains('is-active');
+
+        // Remove active state from everything
+        tabs.forEach((item) => {
+          item.classList.remove('is-active');
+          item.querySelector('.contact-tab__icon')?.classList.remove('is-active');
+          item.querySelector('.contact-tab__label')?.classList.remove('is-active');
+        });
+
+        // Hide all content
+        contents.forEach((content) => {
+          content.classList.remove('is-active');
+        });
+
+        // Open clicked tab
+        if (!isActive) {
+          tab.classList.add('is-active');
+          icon.classList.add('is-active');
+          label.classList.add('is-active');
+
+          const targetContent = document.querySelector(`.contact-tab__content[data-content="${target}"]`);
+
+          targetContent?.classList.add('is-active');
+        }
+      });
+    });
+  });
+</script>
