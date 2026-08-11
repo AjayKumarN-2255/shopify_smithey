@@ -93,6 +93,9 @@
         }
       }
     </style>
+    {% if request.page_type == 'policy' %}
+      {{ 'policy.css' | asset_url | stylesheet_tag }}
+    {% endif %}
   </head>
 
   <body class="{% if template == 'index' %}template-home{% else %}template-other{% endif %}">
