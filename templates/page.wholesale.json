@@ -1,0 +1,173 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+    "sections": {
+        "content_builder_WefBL4": {
+            "type": "content-builder",
+            "blocks": {
+                "text_jxDpPj": {
+                    "type": "text",
+                    "settings": {
+                        "title": "Smithey wholesale program",
+                        "title_desktop_size": 2.4,
+                        "title_mobile_size": 2.1,
+                        "title_color": "#112626",
+                        "content": "",
+                        "content_desktop_size": 1,
+                        "content_mobile_size": 0.9,
+                        "content_color": "#112626",
+                        "position": "left",
+                        "custom_css": ".content-builder__title {\n  text-align:center;\n  margin:auto;\n}"
+                    }
+                }
+            },
+            "block_order": [
+                "text_jxDpPj"
+            ],
+            "custom_css": [
+                "#content-builder-template--21712912875655__content_builder_WefBL4 {border-bottom: 1px solid #d3d3d3;}",
+                "#content-builder-template--21712912875655__content_builder_WefBL4 .content-builder__right {display: none;}",
+                "#content-builder-template--21712912875655__content_builder_WefBL4 .content-builder__left {width: 100%; max-width: 100%;}"
+            ],
+            "name": "Content Builder",
+            "settings": {
+                "background_color": "#ffffff",
+                "desktop_padding": 1.7,
+                "mobile_padding": 1.5,
+                "show_features": false
+            }
+        },
+        "content_builder_U6HnjP": {
+            "type": "content-builder",
+            "blocks": {
+                "text_3PwTz3": {
+                    "type": "text",
+                    "settings": {
+                        "title": "ALREADY A CUSTOMER?",
+                        "title_desktop_size": 1.6,
+                        "title_mobile_size": 1.3,
+                        "title_color": "#112626",
+                        "content": "",
+                        "content_desktop_size": 1,
+                        "content_mobile_size": 0.9,
+                        "content_color": "#112626",
+                        "position": "left",
+                        "custom_css": ".content-builder__title {\n  text-align:center;\n  margin:auto;\n}"
+                    }
+                },
+                "button_Xkm36X": {
+                    "type": "button",
+                    "settings": {
+                        "button_text": "SIGN IN TO THE ORDERING PORTAL",
+                        "button_link": "#",
+                        "button_bg_color": "#B68B32",
+                        "button_text_color": "#ffffff",
+                        "position": "left",
+                        "btn_position_desktop": "center",
+                        "btn_position_mobile": "center",
+                        "custom_css": "&{\n  margin-top:0;\n}\n@media (min-width: 920px) {\n  &{\n  letter-spacing: 2px;\n }\n}"
+                    }
+                }
+            },
+            "block_order": [
+                "text_3PwTz3",
+                "button_Xkm36X"
+            ],
+            "custom_css": [
+                "#content-builder-template--21712912875655__content_builder_U6HnjP .content-builder__right {display: none;}",
+                "#content-builder-template--21712912875655__content_builder_U6HnjP .content-builder__left {gap: 0; width: 100%; max-width: 100%;}"
+            ],
+            "name": "Content Builder",
+            "settings": {
+                "background_color": "#ffffff",
+                "desktop_padding": 0.3,
+                "mobile_padding": 0.3,
+                "show_features": false
+            }
+        },
+        "content_builder_HAU4dj": {
+            "type": "content-builder",
+            "blocks": {
+                "image_wiYGCL": {
+                    "type": "image",
+                    "settings": {
+                        "image": "shopify://shop_images/wholesale_preservation_society.webp",
+                        "image_mobile_height": 20,
+                        "image_desktop_height": 30,
+                        "image_large_desktop_height": 36,
+                        "position": "left",
+                        "custom_css": ""
+                    }
+                },
+                "text_TUcEtk": {
+                    "type": "text",
+                    "settings": {
+                        "title": "WHO WE ARE",
+                        "title_desktop_size": 2,
+                        "title_mobile_size": 1,
+                        "title_color": "#b68b32",
+                        "content": "<p>Based in Charleston, SC, Smithey Ironware designs and manufactures premium polished cast iron and hand-forged carbon steel cookware.  Crafted to become a daily fixture in your kitchen, serving as many memories as meals, each Smithey is built to become a modern heirloom whose use is measured in generations, not years. <br/></p>",
+                        "content_desktop_size": 1,
+                        "content_mobile_size": 0.9,
+                        "content_color": "#112626",
+                        "position": "right",
+                        "custom_css": ""
+                    }
+                },
+                "text_HwMUWJ": {
+                    "type": "text",
+                    "settings": {
+                        "title": "PARTNERING WITH YOU",
+                        "title_desktop_size": 2,
+                        "title_mobile_size": 1,
+                        "title_color": "#b68b32",
+                        "content": "<p>Our goal is to bring premium cast iron and carbon steel cookware to the kitchens, grills, and campfires of home chefs across the country.  We seek brick and mortar retail partners to grow with us by sharing our story and the value of well-crafted cookware tools.  <br/><br/>We believe partnering with the best brick and mortar retailers is not only a business opportunity, but a chance to introduce the pleasures of cooking with premium cast iron and carbon steel cookware to a growing audience.  Our customers don’t just love to cook - they are passionate about quality products. <br/><br/>Smithey customers want gear, tools and gifts that are designed to last. Ultimately - while we believe our performance, aesthetics and lifetime guarantee stand out from the crowd – it is the story of a small American company that crafts heirloom quality cookware with passion and beauty that sells a Smithey. We’re looking for great retail storytellers – if you fit the bill, we’d love to talk!</p>",
+                        "content_desktop_size": 1,
+                        "content_mobile_size": 0.9,
+                        "content_color": "#112626",
+                        "position": "right",
+                        "custom_css": ""
+                    }
+                },
+                "button_eHeKYC": {
+                    "type": "button",
+                    "settings": {
+                        "button_text": "APPLY FOR WHOLESALE",
+                        "button_link": "#",
+                        "button_bg_color": "#112626",
+                        "button_text_color": "#ffffff",
+                        "position": "right",
+                        "btn_position_desktop": "left",
+                        "btn_position_mobile": "center",
+                        "custom_css": ""
+                    }
+                }
+            },
+            "block_order": [
+                "image_wiYGCL",
+                "text_TUcEtk",
+                "text_HwMUWJ",
+                "button_eHeKYC"
+            ],
+            "name": "Content Builder",
+            "settings": {
+                "background_color": "#ffffff",
+                "desktop_padding": 2.1,
+                "mobile_padding": 0.5,
+                "show_features": false
+            }
+        }
+    },
+    "order": [
+        "content_builder_WefBL4",
+        "content_builder_U6HnjP",
+        "content_builder_HAU4dj"
+    ]
+}
