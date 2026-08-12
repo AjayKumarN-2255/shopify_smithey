@@ -10,6 +10,7 @@
   width: 1.25rem;
   color: white;
   display: block;
+  cursor: pointer;
 }
 
 .site-header {
@@ -122,9 +123,7 @@
 
     max-height: 0;
     overflow: hidden;
-    transition:
-      max-height 0.3s ease,
-      padding 0.3s ease;
+    transition: max-height 0.3s ease, padding 0.3s ease;
 
     padding-top: 0;
     padding-bottom: 0;

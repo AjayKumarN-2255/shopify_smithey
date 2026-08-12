@@ -108,9 +108,10 @@
 
   <body class="{% if template == 'index' %}template-home{% else %}template-other{% endif %}">
     {% sections 'header-group' %}
+    {% section 'cart-drawer' %}
 
     {{ content_for_layout }}
-
+    
     {% sections 'footer-group' %}
   </body>
 </html>

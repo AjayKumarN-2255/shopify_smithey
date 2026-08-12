@@ -101,17 +101,15 @@
       {% endif %}
 
       {% if section.settings.show_cart %}
-        <a href="{{ routes.cart_url }}" class="header-icon">
-          <svg
-            class="header-icon__svg"
-            viewBox="0 0 16 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <rect x="1" y="5.18433" width="14" height="13.1579" rx="2" stroke="currentColor" stroke-width="2"></rect>
-            <path d="M10.3852 9.18735V4.04392C10.3852 2.72619 9.31698 1.65796 7.99925 1.65796C6.68151 1.65796 5.61328 2.72619 5.61328 4.04392V9.18735" stroke="currentColor" stroke-width="2"></path>
-          </svg>
-        </a>
+        <svg
+          class="header-icon__svg  header-cart__icon"
+          viewBox="0 0 16 20"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect x="1" y="5.18433" width="14" height="13.1579" rx="2" stroke="currentColor" stroke-width="2"></rect>
+          <path d="M10.3852 9.18735V4.04392C10.3852 2.72619 9.31698 1.65796 7.99925 1.65796C6.68151 1.65796 5.61328 2.72619 5.61328 4.04392V9.18735" stroke="currentColor" stroke-width="2"></path>
+        </svg>
       {% endif %}
     </div>
   </div>
