@@ -5,7 +5,8 @@
   padding: 0 0.75rem 1.5rem 0.75rem;
 }
 .shopify-policy__container {
-  padding: 0;
+  padding: 0 1.25rem;
+  max-width: 37.25rem !important;
 }
 
 .rte .btn {
@@ -31,7 +32,7 @@
   text-transform: uppercase;
   text-align: center;
   color: #112626;
-  margin: 0;
+  margin: 0.5rem 0 2rem 0;
 }
 
 .shopify-policy__body {
@@ -105,6 +106,7 @@
 .shopify-policy__body h3 ~ * p,
 .shopify-policy__body h4 ~ * p {
   text-align: left;
+  font-weight: 500;
 }
 
 .shopify-policy__body p:has(> strong:only-child) {
@@ -175,9 +177,7 @@
   color: #112626;
   border: 1px solid #e0e0e0;
   border-radius: 0;
-  box-shadow:
-    0 4px 6px rgba(0, 0, 0, 0.12),
-    0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.08);
   font-family: var(--font-body);
   font-size: 0.9375rem;
   font-weight: 700;
@@ -194,9 +194,7 @@
 .shopify-policy__body a.hero__button:hover,
 .shopify-policy__body a[href*="loopreturns"]:hover {
   color: #112626;
-  box-shadow:
-    0 7px 14px rgba(0, 0, 0, 0.12),
-    0 3px 6px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 7px 14px rgba(0, 0, 0, 0.12), 0 3px 6px rgba(0, 0, 0, 0.08);
 }
 
 .shopify-policy__body img {
@@ -211,6 +209,10 @@
 }
 
 @media (min-width: 920px) {
+  .shopify-policy__container {
+    padding: 0;
+  }
+
   .rte .shopify-policy__body {
     padding: 0 0 5.5rem 0;
   }
@@ -235,7 +237,7 @@
 
   .shopify-policy__body h2 {
     font-size: 1.25rem;
-    margin: 1.25rem 0 0.5rem;
+    margin: 1.25rem 0 1rem;
   }
 
   .shopify-policy__body h3,
@@ -246,7 +248,7 @@
   }
 
   .shopify-policy__body p {
-    font-size: 0.9rem;
+    font-size: 16px;
     margin-bottom: 0.675rem;
     line-height: 1.4;
   }
@@ -266,8 +268,8 @@
   .shopify-policy__body a.btn,
   .shopify-policy__body a.hero__button,
   .shopify-policy__body a[href*="loopreturns"] {
-    padding: 0.85rem 1.85rem;
-    font-size: 0.875rem;
-    margin: 1rem auto 1.625rem;
+    padding: 0.5rem 1rem;
+    font-size: 14px;
+    margin: 2rem auto !important;
   }
 }

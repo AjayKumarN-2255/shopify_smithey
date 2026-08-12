@@ -96,6 +96,14 @@
     {% if request.page_type == 'policy' %}
       {{ 'policy.css' | asset_url | stylesheet_tag }}
     {% endif %}
+    {% if request.path == '/policies/terms-of-service' %}
+      <style>
+        .shopify-policy__body h1,
+        .shopify-policy__body h2 {
+          text-align: left !important;
+        }
+      </style>
+    {% endif %}
   </head>
 
   <body class="{% if template == 'index' %}template-home{% else %}template-other{% endif %}">
