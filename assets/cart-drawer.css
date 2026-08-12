@@ -98,6 +98,7 @@
   height: fit-content;
   min-width: 260px;
   flex-shrink: 0;
+  cursor: pointer;
 }
 
 .flex-1 {
@@ -324,6 +325,7 @@
   color: #777;
   letter-spacing: 0.3px;
   text-align: right;
+  max-width: 14rem;
 }
 
 .cart-drawer__checkout {
@@ -342,12 +344,16 @@
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 2px;
-  
+
   box-sizing: border-box;
 }
 
 @media screen and (min-width: 920px) {
   .cart-drawer {
     width: 465px;
+  }
+
+  .cart-drawer__shipping {
+    max-width: unset;
   }
 }
