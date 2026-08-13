@@ -1,0 +1,483 @@
+{{ 'retailers.css' | asset_url | stylesheet_tag }}
+
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+  crossorigin=""
+>
+
+<script
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+  crossorigin=""
+  defer
+></script>
+
+<!-- Retailer JS -->
+<script
+  src="{{ 'retailers.js' | asset_url }}"
+  defer
+></script>
+
+{% capture retailers_json %}
+[
+  {
+    "id": "retailer-1",
+    "name": "Smithey Ironware Co.",
+    "address": "1050 E Montague Ave",
+    "city": "North Charleston",
+    "state": "SC",
+    "country": "United States",
+    "postal_code": "29405",
+    "phone": "(843) 297-8797",
+    "website": "https://smithey.com",
+    "hours": "Mon-Sat 10am-5pm",
+    "lat": 32.8634,
+    "lng": -79.9748
+  },
+  {
+    "id": "retailer-2",
+    "name": "Williams Sonoma",
+    "address": "255 King St",
+    "city": "Charleston",
+    "state": "SC",
+    "country": "United States",
+    "postal_code": "29401",
+    "phone": "(843) 577-0504",
+    "hours": "Mon-Sat 10am-7pm",
+    "website": "https://www.williams-sonoma.com",
+    "lat": 32.7833,
+    "lng": -79.9353
+  },
+  {
+    "id": "retailer-3",
+    "name": "Charleston Cooks",
+    "address": "194 East Bay St",
+    "city": "Charleston",
+    "state": "SC",
+    "country": "United States",
+    "postal_code": "29401",
+    "phone": "(843) 722-1212",
+    "website": "https://www.charlestoncooks.com",
+    "hours": "Mon-Sat 10am-6pm",
+    "lat": 32.7765,
+    "lng": -79.9272
+  },
+  {
+    "id": "retailer-4",
+    "name": "Sur La Table",
+    "address": "3393 Peachtree Rd NE",
+    "city": "Atlanta",
+    "state": "GA",
+    "country": "United States",
+    "postal_code": "30326",
+    "phone": "(404) 814-9100",
+    "website": "https://www.surlatable.com",
+    "hours": "Mon-Sat 10am-8pm",
+    "lat": 33.8467,
+    "lng": -84.3623
+  },
+  {
+    "id": "retailer-5",
+    "name": "Crate & Barrel",
+    "address": "611 Broadway",
+    "city": "New York",
+    "state": "NY",
+    "country": "United States",
+    "postal_code": "10012",
+    "phone": "(212) 780-0004",
+    "website": "https://www.crateandbarrel.com",
+    "hours": "Mon-Sat 10am-8pm",
+    "lat": 40.7259,
+    "lng": -73.9969
+  },
+  {
+    "id": "retailer-6",
+    "name": "Williams Sonoma",
+    "address": "1175 Madison Ave",
+    "city": "New York",
+    "state": "NY",
+    "country": "United States",
+    "postal_code": "10028",
+    "phone": "(212) 289-6832",
+    "website": "https://www.williams-sonoma.com",
+    "hours": "Mon-Sat 10am-7pm",
+    "lat": 40.7808,
+    "lng": -73.9572
+  },
+  {
+    "id": "retailer-7",
+    "name": "Williams Sonoma",
+    "address": "340 Post St",
+    "city": "San Francisco",
+    "state": "CA",
+    "country": "United States",
+    "postal_code": "94108",
+    "phone": "(415) 362-9450",
+    "website": "https://www.williams-sonoma.com",
+    "hours": "Mon-Sat 10am-7pm",
+    "lat": 37.7886,
+    "lng": -122.4064
+  },
+  {
+    "id": "retailer-8",
+    "name": "Williams Sonoma",
+    "address": "900 N Michigan Ave",
+    "city": "Chicago",
+    "state": "IL",
+    "country": "United States",
+    "postal_code": "60611",
+    "phone": "(312) 587-8080",
+    "website": "https://www.williams-sonoma.com",
+    "hours": "Mon-Sat 10am-8pm",
+    "lat": 41.8994,
+    "lng": -87.6246
+  },
+  {
+    "id": "retailer-9",
+    "name": "Sur La Table",
+    "address": "189 The Grove Dr",
+    "city": "Los Angeles",
+    "state": "CA",
+    "country": "United States",
+    "postal_code": "90036",
+    "phone": "(323) 954-9190",
+    "website": "https://www.surlatable.com",
+    "hours": "Mon-Sat 10am-8pm",
+    "lat": 34.0719,
+    "lng": -118.357
+  },
+  {
+    "id": "retailer-10",
+    "name": "Williams Sonoma",
+    "address": "8687 N Central Expy",
+    "city": "Dallas",
+    "state": "TX",
+    "country": "United States",
+    "postal_code": "75225",
+    "phone": "(214) 692-0004",
+    "website": "https://www.williams-sonoma.com",
+    "hours": "Mon-Sat 10am-8pm",
+    "lat": 32.8687,
+    "lng": -96.7734
+  },
+  {
+    "id": "retailer-11",
+    "name": "Sur La Table",
+    "address": "84 Pine St",
+    "city": "Seattle",
+    "state": "WA",
+    "country": "United States",
+    "postal_code": "98101",
+    "phone": "(206) 448-2244",
+    "website": "https://www.surlatable.com",
+    "hours": "Mon-Sat 10am-7pm",
+    "lat": 47.6092,
+    "lng": -122.3381
+  },
+  {
+    "id": "retailer-12",
+    "name": "Williams Sonoma",
+    "address": "100 Huntington Ave",
+    "city": "Boston",
+    "state": "MA",
+    "country": "United States",
+    "postal_code": "02116",
+    "phone": "(617) 262-6001",
+    "website": "https://www.williams-sonoma.com",
+    "hours": "Mon-Sat 10am-8pm",
+    "lat": 42.3474,
+    "lng": -71.0794
+  }
+]
+{% endcapture %}
+
+{% assign retailers = retailers_json | parse_json %}
+
+<div
+  class="retailers-page"
+  data-retailers-page
+>
+  <section
+    class="retailers-locator"
+    data-retailers-locator
+  >
+    <!--
+      ==========================================
+           Header
+      ===========================================
+    -->
+
+    <header class="retailers-header">
+      <h1 class="retailers-title">Find A Smithey Near You</h1>
+
+      <p class="retailers-description">Search by city, ZIP code, or address to find a Smithey retailer near you.</p>
+    </header>
+
+    <!--
+      ==========================================
+           Search
+      ===========================================
+    -->
+
+    <form
+      id="retailers-search-form"
+      class="retailers-search"
+      data-retailers-search
+      role="search"
+    >
+      <div class="retailers-search-field">
+        <label
+          for="retailers-search-input"
+          class="retailers-search-label"
+        >
+          Location
+        </label>
+
+        <input
+          id="retailers-search-input"
+          class="retailers-search-input"
+          data-retailers-search-input
+          type="search"
+          name="q"
+          placeholder="Enter city, ZIP, or address"
+          autocomplete="off"
+        >
+      </div>
+
+      <button
+        id="retailers-search-button"
+        class="retailers-search-button"
+        data-retailers-search-button
+        type="submit"
+      >
+        <span>Search</span>
+      </button>
+
+      <button
+        id="retailers-location-button"
+        class="retailers-location-button"
+        data-retailers-location-button
+        type="button"
+      >
+        <span>Use my location</span>
+      </button>
+    </form>
+
+    <p
+      class="retailers-location-message"
+      data-retailers-location-message
+      hidden
+      role="status"
+    ></p>
+
+    <!--
+      ==========================================
+           Main Content
+      ===========================================
+    -->
+
+    <div
+      class="retailers-content"
+      data-retailers-content
+    >
+      <!--
+        ========================================
+             Retailer Results
+        =========================================
+      -->
+
+      <div
+        id="retailers-results"
+        class="retailers-results"
+        data-retailers-results
+      >
+        <div
+          class="retailers-results-header"
+          data-retailers-results-header
+        >
+          <p
+            id="retailers-results-count"
+            class="retailers-results-count"
+            data-retailers-count
+          >
+            {% if retailers.first.id %}
+              {% if retailers.size == 1 %}
+                1 retailer found
+              {% elsif retailers.size == 2 %}
+                2 retailers found
+              {% else %}
+                3 retailers found
+              {% endif %}
+            {% endif %}
+          </p>
+        </div>
+
+        <!-- Retailer List -->
+
+        <ul
+          id="retailers-results-list"
+          class="retailers-list"
+          data-retailers-list
+        >
+          {% if retailers.first.id %}
+          {% for retailer in retailers limit: 3 %}
+            <li class="retailers-list-item">
+              <article
+                class="retailer-card"
+                data-retailer-card
+                data-retailer-id="{{ retailer.id }}"
+                data-lat="{{ retailer.lat }}"
+                data-lng="{{ retailer.lng }}"
+                {% if forloop.first %}
+                  data-selected="true"
+                {% endif %}
+              >
+                <h2
+                  class="retailer-card__name"
+                  data-retailer-name
+                >
+                  {{ retailer.name }}
+                </h2>
+
+                <address
+                  class="retailer-card__address"
+                  data-retailer-address
+                >
+                  {{ retailer.address }}
+
+                  {% if retailer.city != blank or retailer.state != blank or retailer.postal_code != blank %}
+                    <br>
+
+                    {% if retailer.city != blank %}
+                      {{ retailer.city }}
+                    {% endif %}
+
+                    {% if retailer.city != blank and retailer.state != blank %}
+                      ,
+                    {% endif %}
+
+                    {% if retailer.state != blank %}
+                      {{ retailer.state }}
+                    {% endif %}
+
+                    {% if retailer.postal_code != blank %}
+                      {{ retailer.postal_code }}
+                    {% endif %}
+                  {% endif %}
+
+                  {% if retailer.country != blank %}
+                    <br>
+
+                    {{ retailer.country }}
+                  {% endif %}
+                </address>
+
+                <!-- Distance -->
+
+                <p
+                  class="retailer-card__distance"
+                  data-retailer-distance
+                  hidden
+                ></p>
+
+                <!-- Phone -->
+
+                {% if retailer.phone != blank %}
+                  <p
+                    class="retailer-card__phone"
+                    data-retailer-phone
+                  >
+                    <a
+                      href="tel:{{ retailer.phone | replace: ' ', '' | replace: '(', '' | replace: ')', '' | replace: '-', '' }}"
+                    >
+                      {{ retailer.phone }}
+                    </a>
+                  </p>
+                {% endif %}
+
+                <!-- Website -->
+
+                {% if retailer.website != blank %}
+                  <p
+                    class="retailer-card__website"
+                    data-retailer-website
+                  >
+                    <a
+                      href="{{ retailer.website }}"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Visit website
+                    </a>
+                  </p>
+                {% endif %}
+
+                <!-- Hours -->
+
+                {% if retailer.hours != blank %}
+                  <p
+                    class="retailer-card__hours"
+                    data-retailer-hours
+                  >
+                    {{ retailer.hours }}
+                  </p>
+                {% endif %}
+              </article>
+            </li>
+          {% endfor %}
+          {% endif %}
+        </ul>
+
+        <!--
+          ========================================
+               Empty State
+          =========================================
+        -->
+
+        <div
+          id="retailers-empty"
+          class="retailers-empty"
+          data-retailers-empty
+          hidden
+        >
+          <p>No retailers found near you.</p>
+        </div>
+      </div>
+
+      <!--
+        ========================================
+             Map
+        =========================================
+      -->
+
+      <div
+        class="retailers-map"
+        data-retailers-map-wrapper
+      >
+        <div
+          id="retailers-map"
+          class="retailers-map-container"
+          data-retailers-map
+          role="region"
+          aria-label="Retailer map"
+        ></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!--
+  ==========================================
+       Retailer Data
+  ===========================================
+-->
+
+<script
+  type="application/json"
+  id="retailers-data"
+  data-retailers-data
+>
+{{ retailers_json | strip }}
+</script>

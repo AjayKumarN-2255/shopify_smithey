@@ -1,0 +1,345 @@
+/* ========================================
+   Retailers Page
+======================================== */
+
+.retailers-page {
+  width: 100%;
+  background: #fff;
+  color: #112626;
+}
+
+.retailers-locator {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 60px 40px 80px;
+}
+
+/* ========================================
+   Header
+======================================== */
+
+.retailers-header {
+  max-width: 760px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+.retailers-title {
+  margin: 0 0 16px;
+  font-size: 42px;
+  line-height: 1.1;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.retailers-description {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* ========================================
+   Search
+======================================== */
+
+.retailers-search {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  max-width: 900px;
+  margin: 0 auto 50px;
+}
+
+.retailers-search-field {
+  flex: 1;
+}
+
+.retailers-search-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.retailers-search-input {
+  width: 100%;
+  height: 52px;
+  padding: 0 16px;
+  border: 1px solid #b9b9b9;
+  border-radius: 0;
+  background: #fff;
+  color: #112626;
+  font-size: 15px;
+  outline: none;
+}
+
+.retailers-search-input:focus {
+  border-color: #112626;
+}
+
+.retailers-search-button,
+.retailers-location-button {
+  height: 52px;
+  padding: 0 24px;
+  border: 1px solid #112626;
+  background: #112626;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.retailers-location-button {
+  background: #fff;
+  color: #112626;
+}
+
+/* ========================================
+   Main Content
+======================================== */
+
+.retailers-content {
+  display: grid;
+  grid-template-columns: minmax(360px, 440px) 1fr;
+  height: 600px;
+  border: 1px solid #dedede;
+  overflow: hidden;
+}
+
+/* ========================================
+   Results
+======================================== */
+
+.retailers-results {
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-right: 1px solid #dedede;
+  overflow: hidden;
+}
+
+.retailers-results-header {
+  flex: 0 0 auto;
+  padding: 20px 24px;
+  border-bottom: 1px solid #dedede;
+}
+
+.retailers-results-count {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.retailers-list {
+  flex: 1 1 auto;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-y: auto;
+}
+
+/* ========================================
+   Retailer Card
+======================================== */
+
+.retailers-list-item {
+  margin: 0;
+  padding: 0;
+}
+
+.retailer-card {
+  padding: 24px;
+  border-bottom: 1px solid #dedede;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.retailer-card:hover {
+  background: #f7f7f5;
+}
+
+.retailer-card[data-selected="true"] {
+  background: #f1f1ed;
+}
+
+.retailer-card__name {
+  margin: 0 0 12px;
+  font-size: 18px;
+  line-height: 1.3;
+  font-weight: 500;
+}
+
+.retailer-card__address {
+  margin: 0 0 14px;
+  font-size: 14px;
+  line-height: 1.6;
+  font-style: normal;
+}
+
+.retailer-card__distance {
+  margin: 0 0 12px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.retailer-card__phone,
+.retailer-card__website,
+.retailer-card__hours {
+  margin: 6px 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.retailer-card a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ========================================
+   Empty State
+======================================== */
+
+.retailers-empty {
+  flex: 1 1 auto;
+  padding: 40px 24px;
+  text-align: center;
+}
+
+.retailers-empty p {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* ========================================
+   Map
+======================================== */
+
+.retailers-map {
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  position: relative;
+}
+
+.retailers-map-container {
+  width: 100%;
+  height: 100%;
+}
+
+/* ========================================
+   Leaflet
+======================================== */
+
+.retailers-map-container img {
+  max-width: none;
+}
+
+.retailers-location-message {
+  max-width: 900px;
+  margin: 0 auto 24px;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* ========================================
+   Tablet
+======================================== */
+
+@media (max-width: 900px) {
+  .retailers-locator {
+    padding: 50px 24px 60px;
+  }
+
+  .retailers-content {
+    grid-template-columns: minmax(300px, 380px) 1fr;
+  }
+
+  .retailers-search {
+    flex-wrap: wrap;
+  }
+
+  .retailers-search-field {
+    width: 100%;
+    flex-basis: 100%;
+  }
+}
+
+/* ========================================
+   Mobile
+======================================== */
+
+@media (max-width: 700px) {
+  .retailers-locator {
+    padding: 40px 16px 50px;
+  }
+
+  .retailers-header {
+    margin-bottom: 30px;
+  }
+
+  .retailers-title {
+    font-size: 32px;
+  }
+
+  .retailers-description {
+    font-size: 14px;
+  }
+
+  .retailers-search {
+    display: block;
+    margin-bottom: 30px;
+  }
+
+  .retailers-search-field {
+    margin-bottom: 10px;
+  }
+
+  .retailers-search-button,
+  .retailers-location-button {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .retailers-content {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    overflow: visible;
+    border: 1px solid #dedede;
+  }
+
+  .retailers-results {
+    height: auto;
+    border-right: 0;
+    border-bottom: 1px solid #dedede;
+  }
+
+  .retailers-list {
+    max-height: 400px;
+    flex: 0 1 auto;
+  }
+
+  .retailers-map {
+    order: -1;
+    height: auto;
+  }
+
+  .retailers-map-container {
+    height: 400px;
+    min-height: 400px;
+  }
+
+  .retailers-results-header {
+    padding: 16px 18px;
+  }
+
+  .retailer-card {
+    padding: 20px 18px;
+  }
+}

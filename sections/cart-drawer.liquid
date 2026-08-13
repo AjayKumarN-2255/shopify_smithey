@@ -153,7 +153,12 @@
                   type="button"
                   class="cart-drawer__remove"
                 >
-                  REMOVE
+                  <a
+                    href="{{ routes.cart_change_url }}?id={{ item.key }}&quantity=0"
+                    class="cart-drawer__remove"
+                  >
+                    REMOVE
+                  </a>
                 </button>
               </div>
             </div>

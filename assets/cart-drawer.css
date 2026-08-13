@@ -348,6 +348,11 @@
   box-sizing: border-box;
 }
 
+.cart-drawer__remove{
+  text-decoration: none;
+  color: #112626;
+}
+
 @media screen and (min-width: 920px) {
   .cart-drawer {
     width: 465px;
