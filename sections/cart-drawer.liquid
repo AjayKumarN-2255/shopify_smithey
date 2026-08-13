@@ -1,10 +1,14 @@
 {{ 'cart-drawer.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'cart-drawer.js' | asset_url }}" defer></script>
 <div class="cart-drawer-overlay" id="cart-drawer-overlay"></div>
-<div class="cart-drawer" id="cart-drawer">
+<div
+  class="cart-drawer"
+  id="cart-drawer"
+  data-money-format="{{ shop.money_format | escape }}"
+>
   <!-- Header -->
   <div class="cart-drawer__header">
-    <h2 class="cart-drawer__title">YOUR CART ({{ cart.item_count }})</h2>
+    <h2 class="cart-drawer__title">YOUR CART (<span data-cart-count>{{ cart.item_count }}</span>)</h2>
 
     <button
       type="button"
@@ -17,259 +21,266 @@
     </button>
   </div>
 
-  {% if cart.item_count == 0 %}
-    <!-- Empty Cart -->
-    <div class="cart-drawer__empty">
-      <p class="cart-drawer__empty-message">
-        You have no items<br>
-        in your cart.
-      </p>
+  <p class="cart-drawer__error" data-cart-error hidden></p>
 
-      <a
-        href="{{ routes.all_products_collection_url }}"
-        class="cart-drawer__shop-button"
+  <!-- Empty Cart -->
+  <div class="cart-drawer__empty"{% if cart.item_count != 0 %} hidden{% endif %}>
+    <p class="cart-drawer__empty-message">
+      You have no items<br>
+      in your cart.
+    </p>
+
+    <a
+      href="{{ routes.all_products_collection_url }}"
+      class="cart-drawer__shop-button"
+    >
+      START SHOPPING
+    </a>
+  </div>
+
+  <!-- Cart Items -->
+  <div class="cart-drawer__items"{% if cart.item_count == 0 %} hidden{% endif %}>
+    {% for item in cart.items %}
+      <div
+        class="cart-drawer__item"
+        data-line-key="{{ item.key }}"
+        data-variant-id="{{ item.variant_id }}"
+        data-product-id="{{ item.product_id }}"
       >
-        START SHOPPING
-      </a>
-    </div>
-    <div class="cart-drawer__recommendations-list">
-      {% assign products = collections.all.products %}
-      {% assign random_offset = 'now' | date: '%s' | modulo: products.size %}
-
-      {% assign recommendation_count = 0 %}
-
-      {% for product in products offset: random_offset %}
-        {% assign already_in_cart = false %}
-
-        {% for item in cart.items %}
-          {% if item.product.id == product.id %}
-            {% assign already_in_cart = true %}
-            {% break %}
-          {% endif %}
-        {% endfor %}
-
-        {% unless already_in_cart %}
-          <div class="cart-drawer__recommendation">
-            <div class="cart-drawer__recommendation-info">
-              <div class="cart-drawer__recommendation-image">
-                {% if product.featured_image %}
-                  <img
-                    src="{{ product.featured_image | image_url: width: 150 }}"
-                    alt="{{ product.featured_image.alt | escape }}"
-                    width="75"
-                    height="75"
-                    loading="lazy"
-                  >
-                {% endif %}
-              </div>
-
-              <div class="cart-drawer__recommendation-details">
-                <h4 class="cart-drawer__recommendation-title">
-                  {{ product.title }}
-                </h4>
-
-                <span class="cart-drawer__recommendation-price">
-                  {{ product.price | money }}
-                </span>
-              </div>
-            </div>
-
-            <form method="post" action="/cart/add">
-              <input
-                type="hidden"
-                name="id"
-                value="{{ product.selected_or_first_available_variant.id }}"
+        <div class="cart-drawer__item-main">
+          <div class="cart-drawer__item-image">
+            {% if item.image %}
+              <img
+                src="{{ item.image | image_url: width: 200 }}"
+                alt="{{ item.image.alt | escape }}"
+                width="100"
+                height="100"
+                loading="lazy"
               >
-
-              <button
-                type="submit"
-                class="cart-drawer__add-button"
-              >
-                ADD TO CART
-              </button>
-            </form>
+            {% endif %}
           </div>
 
-          {% assign recommendation_count = recommendation_count | plus: 1 %}
+          <div class="cart-drawer__item-details">
+            <div class="cart-drawer__item-top">
+              <h3 class="cart-drawer__item-title">
+                {{ item.product.title }}
+              </h3>
 
-          {% if recommendation_count == 3 %}
-            {% break %}
-          {% endif %}
-        {% endunless %}
-      {% endfor %}
-    </div>
+              <span class="cart-drawer__item-price">
+                {{ item.final_line_price | money }}
+              </span>
+            </div>
 
-  {% else %}
-    <!-- Cart Items -->
-    <div class="cart-drawer__items">
+            <div class="cart-drawer__item-actions">
+              <div class="cart-drawer__quantity">
+                <button
+                  type="button"
+                  class="cart-drawer__quantity-button"
+                  data-quantity-change="-1"
+                  {% if item.quantity <= 1 %}disabled{% endif %}
+                >
+                  -
+                </button>
+
+                <span class="cart-drawer__quantity-value">
+                  {{ item.quantity }}
+                </span>
+
+                <button
+                  type="button"
+                  class="cart-drawer__quantity-button"
+                  data-quantity-change="1"
+                >
+                  +
+                </button>
+              </div>
+
+              <button
+                type="button"
+                class="cart-drawer__remove"
+              >
+                <a
+                  href="{{ routes.cart_change_url }}?id={{ item.key }}&quantity=0"
+                  class="cart-drawer__remove"
+                  data-line-key="{{ item.key }}"
+                >
+                  REMOVE
+                </a>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="cart-drawer__recommendations-list{% if cart.item_count > 0 %} flex-1{% endif %}">
+    {% assign products = collections.all.products %}
+    {% assign random_offset = 'now' | date: '%s' | modulo: products.size %}
+
+    {% assign recommendation_count = 0 %}
+
+    {% for product in products offset: random_offset %}
+      {% assign already_in_cart = false %}
+
       {% for item in cart.items %}
-        <div class="cart-drawer__item">
-          <div class="cart-drawer__item-main">
-            <div class="cart-drawer__item-image">
-              {% if item.image %}
+        {% if item.product.id == product.id %}
+          {% assign already_in_cart = true %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+
+      {% unless already_in_cart %}
+        <div class="cart-drawer__recommendation" data-product-id="{{ product.id }}">
+          <div class="cart-drawer__recommendation-info">
+            <div class="cart-drawer__recommendation-image">
+              {% if product.featured_image %}
                 <img
-                  src="{{ item.image | image_url: width: 200 }}"
-                  alt="{{ item.image.alt | escape }}"
-                  width="100"
-                  height="100"
+                  src="{{ product.featured_image | image_url: width: 150 }}"
+                  alt="{{ product.featured_image.alt | escape }}"
+                  width="75"
+                  height="75"
                   loading="lazy"
                 >
               {% endif %}
             </div>
 
-            <div class="cart-drawer__item-details">
-              <div class="cart-drawer__item-top">
-                <h3 class="cart-drawer__item-title">
-                  {{ item.product.title }}
-                </h3>
+            <div class="cart-drawer__recommendation-details">
+              <h4 class="cart-drawer__recommendation-title">
+                {{ product.title }}
+              </h4>
 
-                <span class="cart-drawer__item-price">
-                  {{ item.final_line_price | money }}
-                </span>
-              </div>
-
-              <div class="cart-drawer__item-actions">
-                <div class="cart-drawer__quantity">
-                  <button
-                    type="button"
-                    class="cart-drawer__quantity-button"
-                  >
-                    -
-                  </button>
-
-                  <span class="cart-drawer__quantity-value">
-                    {{ item.quantity }}
-                  </span>
-
-                  <button
-                    type="button"
-                    class="cart-drawer__quantity-button"
-                  >
-                    +
-                  </button>
-                </div>
-
-                <button
-                  type="button"
-                  class="cart-drawer__remove"
-                >
-                  <a
-                    href="{{ routes.cart_change_url }}?id={{ item.key }}&quantity=0"
-                    class="cart-drawer__remove"
-                  >
-                    REMOVE
-                  </a>
-                </button>
-              </div>
+              <span class="cart-drawer__recommendation-price">
+                {{ product.price | money }}
+              </span>
             </div>
           </div>
-        </div>
-      {% endfor %}
-    </div>
 
-    <div class="cart-drawer__recommendations-list flex-1">
-      {% assign products = collections.all.products %}
-      {% assign random_offset = 'now' | date: '%s' | modulo: products.size %}
+          <form method="post" action="/cart/add" data-product-id="{{ product.id }}">
+            <input
+              type="hidden"
+              name="id"
+              value="{{ product.selected_or_first_available_variant.id }}"
+            >
 
-      {% assign recommendation_count = 0 %}
-
-      {% for product in products offset: random_offset %}
-        {% assign already_in_cart = false %}
-
-        {% for item in cart.items %}
-          {% if item.product.id == product.id %}
-            {% assign already_in_cart = true %}
-            {% break %}
-          {% endif %}
-        {% endfor %}
-
-        {% unless already_in_cart %}
-          <div class="cart-drawer__recommendation ">
-            <div class="cart-drawer__recommendation-info">
-              <div class="cart-drawer__recommendation-image">
-                {% if product.featured_image %}
-                  <img
-                    src="{{ product.featured_image | image_url: width: 150 }}"
-                    alt="{{ product.featured_image.alt | escape }}"
-                    width="75"
-                    height="75"
-                    loading="lazy"
-                  >
-                {% endif %}
-              </div>
-
-              <div class="cart-drawer__recommendation-details">
-                <h4 class="cart-drawer__recommendation-title">
-                  {{ product.title }}
-                </h4>
-
-                <span class="cart-drawer__recommendation-price">
-                  {{ product.price | money }}
-                </span>
-              </div>
-            </div>
-
-            <form method="post" action="/cart/add">
-              <input
-                type="hidden"
-                name="id"
-                value="{{ product.selected_or_first_available_variant.id }}"
-              >
-
-              <button
-                type="submit"
-                class="cart-drawer__add-button"
-              >
-                ADD TO CART
-              </button>
-            </form>
-          </div>
-
-          {% assign recommendation_count = recommendation_count | plus: 1 %}
-
-          {% if recommendation_count == 3 %}
-            {% break %}
-          {% endif %}
-        {% endunless %}
-      {% endfor %}
-    </div>
-
-    <!-- Gift Note -->
-    <div class="cart-drawer__gift-note">
-      <label class="cart-drawer__gift-note-label">
-        <input
-          type="checkbox"
-          class="cart-drawer__gift-note-checkbox"
-        >
-
-        <span> ADD A GIFT NOTE TO YOUR ORDER </span>
-      </label>
-    </div>
-
-    <!-- Footer -->
-    <div class="cart-drawer__footer">
-      <div class="cart-drawer__summary">
-        <div class="cart-drawer__summary-row">
-          <span class="cart-drawer__summary-label"> SUBTOTAL </span>
-
-          <span class="cart-drawer__summary-value">
-            {{ cart.total_price | money }}
-          </span>
+            <button
+              type="submit"
+              class="cart-drawer__add-button"
+            >
+              ADD TO CART
+            </button>
+          </form>
         </div>
 
-        <div class="cart-drawer__summary-row">
-          <span class="cart-drawer__summary-label"> SHIPPING </span>
+        {% assign recommendation_count = recommendation_count | plus: 1 %}
 
-          <span class="cart-drawer__shipping"> CALCULATED AT CHECKOUT </span>
-        </div>
+        {% if recommendation_count == 3 %}
+          {% break %}
+        {% endif %}
+      {% endunless %}
+    {% endfor %}
+  </div>
+
+  <!-- Gift Note -->
+  <div class="cart-drawer__gift-note"{% if cart.item_count == 0 %} hidden{% endif %}>
+    <label class="cart-drawer__gift-note-label">
+      <input
+        type="checkbox"
+        class="cart-drawer__gift-note-checkbox"
+      >
+
+      <span> ADD A GIFT NOTE TO YOUR ORDER </span>
+    </label>
+  </div>
+
+  <!-- Footer -->
+  <div class="cart-drawer__footer"{% if cart.item_count == 0 %} hidden{% endif %}>
+    <div class="cart-drawer__summary">
+      <div class="cart-drawer__summary-row">
+        <span class="cart-drawer__summary-label"> SUBTOTAL </span>
+
+        <span class="cart-drawer__summary-value" data-cart-subtotal>
+          {{ cart.total_price | money }}
+        </span>
       </div>
 
-      <a
-        href="{{ routes.checkout_url }}"
-        class="cart-drawer__checkout"
-      >
-        CHECKOUT
-      </a>
+      <div class="cart-drawer__summary-row">
+        <span class="cart-drawer__summary-label"> SHIPPING </span>
+
+        <span class="cart-drawer__shipping"> CALCULATED AT CHECKOUT </span>
+      </div>
     </div>
-  {% endif %}
+
+    <a
+      href="{{ routes.checkout_url }}"
+      class="cart-drawer__checkout"
+    >
+      CHECKOUT
+    </a>
+  </div>
+
+  <template id="cart-drawer-item-template">
+    <div
+      class="cart-drawer__item"
+      data-line-key=""
+      data-variant-id=""
+      data-product-id=""
+    >
+      <div class="cart-drawer__item-main">
+        <div class="cart-drawer__item-image">
+          <img
+            src=""
+            alt=""
+            width="100"
+            height="100"
+            loading="lazy"
+          >
+        </div>
+
+        <div class="cart-drawer__item-details">
+          <div class="cart-drawer__item-top">
+            <h3 class="cart-drawer__item-title"></h3>
+
+            <span class="cart-drawer__item-price"></span>
+          </div>
+
+          <div class="cart-drawer__item-actions">
+            <div class="cart-drawer__quantity">
+              <button
+                type="button"
+                class="cart-drawer__quantity-button"
+                data-quantity-change="-1"
+                disabled
+              >
+                -
+              </button>
+
+              <span class="cart-drawer__quantity-value"></span>
+
+              <button
+                type="button"
+                class="cart-drawer__quantity-button"
+                data-quantity-change="1"
+              >
+                +
+              </button>
+            </div>
+
+            <button
+              type="button"
+              class="cart-drawer__remove"
+            >
+              <a
+                href="/cart/change"
+                class="cart-drawer__remove"
+                data-line-key=""
+              >
+                REMOVE
+              </a>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
 </div>
