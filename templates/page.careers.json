@@ -166,11 +166,15 @@
                 "mobile_padding": 1,
                 "show_features": false
             }
+        },
+        "career-jobs": {
+            "type": "career-jobs"
         }
     },
     "order": [
         "content-builder",
         "content_builder_YKmfgK",
-        "content_builder_ixctmV"
+        "content_builder_ixctmV",
+        "career-jobs"
     ]
 }

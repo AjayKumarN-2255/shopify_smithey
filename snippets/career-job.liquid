@@ -1,0 +1,115 @@
+<article
+  class="career-job"
+  data-title="{{ block.settings.title | escape }}"
+  data-department="{{ block.settings.department | escape }}"
+  data-location="{{ block.settings.location | escape }}"
+  data-job-type="{{ block.settings.job_type | escape }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="career-job__content">
+    {% if block.settings.title != blank %}
+      <h3 class="career-job__title">
+        {{ block.settings.title }}
+      </h3>
+    {% endif %}
+
+    <div class="career-job__meta">
+      {% if block.settings.department != blank %}
+        <div class="career-job__department">
+          <span class="career-job__icon career-job__icon--department" aria-hidden="true">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              focusable="false"
+            >
+              <rect x="5.5" y="1" width="5" height="4" rx="0.5" stroke="currentColor" stroke-width="1.2"></rect>
+              <rect x="1" y="11" width="5" height="4" rx="0.5" stroke="currentColor" stroke-width="1.2"></rect>
+              <rect x="10" y="11" width="5" height="4" rx="0.5" stroke="currentColor" stroke-width="1.2"></rect>
+              <path d="M8 5V8M8 8H3.5V11M8 8H12.5V11" stroke="currentColor" stroke-width="1.2"></path>
+            </svg>
+          </span>
+          <span class="career-job__department-text">
+            {{ block.settings.department }}
+          </span>
+        </div>
+      {% endif %}
+
+      {% if block.settings.location != blank %}
+        <div class="career-job__location">
+          <span class="career-job__icon career-job__icon--location" aria-hidden="true">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              focusable="false"
+            >
+              <path
+                d="M8 1.75C5.65279 1.75 3.75 3.65279 3.75 6C3.75 9.125 8 14.25 8 14.25C8 14.25 12.25 9.125 12.25 6C12.25 3.65279 10.3472 1.75 8 1.75Z"
+                stroke="currentColor"
+                stroke-width="1.2"
+                stroke-linejoin="round"
+              ></path>
+              <circle cx="8" cy="6" r="1.5" stroke="currentColor" stroke-width="1.2"></circle>
+            </svg>
+          </span>
+          <span class="career-job__location-text">
+            {{ block.settings.location }}
+          </span>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="career-job__action">
+    {% if block.settings.job_url != blank %}
+      <a href="{{ block.settings.job_url }}" class="career-job__button">
+        View job
+        <span class="career-job__icon career-job__icon--arrow" aria-hidden="true">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            focusable="false"
+          >
+            <path
+              d="M3 8H13M13 8L9 4M13 8L9 12"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+          </svg>
+        </span>
+      </a>
+    {% else %}
+      <span class="career-job__button">
+        View job
+        <span class="career-job__icon career-job__icon--arrow" aria-hidden="true">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            focusable="false"
+          >
+            <path
+              d="M3 8H13M13 8L9 4M13 8L9 12"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+          </svg>
+        </span>
+      </span>
+    {% endif %}
+  </div>
+</article>

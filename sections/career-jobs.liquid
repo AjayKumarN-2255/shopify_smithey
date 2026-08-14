@@ -1,0 +1,219 @@
+{{ 'career-jobs.css' | asset_url | stylesheet_tag -}}
+{%- if section.settings.show_filters %}
+  <script src="{{ 'career-jobs.js' | asset_url }}" defer></script>
+{% endif %}
+
+{%- comment -%}
+  Collect unique department and location names from job blocks.
+{%- endcomment -%}
+{%- assign departments = '' -%}
+{%- assign locations = '' -%}
+{%- assign job_count = 0 -%}
+{%- for block in section.blocks -%}
+  {%- if block.type == 'job' -%}
+    {%- assign job_count = job_count | plus: 1 -%}
+    {%- assign department = block.settings.department | strip -%}
+    {%- if department != blank -%}
+      {%- assign department_key = '|' | append: department | append: '|' -%}
+      {%- unless departments contains department_key -%}
+        {%- assign departments = departments | append: department_key -%}
+      {%- endunless -%}
+    {%- endif -%}
+    {%- assign location = block.settings.location | strip -%}
+    {%- if location != blank -%}
+      {%- assign location_key = '|' | append: location | append: '|' -%}
+      {%- unless locations contains location_key -%}
+        {%- assign locations = locations | append: location_key -%}
+      {%- endunless -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- assign department_list = departments | split: '|' -%}
+{%- assign location_list = locations | split: '|' -%}
+
+{%- capture search_icon -%}
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" focusable="false" aria-hidden="true">
+    <circle cx="7" cy="7" r="4.25" stroke="currentColor" stroke-width="1.2"></circle>
+    <path d="M10.5 10.5L13.5 13.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"></path>
+  </svg>
+{%- endcapture -%}
+
+{%- capture chevron_icon -%}
+  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none" focusable="false" aria-hidden="true">
+    <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+  </svg>
+{%- endcapture -%}
+
+<div class="careers-jobs" data-careers-jobs>
+  <div class="careers-jobs__header">
+    {% if section.settings.intro_text != blank %}
+      <div class="careers-jobs__title">
+        {{ section.settings.intro_text }}
+      </div>
+    {% endif %}
+  </div>
+
+  {% if section.settings.show_filters %}
+    <div class="careers-jobs__filters">
+      <div class="careers-jobs__filters-container">
+        <label class="careers-jobs__filter careers-jobs__filter--search">
+          <span class="careers-jobs__filter-icon">{{ search_icon }}</span>
+          <input
+            type="search"
+            class="careers-jobs__filter-input"
+            placeholder="Search"
+            aria-label="Search"
+            data-careers-filter="search"
+          >
+        </label>
+
+        <label class="careers-jobs__filter careers-jobs__filter--select">
+          <span class="careers-jobs__filter-icon">{{ search_icon }}</span>
+          <select
+            class="careers-jobs__filter-select"
+            aria-label="All departments"
+            data-careers-filter="department"
+          >
+            <option value="">All departments</option>
+            {% for department in department_list %}
+              {% if department != blank %}
+                <option value="{{ department | escape }}">{{ department }}</option>
+              {% endif %}
+            {% endfor %}
+          </select>
+          <span class="careers-jobs__filter-chevron">{{ chevron_icon }}</span>
+        </label>
+
+        <label class="careers-jobs__filter careers-jobs__filter--select">
+          <span class="careers-jobs__filter-icon">{{ search_icon }}</span>
+          <select
+            class="careers-jobs__filter-select"
+            aria-label="All job types"
+            data-careers-filter="job-type"
+          >
+            <option value="">All job types</option>
+            <option value="On-site">On-site</option>
+            <option value="Remote">Remote</option>
+            <option value="Hybrid">Hybrid</option>
+          </select>
+          <span class="careers-jobs__filter-chevron">{{ chevron_icon }}</span>
+        </label>
+
+        <label class="careers-jobs__filter careers-jobs__filter--select">
+          <span class="careers-jobs__filter-icon">{{ search_icon }}</span>
+          <select
+            class="careers-jobs__filter-select"
+            aria-label="All locations"
+            data-careers-filter="location"
+          >
+            <option value="">All locations</option>
+            {% for location in location_list %}
+              {% if location != blank %}
+                <option value="{{ location | escape }}">{{ location }}</option>
+              {% endif %}
+            {% endfor %}
+          </select>
+          <span class="careers-jobs__filter-chevron">{{ chevron_icon }}</span>
+        </label>
+      </div>
+
+      <div class="careers-jobs__results-summary">
+        {{ job_count }}
+        {% if job_count == 1 %}role{% else %}roles{% endif %}
+        across all departments in all locations
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="careers-jobs__list">
+    {% for department in department_list %}
+      {% if department != blank %}
+        <div class="careers-jobs__department" data-department-group="{{ department | escape }}">
+          <h2 class="careers-jobs__department-title">
+            {{ department }}
+          </h2>
+
+          {% for block in section.blocks %}
+            {% assign block_department = block.settings.department | strip %}
+            {% if block.type == 'job' and block_department == department %}
+              {% render 'career-job', block: block %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Careers Jobs",
+  "settings": [
+    {
+      "type": "text",
+      "id": "intro_text",
+      "label": "Intro text",
+      "default": "Our current opening(s) are posted below."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_filters",
+      "label": "Show filters",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "job",
+      "name": "Job",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Job title"
+        },
+        {
+          "type": "text",
+          "id": "department",
+          "label": "Department"
+        },
+        {
+          "type": "text",
+          "id": "location",
+          "label": "Location"
+        },
+        {
+          "type": "select",
+          "id": "job_type",
+          "label": "Job type",
+          "options": [
+            {
+              "value": "On-site",
+              "label": "On-site"
+            },
+            {
+              "value": "Remote",
+              "label": "Remote"
+            },
+            {
+              "value": "Hybrid",
+              "label": "Hybrid"
+            }
+          ],
+          "default": "On-site"
+        },
+        {
+          "type": "url",
+          "id": "job_url",
+          "label": "Job URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Careers Jobs"
+    }
+  ]
+}
+{% endschema %}
