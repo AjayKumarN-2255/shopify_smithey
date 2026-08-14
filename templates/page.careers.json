@@ -1,0 +1,176 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+    "sections": {
+        "content-builder": {
+            "type": "content-builder",
+            "blocks": {
+                "text_Tgmb3y": {
+                    "type": "text",
+                    "settings": {
+                        "title": "CAREERS AT SMITHEY",
+                        "title_desktop_size": 2.4,
+                        "title_mobile_size": 2,
+                        "title_color": "#112626",
+                        "content": "<p>Join the Smithey Ironware team as we grow the next great American cookware company</p>",
+                        "content_desktop_size": 1,
+                        "content_mobile_size": 1,
+                        "content_color": "#112626",
+                        "position": "left",
+                        "custom_css": ".content-builder__title{\n    margin: 0.75rem auto;\n    text-align: center;\n    font-weight:500;\n}\n.content-builder__content{\n    text-align: center;\n}"
+                    }
+                }
+            },
+            "block_order": [
+                "text_Tgmb3y"
+            ],
+            "custom_css": [
+                "#content-builder-template--21752357421191__content-builder .content-builder__right {display: none;}",
+                "#content-builder-template--21752357421191__content-builder .content-builder__left {width: 100%; max-width: 100%;}"
+            ],
+            "settings": {
+                "background_color": "#ffffff",
+                "desktop_padding": 2.5,
+                "mobile_padding": 1,
+                "show_features": false
+            }
+        },
+        "content_builder_YKmfgK": {
+            "type": "content-builder",
+            "blocks": {
+                "image_qdczGH": {
+                    "type": "image",
+                    "settings": {
+                        "image": "shopify://shop_images/Smithey_shop_sign.webp",
+                        "image_mobile_height": 18,
+                        "image_desktop_height": 23.4,
+                        "image_large_desktop_height": 23.4,
+                        "position": "left",
+                        "custom_css": ""
+                    }
+                },
+                "text_VCptzT": {
+                    "type": "text",
+                    "settings": {
+                        "title": "",
+                        "title_desktop_size": 2,
+                        "title_mobile_size": 1,
+                        "title_color": "#b68b32",
+                        "content": "<p>We are building a special business at the Smithey Ironware Company. We are based in Charleston, SC where we design, market, and manufacture what we believe is the best cast iron and carbon steel cookware in the world. Our cookware is made by a team of passionate designers, foundrymen, craftsmen, foodies and story tellers who work tirelessly as a team to bring our customers premium cookware that lasts for generations.</p><p><br/></p><p></p><p>Our company’s values are based around excellence, collaboration, language, analytics, humility, grit, grace, and accountability. The ideal Smithey employee enjoys working in small, thoughtful, and determined teams. We enjoy solving problems, learning new skills, questioning convention, and working toward big goals.</p><p><br/></p><p></p><p>We’re not all great cooks, but we are energized and motivated by the process of creating and sharing stories that reinforce the notion that well-made tools can inspire joy and create positive culture. We take pride that our cookware leads to great food and ultimately warm meals and memories with friends and family.</p><p><br/></p><p></p><p>Beyond our functional jobs, we are wholly focused on our customers. Every Smithey team member is empowered to make our customer’s experience a better one. We genuinely appreciate every single person who has bought a Smithey - they’re not just a number, but a part of our community for life.</p><p><br/></p><p>If you’re interested in joining our team, please review our job listings here - we look forward to speaking with you.</p>",
+                        "content_desktop_size": 0.8,
+                        "content_mobile_size": 1.1,
+                        "content_color": "#112626",
+                        "position": "right",
+                        "custom_css": ".content-builder__content {\n  line-height: 23px;\n  padding: 0 1rem;\n}\n\n@media (min-width: 920px) {\n  .content-builder__content {\n    line-height: 25px;\n    max-width: 28.2rem;\n    margin: auto;\n    padding:0;\n  }\n}\n\n@media (min-width: 1550px) {\n  .content-builder__content {\n      max-width: 27rem;\n  }\n}"
+                    }
+                }
+            },
+            "block_order": [
+                "image_qdczGH",
+                "text_VCptzT"
+            ],
+            "custom_css": [
+                "@media (min-width: 920px) {#content-builder-template--21752357421191__content_builder_YKmfgK .content-builder__container {gap: 0; padding-top: 0; border-bottom: 1px solid #e5e5e5; } #content-builder-template--21752357421191__content_builder_YKmfgK .content-builder__left {justify-content: center; }}",
+                "@media (min-width: 1550px) {#content-builder-template--21752357421191__content_builder_YKmfgK .content-builder__container {max-width: 70rem; margin: 0 auto; }}"
+            ],
+            "name": "Content Builder",
+            "settings": {
+                "background_color": "#ffffff",
+                "desktop_padding": 2.1,
+                "mobile_padding": 0,
+                "show_features": false
+            }
+        },
+        "content_builder_ixctmV": {
+            "type": "content-builder",
+            "blocks": {
+                "image_qtD69T": {
+                    "type": "image",
+                    "settings": {
+                        "image": "shopify://shop_images/dd_-_1_9.webp",
+                        "image_mobile_height": 26,
+                        "image_desktop_height": 18.2,
+                        "image_large_desktop_height": 18.2,
+                        "position": "left",
+                        "custom_css": ""
+                    }
+                },
+                "image_mbtNac": {
+                    "type": "image",
+                    "settings": {
+                        "image": "shopify://shop_images/dd_-_3.webp",
+                        "image_mobile_height": 26,
+                        "image_desktop_height": 18.2,
+                        "image_large_desktop_height": 18.2,
+                        "position": "left",
+                        "custom_css": ""
+                    }
+                },
+                "image_WRqAaK": {
+                    "type": "image",
+                    "settings": {
+                        "image": "shopify://shop_images/dd_-_1_8.webp",
+                        "image_mobile_height": 26,
+                        "image_desktop_height": 18.2,
+                        "image_large_desktop_height": 18.2,
+                        "position": "left",
+                        "custom_css": ""
+                    }
+                },
+                "image_KAkEg6": {
+                    "type": "image",
+                    "settings": {
+                        "image": "shopify://shop_images/Smithey_Ironware_Shops_02282024_0236-medium.webp",
+                        "image_mobile_height": 26,
+                        "image_desktop_height": 18.2,
+                        "image_large_desktop_height": 18.2,
+                        "position": "left",
+                        "custom_css": ""
+                    }
+                },
+                "image_PBrcAt": {
+                    "type": "image",
+                    "settings": {
+                        "image": "shopify://shop_images/10292019_-_Smithey_Holiday_Shoot_-_LIFESTYLE23535-medium_1.webp",
+                        "image_mobile_height": 26,
+                        "image_desktop_height": 18.2,
+                        "image_large_desktop_height": 18.2,
+                        "position": "left",
+                        "custom_css": ""
+                    }
+                }
+            },
+            "block_order": [
+                "image_qtD69T",
+                "image_mbtNac",
+                "image_WRqAaK",
+                "image_KAkEg6",
+                "image_PBrcAt"
+            ],
+            "custom_css": [
+                "#content-builder-template--21752357421191__content_builder_ixctmV .content-builder__container {overflow-x: scroll; border-bottom: 1px solid #e5e5e5;}",
+                "#content-builder-template--21752357421191__content_builder_ixctmV .content-builder__right {display: none;}",
+                "#content-builder-template--21752357421191__content_builder_ixctmV .content-builder__left {width: 100%; max-width: 100%; flex-direction: row; max-width: 58.5rem; width: 58.5rem; margin: auto; gap: 1.5rem;}"
+            ],
+            "name": "Content Builder",
+            "settings": {
+                "background_color": "#ffffff",
+                "desktop_padding": 4,
+                "mobile_padding": 1,
+                "show_features": false
+            }
+        }
+    },
+    "order": [
+        "content-builder",
+        "content_builder_YKmfgK",
+        "content_builder_ixctmV"
+    ]
+}
