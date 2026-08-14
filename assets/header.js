@@ -76,9 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 activeMenu.classList.remove('mega-menu--active');
                 return;
             }
-            console.log("Clicked:", menuName);
-            console.log("Active:", activeMenu?.dataset.menu);
-            console.log("Equal:", activeMenu?.dataset.menu === menuName);
+
             megaMenuContainer.classList.add('mega-menu-container--open');
             header.classList.add('site-header--mega-open');
             document.body.classList.add('no-scroll');
