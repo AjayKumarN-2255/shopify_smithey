@@ -1,0 +1,147 @@
+{{ 'metaobject-table.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign column_count = section.settings.column_count | default: 4
+  assign entries = section.settings.my_material_list_setting
+-%}
+
+<div class="metaobject-table">
+  <div class="metaobject-table__container">
+    <table class="metaobject-table__table">
+      <thead class="metaobject-table__head">
+        <tr class="metaobject-table__header-row">
+          {%- assign column_index = 0 -%}
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'table_column' and column_index < column_count -%}
+              <th
+                class="metaobject-table__header-cell"
+                scope="col"
+                {{ block.shopify_attributes }}
+              >
+                {{ block.settings.heading | escape }}
+              </th>
+              {%- assign column_index = column_index | plus: 1 -%}
+            {%- endif -%}
+          {%- endfor -%}
+        </tr>
+      </thead>
+
+      <tbody class="metaobject-table__body">
+        {%- for entry in entries -%}
+          <tr class="metaobject-table__row">
+            {%- assign column_index = 0 -%}
+
+            {%- for column_block in section.blocks -%}
+              {%- if column_block.type == 'table_column' and column_index < column_count -%}
+                {%- liquid
+                  assign field_key = column_block.settings.field_key | strip
+                  assign field = entry[field_key]
+                  assign field_type = field.type
+                -%}
+
+                <td class="metaobject-table__cell">
+                  {%- if field_type == 'boolean' -%}
+                    {%- if field.value -%}Yes{%- else -%}No{%- endif -%}
+                  {%- elsif field_type contains 'rich_text' or field_type contains 'reference' or field_type == 'url' -%}
+                    {{ field | metafield_tag }}
+                  {%- elsif field_type contains 'list.' -%}
+                    {{ field.value | join: ', ' }}
+                  {%- elsif field.value != blank -%}
+                    {{ field.value | newline_to_br }}
+                  {%- endif -%}
+                </td>
+
+                {%- assign column_index = column_index | plus: 1 -%}
+              {%- endif -%}
+            {%- endfor -%}
+          </tr>
+        {%- endfor -%}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Metaobject Table",
+  "tag": "section",
+  "class": "section-metaobject-table",
+  "settings": [
+    {
+      "type": "range",
+      "id": "column_count",
+      "label": "Number of columns",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "metaobject_list",
+      "id": "my_material_list_setting",
+      "label": "Materials",
+      "metaobject_type": "cookware_type",
+      "limit": 12
+    }
+  ],
+  "blocks": [
+    {
+      "type": "table_column",
+      "name": "Column",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Column heading",
+          "default": "Column"
+        },
+        {
+          "type": "text",
+          "id": "field_key",
+          "label": "Metaobject field key",
+          "info": "Exact field key from the metaobject definition (e.g. material, oven_safe).",
+          "placeholder": "material"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Metaobject Table",
+      "settings": {
+        "column_count": 4
+      },
+      "blocks": [
+        {
+          "type": "table_column",
+          "settings": {
+            "heading": "Material",
+            "field_key": "material"
+          }
+        },
+        {
+          "type": "table_column",
+          "settings": {
+            "heading": "Oven Safe",
+            "field_key": "oven_safe"
+          }
+        },
+        {
+          "type": "table_column",
+          "settings": {
+            "heading": "Dishwasher Safe",
+            "field_key": "dishwasher_safe"
+          }
+        },
+        {
+          "type": "table_column",
+          "settings": {
+            "heading": "Stovetop",
+            "field_key": "stovetop"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
