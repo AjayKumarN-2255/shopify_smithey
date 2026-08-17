@@ -1,0 +1,12 @@
+{
+    "type": "header",
+    "name": "Header Group",
+    "sections": {
+        "header-secondary": {
+            "type": "header-secondary",
+        }
+    },
+    "order": [
+        "header-secondary"
+    ]
+}
