@@ -1,1 +1,139 @@
-this is secondary footer
+<footer class="site-footer">
+  <!-- Footer navigation -->
+  <div class="site-footer__navigation">
+    {% if section.settings.footer_menu != blank %}
+      <nav
+        class="site-footer__menu"
+        aria-label="Footer navigation"
+      >
+        <ul class="site-footer__menu-list" role="list">
+          {% for link in section.settings.footer_menu.links %}
+            <li class="site-footer__menu-item">
+              <a
+                href="{{ link.url }}"
+                class="site-footer__menu-link"
+                {% if link.current %}
+                  aria-current="page"
+                {% endif %}
+              >
+                {{ link.title }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    {% endif %}
+  </div>
+
+  <!-- Footer bottom -->
+  <div class="site-footer__bottom">
+    <div class="site-footer__copyright">
+      {{ section.settings.footer_text }}
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    width: 100%;
+    background-color: #f3f3f3;
+    color: #333;
+    font-family: var(--font-heading), ui-serif, serif;
+  }
+
+  .site-footer__navigation {
+    padding: 4rem 3rem;
+  }
+
+  .site-footer__menu-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .site-footer__menu-item {
+    margin: 0;
+  }
+
+  .site-footer__menu-link {
+    display: inline-block;
+    color: #333;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  .site-footer__menu-link:hover {
+    text-decoration: underline;
+  }
+
+  .site-footer__bottom {
+    border-top: 1px solid #e0e0e0;
+    text-align: center;
+    padding: 1.25rem 1rem 1.5rem;
+  }
+
+  .site-footer__copyright {
+    font-size: 12px;
+    line-height: 1.5;
+    color: #555;
+  }
+
+  @media screen and (min-width: 920px) {
+    .site-footer__navigation {
+      display: flex;
+      justify-content: center;
+      padding: 2.5rem 1.5rem 1.75rem;
+    }
+
+    .site-footer__menu-list {
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .site-footer__menu-link {
+      font-size: 13px;
+    }
+
+    .site-footer__bottom {
+      padding: 2rem;
+    }
+
+    .site-footer__copyright {
+      font-size: 12px;
+      color: #444;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "footer_menu",
+      "label": "Footer menu",
+      "default": "footer"
+    },
+    {
+      "type": "text",
+      "id": "footer_text",
+      "label": "Footer text",
+      "default": "© 2026, Smithey Wholesale Powered by Shopify"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer"
+    }
+  ]
+}
+{% endschema %}
