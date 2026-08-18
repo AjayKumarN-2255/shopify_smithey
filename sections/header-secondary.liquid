@@ -36,62 +36,32 @@
       </div>
 
       <div class="site-header__search">
-        <details class="header-search">
-          <summary
-            class="site-header__icon site-header__icon--search"
-            aria-label="Search"
-          >
-            <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
-              <circle
-                cx="11"
-                cy="11"
-                r="7"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.4"
-              ></circle>
-              <path
-                d="M16.5 16.5L21 21"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.4"
-                stroke-linecap="round"
-              ></path>
-            </svg>
-          </summary>
-
-          <div class="header-search__drawer">
-            <form
-              action="{{ routes.search_url }}"
-              method="get"
-              role="search"
-              class="header-search__form"
-            >
-              <input
-                type="search"
-                name="q"
-                value="{{ search.terms | escape }}"
-                placeholder="Search"
-                class="header-search__input"
-                aria-label="Search"
-              >
-
-              <input
-                type="hidden"
-                name="options[prefix]"
-                value="last"
-              >
-
-              <button
-                type="submit"
-                class="header-search__button"
-                aria-label="Submit search"
-              >
-                Search
-              </button>
-            </form>
-          </div>
-        </details>
+        <button
+          type="button"
+          class="site-header__icon site-header__icon--search"
+          aria-label="Search"
+          aria-expanded="false"
+          aria-controls="HeaderSearchDrawer-{{ section.id }}"
+          data-search-open
+        >
+          <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+            <circle
+              cx="11"
+              cy="11"
+              r="7"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.4"
+            ></circle>
+            <path
+              d="M16.5 16.5L21 21"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.4"
+              stroke-linecap="round"
+            ></path>
+          </svg>
+        </button>
       </div>
 
       <div class="site-header__logo">
@@ -201,15 +171,176 @@
       {% endif %}
     </nav>
   </div>
+
+  <div
+    class="header-search__overlay"
+    data-search-overlay
+    hidden
+  ></div>
+
+  <div
+    id="HeaderSearchDrawer-{{ section.id }}"
+    class="header-search__drawer"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Search"
+    hidden
+  >
+    <form
+      action="{{ routes.search_url }}"
+      method="get"
+      role="search"
+      class="header-search__form"
+    >
+      <div class="header-search__field">
+        <input
+          id="HeaderSearch-{{ section.id }}"
+          type="search"
+          name="q"
+          value="{{ search.terms | escape }}"
+          placeholder=" "
+          class="header-search__input"
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="off"
+          spellcheck="false"
+        >
+
+        <label
+          class="header-search__label"
+          for="HeaderSearch-{{ section.id }}"
+        >
+          Search
+        </label>
+
+        <button
+          type="submit"
+          class="header-search__submit"
+          aria-label="Submit search"
+        >
+          <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+            <circle
+              cx="11"
+              cy="11"
+              r="7"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.4"
+            ></circle>
+            <path
+              d="M16.5 16.5L21 21"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.4"
+              stroke-linecap="round"
+            ></path>
+          </svg>
+        </button>
+      </div>
+
+      <input
+        type="hidden"
+        name="options[prefix]"
+        value="last"
+      >
+
+      <button
+        type="button"
+        class="header-search__close"
+        aria-label="Close search"
+        data-search-close
+      >
+        <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true">
+          <path
+            d="M2 2l12 12M14 2L2 14"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.4"
+            stroke-linecap="round"
+          ></path>
+        </svg>
+      </button>
+    </form>
+  </div>
 </header>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
+    var header = document.querySelector('.section-header-secondary .site-header');
     var menu = document.querySelector('.section-header-secondary .mobile-menu');
-    if (!menu) return;
+    var searchOpenBtn = document.querySelector('.section-header-secondary [data-search-open]');
+    var searchCloseBtn = document.querySelector('.section-header-secondary [data-search-close]');
+    var searchOverlay = document.querySelector('.section-header-secondary [data-search-overlay]');
+    var searchDrawer = document.querySelector('.section-header-secondary .header-search__drawer');
+    var searchInput = document.querySelector('.section-header-secondary .header-search__input');
 
-    menu.addEventListener('toggle', function () {
-      document.body.classList.toggle('no-scroll', menu.open);
+    function isSearchOpen() {
+      return header && header.classList.contains('is-search-open');
+    }
+
+    function syncBodyScroll() {
+      var menuOpen = menu && menu.open;
+      document.body.classList.toggle('no-scroll', Boolean(menuOpen || isSearchOpen()));
+    }
+
+    function openSearch() {
+      if (!header || isSearchOpen()) return;
+
+      if (menu && menu.open) {
+        menu.open = false;
+      }
+
+      header.classList.add('is-search-open');
+
+      if (searchOverlay) searchOverlay.hidden = false;
+      if (searchDrawer) searchDrawer.hidden = false;
+      if (searchOpenBtn) searchOpenBtn.setAttribute('aria-expanded', 'true');
+
+      syncBodyScroll();
+
+      window.requestAnimationFrame(function () {
+        if (searchInput) searchInput.focus();
+      });
+    }
+
+    function closeSearch() {
+      if (!header || !isSearchOpen()) return;
+
+      header.classList.remove('is-search-open');
+
+      if (searchOverlay) searchOverlay.hidden = true;
+      if (searchDrawer) searchDrawer.hidden = true;
+      if (searchOpenBtn) searchOpenBtn.setAttribute('aria-expanded', 'false');
+
+      syncBodyScroll();
+
+      if (searchOpenBtn) searchOpenBtn.focus();
+    }
+
+    if (menu) {
+      menu.addEventListener('toggle', syncBodyScroll);
+    }
+
+    if (searchOpenBtn) {
+      searchOpenBtn.addEventListener('click', openSearch);
+    }
+
+    if (searchCloseBtn) {
+      searchCloseBtn.addEventListener('click', function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        closeSearch();
+      });
+    }
+
+    if (searchOverlay) {
+      searchOverlay.addEventListener('click', closeSearch);
+    }
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && isSearchOpen()) {
+        closeSearch();
+      }
     });
   });
 </script>
