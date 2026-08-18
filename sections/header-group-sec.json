@@ -1,6 +1,6 @@
 {
     "type": "header",
-    "name": "Header Group",
+    "name": "Header Secondary Group",
     "sections": {
         "header-secondary": {
             "type": "header-secondary",
