@@ -1,0 +1,219 @@
+<style>
+  .privacy-policy__header {
+    width: 100%;
+    margin-bottom: 1.5rem;
+  }
+
+  .privacy-policy__title {
+    margin: 0;
+    color: var(--privacy-policy-text);
+    font-family: var(--font-body);
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .privacy-policy__updated {
+    margin: 0.5rem 0 0;
+    color: var(--privacy-policy-muted);
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  .privacy-policy__expand-all {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.35rem;
+    width: 100%;
+    margin: 1.25rem 0 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--privacy-policy-text);
+    font-family: inherit;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    line-height: 1;
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+    cursor: pointer;
+  }
+
+  .privacy-policy__expand-all-icon {
+    display: inline-flex;
+    transition: transform 0.2s ease;
+  }
+
+  .privacy-policy__expand-all.is-expanded .privacy-policy__expand-all-icon {
+    transform: rotate(90deg);
+  }
+
+  .privacy-policy__accordion {
+    width: 100%;
+  }
+
+  .privacy-policy__accordion + .privacy-policy__accordion {
+    margin-top: 0.85rem;
+  }
+
+  .privacy-policy__accordion-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+    margin: 0;
+    min-height: 70px;
+    height: 70px;
+    padding: 0 1.15rem;
+    border: 0;
+    border-radius: 8px;
+    background: var(--privacy-policy-accordion);
+    color: var(--privacy-policy-text);
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.35;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .privacy-policy__accordion-title {
+    min-width: 0;
+    flex: 1;
+  }
+
+  .privacy-policy__accordion-icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    color: #4a4a4a;
+    transition: transform 0.2s ease;
+  }
+
+  .privacy-policy__accordion.is-open .privacy-policy__accordion-icon {
+    transform: rotate(90deg);
+  }
+
+  .privacy-policy__accordion-content {
+    display: none;
+    padding: 1rem 0.15rem 0.35rem;
+  }
+
+  .privacy-policy__accordion.is-open .privacy-policy__accordion-content {
+    display: block;
+  }
+
+  .privacy-policy__placeholder {
+    margin: 0;
+    color: var(--privacy-policy-text);
+    font-size: 0.9375rem;
+    font-weight: 400;
+    line-height: 1.55;
+  }
+
+  @media (min-width: 920px) {
+    .privacy-policy__header {
+      margin-bottom: 1.6rem;
+    }
+
+    .privacy-policy__title {
+      font-size: 2rem;
+    }
+
+    .privacy-policy__updated {
+      margin-top: 0.55rem;
+      font-size: 0.8rem;
+    }
+
+    .privacy-policy__expand-all {
+      margin-top: 1.6rem;
+      font-size: 0.7rem;
+    }
+
+    .privacy-policy__accordion + .privacy-policy__accordion {
+      margin-top: 1rem;
+    }
+
+    .privacy-policy__accordion-header {
+      min-height: 70px;
+      height: 70px;
+      padding: 0 1.5rem;
+      border-radius: 8px;
+      font-size: 20px;
+      font-weight: 400;
+    }
+
+    .privacy-policy__accordion-content {
+      padding: 1.1rem 0.25rem 0.4rem;
+    }
+
+    .privacy-policy__placeholder {
+      font-size: 0.85rem;
+    }
+  }
+</style>
+
+<header class="privacy-policy__header">
+  <h1 class="privacy-policy__title">Privacy Policy</h1>
+  <p class="privacy-policy__updated">Last Updated: Dec 30, 2025</p>
+
+  <button
+    type="button"
+    class="privacy-policy__expand-all"
+    data-expand-all
+    aria-expanded="false"
+  >
+    <span data-expand-all-label>Expand All</span>
+    <span class="privacy-policy__expand-all-icon" aria-hidden="true">
+      <svg viewBox="0 0 10 10" width="8" height="8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 1.5L7 5L3 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </span>
+  </button>
+</header>
+
+<div class="privacy-policy__accordion">
+  <button type="button" class="privacy-policy__accordion-header" aria-expanded="false">
+    <span class="privacy-policy__accordion-title">Information you provide to us</span>
+    <span class="privacy-policy__accordion-icon" aria-hidden="true">
+      <svg viewBox="0 0 10 10" width="10" height="10" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 1.5L7 5L3 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </span>
+  </button>
+  <div class="privacy-policy__accordion-content">
+    <p class="privacy-policy__placeholder">Privacy Policy content</p>
+  </div>
+</div>
+
+<div class="privacy-policy__accordion">
+  <button type="button" class="privacy-policy__accordion-header" aria-expanded="false">
+    <span class="privacy-policy__accordion-title">How we disclose your information</span>
+    <span class="privacy-policy__accordion-icon" aria-hidden="true">
+      <svg viewBox="0 0 10 10" width="10" height="10" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 1.5L7 5L3 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </span>
+  </button>
+  <div class="privacy-policy__accordion-content">
+    <p class="privacy-policy__placeholder">Privacy Policy content</p>
+  </div>
+</div>
+
+<div class="privacy-policy__accordion">
+  <button type="button" class="privacy-policy__accordion-header" aria-expanded="false">
+    <span class="privacy-policy__accordion-title">Shopify Network Intelligence</span>
+    <span class="privacy-policy__accordion-icon" aria-hidden="true">
+      <svg viewBox="0 0 10 10" width="10" height="10" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 1.5L7 5L3 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </span>
+  </button>
+  <div class="privacy-policy__accordion-content">
+    <p class="privacy-policy__placeholder">Privacy Policy content</p>
+  </div>
+</div>

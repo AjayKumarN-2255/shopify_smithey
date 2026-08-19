@@ -4,6 +4,10 @@
     "sections": {
         "header-secondary": {
             "type": "header-secondary",
+            "settings": {
+                "logo": "shopify://shop_images/Smithey_AlternateLockup_01_WEB.webp",
+                "menu": "main-menu"
+            }
         }
     },
     "order": [

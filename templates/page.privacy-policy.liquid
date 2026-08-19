@@ -1,0 +1,125 @@
+<style>
+  .privacy-policy {
+    --privacy-policy-active: #716e82;
+    --privacy-policy-accordion: #e8e5ee;
+    --privacy-policy-text: #1a1a1a;
+    --privacy-policy-muted: #5c5c5c;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 1.5rem 1.25rem 3.5rem;
+    color: var(--privacy-policy-text);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+  }
+
+  .privacy-policy *,
+  .privacy-policy *::before,
+  .privacy-policy *::after {
+    box-sizing: border-box;
+  }
+
+  .privacy-policy__layout {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .privacy-policy__sidebar {
+    order: 1;
+    width: 100%;
+    margin-bottom: 1.75rem;
+  }
+
+  .privacy-policy__main {
+    order: 2;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .privacy-policy__content-section {
+    display: none;
+    width: 100%;
+  }
+
+  .privacy-policy__content-section.is-active {
+    display: block;
+  }
+
+  @media (min-width: 920px) {
+    .privacy-policy {
+      font-size: 20px;
+      max-width: 69rem;
+      padding: 2.5rem 2.5rem 5rem;
+    }
+
+    .privacy-policy__layout {
+      display: grid;
+      grid-template-columns: 300px minmax(0, 1fr);
+      column-gap: 6rem;
+      align-items: start;
+    }
+
+    .privacy-policy__sidebar,
+    .privacy-policy__main {
+      order: initial;
+    }
+
+    .privacy-policy__sidebar {
+      margin-bottom: 0;
+    }
+  }
+
+  @media (min-width: 1800px) {
+    .privacy-policy {
+      max-width: 87.5rem;
+    }
+
+    .privacy-policy__layout {
+      grid-template-columns: 300px minmax(0, 1fr);
+      column-gap: 6rem;
+    }
+  }
+</style>
+
+<script src="{{ 'privacy-policy.js' | asset_url }}" defer></script>
+
+<div class="privacy-policy" data-privacy-policy>
+  <div class="privacy-policy__layout">
+    <aside class="privacy-policy__sidebar">
+      {% render 'privacy-policy-navitems' %}
+    </aside>
+
+    <div class="privacy-policy__main">
+      <div
+        class="privacy-policy__content-section is-active"
+        data-section-content="privacy-policy"
+      >
+        {% render 'privacy-policy' %}
+      </div>
+
+      <div
+        class="privacy-policy__content-section"
+        data-section-content="us-state-privacy"
+      >
+        {% render 'us-state-privacy' %}
+      </div>
+
+      <div
+        class="privacy-policy__content-section"
+        data-section-content="privacy-request"
+      >
+        {% render 'privacy-request' %}
+      </div>
+
+      <div
+        class="privacy-policy__content-section"
+        data-section-content="privacy-choices"
+      >
+        {% render 'privacy-choices' %}
+      </div>
+    </div>
+  </div>
+</div>
+
