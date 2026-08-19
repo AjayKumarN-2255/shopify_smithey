@@ -1,0 +1,85 @@
+{
+    "layout": "theme-secondary",
+    "sections": {
+        "content-builder": {
+            "type": "content-builder",
+            "blocks": {
+                "text_mtmM3X": {
+                    "type": "text",
+                    "settings": {
+                        "title": "Welcome to Smithey Wholesale",
+                        "title_desktop_size": 2,
+                        "title_mobile_size": 2.5,
+                        "title_color": "#000000",
+                        "content": "<p>Sign in below to our new ordering portal. Email sales@smithey.com if you are having difficulty logging in.</p>",
+                        "content_desktop_size": 0.7,
+                        "content_mobile_size": 0.9,
+                        "content_color": "#000000",
+                        "position": "right",
+                        "custom_css": ".content-builder__title {\n  text-transform: unset;\n  font-weight: 500;\n  max-width: 18rem;\n  margin-bottom: 1.5rem;\n}\n.content-builder__content{\n  color:#000000BF;\n  line-height: 20px;\n}"
+                    }
+                },
+                "text_zkECMK": {
+                    "type": "text",
+                    "settings": {
+                        "title": "Interested in becoming a retailer?",
+                        "title_desktop_size": 0.9,
+                        "title_mobile_size": 1,
+                        "title_color": "#000000",
+                        "content": "<p>Please fill out this application and a member of our sales team will get back to you shortly.</p>",
+                        "content_desktop_size": 0.7,
+                        "content_mobile_size": 0.9,
+                        "content_color": "#112626",
+                        "position": "right",
+                        "custom_css": ".content-builder__title {\n  text-transform: unset;\n  max-width:15rem;\n  font-weight: 500;\n  margin-bottom: 0.5rem;\n}\n.content-builder__content{\n  color:#000000BF;\n  line-height: 20px;\n}\n@media (min-width: 920px) {\n  .content-builder__title {\n    max-width: unset;\n  }\n}"
+                    }
+                },
+                "button_h6fqrg": {
+                    "type": "button",
+                    "settings": {
+                        "button_text": "Apply for an account",
+                        "button_link": "shopify://collections",
+                        "button_bg_color": "#F5F5F5",
+                        "button_text_color": "#BE893D",
+                        "position": "right",
+                        "btn_position_desktop": "left",
+                        "btn_position_mobile": "left",
+                        "custom_css": "& .content-builder__button-link{\n  border: 1.5px solid #be893d;\n  text-transform: unset;\n  font-size:14px;\n  font-weight:400;\n  padding: .75rem 1rem;\n  margin:0;\n}\n&{\n  margin-top:1.25rem;\n}\n\n@media (min-width: 920px) {\n  & .content-builder__button-link {\n    padding: .5rem 1rem;\n    margin:0;\n  }\n}"
+                    }
+                },
+                "image_EABHMg": {
+                    "type": "image",
+                    "settings": {
+                        "image": "shopify://shop_images/IMG_5659.webp",
+                        "image_mobile_height": 21.3,
+                        "image_desktop_height": 40.8,
+                        "image_large_desktop_height": 40.8,
+                        "position": "left",
+                        "custom_css": "& {\n  margin:0;\n}"
+                    }
+                }
+            },
+            "block_order": [
+                "text_mtmM3X",
+                "text_zkECMK",
+                "button_h6fqrg",
+                "image_EABHMg"
+            ],
+            "custom_css": [
+                ".content-builder {padding: 1.1rem 1.1rem 2.5rem;}",
+                ".content-builder__container {max-width: 55rem; margin: auto; gap: 0; background: #f1f1f1;}",
+                ".content-builder__right {padding: 1.7rem;}",
+                "@media (min-width: 920px) {.content-builder {padding-top: 1.6rem; padding-bottom: 4rem; } .content-builder__right {padding-left: 3.85rem; padding-right: 3.85rem; justify-content: center; }}"
+            ],
+            "settings": {
+                "background_color": "#f5f5f5",
+                "desktop_padding": 0,
+                "mobile_padding": 0,
+                "show_features": false
+            }
+        }
+    },
+    "order": [
+        "content-builder"
+    ]
+}
