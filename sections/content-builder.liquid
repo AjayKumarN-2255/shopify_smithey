@@ -25,6 +25,9 @@
 
             {% when 'faq' %}
               {% render 'faq-item', block: block %}
+
+            {% when 'login-form' %}
+              {% render 'content-builder-login-form', block: block %}
           {% endcase %}
         {% endif %}
       {% endfor %}
@@ -51,6 +54,9 @@
 
             {% when 'faq' %}
               {% render 'faq-item', block: block %}
+
+            {% when 'login-form' %}
+              {% render 'content-builder-login-form', block: block %}
           {% endcase %}
         {% endif %}
       {% endfor %}
@@ -642,6 +648,28 @@
           "id": "custom_css",
           "label": "Custom CSS",
           "info": "Use '&' to target this block. Example: '& { margin-top: 2rem; }'"
+        }
+      ]
+    },
+    {
+      "type": "login-form",
+      "name": "Login Form",
+      "settings": [
+        {
+          "type": "select",
+          "id": "position",
+          "label": "Content Position",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "left"
         }
       ]
     }
