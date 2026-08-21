@@ -57,7 +57,7 @@
   }
 
   .privacy-policy__accordion + .privacy-policy__accordion {
-    margin-top: 0.85rem;
+    margin-top: 1.5rem;
   }
 
   .privacy-policy__accordion-header {
@@ -94,7 +94,13 @@
     transition: transform 0.2s ease;
   }
 
+  .privacy-policy__accordion.is-open .privacy-policy__accordion-header {
+    background: var(--privacy-policy-active);
+    color: #ffffff;
+  }
+
   .privacy-policy__accordion.is-open .privacy-policy__accordion-icon {
+    color: #ffffff;
     transform: rotate(90deg);
   }
 
@@ -115,13 +121,127 @@
     line-height: 1.55;
   }
 
+  .privacy-policy__section {
+    width: 100%;
+  }
+
+  .privacy-policy__section + .privacy-policy__section {
+    margin-top: 1.75rem;
+  }
+
+  .privacy-policy__section-heading {
+    margin: 0 0 0.75rem;
+    color: var(--privacy-policy-text);
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .privacy-policy__text {
+    margin: 0;
+    color: var(--privacy-policy-text);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  .privacy-policy__text + .privacy-policy__text {
+    margin-top: 1rem;
+  }
+
+  .privacy-policy__list {
+    margin: 1rem 0 0;
+    padding: 0 0 0 1.25rem;
+    color: var(--privacy-policy-text);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6;
+    list-style: disc;
+  }
+
+  .privacy-policy__list-item {
+    margin: 0 0 0.55rem;
+    padding-left: 0.15rem;
+  }
+
+  .privacy-policy__list-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .privacy-policy__list--columns {
+    column-count: 1;
+    column-gap: 2.5rem;
+  }
+
+  .privacy-policy__list--columns .privacy-policy__list-item {
+    break-inside: avoid;
+  }
+
+  .privacy-policy__table-wrap {
+    width: 100%;
+    margin-top: 1.25rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .privacy-policy__table {
+    width: 100%;
+    min-width: 36rem;
+    border-collapse: collapse;
+    border: 1px solid #1a1a1a;
+    table-layout: fixed;
+    color: var(--privacy-policy-text);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.55;
+    text-align: left;
+  }
+
+  .privacy-policy__table caption {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .privacy-policy__table th,
+  .privacy-policy__table td {
+    padding: 0.9rem 1rem;
+    border: 1px solid #1a1a1a;
+    vertical-align: top;
+  }
+
+  .privacy-policy__table thead th {
+    background: #e5e7eb;
+    font-weight: 700;
+  }
+
+  .privacy-policy__table tbody tr:nth-child(odd) td {
+    background: #f5f4f9;
+  }
+
+  .privacy-policy__table tbody tr:nth-child(even) td {
+    background: #ffffff;
+  }
+
+  .privacy-policy__table--disclose {
+    min-width: 48rem;
+  }
+
   @media (min-width: 920px) {
     .privacy-policy__header {
       margin-bottom: 1.6rem;
     }
 
     .privacy-policy__title {
-      font-size: 2rem;
+      font-size: 32px;
+      font-weight: 500;
     }
 
     .privacy-policy__updated {
@@ -135,7 +255,7 @@
     }
 
     .privacy-policy__accordion + .privacy-policy__accordion {
-      margin-top: 1rem;
+      margin-top: 1.2rem;
     }
 
     .privacy-policy__accordion-header {
@@ -153,6 +273,51 @@
 
     .privacy-policy__placeholder {
       font-size: 0.85rem;
+    }
+
+    .privacy-policy__section + .privacy-policy__section {
+      margin-top: 2.25rem;
+    }
+
+    .privacy-policy__section-heading {
+      margin-bottom: 0.85rem;
+      font-size: 24px;
+    }
+
+    .privacy-policy__text {
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    .privacy-policy__list {
+      margin-top: 1.15rem;
+      padding-left: 1.5rem;
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    .privacy-policy__list-item {
+      margin-bottom: 0.4rem;
+    }
+
+    .privacy-policy__list--columns {
+      column-count: 2;
+      column-gap: 3rem;
+    }
+
+    .privacy-policy__table-wrap {
+      margin-top: 1.5rem;
+      overflow-x: visible;
+    }
+
+    .privacy-policy__table {
+      min-width: 0;
+      font-size: 16px;
+    }
+
+    .privacy-policy__table th,
+    .privacy-policy__table td {
+      padding: 1rem 1.15rem;
     }
   }
 </style>
@@ -186,7 +351,153 @@
     </span>
   </button>
   <div class="privacy-policy__accordion-content">
-    <p class="privacy-policy__placeholder">Privacy Policy content</p>
+    <div class="privacy-policy__section privacy-policy__section--collect">
+      <p class="privacy-policy__text">
+        We collect the personal information you provide to us when you purchase our products or visit our website. The
+        categories of information we may collect include:
+      </p>
+
+      <ul class="privacy-policy__list">
+        <li class="privacy-policy__list-item">
+          Personal Identifiers, including name, email address, postal address, telephone number, and online Identifiers
+        </li>
+        <li class="privacy-policy__list-item">Internet Activity</li>
+        <li class="privacy-policy__list-item">Commercial Information, including purchases</li>
+        <li class="privacy-policy__list-item">Financial Information, including credit or debit card number</li>
+        <li class="privacy-policy__list-item">Location Information, including general location data</li>
+        <li class="privacy-policy__list-item">
+          Protected Classifications and Other Personal Characteristics, including age, sex, gender, or gender identity,
+          and military or veteran status
+        </li>
+        <li class="privacy-policy__list-item">
+          Consumer Communications, including direct communications with our consumers
+        </li>
+      </ul>
+    </div>
+
+    <div class="privacy-policy__section privacy-policy__section--cookies">
+      <h3 class="privacy-policy__section-heading">Browser Cookies</h3>
+      <p class="privacy-policy__text">
+        We use cookies to create a better experience for you on our site. For example, cookies prevent you from having
+        to login repeatedly, and they help us remember items you've added to your cart. We also use third-party cookies,
+        which are cookies placed by third parties for advertising and analytics purposes. You can control these cookies
+        through your browser settings.
+      </p>
+    </div>
+
+    <div class="privacy-policy__section privacy-policy__section--retention">
+      <h3 class="privacy-policy__section-heading">How long we keep your data</h3>
+      <p class="privacy-policy__text">
+        We do not retain data for any longer than is necessary for the purposes described in this Policy.
+      </p>
+      <p class="privacy-policy__text">We generally retain data according to the guidelines below.</p>
+
+      <div class="privacy-policy__table-wrap">
+        <table class="privacy-policy__table">
+          <caption>
+            Data Retention Periods
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Type of Data</th>
+              <th scope="col">Retention Period</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                Cookies and online data we collect while you use our website, including Online Identifiers, Internet
+                Activity, General location data
+              </td>
+              <td>We delete or anonymize data concerning your use of our website within 10 years of collecting it.</td>
+            </tr>
+            <tr>
+              <td>
+                Data we collect in order to process and ship orders you place with us, including Name, Email address,
+                Postal address, Telephone number, Purchases, Credit or debit card number, Military or veteran status
+              </td>
+              <td>
+                We keep personal information related to products and services you purchase for as long as the personal
+                data is required for us to fulfill our contract with you, and for 10 years from your last purchase with
+                us. We may keep data beyond this period in anonymized form.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Data we collect when you contact us for customer support and other inquiries, including Name, Email
+                address, Telephone number, Purchases, Direct communications with our consumers
+              </td>
+              <td>
+                We keep customer feedback and correspondence with our customer service for up to 10 years to help us
+                respond to any questions or complaints. We may keep data beyond this period in anonymized form.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Data we collect when you sign up for promotional and marketing communications, including Name, Email
+                address, Postal address, Telephone number, Online Identifiers, Internet Activity, Purchases, Direct
+                communications with our consumers
+              </td>
+              <td>
+                Where you have signed up to receive promotional and marketing communications from us, we will retain any
+                data collected until you opt out or request its deletion. We may keep data beyond this period in
+                anonymized form. We will further retain a record of any opt-outs in order to prevent sending you future
+                communications.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Data we collect when you review our products, answer surveys, or send feedback, including Name, Email
+                address, Purchases, Age, Sex, gender, or gender identity, Direct communications with our consumers
+              </td>
+              <td>
+                We retain review, survey, and feedback data for up to 10 years following your last contact with us. We
+                may keep data beyond this period in anonymized form to help improve our products and services.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Data we collect in connection with privacy requests, including Name, Email address, Online Identifiers
+              </td>
+              <td>
+                We retain records related to privacy requests as long as necessary to comply with our legal obligations.
+              </td>
+            </tr>
+            <tr>
+              <td>Data we collect for security purposes, including Name, Email address, Online Identifiers</td>
+              <td>
+                We retain security-related data as long as necessary to comply with our legal obligations and to
+                maintain and improve our information security measures.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="privacy-policy__section privacy-policy__section--purposes">
+      <h3 class="privacy-policy__section-heading">Why we process your information</h3>
+      <p class="privacy-policy__text">
+        We process personal information for the following business and commercial purposes:
+      </p>
+
+      <ul class="privacy-policy__list privacy-policy__list--columns">
+        <li class="privacy-policy__list-item">Analyzing Data</li>
+        <li class="privacy-policy__list-item">Conducting Surveys</li>
+        <li class="privacy-policy__list-item">Creating Customer Profiles</li>
+        <li class="privacy-policy__list-item">Delivering Targeted Ads</li>
+        <li class="privacy-policy__list-item">Fulfilling Customer Orders</li>
+        <li class="privacy-policy__list-item">Improving Our Products &amp; Services</li>
+        <li class="privacy-policy__list-item">Internal Business Operations</li>
+        <li class="privacy-policy__list-item">Meeting Compliance &amp; Legal Requirements</li>
+        <li class="privacy-policy__list-item">Operating Our Website or Mobile Apps</li>
+        <li class="privacy-policy__list-item">Preventing Fraud</li>
+        <li class="privacy-policy__list-item">Processing Payments</li>
+        <li class="privacy-policy__list-item">Providing Customer Support</li>
+        <li class="privacy-policy__list-item">Sending Promotional Communications</li>
+        <li class="privacy-policy__list-item">Tracking Purchases &amp; Customer Data</li>
+      </ul>
+    </div>
   </div>
 </div>
 
@@ -200,7 +511,79 @@
     </span>
   </button>
   <div class="privacy-policy__accordion-content">
-    <p class="privacy-policy__placeholder">Privacy Policy content</p>
+    <div class="privacy-policy__section privacy-policy__section--disclose">
+      <p class="privacy-policy__text">
+        We may disclose personal information about you for business and commercial purposes when you purchase our
+        products or visit our website:
+      </p>
+
+      <div class="privacy-policy__table-wrap">
+        <table class="privacy-policy__table privacy-policy__table--disclose">
+          <caption>
+            Personal Information Sharing Categories
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Personal Information Category</th>
+              <th scope="col">Categories of Service Providers</th>
+              <th scope="col">Categories of Third Parties</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Personal Identifiers</td>
+              <td>
+                Business Operations Tool, Commerce Software Tools, Customer Support Contractors, Customer Support Tools,
+                Cybersecurity Providers, Data Analytics Providers, Governance, Risk &amp; Compliance Software, Sales
+                &amp; Marketing Contractors, Sales &amp; Marketing Tools, and Shipping Services
+              </td>
+              <td>
+                Ad Networks, Data Cooperative, Payment Processors, Sales &amp; Marketing Tools, and Shipping Services
+              </td>
+            </tr>
+            <tr>
+              <td>Internet Activity</td>
+              <td>
+                Commerce Software Tools, Customer Support Tools, Cybersecurity Providers, Data Analytics Providers, and
+                Sales &amp; Marketing Tools
+              </td>
+              <td>Ad Networks and Data Cooperative</td>
+            </tr>
+            <tr>
+              <td>Commercial Information</td>
+              <td>
+                Business Operations Tool, Commerce Software Tools, Customer Support Contractors, Sales &amp; Marketing
+                Contractors, Sales &amp; Marketing Tools, and Shipping Services
+              </td>
+              <td>Ad Networks, Data Cooperative, and Payment Processors</td>
+            </tr>
+            <tr>
+              <td>Financial Information</td>
+              <td>Commerce Software Tools</td>
+              <td>Payment Processors</td>
+            </tr>
+            <tr>
+              <td>Location Information</td>
+              <td>
+                Business Operations Tool, Customer Support Contractors, Data Analytics Providers, Sales &amp; Marketing
+                Contractors, Sales &amp; Marketing Tools, and Shipping Services
+              </td>
+              <td>Ad Networks</td>
+            </tr>
+            <tr>
+              <td>Protected Classifications and Other Personal Characteristics</td>
+              <td>None</td>
+              <td>Sales &amp; Marketing Tools</td>
+            </tr>
+            <tr>
+              <td>Consumer Communications</td>
+              <td>Business Operations Tool, Customer Support Contractors, and Customer Support Tools</td>
+              <td>None</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -214,6 +597,19 @@
     </span>
   </button>
   <div class="privacy-policy__accordion-content">
-    <p class="privacy-policy__placeholder">Privacy Policy content</p>
+    <div class="privacy-policy__section privacy-policy__section--shopify">
+      <p class="privacy-policy__text">
+        Our online store is hosted by Shopify, and Shopify collects and processes personal data about store customers
+        for purposes including but not limited to: providing product and store customization, analytics, and advertising
+        services. Information submitted by customers will be shared with Shopify as well as third parties that may be
+        located in other countries. To learn more about Shopify’s data practices, please review their
+        <a href="https://www.shopify.com/legal/privacy/consumers">privacy policy</a>.
+      </p>
+
+      <p class="privacy-policy__text">
+        Depending on your jurisdiction, you may opt out or object to Shopify’s processing of your data for certain use
+        cases on their <a href="https://privacy.shopify.com/en">Privacy Controls</a> page.
+      </p>
+    </div>
   </div>
 </div>
