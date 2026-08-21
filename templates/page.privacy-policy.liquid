@@ -11,7 +11,7 @@
     padding: 1.5rem 1.25rem 3.5rem;
     color: var(--privacy-policy-text);
     font-family: var(--font-body);
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   .privacy-policy *,
@@ -68,6 +68,9 @@
 
     .privacy-policy__sidebar {
       margin-bottom: 0;
+      position: sticky;
+      top: 1.5rem;
+      align-self: start;
     }
   }
 
@@ -83,6 +86,7 @@
   }
 </style>
 
+{% layout 'privacy-theme' %}
 <script src="{{ 'privacy-policy.js' | asset_url }}" defer></script>
 
 <div class="privacy-policy" data-privacy-policy>
@@ -122,4 +126,3 @@
     </div>
   </div>
 </div>
-

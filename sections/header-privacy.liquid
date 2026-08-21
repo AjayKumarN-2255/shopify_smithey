@@ -1,0 +1,92 @@
+<style>
+  .privacy-header {
+    position: relative;
+    z-index: 100;
+    width: 100%;
+    background-color: #ffffff;
+    color: #111;
+  }
+
+  .privacy-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 100%;
+    padding: 0.85rem 1.25rem;
+  }
+
+  .privacy-header__logo {
+    display: flex;
+    align-items: center;
+  }
+
+  .privacy-header__logo-link {
+    display: block;
+    color: #111;
+    text-decoration: none;
+  }
+
+  .privacy-header__logo-image {
+    display: block;
+    width: 72px;
+    height: auto;
+    max-height: 72px;
+    object-fit: contain;
+  }
+
+  .privacy-header__logo-text {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  @media (min-width: 920px) {
+    .privacy-header__inner {
+      padding: 1.15rem 2.5rem;
+    }
+
+    .privacy-header__logo-image {
+      width: 90px;
+      max-height: 90px;
+    }
+
+    .privacy-header__logo-text {
+      font-size: 1.35rem;
+    }
+  }
+</style>
+
+<header class="privacy-header">
+  <div class="privacy-header__inner">
+    <div class="privacy-header__logo">
+      <a href="{{ routes.root_url }}" class="privacy-header__logo-link">
+        {% if section.settings.logo != blank %}
+          {{
+            section.settings.logo
+            | image_url: width: 300
+            | image_tag: class: 'privacy-header__logo-image', alt: shop.name
+          }}
+        {% else %}
+          <span class="privacy-header__logo-text">{{ shop.name }}</span>
+        {% endif %}
+      </a>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Privacy Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    }
+  ]
+}
+{% endschema %}

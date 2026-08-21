@@ -1,0 +1,15 @@
+{
+    "type": "header",
+    "name": "Header Privacy Group",
+    "sections": {
+        "header-privacy": {
+            "type": "header-privacy",
+            "settings": {
+                "logo": "shopify://shop_images/Smithey_AlternateLockup_01_WEB.webp"
+            }
+        }
+    },
+    "order": [
+        "header-privacy"
+    ]
+}
