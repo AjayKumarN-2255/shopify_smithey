@@ -1,46 +1,193 @@
 <style>
-  .privacy-policy__privacy-choices .privacy-policy__header {
+  .privacy-policy__privacy-choices {
     width: 100%;
-    margin-bottom: 1.5rem;
   }
 
-  .privacy-policy__privacy-choices .privacy-policy__title {
+  .privacy-policy__privacy-choices .privacy-choices__inner {
+    width: 100%;
+    max-width: 40rem;
     margin: 0;
-    color: var(--privacy-policy-text);
+  }
+
+  .privacy-policy__privacy-choices .privacy-choices__title {
+    margin: 0 0 1.25rem;
+    color: var(--privacy-policy-text, #1a1a1a);
     font-family: var(--font-body);
-    font-size: 1.75rem;
-    font-weight: 700;
-    line-height: 1.2;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.25;
     text-align: center;
   }
 
-  .privacy-policy__privacy-choices .privacy-policy__placeholder {
-    margin: 0;
-    color: var(--privacy-policy-text);
-    font-size: 0.9375rem;
-    font-weight: 400;
+  .privacy-policy__privacy-choices .privacy-choices__subtitle {
+    margin: 0 0 1rem;
+    color: var(--privacy-policy-text, #1a1a1a);
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+
+  .privacy-policy__privacy-choices .privacy-choices__text {
+    margin: 0 0 1rem;
+    color: var(--privacy-policy-text, #1a1a1a);
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 500;
     line-height: 1.55;
   }
 
+  .privacy-policy__privacy-choices .privacy-choices__text--italic {
+    font-style: italic;
+  }
+
+  .privacy-policy__privacy-choices .privacy-choices__text a,
+  .privacy-policy__privacy-choices .privacy-choices__text--italic a {
+    color: #0084a8;
+    text-decoration: underline;
+  }
+
+  .privacy-policy__privacy-choices .privacy-choices__field {
+    margin: 0.5rem 0 1.25rem 0;
+  }
+
+  .privacy-policy__privacy-choices .privacy-choices__field-label {
+    display: block;
+    margin: 0 0 0.4rem;
+    color: var(--privacy-policy-text, #1a1a1a);
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .privacy-policy__privacy-choices .privacy-choices__control {
+    box-sizing: border-box;
+    width: 100%;
+    height: 50px;
+    margin: 0;
+    padding: 0 2.5rem 0 1rem;
+    border: 1px solid #d0d0d5;
+    border-radius: 8px;
+    background-color: #fff;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23666' d='M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 12px 8px;
+    color: var(--privacy-policy-text, #1a1a1a);
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 48px;
+    appearance: none;
+    -webkit-appearance: none;
+    margin: 0.75rem 0 1.25rem 0;
+    cursor: pointer;
+  }
+
+  .privacy-policy__privacy-choices .privacy-choices__actions {
+    margin: 0;
+  }
+
+  .privacy-policy__privacy-choices .privacy-choices__submit {
+    display: inline-block;
+    box-sizing: border-box;
+    height: 41px;
+    margin: 0;
+    padding: 0 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #716e82;
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    line-height: 41px;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
   @media (min-width: 920px) {
-    .privacy-policy__privacy-choices .privacy-policy__header {
-      margin-bottom: 1.6rem;
+    .privacy-policy__privacy-choices .privacy-choices__title {
+      margin-bottom: 1.5rem;
+      font-size: 34px;
+      font-weight: 700;
     }
 
-    .privacy-policy__privacy-choices .privacy-policy__title {
-      font-size: 32px;
-      font-weight: 500;
+    .privacy-policy__privacy-choices .privacy-choices__subtitle {
+      margin-bottom: 1.15rem;
+      font-size: 24px;
     }
 
-    .privacy-policy__privacy-choices .privacy-policy__placeholder {
-      font-size: 0.85rem;
+    .privacy-policy__privacy-choices .privacy-choices__text,
+    .privacy-policy__privacy-choices .privacy-choices__field-label,
+    .privacy-policy__privacy-choices .privacy-choices__control {
+      font-size: 16px;
+    }
+
+    .privacy-policy__privacy-choices .privacy-choices__submit {
+      font-size: 14px;
     }
   }
 </style>
 
 <div class="privacy-policy__privacy-choices">
-  <header class="privacy-policy__header">
-    <h1 class="privacy-policy__title">Your Privacy Choices</h1>
-  </header>
-  <p class="privacy-policy__placeholder">Your Privacy Choices content</p>
+  <div class="privacy-choices__inner">
+    <h1 class="privacy-choices__title">Your Privacy Choices</h1>
+
+    <h2 class="privacy-choices__subtitle">Request to Opt-Out</h2>
+
+    <p class="privacy-choices__text">
+      We use third party data analytics providers whose collection of information may be considered a “sale” of
+      information under some privacy laws.
+    </p>
+
+    <p class="privacy-choices__text">
+      To opt-out of these practices, submit a request below or via email to
+      <a href="mailto:privacy@smithey.com">privacy@smithey.com</a>
+    </p>
+
+    <p class="privacy-choices__text privacy-choices__text--italic">
+      We use the
+      <a href="https://iabtechlab.com/gpp/" rel="nofollow">Global Privacy Platform (GPP)</a>
+      mechanism to communicate your Request to Opt-Out to third parties that collect information via cookies on our
+      website. If you choose, you may also use the
+      <a href="http://www.aboutads.info/choices" rel="nofollow">Digital Advertising Alliance (DAA) WebChoices Tool</a>
+      to globally opt-out of third-party tracking via website cookies.
+    </p>
+
+    <form class="privacy-choices__form">
+      <div class="privacy-choices__field">
+        <label class="privacy-choices__field-label" for="privacy-choices-region"> I certify I am a resident of </label>
+        <select class="privacy-choices__control" id="privacy-choices-region" name="requestRegionCountryCode">
+          <option value="" disabled selected>Select your location</option>
+          <option value="US-CA">California</option>
+          <option value="US-CO">Colorado</option>
+          <option value="US-CT">Connecticut</option>
+          <option value="US-DE">Delaware</option>
+          <option value="US-IN">Indiana</option>
+          <option value="US-IA">Iowa</option>
+          <option value="US-KY">Kentucky</option>
+          <option value="US-MD">Maryland</option>
+          <option value="US-MN">Minnesota</option>
+          <option value="US-MT">Montana</option>
+          <option value="US-NE">Nebraska</option>
+          <option value="US-NV">Nevada</option>
+          <option value="US-NH">New Hampshire</option>
+          <option value="US-NJ">New Jersey</option>
+          <option value="US-OR">Oregon</option>
+          <option value="US-RI">Rhode Island</option>
+          <option value="US-TN">Tennessee</option>
+          <option value="US-TX">Texas</option>
+          <option value="US-UT">Utah</option>
+          <option value="US-VA">Virginia</option>
+        </select>
+      </div>
+
+      <div class="privacy-choices__actions">
+        <button class="privacy-choices__submit" type="submit">Submit Request</button>
+      </div>
+    </form>
+  </div>
 </div>
