@@ -1,47 +1,308 @@
 <style>
-  .privacy-policy__privacy-request .privacy-policy__header {
+  .privacy-policy__privacy-request {
     width: 100%;
-    margin-bottom: 1.5rem;
   }
 
-  .privacy-policy__privacy-request .privacy-policy__title {
+  .privacy-policy__privacy-request .privacy-request__inner {
+    width: 100%;
+    max-width: 40rem;
+  }
+
+  .privacy-policy__privacy-request .privacy-request__header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    margin: 0 0 1.25rem;
+  }
+
+  .privacy-policy__privacy-request .privacy-request__title {
     margin: 0;
-    color: var(--privacy-policy-text);
+    color: var(--privacy-policy-text, #1a1a1a);
     font-family: var(--font-body);
-    font-size: 1.75rem;
-    font-weight: 700;
-    line-height: 1.2;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.25;
     text-align: center;
   }
 
-  .privacy-policy__privacy-request .privacy-policy__placeholder {
+  .privacy-policy__privacy-request .privacy-request__lang {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+  }
+
+  .privacy-policy__privacy-request .privacy-request__lang-select {
+    box-sizing: border-box;
+    width: auto;
+    min-width: 7.5rem;
     margin: 0;
-    color: var(--privacy-policy-text);
+    padding: 0.55rem 2.25rem 0.55rem 0.85rem;
+    border: 1px solid #d0d0d5;
+    border-radius: 8px;
+    background-color: #fff;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23666' d='M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.85rem center;
+    background-size: 12px 8px;
+    color: var(--privacy-policy-text, #1a1a1a);
     font-family: var(--font-body);
-    font-size: 0.9375rem;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.4;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+  }
+
+  .privacy-policy__privacy-request .privacy-request__intro {
+    margin: 0 0 1.75rem;
+    color: var(--privacy-policy-text, #1a1a1a);
+    font-family: var(--font-body);
+    font-size: 16px;
     font-weight: 400;
     line-height: 1.55;
   }
 
-  @media (min-width: 920px) {
-    .privacy-policy__privacy-request .privacy-policy__header {
-      margin-bottom: 1.6rem;
+  .privacy-policy__privacy-request .privacy-request__intro a {
+    color: #0084a8;
+    text-decoration: underline;
+  }
+
+  .privacy-policy__privacy-request .privacy-request__field {
+    margin: 0 0 1.25rem;
+  }
+
+  .privacy-policy__privacy-request .privacy-request__field-label {
+    display: block;
+    margin: 0 0 0.4rem;
+    color: var(--privacy-policy-text, #1a1a1a);
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  .privacy-policy__privacy-request .privacy-request__control {
+    box-sizing: border-box;
+    width: 100%;
+    height: 50px;
+    margin: 0;
+    padding: 0 1rem;
+    border: 1px solid #d0d0d5;
+    border-radius: 8px;
+    background-color: #fff;
+    color: var(--privacy-policy-text, #1a1a1a);
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 48px;
+  }
+
+  .privacy-policy__privacy-request select.privacy-request__control {
+    padding-right: 2.5rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23666' d='M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 12px 8px;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+  }
+
+  .privacy-policy__privacy-request select.privacy-request__control:disabled {
+    background-color: #f0f0f2;
+    color: #9a9a9f;
+    cursor: not-allowed;
+  }
+
+  .privacy-policy__privacy-request .privacy-request__name-row {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin: 0 0 1.25rem;
+  }
+
+  .privacy-policy__privacy-request .privacy-request__name-row .privacy-request__field {
+    flex: 1 1 0;
+    margin: 0;
+    min-width: 0;
+  }
+
+  .privacy-policy__privacy-request .privacy-request__actions {
+    margin: 0 0 1.5rem;
+  }
+
+  .privacy-policy__privacy-request .privacy-request__submit {
+    display: inline-block;
+    box-sizing: border-box;
+    height: 41px;
+    margin: 0;
+    padding: 0 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #c5c5cb;
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 41px;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .privacy-policy__privacy-request .privacy-request__submit:disabled {
+    opacity: 1;
+    cursor: not-allowed;
+  }
+
+  .privacy-policy__privacy-request .privacy-request__alt {
+    margin: 0 0 0.5rem;
+    color: var(--privacy-policy-text, #1a1a1a);
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  .privacy-policy__privacy-request .privacy-request__alt-email {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.35rem;
+    margin: 0;
+    color: var(--privacy-policy-text, #1a1a1a);
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  .privacy-policy__privacy-request .privacy-request__alt-email-label {
+    font-weight: 700;
+  }
+
+  .privacy-policy__privacy-request .privacy-request__alt-email-link {
+    color: #0084a8;
+    text-decoration: underline;
+  }
+
+  @media (max-width: 560px) {
+    .privacy-policy__privacy-request .privacy-request__header {
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 0.75rem;
     }
 
-    .privacy-policy__privacy-request .privacy-policy__title {
-      font-size: 32px;
-      font-weight: 500;
+    .privacy-policy__privacy-request .privacy-request__title {
+      flex: 1 1 auto;
+      text-align: left;
     }
 
-    .privacy-policy__privacy-request .privacy-policy__placeholder {
-      font-size: 0.85rem;
+    .privacy-policy__privacy-request .privacy-request__lang {
+      position: static;
+      transform: none;
+      margin-left: auto;
+    }
+
+    .privacy-policy__privacy-request .privacy-request__name-row {
+      flex-direction: column;
     }
   }
 </style>
 
 <div class="privacy-policy__privacy-request">
-  <header class="privacy-policy__header">
-    <h1 class="privacy-policy__title">Privacy Request</h1>
-  </header>
-  <p class="privacy-policy__placeholder">Make a Privacy Request content</p>
+  <div class="privacy-request__inner">
+    <div class="privacy-request__header">
+      <h2 class="privacy-request__title">Privacy Request</h2>
+
+      <div class="privacy-request__lang">
+        <select class="privacy-request__lang-select" aria-label="Language">
+          <option value="en" selected>English</option>
+          <option value="de">Deutsch</option>
+          <option value="es">Español</option>
+          <option value="fr">Français</option>
+          <option value="it">Italiano</option>
+          <option value="nl">Nederlands</option>
+          <option value="no">Norsk</option>
+          <option value="sv">Svenska</option>
+        </select>
+      </div>
+    </div>
+
+    <p class="privacy-request__intro">
+      Submit this form to make a Privacy Request. To exercise your right to opt-out of data selling/sharing, visit
+      <a href="/opt-out">Your Privacy Choices</a>. To better understand your rights, you can review our
+      <a href="/privacy-policy">Privacy Policy</a>.
+    </p>
+
+    <form class="privacy-request__form">
+      <div class="privacy-request__field">
+        <label class="privacy-request__field-label" for="privacy-request-state">State</label>
+        <select class="privacy-request__control" id="privacy-request-state" name="state">
+          <option value="" disabled selected>Select a state</option>
+          <option value="US-CA">California</option>
+          <option value="US-CO">Colorado</option>
+          <option value="US-CT">Connecticut</option>
+          <option value="US-DE">Delaware</option>
+          <option value="US-IN">Indiana</option>
+          <option value="US-IA">Iowa</option>
+          <option value="US-KY">Kentucky</option>
+          <option value="US-MD">Maryland</option>
+          <option value="US-MN">Minnesota</option>
+          <option value="US-MT">Montana</option>
+          <option value="US-NE">Nebraska</option>
+          <option value="US-NV">Nevada</option>
+          <option value="US-NH">New Hampshire</option>
+          <option value="US-NJ">New Jersey</option>
+          <option value="US-OR">Oregon</option>
+          <option value="US-RI">Rhode Island</option>
+          <option value="US-TN">Tennessee</option>
+          <option value="US-TX">Texas</option>
+          <option value="US-UT">Utah</option>
+          <option value="US-VA">Virginia</option>
+        </select>
+      </div>
+
+      <div class="privacy-request__field">
+        <label class="privacy-request__field-label" for="privacy-request-type">Request Type</label>
+        <select class="privacy-request__control" id="privacy-request-type" name="dataRequestType" disabled>
+          <option value="" disabled selected>Select region/state first</option>
+        </select>
+      </div>
+
+      <div class="privacy-request__name-row">
+        <div class="privacy-request__field">
+          <label class="privacy-request__field-label" for="privacy-request-first-name">First Name</label>
+          <input class="privacy-request__control" id="privacy-request-first-name" required type="text" name="firstName">
+        </div>
+
+        <div class="privacy-request__field">
+          <label class="privacy-request__field-label" for="privacy-request-last-name">Last Name</label>
+          <input class="privacy-request__control" id="privacy-request-last-name" required type="text" name="lastName">
+        </div>
+      </div>
+
+      <div class="privacy-request__field">
+        <label class="privacy-request__field-label" for="privacy-request-email">Email</label>
+        <input class="privacy-request__control" id="privacy-request-email" required type="email" name="email">
+      </div>
+
+      <div class="privacy-request__actions">
+        <button class="privacy-request__submit" type="submit" disabled>Submit</button>
+      </div>
+
+      <p class="privacy-request__alt">Other ways to submit a new Privacy Request:</p>
+
+      <div class="privacy-request__alt-email">
+        <span class="privacy-request__alt-email-label">Email:</span>
+        <a class="privacy-request__alt-email-link" href="mailto:privacy@smithey.com">privacy@smithey.com</a>
+      </div>
+    </form>
+  </div>
 </div>
