@@ -1,12 +1,11 @@
 <style>
-  .privacy-policy__us-state-privacy .privacy-policy__header {
+  .us-state-privacy {
     width: 100%;
-    margin-bottom: 1.5rem;
   }
 
-  .privacy-policy__us-state-privacy .privacy-policy__title {
-    margin: 0;
-    color: var(--privacy-policy-text);
+  .us-state-privacy__title {
+    margin: 0 0 1.5rem;
+    color: var(--privacy-policy-text, #1a1a1a);
     font-family: var(--font-body);
     font-size: 1.75rem;
     font-weight: 700;
@@ -14,32 +13,924 @@
     text-align: center;
   }
 
-  .privacy-policy__us-state-privacy .privacy-policy__placeholder {
+  .us-state-map {
+    display: none;
+    width: 100%;
+    overflow: visible;
+  }
+
+  .us-state-map__grid {
+    display: grid;
+    grid-template-columns: repeat(12, 46px);
+    grid-template-rows: repeat(8, 46px);
+    gap: 8px;
+    width: max-content;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 12px;
+    overflow: visible;
+  }
+
+  .us-state-map__cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 8px;
+    background: #fff;
+    color: #716e82;
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(113, 110, 130, 0.25), 0 4px 10px rgba(113, 110, 130, 0.3),
+      0 8px 18px rgba(113, 110, 130, 0.2);
+    pointer-events: none;
+  }
+
+  a.us-state-map__cell {
+    background: #716e82;
+    color: #fff;
+    pointer-events: auto;
+    box-shadow: 0 2px 4px rgba(113, 110, 130, 0.25), 0 4px 10px rgba(113, 110, 130, 0.3),
+      0 8px 18px rgba(113, 110, 130, 0.2);
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  a.us-state-map__cell:hover,
+  a.us-state-map__cell:focus-visible {
+    background: #4f4d5c;
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 2px 4px rgba(113, 110, 130, 0.25), 0 4px 10px rgba(113, 110, 130, 0.3),
+      0 8px 18px rgba(113, 110, 130, 0.2);
+    outline: none;
+  }
+
+  .us-state-privacy .privacy-policy__accordion {
+    width: 100%;
+  }
+
+  .us-state-privacy .privacy-policy__accordion + .privacy-policy__accordion {
+    margin-top: 1.5rem;
+  }
+
+  .us-state-privacy .privacy-policy__accordion-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
     margin: 0;
-    color: var(--privacy-policy-text);
-    font-size: 0.9375rem;
+    min-height: 70px;
+    height: 70px;
+    padding: 0 1.15rem;
+    border: 0;
+    border-radius: 8px;
+    background: var(--privacy-policy-accordion, #e8e5ee);
+    color: var(--privacy-policy-text, #1a1a1a);
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.35;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .us-state-privacy .privacy-policy__accordion-title {
+    min-width: 0;
+    flex: 1;
+  }
+
+  .us-state-privacy .privacy-policy__accordion-icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    color: #4a4a4a;
+    transition: transform 0.2s ease;
+  }
+
+  .us-state-privacy .privacy-policy__accordion.is-open .privacy-policy__accordion-header {
+    background: var(--privacy-policy-active, #716e82);
+    color: #ffffff;
+  }
+
+  .us-state-privacy .privacy-policy__accordion.is-open .privacy-policy__accordion-icon {
+    color: #ffffff;
+    transform: rotate(90deg);
+  }
+
+  .us-state-privacy .privacy-policy__accordion-content {
+    display: none;
+    padding: 1rem 0.15rem 0.35rem;
+  }
+
+  .us-state-privacy .privacy-policy__accordion.is-open .privacy-policy__accordion-content {
+    display: block;
+  }
+
+  .us-state-privacy .privacy-policy__section {
+    width: 100%;
+  }
+
+  .us-state-privacy .privacy-policy__section + .privacy-policy__section {
+    margin-top: 1.75rem;
+  }
+
+  .us-state-privacy .privacy-policy__section-heading {
+    margin: 0 0 0.75rem;
+    color: var(--privacy-policy-text, #1a1a1a);
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .us-state-privacy .privacy-policy__section-heading a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .us-state-privacy .privacy-policy__text {
+    margin: 0;
+    color: var(--privacy-policy-text, #1a1a1a);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  .us-state-privacy .privacy-policy__text + .privacy-policy__text {
+    margin-top: 1rem;
+  }
+
+  .us-state-privacy .privacy-policy__text a {
+    color: var(--privacy-policy-text, #1a1a1a);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+
+  .us-state-privacy .privacy-policy__list {
+    margin: 1rem 0 0;
+    padding: 0 0 0 1.25rem;
+    color: var(--privacy-policy-text, #1a1a1a);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6;
+    list-style: disc;
+  }
+
+  .us-state-privacy .privacy-policy__list-item {
+    margin: 0 0 0.55rem;
+    padding-left: 0.15rem;
+  }
+
+  .us-state-privacy .privacy-policy__list-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .us-state-privacy .privacy-policy__list--columns {
+    column-count: 1;
+    column-gap: 2.5rem;
+  }
+
+  .us-state-privacy .privacy-policy__list--columns .privacy-policy__list-item {
+    break-inside: avoid;
+  }
+
+  .us-state-privacy .privacy-policy__table-wrap {
+    width: 100%;
+    margin-top: 1.25rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .us-state-privacy .privacy-policy__table {
+    width: 100%;
+    min-width: 36rem;
+    border-collapse: collapse;
+    border: 1px solid #1a1a1a;
+    table-layout: fixed;
+    color: var(--privacy-policy-text, #1a1a1a);
+    font-size: 16px;
     font-weight: 400;
     line-height: 1.55;
+    text-align: left;
+  }
+
+  .us-state-privacy .privacy-policy__table caption {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .us-state-privacy .privacy-policy__table th,
+  .us-state-privacy .privacy-policy__table td {
+    padding: 0.9rem 1rem;
+    border: 1px solid #1a1a1a;
+    vertical-align: top;
+  }
+
+  .us-state-privacy .privacy-policy__table thead th {
+    background: #e5e7eb;
+    font-weight: 700;
+  }
+
+  .us-state-privacy .privacy-policy__table tbody tr:nth-child(odd) td {
+    background: #f5f4f9;
+  }
+
+  .us-state-privacy .privacy-policy__table tbody tr:nth-child(even) td {
+    background: #ffffff;
+  }
+
+  .us-state-privacy .privacy-policy__table--disclose {
+    min-width: 48rem;
   }
 
   @media (min-width: 920px) {
-    .privacy-policy__us-state-privacy .privacy-policy__header {
-      margin-bottom: 1.6rem;
-    }
-
-    .privacy-policy__us-state-privacy .privacy-policy__title {
+    .us-state-privacy__title {
+      margin-bottom: 2rem;
       font-size: 32px;
       font-weight: 500;
     }
 
-    .privacy-policy__us-state-privacy .privacy-policy__placeholder {
-      font-size: 0.85rem;
+    .us-state-map {
+      display: block;
+      width: 100%;
+      margin-bottom: 2rem;
+    }
+
+    .us-state-privacy .privacy-policy__accordion + .privacy-policy__accordion {
+      margin-top: 1.2rem;
+    }
+
+    .us-state-privacy .privacy-policy__accordion-header {
+      min-height: 70px;
+      height: 70px;
+      padding: 0 1.5rem;
+      border-radius: 8px;
+      font-size: 20px;
+      font-weight: 400;
+    }
+
+    .us-state-privacy .privacy-policy__accordion-content {
+      padding: 1.1rem 0.25rem 0.4rem;
+    }
+
+    .us-state-privacy .privacy-policy__section + .privacy-policy__section {
+      margin-top: 2.25rem;
+    }
+
+    .us-state-privacy .privacy-policy__section-heading {
+      margin-bottom: 0.85rem;
+      font-size: 24px;
+    }
+
+    .us-state-privacy .privacy-policy__text {
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    .us-state-privacy .privacy-policy__list {
+      margin-top: 1.15rem;
+      padding-left: 1.5rem;
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    .us-state-privacy .privacy-policy__list-item {
+      margin-bottom: 0.4rem;
+    }
+
+    .us-state-privacy .privacy-policy__list--columns {
+      column-count: 2;
+      column-gap: 3rem;
+    }
+
+    .us-state-privacy .privacy-policy__table-wrap {
+      margin-top: 1.5rem;
+      overflow-x: visible;
+    }
+
+    .us-state-privacy .privacy-policy__table {
+      min-width: 0;
+      font-size: 16px;
+    }
+
+    .us-state-privacy .privacy-policy__table th,
+    .us-state-privacy .privacy-policy__table td {
+      padding: 1rem 1.15rem;
     }
   }
 </style>
 
-<div class="privacy-policy__us-state-privacy">
-  <header class="privacy-policy__header">
-    <h1 class="privacy-policy__title">US State Privacy Notices</h1>
-  </header>dfasdasdsdces content</p>
+<div class="us-state-privacy">
+  <h1 class="us-state-privacy__title">US State Privacy Notices</h1>
+
+  <div class="us-state-map">
+    <div class="us-state-map__grid" aria-label="US state privacy map">
+      <div class="us-state-map__cell" style="grid-column:12;grid-row:1">ME</div>
+
+      <div class="us-state-map__cell" style="grid-column:1;grid-row:2">AK</div>
+      <div class="us-state-map__cell" style="grid-column:11;grid-row:2">VT</div>
+      <a
+        class="us-state-map__cell"
+        style="grid-column:12;grid-row:2"
+        aria-label="Privacy Notice for New Hampshire"
+        href="/privacy-policy?state=NH#new-hampshire-privacy-notice"
+        >NH</a
+      >
+
+      <div class="us-state-map__cell" style="grid-column:2;grid-row:3">WA</div>
+      <div class="us-state-map__cell" style="grid-column:3;grid-row:3">ID</div>
+      <a
+        class="us-state-map__cell"
+        style="grid-column:4;grid-row:3"
+        aria-label="Privacy Notice for Montana"
+        href="/privacy-policy?state=MT#montana-privacy-notice"
+        >MT</a
+      >
+      <div class="us-state-map__cell" style="grid-column:5;grid-row:3">ND</div>
+      <a
+        class="us-state-map__cell"
+        style="grid-column:6;grid-row:3"
+        aria-label="Privacy Notice for Minnesota"
+        href="/privacy-policy?state=MN#minnesota-privacy-notice"
+        >MN</a
+      >
+      <div class="us-state-map__cell" style="grid-column:8;grid-row:3">MI</div>
+      <div class="us-state-map__cell" style="grid-column:10;grid-row:3">NY</div>
+      <div class="us-state-map__cell" style="grid-column:11;grid-row:3">MA</div>
+      <a
+        class="us-state-map__cell"
+        style="grid-column:12;grid-row:3"
+        aria-label="Privacy Notice for Rhode Island"
+        href="/privacy-policy?state=RI#rhode-island-privacy-notice"
+        >RI</a
+      >
+
+      <a
+        class="us-state-map__cell"
+        style="grid-column:2;grid-row:4"
+        aria-label="Privacy Notice for Oregon"
+        href="/privacy-policy?state=OR#oregon-privacy-notice"
+        >OR</a
+      >
+      <a
+        class="us-state-map__cell"
+        style="grid-column:3;grid-row:4"
+        aria-label="Privacy Notice for Utah"
+        href="/privacy-policy?state=UT#utah-privacy-notice"
+        >UT</a
+      >
+      <div class="us-state-map__cell" style="grid-column:4;grid-row:4">WY</div>
+      <div class="us-state-map__cell" style="grid-column:5;grid-row:4">SD</div>
+      <a
+        class="us-state-map__cell"
+        style="grid-column:6;grid-row:4"
+        aria-label="Privacy Notice for Iowa"
+        href="/privacy-policy?state=IA#iowa-privacy-notice"
+        >IA</a
+      >
+      <div class="us-state-map__cell" style="grid-column:7;grid-row:4">WI</div>
+      <a
+        class="us-state-map__cell"
+        style="grid-column:8;grid-row:4"
+        aria-label="Privacy Notice for Indiana"
+        href="/privacy-policy?state=IN#indiana-privacy-notice"
+        >IN</a
+      >
+      <div class="us-state-map__cell" style="grid-column:9;grid-row:4">OH</div>
+      <div class="us-state-map__cell" style="grid-column:10;grid-row:4">PA</div>
+      <a
+        class="us-state-map__cell"
+        style="grid-column:11;grid-row:4"
+        aria-label="Privacy Notice for New Jersey"
+        href="/privacy-policy?state=NJ#new-jersey-privacy-notice"
+        >NJ</a
+      >
+      <a
+        class="us-state-map__cell"
+        style="grid-column:12;grid-row:4"
+        aria-label="Privacy Notice for Connecticut"
+        href="/privacy-policy?state=CT#connecticut-privacy-notice"
+        >CT</a
+      >
+
+      <a
+        class="us-state-map__cell"
+        style="grid-column:2;grid-row:5"
+        aria-label="Privacy Notice for California"
+        href="/privacy-policy?state=CA#california-privacy-notice"
+        >CA</a
+      >
+      <a
+        class="us-state-map__cell"
+        style="grid-column:3;grid-row:5"
+        aria-label="Privacy Notice for Nevada"
+        href="/privacy-policy?state=NV#nevada-privacy-notice"
+        >NV</a
+      >
+      <a
+        class="us-state-map__cell"
+        style="grid-column:4;grid-row:5"
+        aria-label="Privacy Notice for Colorado"
+        href="/privacy-policy?state=CO#colorado-privacy-notice"
+        >CO</a
+      >
+      <a
+        class="us-state-map__cell"
+        style="grid-column:5;grid-row:5"
+        aria-label="Privacy Notice for Nebraska"
+        href="/privacy-policy?state=NE#nebraska-privacy-notice"
+        >NE</a
+      >
+      <div class="us-state-map__cell" style="grid-column:6;grid-row:5">MO</div>
+      <div class="us-state-map__cell" style="grid-column:7;grid-row:5">IL</div>
+      <a
+        class="us-state-map__cell"
+        style="grid-column:8;grid-row:5"
+        aria-label="Privacy Notice for Kentucky"
+        href="/privacy-policy?state=KY#kentucky-privacy-notice"
+        >KY</a
+      >
+      <div class="us-state-map__cell" style="grid-column:9;grid-row:5">WV</div>
+      <a
+        class="us-state-map__cell"
+        style="grid-column:10;grid-row:5"
+        aria-label="Privacy Notice for Maryland"
+        href="/privacy-policy?state=MD#maryland-privacy-notice"
+        >MD</a
+      >
+      <a
+        class="us-state-map__cell"
+        style="grid-column:11;grid-row:5"
+        aria-label="Privacy Notice for Delaware"
+        href="/privacy-policy?state=DE#delaware-privacy-notice"
+        >DE</a
+      >
+
+      <div class="us-state-map__cell" style="grid-column:3;grid-row:6">AZ</div>
+      <div class="us-state-map__cell" style="grid-column:4;grid-row:6">NM</div>
+      <div class="us-state-map__cell" style="grid-column:5;grid-row:6">KS</div>
+      <div class="us-state-map__cell" style="grid-column:6;grid-row:6">AR</div>
+      <a
+        class="us-state-map__cell"
+        style="grid-column:7;grid-row:6"
+        aria-label="Privacy Notice for Tennessee"
+        href="/privacy-policy?state=TN#tennessee-privacy-notice"
+        >TN</a
+      >
+      <div class="us-state-map__cell" style="grid-column:8;grid-row:6">NC</div>
+      <div class="us-state-map__cell" style="grid-column:9;grid-row:6">SC</div>
+      <a
+        class="us-state-map__cell"
+        style="grid-column:10;grid-row:6"
+        aria-label="Privacy Notice for Virginia"
+        href="/privacy-policy?state=VA#virginia-privacy-notice"
+        >VA</a
+      >
+
+      <div class="us-state-map__cell" style="grid-column:5;grid-row:7">OK</div>
+      <div class="us-state-map__cell" style="grid-column:6;grid-row:7">LA</div>
+      <div class="us-state-map__cell" style="grid-column:7;grid-row:7">MS</div>
+      <div class="us-state-map__cell" style="grid-column:8;grid-row:7">AL</div>
+      <div class="us-state-map__cell" style="grid-column:9;grid-row:7">GA</div>
+
+      <div class="us-state-map__cell" style="grid-column:1;grid-row:8">HI</div>
+      <a
+        class="us-state-map__cell"
+        style="grid-column:5;grid-row:8"
+        aria-label="Privacy Notice for Texas"
+        href="/privacy-policy?state=TX#texas-privacy-notice"
+        >TX</a
+      >
+      <a
+        class="us-state-map__cell"
+        style="grid-column:10;grid-row:8"
+        aria-label="Privacy Notice for Florida"
+        href="/privacy-policy?state=FL#florida-privacy-notice"
+        >FL</a
+      >
+    </div>
+  </div>
+
+  <div class="privacy-policy__accordion">
+    <button type="button" class="privacy-policy__accordion-header" aria-expanded="false">
+      <span class="privacy-policy__accordion-title">California (CCPA)</span>
+      <span class="privacy-policy__accordion-icon" aria-hidden="true">
+        <svg viewBox="0 0 10 10" width="10" height="10" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 1.5L7 5L3 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    </button>
+    <div class="privacy-policy__accordion-content">
+      <div class="privacy-policy__section">
+        <p class="privacy-policy__text">
+          This section provides additional information for California residents under the California Consumer Privacy Act
+          (CCPA). The terms used in this section have the same meaning as in the CCPA. This section does not apply to
+          information that is not considered "personal information," such as anonymous, deidentified, or aggregated
+          information, nor does it apply to publicly available information as defined in the CCPA.
+        </p>
+      </div>
+
+      <div class="privacy-policy__section">
+        <h3 class="privacy-policy__section-heading">
+          <a id="information-we-collect-from-you">Information we collect from you</a>
+        </h3>
+        <ul class="privacy-policy__list">
+          <li class="privacy-policy__list-item">
+            Personal Identifiers, including name, email address, postal address, telephone number, and online Identifiers
+          </li>
+          <li class="privacy-policy__list-item">Internet Activity</li>
+          <li class="privacy-policy__list-item">Commercial Information, including purchases</li>
+          <li class="privacy-policy__list-item">Financial Information, including credit or debit card number</li>
+          <li class="privacy-policy__list-item">Location Information, including general location data</li>
+          <li class="privacy-policy__list-item">
+            Protected Classifications and Other Personal Characteristics, including age, sex, gender, or gender identity,
+            and military or veteran status
+          </li>
+          <li class="privacy-policy__list-item">Consumer Communications, including direct communications with our consumers</li>
+        </ul>
+        <p class="privacy-policy__text">
+          To the extent we process deidentified personal information, we will make no attempt to reidentify such data.
+        </p>
+      </div>
+
+      <div class="privacy-policy__section">
+        <h3 class="privacy-policy__section-heading">
+          <a id="how-long-we-keep-your-data">How long we keep your data</a>
+        </h3>
+        <p class="privacy-policy__text">We do not retain data for any longer than is necessary for the purposes described in this Policy.</p>
+        <p class="privacy-policy__text">We generally retain data according to the guidelines below.</p>
+        <div class="privacy-policy__table-wrap">
+          <table class="privacy-policy__table">
+            <caption>Data Retention</caption>
+            <thead>
+              <tr>
+                <th scope="col" width="40%">Type of Data</th>
+                <th scope="col" width="60%">Retention Period</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  Cookies and online data we collect while you use our website, including Online Identifiers, Internet
+                  Activity, General location data
+                </td>
+                <td>We delete or anonymize data concerning your use of our website within 10 years of collecting it.</td>
+              </tr>
+              <tr>
+                <td>
+                  Data we collect in order to process and ship orders you place with us, including Name, Email address,
+                  Postal address, Telephone number, Purchases, Credit or debit card number, Military or veteran status
+                </td>
+                <td>
+                  We keep personal information related to products and services you purchase for as long as the personal
+                  data is required for us to fulfill our contract with you, and for 10 years from your last purchase with
+                  us. We may keep data beyond this period in anonymized form.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Data we collect when you contact us for customer support and other inquiries, including Name, Email
+                  address, Telephone number, Purchases, Direct communications with our consumers
+                </td>
+                <td>
+                  We keep customer feedback and correspondence with our customer service for up to 10 years to help us
+                  respond to any questions or complaints. We may keep data beyond this period in anonymized form.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Data we collect when you sign up for promotional and marketing communications, including Name, Email
+                  address, Postal address, Telephone number, Online Identifiers, Internet Activity, Purchases, Direct
+                  communications with our consumers
+                </td>
+                <td>
+                  Where you have signed up to receive promotional and marketing communications from us, we will retain any
+                  data collected until you opt out or request its deletion. We may keep data beyond this period in
+                  anonymized form. We will further retain a record of any opt-outs in order to prevent sending you future
+                  communications.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Data we collect when you review our products, answer surveys, or send feedback, including Name, Email
+                  address, Purchases, Age, Sex, gender, or gender identity, Direct communications with our consumers
+                </td>
+                <td>
+                  We retain review, survey, and feedback data for up to 10 years following your last contact with us. We may
+                  keep data beyond this period in anonymized form to help improve our products and services.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Data we collect in connection with privacy requests, including Name, Email address, Online Identifiers
+                </td>
+                <td>
+                  We retain records related to privacy requests as long as necessary to comply with our legal obligations.
+                </td>
+              </tr>
+              <tr>
+                <td>Data we collect for security purposes, including Name, Email address, Online Identifiers</td>
+                <td>
+                  We retain security-related data as long as necessary to comply with our legal obligations and to maintain
+                  and improve our information security measures.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="privacy-policy__section">
+        <h3 class="privacy-policy__section-heading">
+          <a id="purposes-of-processing">Why we process your information</a>
+        </h3>
+        <p class="privacy-policy__text">We process personal information for the following business and commercial purposes:</p>
+        <ul class="privacy-policy__list privacy-policy__list--columns">
+          <li class="privacy-policy__list-item">Analyzing Data</li>
+          <li class="privacy-policy__list-item">Conducting Surveys</li>
+          <li class="privacy-policy__list-item">Creating Customer Profiles</li>
+          <li class="privacy-policy__list-item">Delivering Targeted Ads</li>
+          <li class="privacy-policy__list-item">Fulfilling Customer Orders</li>
+          <li class="privacy-policy__list-item">Improving Our Products &amp; Services</li>
+          <li class="privacy-policy__list-item">Internal Business Operations</li>
+          <li class="privacy-policy__list-item">Meeting Compliance &amp; Legal Requirements</li>
+          <li class="privacy-policy__list-item">Operating Our Website or Mobile Apps</li>
+          <li class="privacy-policy__list-item">Preventing Fraud</li>
+          <li class="privacy-policy__list-item">Processing Payments</li>
+          <li class="privacy-policy__list-item">Providing Customer Support</li>
+          <li class="privacy-policy__list-item">Sending Promotional Communications</li>
+          <li class="privacy-policy__list-item">Tracking Purchases &amp; Customer Data</li>
+        </ul>
+      </div>
+
+      <div class="privacy-policy__section">
+        <h3 class="privacy-policy__section-heading">
+          <a id="how-we-disclose-information">How we disclose your information</a>
+        </h3>
+        <p class="privacy-policy__text">
+          We may disclose personal information about you for business and commercial purposes when you Consumers:
+        </p>
+        <div class="privacy-policy__table-wrap">
+          <table class="privacy-policy__table privacy-policy__table--disclose">
+            <caption>Data Disclosure</caption>
+            <thead>
+              <tr>
+                <th scope="col">Personal Information Category</th>
+                <th scope="col">Categories of Service Providers</th>
+                <th scope="col">Categories of Third Parties</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Personal Identifiers</td>
+                <td>
+                  Business Operations Tool, Commerce Software Tools, Customer Support Contractors, Customer Support Tools,
+                  Cybersecurity Providers, Data Analytics Providers, Governance, Risk &amp; Compliance Software, Sales &amp;
+                  Marketing Contractors, Sales &amp; Marketing Tools, and Shipping Services
+                </td>
+                <td>
+                  Ad Networks, Data Cooperative, Payment Processors, Sales &amp; Marketing Tools, and Shipping Services
+                </td>
+              </tr>
+              <tr>
+                <td>Internet Activity</td>
+                <td>
+                  Commerce Software Tools, Customer Support Tools, Cybersecurity Providers, Data Analytics Providers, and
+                  Sales &amp; Marketing Tools
+                </td>
+                <td>Ad Networks and Data Cooperative</td>
+              </tr>
+              <tr>
+                <td>Commercial Information</td>
+                <td>
+                  Business Operations Tool, Commerce Software Tools, Customer Support Contractors, Sales &amp; Marketing
+                  Contractors, Sales &amp; Marketing Tools, and Shipping Services
+                </td>
+                <td>Ad Networks, Data Cooperative, and Payment Processors</td>
+              </tr>
+              <tr>
+                <td>Financial Information</td>
+                <td>Commerce Software Tools</td>
+                <td>Payment Processors</td>
+              </tr>
+              <tr>
+                <td>Location Information</td>
+                <td>
+                  Business Operations Tool, Customer Support Contractors, Data Analytics Providers, Sales &amp; Marketing
+                  Contractors, Sales &amp; Marketing Tools, and Shipping Services
+                </td>
+                <td>Ad Networks</td>
+              </tr>
+              <tr>
+                <td>Protected Classifications and Other Personal Characteristics</td>
+                <td>None</td>
+                <td>Sales &amp; Marketing Tools</td>
+              </tr>
+              <tr>
+                <td>Consumer Communications</td>
+                <td>Business Operations Tool, Customer Support Contractors, and Customer Support Tools</td>
+                <td>None</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="privacy-policy__section">
+        <h3 class="privacy-policy__section-heading">
+          <a id="ccpa-information-sharing-and-selling">Information “sharing” and “selling”</a>
+        </h3>
+        <p class="privacy-policy__text">
+          We “share” certain personal information with third party ad networks for purposes of behavioral advertising,
+          including Personal Identifiers, Internet Activity, Commercial Information, and Location Information. This allows
+          us to show you ads that are more relevant to you.
+        </p>
+        <p class="privacy-policy__text">
+          We "sell" certain personal data to third parties, as that term is defined in the CCPA, including Personal
+          Identifiers, Internet Activity, and Commercial Information.
+        </p>
+        <p class="privacy-policy__text">
+          <a href="https://privacy.smithey.com/opt-out" rel="noopener noreferrer">You may opt-out of these data practices here</a>.
+        </p>
+        <p class="privacy-policy__text">
+          We do not knowingly sell or share (for cross-context behavioral advertising) the personal information of
+          consumers under 16 years of age.
+        </p>
+      </div>
+
+      <div class="privacy-policy__section">
+        <h3 class="privacy-policy__section-heading">
+          <a id="ccpa-opt-out-preference-signals">Opt-out preference signals</a>
+        </h3>
+        <p class="privacy-policy__text">
+          Your browser settings may allow you to automatically transmit an opt-out preference signal, such as the Global
+          Privacy Control (GPC) signal, to online services you visit. When we detect such a signal, we set the Global
+          Privacy Platform privacy string in your browser so that any third party who respects that signal will not track
+          your activity on our website. Your request to opt-out of sale/sharing will be linked to your browser identifier
+          only and not linked to any account information because the connection between your browser and the account is
+          not known to us. GPC is supported by certain internet browsers or as a browser extension.
+          <a href="https://globalprivacycontrol.org/" target="_blank" rel="noopener noreferrer">Find out how to enable GPC</a>.
+        </p>
+      </div>
+
+      <div class="privacy-policy__section">
+        <h3 class="privacy-policy__section-heading">
+          <a id="ccpa-rights">Your CCPA rights</a>
+        </h3>
+        <p class="privacy-policy__text">
+          Your privacy rights under the CCPA are described below.
+          <a href="https://privacy.smithey.com/privacy-request" rel="noopener noreferrer">Make a Privacy Request by clicking here</a>
+          or by emailing us at
+          <a href="mailto:privacy@smithey.com" target="_blank" rel="noopener noreferrer nofollow">privacy@smithey.com</a>.
+        </p>
+      </div>
+
+      <div class="privacy-policy__section">
+        <h3 class="privacy-policy__section-heading">
+          <a id="ccpa-right-to-know-and-access">Right to Access</a>
+        </h3>
+        <p class="privacy-policy__text">You have the right to access the specific pieces of personal information we have collected about you.</p>
+        <p class="privacy-policy__text">
+          If you make an Access Request more than twice in a 12-month period, or we determine the request is manifestly
+          unfounded or excessive, we may require you to pay a small fee for this service.
+        </p>
+      </div>
+
+      <div class="privacy-policy__section">
+        <h3 class="privacy-policy__section-heading">
+          <a id="ccpa-right-to-delete">Right to Delete</a>
+        </h3>
+        <p class="privacy-policy__text">
+          You have the right to request that we delete any personal information about you that you have provided to us.
+          Subject to certain limitations, we will delete your personal information from our records and notify our service
+          providers, contractors, and third parties that you have requested deletion of your personal information.
+        </p>
+      </div>
+
+      <div class="privacy-policy__section">
+        <h3 class="privacy-policy__section-heading">
+          <a id="ccpa-right-to-non-discrimination">Right to Non-Discrimination</a>
+        </h3>
+        <p class="privacy-policy__text">
+          If you exercise your CCPA privacy rights, we will not discriminate against you by, for example, charging a
+          different price or offering a different level or quality of products or services.
+        </p>
+        <p class="privacy-policy__text">
+          We will not retaliate against you, as an employee, applicant for employment, or independent contractor, for
+          exercising your privacy rights.
+        </p>
+      </div>
+
+      <div class="privacy-policy__section">
+        <h3 class="privacy-policy__section-heading">
+          <a id="ccpa-right-to-opt-out">Right to Opt-Out</a>
+        </h3>
+        <p class="privacy-policy__text">You have the right to opt-out of any selling and sharing of your personal information.</p>
+        <p class="privacy-policy__text">
+          <a href="https://privacy.smithey.com/opt-out" rel="noopener noreferrer">You may exercise your right to opt-out here</a>.
+        </p>
+      </div>
+
+      <div class="privacy-policy__section">
+        <h3 class="privacy-policy__section-heading">
+          <a id="ccpa-right-to-correct">Right to Correct</a>
+        </h3>
+        <p class="privacy-policy__text">
+          You have the right to correct inaccuracies in your personal data, taking into account the nature of the data and
+          our purposes for processing it.
+        </p>
+      </div>
+
+      <div class="privacy-policy__section">
+        <h3 class="privacy-policy__section-heading">
+          <a id="ccpa-right-to-limit-use-of-sensitive-information">Right to Limit the Use of Sensitive Personal Information</a>
+        </h3>
+        <p class="privacy-policy__text">
+          The Right to Limit does not apply because we do not use your sensitive personal information to infer
+          characteristics about you.
+        </p>
+      </div>
+
+      <div class="privacy-policy__section">
+        <h3 class="privacy-policy__section-heading">
+          <a id="ccpa-request-verification">Request Verification</a>
+        </h3>
+        <p class="privacy-policy__text">
+          Before we can respond to a privacy request, we will verify that you are the consumer who is the subject of the
+          CCPA request. Requests to Opt-Out or Limit the Use of Sensitive Data (if applicable) do not require
+          verification.
+        </p>
+        <p class="privacy-policy__text">
+          Typically, identity verification will require you to confirm certain information about yourself based on
+          information we have already collected. For example, we will ask you to verify that you have access to the email
+          address we have on file for you. If we cannot verify your identity based on our records, we cannot fulfill your
+          CCPA request.
+        </p>
+      </div>
+
+      <div class="privacy-policy__section">
+        <h3 class="privacy-policy__section-heading">
+          <a id="ccpa-authorized-agent">Authorized Agent</a>
+        </h3>
+        <p class="privacy-policy__text">
+          A California resident's authorized agent may submit a rights request under the CCPA by emailing us at
+          <a href="mailto:privacy@smithey.com" target="_blank" rel="noopener noreferrer nofollow">privacy@smithey.com</a>.
+          Requests submitted by an authorized agent will still require verification of the consumer who is the subject of
+          the request in accordance with the process described above. We will also ask for proof that the consumer who is
+          the subject of the request authorized an agent to submit a privacy request on their behalf by either verifying
+          their own identity with us directly or directly confirming with us that they provided the authorized agent
+          permission to submit the request. An authorized agent that has power of attorney pursuant to California Probate
+          Code section 4121 to 4130 may also submit proof of statutory power of attorney, which does not require separate
+          consumer verification.
+        </p>
+        <p class="privacy-policy__text">
+          If you have trouble accessing this notice, please contact us at
+          <a href="mailto:privacy@smithey.com" target="_blank" rel="noopener noreferrer nofollow">privacy@smithey.com</a>.
+        </p>
+      </div>
+
+      <div class="privacy-policy__section">
+        <h3 class="privacy-policy__section-heading">
+          <a id="ccpa-contact-us">Contact Us</a>
+        </h3>
+        <p class="privacy-policy__text">
+          If you have any privacy-related questions or have trouble accessing this notice, please email
+          <a href="mailto:privacy@smithey.com" target="_blank" rel="noopener noreferrer nofollow">privacy@smithey.com</a>.
+        </p>
+        <p class="privacy-policy__text">
+          If you believe your rights have been violated and you are not able to resolve the issue directly with us, you
+          may file a complaint with the
+          <a href="https://oag.ca.gov/contact/consumer-complaint-against-business-or-company" rel="noopener noreferrer">California Attorney General’s Office</a>
+          or the
+          <a href="https://www.cppa.ca.gov/webapplications/complaint" rel="noopener noreferrer">California Privacy Protection Agency</a>.
+        </p>
+      </div>
+
+      <div class="privacy-policy__section">
+        <h3 class="privacy-policy__section-heading">
+          <a id="financial-incentive">Notice of Financial Incentive</a>
+        </h3>
+        <p class="privacy-policy__text">
+          Consumers who sign up for our marketing emails/SMS texts receive either early access or a promotion on occasion.
+          To opt in, a consumer must enter their email address/phone number into the form and consent to receive emails in
+          exchange for a discount provided via coupon code. A consumer may unsubscribe from our marketing emails by using
+          the unsubscribe link in the email footer/replying STOP via text at any time. We calculate the value of the offer
+          and financial incentive by using the expense related to the offer.
+        </p>
+      </div>
+    </div>
+  </div>
 </div>
