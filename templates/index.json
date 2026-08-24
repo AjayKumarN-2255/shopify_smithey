@@ -4,7 +4,7 @@
  *
  * This file may be updated by the Shopify admin theme editor
  * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten. fsdfasdfsadf
+ * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
 {
@@ -109,7 +109,33 @@
         "heading": "<h2>Don’t just take our word.<br/>Take theirs.</h2>",
         "blog": "testimonial",
         "articles_to_show": 6,
-        "background_color": "#DFDFDF"
+        "background_color": "#dfdfdf"
+      }
+    },
+    "comparison-section": {
+      "type": "comparison-section",
+      "blocks": {
+        "comparison_item_hkd7EU": {
+          "type": "comparison_item",
+          "settings": {
+            "article": "comparison/cast-iron"
+          }
+        },
+        "comparison_item_rRYPFA": {
+          "type": "comparison_item",
+          "settings": {
+            "article": "comparison/carbon-steel"
+          }
+        }
+      },
+      "block_order": [
+        "comparison_item_hkd7EU",
+        "comparison_item_rRYPFA"
+      ],
+      "settings": {
+        "eyebrow": "Subtle Differences",
+        "heading": "<p><strong>Cast Iron vs Carbon Steel...</strong></p>",
+        "background_color": "#dfdfdf"
       }
     },
     "founder-message": {
@@ -150,9 +176,6 @@
         "article": "news/a-message-from-the-founder",
         "background_color": "#dfdfdf"
       }
-    },
-    "comparison-section": {
-      "type": "comparison-section"
     }
   },
   "order": [
@@ -163,7 +186,7 @@
     "video-banner",
     "recipie-products",
     "testimonial-slider",
-    "founder-message",
-    "comparison-section"
+    "comparison-section",
+    "founder-message"
   ]
 }

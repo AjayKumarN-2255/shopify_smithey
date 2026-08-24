@@ -199,11 +199,11 @@
 
   .product-card--featured-desktop .product-card__image-wrapper {
     height: 17.52rem;
-    object-fit: fill;
+    object-fit: cover;
   }
 
   .product-card--featured-desktop .product-card__image-wrapper img {
-    object-fit: fill;
+    object-fit: cover;
   }
 
   .product-card--featured-desktop .product-card__title {
