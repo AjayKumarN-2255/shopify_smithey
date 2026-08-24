@@ -45,10 +45,10 @@
                     "settings": {
                         "image": "shopify://shop_images/smithey_hero_image_gifting_page.webp",
                         "image_mobile_height": 30,
-                        "image_desktop_height": 36,
+                        "image_desktop_height": 38,
                         "image_large_desktop_height": 38,
                         "position": "right",
-                        "custom_css": "@media (min-width: 920px) {\n  & {\n   width:90%;\n    position: absolute;\n    top: -4rem;\n    right: 5rem;\n  }\n}\n\n@media (min-width: 1700px) {\n&{\n    width: 75%;\n    position: absolute;\n    top: -4rem;\n    right: 5rem;\n  }\n& img {\n  object-fit: fill;\n}\n}"
+                        "custom_css": "@media (min-width: 920px) {\n  & {\n        width: 40%;\n        position: absolute;\n        top: 6rem;\n        right: 8rem;\n  }\n}\n\n@media (min-width: 1700px) {\n&{\n    width: 32%;\n  }\n& img {\n  object-fit: fill;\n}\n}"
                     }
                 }
             },
@@ -392,7 +392,7 @@
             "settings": {
                 "subtitle": "",
                 "heading": "TESTIMONIALS",
-                "background_color": "#D9D9D9",
+                "background_color": "#d9d9d9",
                 "enable_marquee": true,
                 "marquee_speed": 25,
                 "cards_per_row": 2
