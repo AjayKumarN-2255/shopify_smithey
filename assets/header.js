@@ -5,20 +5,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!header || !announcementBar) return;
 
-    const triggerHeight = header.offsetHeight;
+    // Enter once past the announcement; exit only at the top.
+    // Hiding the bar reduces scrollY — a single threshold caused rapid
+    // add/remove of header--scrolled (menu bar blink while scrolling).
+    const enterAt = announcementBar.offsetHeight;
+    const exitAt = 1;
     let isScrolled = false;
 
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > triggerHeight && !isScrolled) {
-            header.classList.add('header--scrolled');
-            announcementBar.style.display = 'none';
-            isScrolled = true;
-        } else if (window.scrollY <= triggerHeight && isScrolled) {
-            header.classList.remove('header--scrolled');
-            announcementBar.style.display = 'block';
-            isScrolled = false;
-        }
-    });
+    const setScrolled = (scrolled) => {
+        if (scrolled === isScrolled) return;
+        isScrolled = scrolled;
+        header.classList.toggle('header--scrolled', scrolled);
+        announcementBar.style.display = scrolled ? 'none' : '';
+    };
+
+    window.addEventListener(
+        'scroll',
+        () => {
+            const y = window.scrollY;
+            if (!isScrolled && y > enterAt) {
+                setScrolled(true);
+            } else if (isScrolled && y <= exitAt) {
+                setScrolled(false);
+            }
+        },
+        { passive: true }
+    );
 
     // mobile hamburger controll
     const hamburger = document.querySelector('.hamberger-menu');
@@ -29,13 +41,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     hamburger.addEventListener('click', () => {
         window.scrollTo({
-            top: triggerHeight + 1,
+            top: enterAt + 1,
             behavior: 'smooth'
         });
 
-        header.classList.add('header--scrolled');
-        announcementBar.style.display = 'none';
-        isScrolled = true;
+        setScrolled(true);
 
         document.body.classList.remove('no-scroll');
         mobileMenu.classList.add('mobile-menu--open');
