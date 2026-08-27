@@ -74,12 +74,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.body.classList.remove('no-scroll');
 
                 activeMenu.classList.remove('mega-menu--active');
+                triggers.forEach((t) => t.classList.remove('is-active'));
                 return;
             }
 
             megaMenuContainer.classList.add('mega-menu-container--open');
             header.classList.add('site-header--mega-open');
             document.body.classList.add('no-scroll');
+
+            triggers.forEach((t) => {
+                t.classList.toggle('is-active', t.dataset.menuTrigger === menuName);
+            });
 
             megaMenus.forEach((menu) => {
                 menu.classList.toggle(

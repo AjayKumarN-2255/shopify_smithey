@@ -4,6 +4,17 @@
   height: clamp(400px, 95.5vh, 670px);
 }
 
+.banner-wrapper {
+  position: relative;
+  height: 100%;
+}
+
+.banner-link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
 .banner-content {
   position: absolute;
   bottom: 3%;
@@ -15,6 +26,7 @@
   text-align: left;
   gap: 10px;
   right: auto;
+  z-index: 2;
 }
 
 .banner-subheading {

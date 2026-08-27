@@ -4,6 +4,14 @@
   style="--banner-height: {{ section.settings.banner_height }}vh;"
 >
   <div class="banner-wrapper">
+    {% if section.settings.banner_link != blank %}
+      <a
+        href="{{ section.settings.banner_link }}"
+        class="banner-link"
+        aria-label="{{ section.settings.heading | strip_html | default: 'Banner link' | escape }}"
+      ></a>
+    {% endif %}
+
     <div class="banner-media">
       {% if section.settings.video != blank %}
         {{
@@ -115,6 +123,12 @@
       "step": 2,
       "unit": "vh",
       "default": 82
+    },
+    {
+      "type": "url",
+      "id": "banner_link",
+      "label": "Banner link",
+      "info": "Makes the entire banner clickable"
     },
     {
       "type": "text",

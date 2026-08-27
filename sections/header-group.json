@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "type": "header",
   "name": "Header Group",
@@ -6,7 +15,7 @@
       "type": "announcement",
       "settings": {
         "text": "NEW! THE CARBON STEEL LID HAS LANDED. SHOP NOW",
-        "link": "",
+        "link": "shopify://collections",
         "background_color": "#be893d",
         "text_color": "#112626"
       }
@@ -14,6 +23,7 @@
     "header": {
       "type": "header",
       "settings": {
+        "logo": "shopify://shop_images/logo_273919a5-1528-4de5-aca9-86cfe23fb8ea.svg",
         "left_menu": "header-left-menu",
         "right_menu": "main-menu",
         "show_search": true,

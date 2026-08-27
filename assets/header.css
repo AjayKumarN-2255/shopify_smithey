@@ -53,6 +53,26 @@
   font-weight: 500;
 }
 
+.header-logo-image {
+  width: 77px;
+  height: auto;
+  display: block;
+}
+
+.header-logo-text {
+  display: none;
+}
+
+/* Top of page: logo image. Scrolled: shop name text. */
+.header-logo-link:not(:has(.header-logo-image)) .header-logo-text,
+.header--scrolled .header-logo-text {
+  display: block;
+}
+
+.header--scrolled .header-logo-image {
+  display: none;
+}
+
 .header--scrolled {
   position: fixed;
   top: 0;
@@ -88,6 +108,10 @@
     padding: 0 1.875rem;
   }
 
+  .hamburger {
+    display: none;
+  }
+
   .header--scrolled .header-wrapper {
     padding: 0.5rem !important;
   }
@@ -102,6 +126,7 @@
 
   .header-left {
     display: flex;
+    align-items: center;
     gap: 1rem;
   }
 
@@ -109,6 +134,16 @@
   .header-right span {
     color: white;
     cursor: pointer;
+  }
+
+  .header-left span:first-of-type {
+    background-color: #495a57;
+    padding: 10px 10px;
+    border-radius: 2px;
+  }
+
+  [data-menu-trigger].is-active {
+    color: #b68b32;
   }
 
   .header-right-link,
@@ -123,7 +158,9 @@
 
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease, padding 0.3s ease;
+    transition:
+      max-height 0.3s ease,
+      padding 0.3s ease;
 
     padding-top: 0;
     padding-bottom: 0;
