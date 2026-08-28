@@ -13,6 +13,7 @@
       "type": "banner",
       "settings": {
         "banner_height": 82,
+        "banner_link": "",
         "subheading": "LIMITED EDITION",
         "heading": "<p>NO. 11 AMERICAN<br/>ANNIVERSARY SKILLET</p>",
         "button_label": "SHOP NOW",
@@ -66,7 +67,7 @@
         "collection": "cookware",
         "products_to_show": 8,
         "button_label": "SHOP ALL BEST SELLERS",
-        "button_link": "#"
+        "button_link": "shopify://collections"
       }
     },
     "image-with-content": {
@@ -80,7 +81,7 @@
         "description": "<p>Smithey is 100% free of PFAS, pre-seasoned only with pure grapeseed oil.</p>",
         "content": "<p>We believe your cookware shouldn't come with a list of questionable chemicals. No synthetic coatings that flake or break down. No compromises. Just cookware that gets better with every meal and lasts generations.</p>",
         "button_label": "LEARN MORE",
-        "button_link": "#"
+        "button_link": "shopify://collections"
       }
     },
     "video-banner": {
