@@ -10,9 +10,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
         let currentIndex = 0;
 
-        function updateValues() {
+        function getCardStep() {
             const gap = parseFloat(getComputedStyle(rail).gap) || 0;
-            const cardWidth = cards[0].offsetWidth + gap;
+
+            if (viewport.offsetWidth >= 1024) {
+                const visibleCards = 3;
+                const cardBodyWidth =
+                    (viewport.offsetWidth - gap * (visibleCards - 1)) / visibleCards;
+
+                cards.forEach((card) => {
+                    card.style.flex = `0 0 ${cardBodyWidth}px`;
+                });
+
+                return cardBodyWidth + gap;
+            }
+
+            cards.forEach((card) => {
+                card.style.flex = "";
+            });
+
+            return cards[0].offsetWidth + gap;
+        }
+
+        function updateValues() {
+            const cardWidth = getCardStep();
             const visibleCards = Math.floor(viewport.offsetWidth / cardWidth);
             const maxIndex = Math.max(0, cards.length - visibleCards);
 
@@ -27,8 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         nextBtn.addEventListener("click", () => {
-            const gap = parseFloat(getComputedStyle(rail).gap) || 0;
-            const cardWidth = cards[0].offsetWidth + gap;
+            const cardWidth = getCardStep();
             const visibleCards = Math.floor(viewport.offsetWidth / cardWidth);
             const maxIndex = Math.max(0, cards.length - visibleCards);
 

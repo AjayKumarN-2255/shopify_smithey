@@ -10,6 +10,16 @@
         <h2 class="recipe-slider__heading">
           {{ section.settings.heading }}
         </h2>
+        {% if section.settings.button_label != blank %}
+          <div class="recipe-slider_desc__footer">
+            <a
+              href="{{ section.settings.button_link }}"
+              class="recipe-slider__cta"
+            >
+              {{ section.settings.button_label }}
+            </a>
+          </div>
+        {% endif %}
       </div>
     {% endif %}
 
@@ -76,7 +86,9 @@
                       {{ article.metafields.custom.cook_time }}
                     </span>
 
-                    <span class="recipe-card__product"> {{ article.metafields.custom.related_products.value.title  }} </span>
+                    <span class="recipe-card__product">
+                      {{ article.metafields.custom.related_products.value.title }}
+                    </span>
                   </div>
                 </div>
               </a>
