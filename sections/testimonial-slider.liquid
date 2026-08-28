@@ -48,10 +48,11 @@
             {% assign blog = blogs[section.settings.blog] %}
 
             {% for article in blog.articles limit: section.settings.articles_to_show %}
+              {% assign related_product = article.metafields.custom.related_products.value %}
               <div class="testimonial-card">
                 <div class="testimonial-card__body">
                   <h4 class="testimonial-card__product-title">
-                    {{ article.metafields.custom.related_products.value.title }}
+                    {{ related_product.title }}
                   </h4>
 
                   <div class="testimonial-card__rating">
@@ -71,9 +72,11 @@
                 </div>
 
                 <div class="testimonial-card__footer">
-                  <h3 href="{{ product.url }}" class="testimonial-product_value">
-                    SHOP THE {{ article.metafields.custom.related_products.value.title }}
-                  </h3>
+                  {% if related_product != blank %}
+                    <a href="{{ related_product.url }}" class="testimonial-product_value">
+                      SHOP THE {{ related_product.title }}
+                    </a>
+                  {% endif %}
                 </div>
               </div>
             {% endfor %}

@@ -106,6 +106,10 @@
   will-change: transform;
 }
 
+.product-slider__rail--no-transition {
+  transition: none !important;
+}
+
 .product-card__image {
   width: 23.57rem;
   height: 30.43rem;

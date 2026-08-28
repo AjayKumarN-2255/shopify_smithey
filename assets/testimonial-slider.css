@@ -46,6 +46,10 @@
   will-change: transform;
 }
 
+.testimonial-slider__rail--no-transition {
+  transition: none !important;
+}
+
 .testimonial-slider__button {
   position: absolute;
   display: none;
@@ -123,7 +127,19 @@
 }
 
 .testimonial-product_value {
+  display: block;
   text-align: center;
+  color: #f3f3f3;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.testimonial-product_value:link,
+.testimonial-product_value:visited,
+.testimonial-product_value:hover,
+.testimonial-product_value:active,
+.testimonial-product_value:focus {
   color: #f3f3f3;
   text-decoration: underline;
   text-decoration-thickness: 2px;
