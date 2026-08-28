@@ -6,35 +6,25 @@ document.addEventListener("DOMContentLoaded", () => {
         const prevBtn = slider.querySelector(".recipe-slider__button--prev");
         const nextBtn = slider.querySelector(".recipe-slider__button--next");
 
-        if (!rail || !cards.length) return;
+        if (!rail || !viewport || !cards.length) return;
 
         let currentIndex = 0;
 
         function getCardStep() {
             const gap = parseFloat(getComputedStyle(rail).gap) || 0;
-
-            if (viewport.offsetWidth >= 1024) {
-                const visibleCards = 3;
-                const cardBodyWidth =
-                    (viewport.offsetWidth - gap * (visibleCards - 1)) / visibleCards;
-
-                cards.forEach((card) => {
-                    card.style.flex = `0 0 ${cardBodyWidth}px`;
-                });
-
-                return cardBodyWidth + gap;
-            }
-
-            cards.forEach((card) => {
-                card.style.flex = "";
-            });
-
             return cards[0].offsetWidth + gap;
+        }
+
+        function getVisibleCards() {
+            if (viewport.offsetWidth >= 1024) return 3;
+
+            const cardWidth = getCardStep();
+            return Math.max(1, Math.floor(viewport.offsetWidth / cardWidth));
         }
 
         function updateValues() {
             const cardWidth = getCardStep();
-            const visibleCards = Math.floor(viewport.offsetWidth / cardWidth);
+            const visibleCards = getVisibleCards();
             const maxIndex = Math.max(0, cards.length - visibleCards);
 
             if (currentIndex > maxIndex) {
@@ -43,27 +33,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
             rail.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
 
-            prevBtn.disabled = currentIndex === 0;
-            nextBtn.disabled = currentIndex >= maxIndex;
+            if (prevBtn) prevBtn.disabled = currentIndex === 0;
+            if (nextBtn) nextBtn.disabled = currentIndex >= maxIndex;
         }
 
-        nextBtn.addEventListener("click", () => {
-            const cardWidth = getCardStep();
-            const visibleCards = Math.floor(viewport.offsetWidth / cardWidth);
-            const maxIndex = Math.max(0, cards.length - visibleCards);
+        if (nextBtn) {
+            nextBtn.addEventListener("click", () => {
+                const visibleCards = getVisibleCards();
+                const maxIndex = Math.max(0, cards.length - visibleCards);
 
-            if (currentIndex < maxIndex) {
-                currentIndex++;
-                updateValues();
-            }
-        });
+                if (currentIndex < maxIndex) {
+                    currentIndex++;
+                    updateValues();
+                }
+            });
+        }
 
-        prevBtn.addEventListener("click", () => {
-            if (currentIndex > 0) {
-                currentIndex--;
-                updateValues();
-            }
-        });
+        if (prevBtn) {
+            prevBtn.addEventListener("click", () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateValues();
+                }
+            });
+        }
 
         window.addEventListener("resize", updateValues);
 

@@ -99,7 +99,7 @@
         "blog": "recipies",
         "articles_to_show": 6,
         "button_label": "VIEW ALL RECIPES",
-        "button_link": "",
+        "button_link": "shopify://blogs/recipies",
         "background_color": "#112626"
       }
     },

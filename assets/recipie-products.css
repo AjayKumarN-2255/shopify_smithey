@@ -255,12 +255,18 @@
 }
 
 @media (min-width: 1024px) {
+  .recipe-slider__rail {
+    width: 100%;
+  }
+
   .recipe-card {
+    flex: 0 0 calc((100% - 2rem) / 3);
     min-width: 0;
   }
 
   .recipe-card__image {
     width: 100%;
+    max-width: 100%;
     height: auto;
     aspect-ratio: 211 / 161;
   }
@@ -289,6 +295,7 @@
   }
 
   .recipe-card {
+    flex: 0 0 calc((100% - 3rem) / 3);
     height: 30.8rem;
   }
 
