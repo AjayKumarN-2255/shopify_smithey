@@ -1,0 +1,114 @@
+<section class="blog-recipes">
+  <div class="blog-recipes__container">
+    <h1 class="blog-recipes__title">
+      {% if article %}
+        {{ article.title }}
+      {% endif %}
+    </h1>
+
+    {% if article and article.image %}
+      <div class="blog-recipes__image">
+        <img
+          src="{{ article.image | image_url: width: 1200 }}"
+          alt="{{ article.image.alt | default: article.title | escape }}"
+          loading="lazy"
+        >
+      </div>
+    {% endif %}
+
+    {% if article %}
+      <div class="blog-recipes__details">
+        <div class="blog-recipes__ingredients">
+          {{ article.metafields.custom.ingredients | metafield_tag }}
+        </div>
+
+        <div class="blog-recipes__description">
+          {{ article.content }}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .blog-recipes {
+    width: 100%;
+  }
+
+  .blog-recipes__container {
+    width: 100%;
+    max-width: 56rem;
+    margin: 0 auto;
+    padding: 1.28rem 1.06rem;
+  }
+
+  .blog-recipes__title {
+    color: #112626;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.1;
+    margin: 0 auto 1rem auto;
+    text-align: center;
+    max-width: 22rem;
+    text-transform: uppercase;
+    word-spacing: 2px;
+    letter-spacing: 1px;
+  }
+
+  .blog-recipes__image {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .blog-recipes__image img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .blog-recipes__details {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .blog-recipes__ingredients,
+  .blog-recipes__description {
+    width: 100%;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.5;
+    color: #112626;
+  }
+
+  @media (min-width: 920px) {
+    .blog-recipes__container {
+      padding: 2.5rem 0 1rem 0;
+      border-bottom: 1px solid #e5e5e5;
+    }
+
+    .blog-recipes__title {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 1.5rem;
+      max-width: unset;
+    }
+
+    .blog-recipes__image img {
+      height: 100%;
+    }
+
+    .blog-recipes__details {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .blog-recipes__ingredients,
+    .blog-recipes__description {
+      font-size: 16px;
+    }
+  }
+</style>
