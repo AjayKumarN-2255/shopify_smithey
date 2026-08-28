@@ -121,7 +121,12 @@
   }
 
   .why-us-wrapper {
-    padding: 2.25rem 2rem;
+    padding: 1.25rem 2rem;
+  }
+
+  .why-us-content {
+    align-items: center;
+    gap: 1.25rem;
   }
 
   .why-us-logo {
@@ -174,9 +179,6 @@
 @media (min-width: 1550px) {
   .why-us-faq-text {
     max-width: 32rem;
-  }
-  .why-us-wrapper {
-    padding: 4rem 3.5rem;
   }
   .why-us-faq-toggle svg {
     width: 1.5rem;
