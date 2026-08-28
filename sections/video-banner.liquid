@@ -3,14 +3,6 @@
   style="background-color: {{ section.settings.background_color }};"
 >
   <div class="video-banner__wrapper">
-    <div class="video-banner__overlay">
-      {% if section.settings.heading != blank %}
-        <h2 class="video-banner__heading">
-          {{ section.settings.heading }}
-        </h2>
-      {% endif %}
-    </div>
-
     {% if section.settings.video_url != blank %}
       <div class="video-banner__media">
         <video
@@ -18,7 +10,10 @@
           muted
           loop
           playsinline
-          preload="metadata"
+          preload="none"
+          {% if section.settings.poster != blank %}
+            poster="{{ section.settings.poster | image_url: width: 1920 }}"
+          {% endif %}
         >
           <source
             src="{{ section.settings.video_url }}"
@@ -26,6 +21,40 @@
           >
           Your browser does not support the video tag.
         </video>
+
+        {% if section.settings.poster != blank %}
+          <img
+            class="video-banner__poster"
+            src="{{ section.settings.poster | image_url: width: 1920 }}"
+            alt="{{ section.settings.heading | escape }}"
+            width="{{ section.settings.poster.width }}"
+            height="{{ section.settings.poster.height }}"
+            loading="lazy"
+          >
+        {% endif %}
+
+        <div class="video-banner__overlay">
+          <div class="video-banner__content">
+            {% if section.settings.heading != blank %}
+              <h2 class="video-banner__heading">
+                {{ section.settings.heading }}
+              </h2>
+            {% endif %}
+
+            <button
+              type="button"
+              class="video-banner__play"
+              aria-label="Play video"
+            >
+              <svg viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <g fill-rule="evenodd">
+                  <path d="M17 0c9.389 0 17 7.611 17 17s-7.611 17-17 17S0 26.389 0 17 7.611 0 17 0zm0 1C8.163 1 1 8.163 1 17s7.163 16 16 16 16-7.163 16-16S25.837 1 17 1z" fill-rule="nonzero"></path>
+                  <path d="M13.31 24.933a.679.679 0 01-.323-.083.675.675 0 01-.346-.587V10.87c0-.243.134-.468.346-.586a.676.676 0 01.68.019l10.715 6.697a.672.672 0 010 1.135l-10.715 6.697a.673.673 0 01-.356.102"></path>
+                </g>
+              </svg>
+            </button>
+          </div>
+        </div>
       </div>
     {% endif %}
   </div>
@@ -33,17 +62,48 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const video = document.querySelector('.video-banner__video');
+    const media = document.querySelector('.video-banner__media');
 
-    if (!video) return;
+    if (!media) return;
 
-    video.addEventListener('click', () => {
+    const video = media.querySelector('.video-banner__video');
+    const poster = media.querySelector('.video-banner__poster');
+    const overlay = media.querySelector('.video-banner__overlay');
+    const playButton = media.querySelector('.video-banner__play');
+
+    const hideOverlay = () => {
+      if (poster) poster.classList.add('is-hidden');
+      if (overlay) overlay.classList.add('is-hidden');
+    };
+
+    const showOverlay = () => {
+      if (video.paused && video.currentTime === 0) {
+        if (poster) poster.classList.remove('is-hidden');
+        if (overlay) overlay.classList.remove('is-hidden');
+      }
+    };
+
+    const togglePlayback = () => {
       if (video.paused) {
+        hideOverlay();
         video.play();
       } else {
         video.pause();
       }
-    });
+    };
+
+    video.addEventListener('click', togglePlayback);
+
+    if (playButton) {
+      playButton.addEventListener('click', (event) => {
+        event.stopPropagation();
+        togglePlayback();
+      });
+    }
+
+    video.addEventListener('play', hideOverlay);
+    video.addEventListener('pause', showOverlay);
+    video.addEventListener('ended', showOverlay);
   });
 </script>
 
@@ -61,6 +121,7 @@
   }
 
   .video-banner__media {
+    position: relative;
     width: 100%;
   }
 
@@ -69,15 +130,47 @@
     height: 14rem;
     display: block;
     object-fit: cover;
+    cursor: pointer;
+  }
+
+  .video-banner__poster {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .video-banner__poster.is-hidden {
+    opacity: 0;
+    visibility: hidden;
   }
 
   .video-banner__overlay {
-    {% comment %} position: absolute; {% endcomment %}
+    position: absolute;
     inset: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 1rem;
+    z-index: 2;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .video-banner__overlay.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .video-banner__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    pointer-events: auto;
   }
 
   .video-banner__heading {
@@ -87,16 +180,31 @@
     font-size: 2rem;
     font-weight: 700;
     letter-spacing: 0.05em;
+    margin: 0;
+  }
+
+  .video-banner__play {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    color: #fff;
+    line-height: 0;
+  }
+
+  .video-banner__play svg {
+    width: 2.25rem;
+    height: 2.25rem;
+    fill: currentColor;
   }
 
   @media (min-width: 920px) {
     .video-banner {
       padding: 3rem 1rem ;
       margin: 2.25rem 0;
-    }
-
-    .video-banner__overlay {
-    position: absolute;
     }
 
     .video-banner__wrapper {
@@ -111,14 +219,22 @@
       object-fit: cover;
     }
 
-    .video-banner__overlay {
-      justify-content: center;
-      align-items: center;
+    .video-banner__content {
+      gap: 0;
     }
 
     .video-banner__heading {
       font-size: 2rem;
       letter-spacing: 0.04em;
+    }
+
+    .video-banner__play {
+      margin-top: 0.5rem;
+    }
+
+    .video-banner__play svg {
+      width: 2.5rem;
+      height: 2.5rem;
     }
   }
 </style>
@@ -138,6 +254,11 @@
       "id": "video_url",
       "label": "Video URL",
       "default": "https://cdn.shopify.com/videos/c/o/v/dfb7550f7ace4c94986db2bff645ff21.mp4"
+    },
+    {
+      "type": "image_picker",
+      "id": "poster",
+      "label": "Thumbnail / Poster Image"
     },
     {
       "type": "text",

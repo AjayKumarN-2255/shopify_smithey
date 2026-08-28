@@ -279,10 +279,6 @@
 }
 
 @media (min-width: 1550px) {
-  .recipe-slider_desc__footer {
-    right: 2rem;
-  }
-
   .recipe-card__title {
     min-height: 80px;
   }
