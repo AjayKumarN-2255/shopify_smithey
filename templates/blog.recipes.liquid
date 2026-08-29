@@ -41,6 +41,72 @@
         </div>
       </div>
     {% endif %}
+    {% if article %}
+      {% capture share_url %}{{ shop.url }}{{ article.url }}{% endcapture %}
+      {% assign share_title = article.title | url_param_escape %}
+      {% assign share_image = article.image | image_url: width: 1024 | prepend: 'https:' | url_param_escape %}
+
+      {% if article.tags.size > 0 %}
+        <div class="blog-recipes__tags">
+          {% for tag in article.tags %}
+            <span class="blog-recipes__tag">{{ tag }}</span>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      <div class="blog-recipes__share">
+        <a
+          class="blog-recipes__share-link blog-recipes__share-link--facebook"
+          href="https://www.facebook.com/sharer.php?u={{ share_url | url_param_escape }}"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Share on Facebook"
+        >
+          <svg class="blog-recipes__share-icon" viewBox="0 0 20 20" aria-hidden="true">
+            <path d="M18.05.811q.439 0 .744.305t.305.744v16.637q0 .439-.305.744t-.744.305h-4.732v-7.221h2.415l.342-2.854h-2.757v-1.83q0-.659.293-1t1.073-.342h1.488V3.762q-.976-.098-2.171-.098-1.634 0-2.635.964t-1 2.72V9.47H7.951v2.854h2.415v7.221H1.413q-.439 0-.744-.305t-.305-.744V1.859q0-.439.305-.744T1.413.81H18.05z"></path>
+          </svg>
+        </a>
+
+        <a
+          class="blog-recipes__share-link blog-recipes__share-link--twitter"
+          href="https://twitter.com/intent/tweet?text={{ share_title }}&url={{ share_url | url_param_escape }}"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Share on Twitter"
+        >
+          <svg class="blog-recipes__share-icon" viewBox="0 0 20 20" aria-hidden="true">
+            <path d="M19.551 4.208q-.815 1.202-1.956 2.038 0 .082.02.255t.02.255q0 1.589-.469 3.179t-1.426 3.036-2.272 2.567-3.158 1.793-3.963.672q-3.301 0-6.031-1.773.571.041.937.041 2.751 0 4.911-1.671-1.284-.02-2.292-.784T2.456 11.85q.346.082.754.082.55 0 1.039-.163-1.365-.285-2.262-1.365T1.09 7.918v-.041q.774.408 1.773.448-.795-.53-1.263-1.396t-.469-1.864q0-1.019.509-1.997 1.487 1.854 3.596 2.924T9.81 7.184q-.143-.509-.143-.897 0-1.63 1.161-2.781t2.832-1.151q.815 0 1.569.326t1.284.917q1.345-.265 2.506-.958-.428 1.386-1.732 2.18 1.243-.163 2.262-.611z"></path>
+          </svg>
+        </a>
+
+        <a
+          class="blog-recipes__share-link blog-recipes__share-link--instagram"
+          href="https://www.instagram.com/smitheyironware/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit Instagram"
+        >
+          <svg class="blog-recipes__share-icon" viewBox="0 0 512 512" aria-hidden="true">
+            <path d="M256 49.5c67.3 0 75.2.3 101.8 1.5 24.6 1.1 37.9 5.2 46.8 8.7 11.8 4.6 20.2 10 29 18.8s14.3 17.2 18.8 29c3.4 8.9 7.6 22.2 8.7 46.8 1.2 26.6 1.5 34.5 1.5 101.8s-.3 75.2-1.5 101.8c-1.1 24.6-5.2 37.9-8.7 46.8-4.6 11.8-10 20.2-18.8 29s-17.2 14.3-29 18.8c-8.9 3.4-22.2 7.6-46.8 8.7-26.6 1.2-34.5 1.5-101.8 1.5s-75.2-.3-101.8-1.5c-24.6-1.1-37.9-5.2-46.8-8.7-11.8-4.6-20.2-10-29-18.8s-14.3-17.2-18.8-29c-3.4-8.9-7.6-22.2-8.7-46.8-1.2-26.6-1.5-34.5-1.5-101.8s.3-77 1.5-103.9c1.2-26.8 5.5-45.1 11.7-61.2 6.4-16.6 15.1-30.6 29.1-44.6 14-14 28.1-22.6 44.6-29.1 16-6.2 34.3-10.5 61.2-11.7C179 4.4 187.6 4.1 256 4.1z"></path>
+            <path d="M256 126.6c-71.4 0-129.4 57.9-129.4 129.4s58 129.4 129.4 129.4 129.4-58 129.4-129.4-58-129.4-129.4-129.4zm0 213.4c-46.4 0-84-37.6-84-84s37.6-84 84-84 84 37.6 84 84-37.6 84-84 84z"></path>
+            <circle cx="390.5" cy="121.5" r="30.2"></circle>
+          </svg>
+        </a>
+
+        <a
+          class="blog-recipes__share-link blog-recipes__share-link--pinterest"
+          href="https://pinterest.com/pin/create/button/?url={{ share_url | url_param_escape }}&media={{ share_image }}&description={{ share_title }}"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Share on Pinterest"
+        >
+          <svg class="blog-recipes__share-icon" viewBox="0 0 20 20" aria-hidden="true">
+            <path d="M9.958.811q1.903 0 3.635.744t2.988 2 2 2.988.744 3.635q0 2.537-1.256 4.696t-3.415 3.415-4.696 1.256q-1.39 0-2.659-.366.707-1.147.951-2.025l.659-2.561q.244.463.903.817t1.39.354q1.464 0 2.622-.842t1.793-2.305.634-3.293q0-2.171-1.671-3.769t-4.257-1.598q-1.586 0-2.903.537T5.298 5.897 4.066 7.775t-.427 2.037q0 1.268.476 2.22t1.427 1.342q.171.073.293.012t.171-.232q.171-.61.195-.756.098-.268-.122-.512-.634-.707-.634-1.83 0-1.854 1.281-3.183t3.354-1.329q1.83 0 2.854 1t1.025 2.61q0 1.342-.366 2.476t-1.049 1.817-1.561.683q-.732 0-1.195-.537t-.293-1.269q.098-.342.256-.878t.268-.915.207-.817.098-.732q0-.61-.317-1t-.927-.39q-.756 0-1.269.695t-.512 1.744q0 .39.061.756t.134.537l.073.171q-1 4.342-1.22 5.098-.195.927-.146 2.171-2.513-1.122-4.062-3.44T.59 10.177q0-3.879 2.744-6.623T9.957.81z"></path>
+          </svg>
+        </a>
+      </div>
+    {% endif %}
+    <p class="share-text">SHARE</p>
   </div>
 </section>
 
@@ -53,7 +119,7 @@
     width: 100%;
     max-width: 56rem;
     margin: 0 auto;
-    padding: 1.28rem 1.06rem;
+    padding: 1rem 1.06rem;
   }
 
   .blog-recipes__title {
@@ -85,6 +151,9 @@
     grid-template-columns: 1fr;
     gap: 0;
     margin-top: 1.5rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
   }
 
   .blog-recipes__ingredients,
@@ -210,9 +279,72 @@
     margin: 0;
   }
 
+  .blog-recipes__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 2.5rem 0;
+  }
+
+  .blog-recipes__tag {
+    display: inline-block;
+    padding: 3px 10px;
+    background-color: #e4e6e8;
+    color: #112626;
+    border-radius: 20px;
+    font-size: 12.25px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .blog-recipes__share {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: start;
+  }
+
+  .blog-recipes__share-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 40px 0 0;
+    background-color: #fff;
+    color: #112626;
+    text-decoration: none;
+    transition: color 0.25s ease-in;
+  }
+
+  .blog-recipes__share-link:last-child {
+    margin-right: 0;
+  }
+
+  .blog-recipes__share-link:hover {
+    color: #b68b32;
+  }
+
+  .blog-recipes__share-icon {
+    display: block;
+    width: 20px;
+    height: 20px;
+  }
+
+  .blog-recipes__share-icon path,
+  .blog-recipes__share-icon circle {
+    fill: currentColor;
+  }
+
+  .share-text {
+    color: #112626;
+    font-size: 10px;
+    font-weight: 600;
+    margin-top: 1rem;
+  }
+
   @media (min-width: 920px) {
     .blog-recipes__container {
-      padding: 2.5rem 0 1rem 0;
+      padding: 2.5rem 0 0.5rem;
       border-bottom: 1px solid #e5e5e5;
     }
 
@@ -230,7 +362,7 @@
 
     .blog-recipes__details {
       grid-template-columns: repeat(2, 1fr);
-      margin-top: 2rem;
+      margin-top: 0.75rem;
     }
 
     .blog-recipes__ingredients,
@@ -269,6 +401,20 @@
     .blog-recipes__instructions > p {
       padding: 1.15rem 1.5rem;
       font-size: 17px;
+    }
+
+    .blog-recipes__tags {
+      margin: 2.5rem 0;
+    }
+
+    .blog-recipes__tag {
+      padding: 5px 12px;
+      font-size: 14px;
+    }
+
+    .share-text {
+      font-size: 12px;
+      margin-top: 1rem;
     }
   }
 </style>
