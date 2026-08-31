@@ -59,12 +59,15 @@
     top: 50px;
     left: 0;
     padding: 0 1rem;
-    height: 100vh;
+    height: calc(100vh - 50px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     transform: translateY(-125%);
     transition: transform 0.3s ease;
+    z-index: 998;
   }
   .mobile-menu--open {
-    transform: translateX(0);
+    transform: translateY(0);
   }
   .mobile-menu_left__link {
     display: flex;

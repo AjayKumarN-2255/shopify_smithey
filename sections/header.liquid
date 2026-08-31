@@ -118,19 +118,31 @@
   <div class="mega-menu-container">
     {% if section.settings.left_menu != blank %}
       {% for link in section.settings.left_menu.links %}
-        {% assign menu_handle = link.handle | append: '-menu' %}
-
         <div class="mega-menu" data-menu="{{ link.handle }}">
-          {% render 'mega-menu', menu: linklists[menu_handle] %}
+          {% case link.handle %}
+            {% when 'shop' %}
+              {% render 'shop-menu' %}
+            {% when 'cook' %}
+              {% render 'cook-menu' %}
+            {% else %}
+              {% assign menu_handle = link.handle | append: '-menu' %}
+              {% render 'mega-menu', menu: linklists[menu_handle] %}
+          {% endcase %}
         </div>
       {% endfor %}
     {% endif %}
     {% if section.settings.right_menu != blank %}
       {% for link in section.settings.right_menu.links %}
-        {% assign menu_handle = link.handle | append: '-menu' %}
-
         <div class="mega-menu" data-menu="{{ link.handle }}">
-          {% render 'mega-menu', menu: linklists[menu_handle] %}
+          {% case link.handle %}
+            {% when 'shop' %}
+              {% render 'shop-menu' %}
+            {% when 'cook' %}
+              {% render 'cook-menu' %}
+            {% else %}
+              {% assign menu_handle = link.handle | append: '-menu' %}
+              {% render 'mega-menu', menu: linklists[menu_handle] %}
+          {% endcase %}
         </div>
       {% endfor %}
     {% endif %}

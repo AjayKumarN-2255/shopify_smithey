@@ -1,3 +1,9 @@
+html:has(body.no-scroll),
+body.no-scroll {
+  overflow: hidden;
+  touch-action: none;
+}
+
 .header-icon {
   display: inline-flex;
   align-items: center;
