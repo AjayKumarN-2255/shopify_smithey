@@ -232,7 +232,8 @@
 <style>
   .recipe-listing {
     width: 100%;
-    padding: 2rem 1rem 4rem;
+    padding: 1rem;
+    margin-top: 1.5rem;
   }
 
   .recipe-listing.is-loading {
@@ -553,12 +554,14 @@
   }
 
   @media (min-width: 920px) {
-    .recipe-listing {
-      padding: 2.5rem 1rem 5rem;
-    }
-
     .recipe-listing__grid {
       grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (min-width: 1700px) {
+    .recipe-listing .cook-menu__recipe-card-image {
+      height: 29.25rem;
     }
   }
 </style>
