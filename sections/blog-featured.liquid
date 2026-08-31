@@ -1,3 +1,4 @@
+{% unless blog.handle == 'recipies' %}
 <section class="blog-featured">
   {% if section.settings.title != blank %}
     <h2 class="blog-featured__heading">
@@ -118,6 +119,7 @@
     }
   }
 </style>
+{% endunless %}
 
 {% schema %}
 {

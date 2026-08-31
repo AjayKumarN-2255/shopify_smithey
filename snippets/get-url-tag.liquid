@@ -1,0 +1,19 @@
+{% comment %}
+  Reads the blog tag from a /tagged/ URL segment.
+  Usage: {% render 'get-url-tag' %}
+{% endcomment %}
+
+{%- liquid
+  capture content_for_query_string
+    echo content_for_header
+  endcapture
+
+  assign page_url = content_for_query_string | split: '"pageurl":"' | last | split: '"' | first | split: '.myshopify.com' | last | replace: '\/', '/' | replace: '%20', ' ' | replace: '\u0026', '&'
+  assign tag_value = blank
+
+  if page_url contains '/tagged/'
+    assign tag_value = page_url | split: '/tagged/' | last | split: '?' | first | split: '/' | first | url_decode | replace: '-', ' '
+  endif
+
+  echo tag_value
+-%}

@@ -1,9 +1,22 @@
 <div class="cook-menu">
   <div class="cook-menu__container">
-    <div class="cook-menu__column cook-menu__column--left">fsdfsdf</div>
-    <div class="cook-menu__column cook-menu__column--right">
-      {% assign blog = blogs.recipies %}
+    {% assign blog = blogs.recipies %}
 
+    <div class="cook-menu__column cook-menu__column--left">
+      {% if blog != blank %}
+        <div class="recipe-categories">
+          <h3 class="recipe-categories__title">Categories</h3>
+
+          <a href="{{ blog.url }}/tagged/Appetizers">Appetizers</a>
+          <a href="{{ blog.url }}/tagged/Sides">Sides</a>
+          <a href="{{ blog.url }}/tagged/Mains">Mains</a>
+          <a href="{{ blog.url }}/tagged/Desserts">Desserts</a>
+
+          <a href="{{ blog.url }}" class="recipe-categories__cta">All Recipes</a>
+        </div>
+      {% endif %}
+    </div>
+    <div class="cook-menu__column cook-menu__column--right">
       {% if blog != blank %}
         <div class="cook-menu__featured-recipes">
           <h3 class="cook-menu__featured-recipes-title">Featured Recipes</h3>
@@ -90,7 +103,96 @@
 
   .cook-menu__column--left {
     width: 17.5rem;
-    background: green;
+  }
+
+  .recipe-categories {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .recipe-categories__title {
+    margin: 0 0 0.5rem;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1;
+    letter-spacing: 0.005em;
+    color: #b68b32;
+    font-family: sans-serif;
+  }
+
+  .recipe-categories a:not(.recipe-categories__cta) {
+    display: inline-flex;
+    align-items: center;
+    padding-left: 0;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-family: sans-serif;
+    line-height: 1;
+    transform: translateX(0);
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+
+  .recipe-categories a:not(.recipe-categories__cta)::before {
+    content: "";
+    display: block;
+    flex-shrink: 0;
+    width: 0;
+    height: 13px;
+    margin-right: 0;
+    overflow: hidden;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='13' viewBox='0 0 12 13' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.35463 8.89844L0.000141144 13L1.08022 6.5L0.000141712 0L5.23159 4.00684L11.9982 6.47559L5.35463 8.89844Z' fill='%23B3B3B3'/%3E%3C/svg%3E");
+    background-size: 12px 13px;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, width 0.3s ease-in-out, margin-right 0.3s ease-in-out;
+  }
+
+  .recipe-categories a:not(.recipe-categories__cta):hover {
+    color: #b68b32;
+    transform: translateX(10px);
+  }
+
+  .recipe-categories a:not(.recipe-categories__cta):hover::before {
+    width: 12px;
+    opacity: 1;
+    margin-right: 8px;
+    transform: translateX(0);
+  }
+
+  .recipe-categories__cta {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    --tw-bg-opacity: 1;
+    background-color: #b68b32;
+    background-color: rgba(182, 139, 50, var(--tw-bg-opacity, 1));
+    transition: all 0.3s ease;
+    padding: 16px 32px;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.7px;
+    font-weight: 700;
+    line-height: 1;
+    box-sizing: border-box;
+    color: #112626;
+    text-decoration: none;
+    font-family: sans-serif;
+    border-radius: 0;
+    border: none;
+  }
+
+  .recipe-categories__cta:hover {
+    --tw-bg-opacity: 0.9;
   }
 
   .cook-menu__column--right {

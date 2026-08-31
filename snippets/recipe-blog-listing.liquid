@@ -1,0 +1,528 @@
+<script src="{{ 'recipe-blog-listing.js' | asset_url }}" defer></script>
+
+{% assign blog = blog | default: blogs.recipies %}
+{% assign per_page = 9 %}
+
+{% assign active_course = '' %}
+{% assign active_shape = '' %}
+
+{% if current_tags.size > 0 %}
+  {% assign active_course = current_tags.first %}
+{% else %}
+  {% capture tag_from_url %}{% render 'get-url-tag' %}{% endcapture %}
+  {% assign tag_from_url = tag_from_url | strip %}
+  {% if tag_from_url != blank %}
+    {% assign active_course = tag_from_url %}
+  {% else %}
+    {% capture course_param %}{% render 'get-url-param', key: 'course' %}{% endcapture %}
+    {% assign active_course = course_param | strip %}
+  {% endif %}
+{% endif %}
+
+{% if active_course == blank %}
+  {% capture shape_param %}{% render 'get-url-param', key: 'shape' %}{% endcapture %}
+  {% assign active_shape = shape_param | strip %}
+{% endif %}
+
+{% assign active_course_down = active_course | downcase %}
+
+<section
+  class="recipe-listing"
+  data-recipe-listing
+  data-blog-url="{{ blog.url }}"
+>
+  <div class="recipe-listing__container">
+    <div class="recipe-listing__filters">
+      <span class="recipe-listing__filters-label">Filter:</span>
+
+      <div class="recipe-listing__filters-controls">
+        <div class="recipe-listing__filter-dropdown" data-recipe-filter-dropdown>
+          <button
+            type="button"
+            class="recipe-listing__filter-toggle"
+            data-recipe-filter-toggle
+            aria-expanded="false"
+            aria-controls="recipe-filter-course"
+          >
+            <span>By Course</span>
+            <svg
+              class="recipe-listing__filter-chevron"
+              width="12"
+              height="8"
+              viewBox="0 0 12 8"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="recipe-listing__filter-panel" id="recipe-filter-course">
+            <label class="recipe-listing__filter-option">
+              <input
+                type="checkbox"
+                name="course"
+                value="Appetizers"
+                data-recipe-course
+                {% if active_course_down == 'appetizers' %}
+                  checked
+                {% endif %}
+              >
+              <span>Appetizers</span>
+            </label>
+            <label class="recipe-listing__filter-option">
+              <input
+                type="checkbox"
+                name="course"
+                value="Desserts"
+                data-recipe-course
+                {% if active_course_down == 'desserts' %}
+                  checked
+                {% endif %}
+              >
+              <span>Desserts</span>
+            </label>
+            <label class="recipe-listing__filter-option">
+              <input
+                type="checkbox"
+                name="course"
+                value="Mains"
+                data-recipe-course
+                {% if active_course_down == 'mains' %}
+                  checked
+                {% endif %}
+              >
+              <span>Mains</span>
+            </label>
+            <label class="recipe-listing__filter-option">
+              <input
+                type="checkbox"
+                name="course"
+                value="Sides"
+                data-recipe-course
+                {% if active_course_down == 'sides' %}
+                  checked
+                {% endif %}
+              >
+              <span>Sides</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="recipe-listing__filter-dropdown" data-recipe-filter-dropdown>
+          <button
+            type="button"
+            class="recipe-listing__filter-toggle"
+            data-recipe-filter-toggle
+            aria-expanded="false"
+            aria-controls="recipe-filter-shape"
+          >
+            <span>By Shape</span>
+            <svg
+              class="recipe-listing__filter-chevron"
+              width="12"
+              height="8"
+              viewBox="0 0 12 8"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="recipe-listing__filter-panel" id="recipe-filter-shape">
+            <label class="recipe-listing__filter-option">
+              <input
+                type="checkbox"
+                name="shape"
+                value="dutch-oven"
+                data-recipe-shape
+                data-label="Dutch Oven"
+                {% if active_shape == 'dutch-oven' %}
+                  checked
+                {% endif %}
+              >
+              <span>Dutch Oven</span>
+            </label>
+            <label class="recipe-listing__filter-option">
+              <input
+                type="checkbox"
+                name="shape"
+                value="roaster"
+                data-recipe-shape
+                data-label="Roaster"
+                {% if active_shape == 'roaster' %}
+                  checked
+                {% endif %}
+              >
+              <span>Roaster</span>
+            </label>
+            <label class="recipe-listing__filter-option">
+              <input
+                type="checkbox"
+                name="shape"
+                value="skillet"
+                data-recipe-shape
+                data-label="Skillet"
+                {% if active_shape == 'skillet' %}
+                  checked
+                {% endif %}
+              >
+              <span>Skillet</span>
+            </label>
+            <label class="recipe-listing__filter-option">
+              <input
+                type="checkbox"
+                name="shape"
+                value="specialty"
+                data-recipe-shape
+                data-label="Specialty"
+                {% if active_shape == 'specialty' %}
+                  checked
+                {% endif %}
+              >
+              <span>Specialty</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="recipe-listing__active-tags" data-recipe-listing-active>
+        {% if active_course != blank %}
+          <button type="button" class="recipe-listing__active-tag" data-remove-filter="course">
+            <span aria-hidden="true">&times;</span> {{ active_course | upcase }}
+          </button>
+        {% endif %}
+
+        {% if active_shape != blank %}
+          {% case active_shape %}
+            {% when 'dutch-oven' %}
+              {% assign shape_label = 'DUTCH OVEN' %}
+            {% when 'roaster' %}
+              {% assign shape_label = 'ROASTER' %}
+            {% when 'skillet' %}
+              {% assign shape_label = 'SKILLET' %}
+            {% when 'specialty' %}
+              {% assign shape_label = 'SPECIALTY' %}
+            {% else %}
+              {% assign shape_label = active_shape | upcase %}
+          {% endcase %}
+          <button type="button" class="recipe-listing__active-tag" data-remove-filter="shape">
+            <span aria-hidden="true">&times;</span> {{ shape_label }}
+          </button>
+        {% endif %}
+
+        {% if active_course != blank or active_shape != blank %}
+          <button type="button" class="recipe-listing__active-tag recipe-listing__active-tag--clear" data-clear-all>
+            <span aria-hidden="true">&times;</span> CLEAR ALL
+          </button>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="recipe-listing__results" data-recipe-listing-results>
+      {% render 'recipe-blog-listing-grid',
+        blog: blog,
+        active_course: active_course,
+        active_shape: active_shape,
+        per_page: per_page
+      %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .recipe-listing {
+    width: 100%;
+    padding: 2rem 1rem 4rem;
+  }
+
+  .recipe-listing.is-loading {
+    opacity: 0.65;
+    pointer-events: none;
+  }
+
+  .recipe-listing__container {
+    width: 100%;
+    max-width: 70rem;
+    margin: 0 auto;
+  }
+
+  .recipe-listing__filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .recipe-listing__filters-label {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.125rem;
+    font-weight: 400;
+    color: #112626;
+    flex-shrink: 0;
+  }
+
+  .recipe-listing__filters-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .recipe-listing__filter-dropdown {
+    position: relative;
+  }
+
+  .recipe-listing__filter-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    min-width: 11rem;
+    padding: 0.65rem 1rem;
+    border: 1px solid #b68b32;
+    background: #f5f5f5;
+    color: #112626;
+    font-family: sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  .recipe-listing__filter-chevron {
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+
+  .recipe-listing__filter-dropdown.is-open .recipe-listing__filter-chevron {
+    transform: rotate(180deg);
+  }
+
+  .recipe-listing__filter-panel {
+    display: none;
+    position: absolute;
+    top: calc(100% + 2px);
+    left: 0;
+    z-index: 10;
+    min-width: 100%;
+    padding: 0.75rem 0;
+    border: 1px solid #b68b32;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(17, 38, 38, 0.08);
+  }
+
+  .recipe-listing__filter-dropdown.is-open .recipe-listing__filter-panel {
+    display: block;
+  }
+
+  .recipe-listing__filter-option {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-family: sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #112626;
+  }
+
+  .recipe-listing__filter-option:hover {
+    background: #faf8f4;
+  }
+
+  .recipe-listing__filter-option input[type='checkbox'] {
+    width: 14px;
+    height: 14px;
+    margin: 0;
+    accent-color: #b68b32;
+    flex-shrink: 0;
+  }
+
+  .recipe-listing__active-tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.25rem;
+  }
+
+  .recipe-listing__active-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0;
+    border: none;
+    background: none;
+    color: #112626;
+    font-family: sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  .recipe-listing__active-tag span {
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  .recipe-listing__active-tag:hover {
+    color: #b68b32;
+  }
+
+  .recipe-listing__active-tag--clear {
+    margin-left: 0.25rem;
+  }
+
+  .recipe-listing__results {
+    width: 100%;
+  }
+
+  .recipe-listing__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .recipe-listing__card {
+    width: 100%;
+  }
+
+  .recipe-listing__empty {
+    grid-column: 1 / -1;
+    margin: 2rem 0;
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 1rem;
+    color: #112626;
+  }
+
+  .recipe-listing__pagination {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .recipe-listing__pagination-btn {
+    min-width: 2.25rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #b68b32;
+    background: #fff;
+    color: #112626;
+    font-family: sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  .recipe-listing__pagination-btn:hover,
+  .recipe-listing__pagination-btn.is-active {
+    background: #b68b32;
+    color: #fff;
+  }
+
+  /* Cook-menu card styles (shared) */
+  .recipe-listing .cook-menu__recipe-card {
+    display: block;
+    background-color: #29403f;
+    padding: 14px;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .recipe-listing .cook-menu__recipe-card:hover {
+    background-color: #384c49;
+  }
+
+  .recipe-listing .cook-menu__recipe-card-image {
+    width: 100%;
+    aspect-ratio: 211 / 161;
+    overflow: hidden;
+  }
+
+  .recipe-listing .cook-menu__recipe-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .recipe-listing .cook-menu__recipe-card-title {
+    font-size: 24px;
+    margin: 16px 0;
+    font-weight: 700;
+    color: #f3f3f3;
+    font-family: sans-serif;
+    transition: color 0.2s ease;
+  }
+
+  .recipe-listing .cook-menu__recipe-card:hover .cook-menu__recipe-card-title {
+    color: #b68b32;
+  }
+
+  .recipe-listing .cook-menu__recipe-card-meta {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+
+  .recipe-listing .cook-menu__recipe-card-servings,
+  .recipe-listing .cook-menu__recipe-card-cook-time {
+    margin: 0;
+    display: inline-flex;
+    gap: 3px;
+    align-items: center;
+    color: #fff;
+    font-size: 15px;
+    font-style: italic;
+    font-family: sans-serif;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .recipe-listing .cook-menu__recipe-card-product {
+    border: 1px solid #b68b32;
+    color: #fff;
+    border-radius: 50px;
+    margin-left: auto;
+    font-size: 10px;
+    font-weight: 400;
+    font-family: sans-serif;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4px 10px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  @media (min-width: 640px) {
+    .recipe-listing__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 920px) {
+    .recipe-listing {
+      padding: 2.5rem 1rem 5rem;
+    }
+
+    .recipe-listing__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

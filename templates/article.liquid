@@ -1,0 +1,59 @@
+{% if blog.handle == 'recipies' %}
+  {% render 'recipe-article' %}
+{% else %}
+  <article class="article">
+    <div class="article__container">
+      <h1 class="article__title">{{ article.title }}</h1>
+
+      {% if article.image %}
+        <div class="article__image">
+          {{
+            article.image
+            | image_url: width: 1200
+            | image_tag: loading: 'lazy', alt: article.title
+          }}
+        </div>
+      {% endif %}
+
+      <div class="article__content">
+        {{ article.content }}
+      </div>
+    </div>
+  </article>
+
+  <style>
+    .article {
+      width: 100%;
+    }
+
+    .article__container {
+      max-width: 56rem;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    .article__title {
+      color: #112626;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .article__image {
+      margin-bottom: 1.5rem;
+    }
+
+    .article__image img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .article__content {
+      color: #112626;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+  </style>
+{% endif %}

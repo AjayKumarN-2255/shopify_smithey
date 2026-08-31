@@ -1,0 +1,119 @@
+{% comment %}
+  Recipe blog listing grid + pagination.
+  Accepts:
+  - blog: {Object} Blog object
+  - active_course: {String} Active course tag filter
+  - active_shape: {String} Active shape filter handle
+  - per_page: {Number} Articles per page
+{% endcomment %}
+
+{% assign per_page = per_page | default: 9 %}
+{% assign active_course_down = active_course | downcase %}
+
+{% capture page_param %}{% render 'get-url-param', key: 'page' %}{% endcapture %}
+{% assign current_page = page_param | strip %}
+{% if current_page == blank %}
+  {% assign current_page = 1 %}
+{% else %}
+  {% assign current_page = current_page | plus: 0 %}
+{% endif %}
+{% if current_page < 1 %}
+  {% assign current_page = 1 %}
+{% endif %}
+
+{% assign offset = current_page | minus: 1 | times: per_page %}
+{% assign matched_count = 0 %}
+{% assign shown_count = 0 %}
+
+<div class="recipe-listing__grid">
+  {% for article in blog.articles %}
+    {% assign include_article = true %}
+
+    {% if active_course != blank %}
+      {% assign include_article = false %}
+      {% for tag in article.tags %}
+        {% assign tag_down = tag | downcase %}
+        {% if tag_down == active_course_down %}
+          {% assign include_article = true %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+    {% elsif active_shape != blank %}
+      {% assign include_article = false %}
+      {% assign related_product = article.metafields.custom.related_products.value %}
+      {% assign product_title = related_product.title | default: '' | downcase %}
+
+      {% if active_shape == 'dutch-oven' and product_title contains 'dutch oven' %}
+        {% assign include_article = true %}
+      {% elsif active_shape == 'roaster' and product_title contains 'roaster' %}
+        {% assign include_article = true %}
+      {% elsif active_shape == 'skillet' and product_title contains 'skillet' %}
+        {% assign include_article = true %}
+      {% elsif active_shape == 'specialty' %}
+        {% unless product_title contains 'dutch oven' or product_title contains 'roaster' or product_title contains 'skillet' %}
+          {% if product_title != blank %}
+            {% assign include_article = true %}
+          {% endif %}
+        {% endunless %}
+      {% endif %}
+    {% endif %}
+
+    {% if include_article %}
+      {% if matched_count >= offset and shown_count < per_page %}
+        {% render 'recipe-blog-listing-card', article: article, card_index: forloop.index %}
+        {% assign shown_count = shown_count | plus: 1 %}
+      {% endif %}
+      {% assign matched_count = matched_count | plus: 1 %}
+    {% endif %}
+  {% endfor %}
+
+  {% if shown_count == 0 %}
+    <p class="recipe-listing__empty">No recipes found for this filter.</p>
+  {% endif %}
+</div>
+
+{% assign total_pages = matched_count | divided_by: per_page %}
+{% assign remainder = matched_count | modulo: per_page %}
+{% if remainder > 0 %}
+  {% assign total_pages = total_pages | plus: 1 %}
+{% endif %}
+
+{% if total_pages > 1 %}
+  <nav class="recipe-listing__pagination" aria-label="Recipe pagination">
+    {% if current_page > 1 %}
+      <button
+        type="button"
+        class="recipe-listing__pagination-btn"
+        data-recipe-page="{{ current_page | minus: 1 }}"
+        aria-label="Previous page"
+      >
+        &larr; Prev
+      </button>
+    {% endif %}
+
+    {% for page_num in (1..total_pages) %}
+      <button
+        type="button"
+        class="recipe-listing__pagination-btn{% if page_num == current_page %} is-active{% endif %}"
+        data-recipe-page="{{ page_num }}"
+        aria-label="Page {{ page_num }}"
+        {% if page_num == current_page %}
+          aria-current="page"
+        {% endif %}
+      >
+        {{ page_num }}
+      </button>
+    {% endfor %}
+
+    {% if current_page < total_pages %}
+      <button
+        type="button"
+        class="recipe-listing__pagination-btn"
+        data-recipe-page="{{ current_page | plus: 1 }}"
+        aria-label="Next page"
+      >
+        Next &rarr;
+      </button>
+    {% endif %}
+  </nav>
+{% endif %}

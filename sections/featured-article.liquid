@@ -1,3 +1,4 @@
+{% unless blog.handle == 'recipies' %}
 <section
   class="featured-article"
   style="background-color: {{ section.settings.background_color }};"
@@ -150,6 +151,7 @@
     }
   }
 </style>
+{% endunless %}
 
 {% schema %}
 {

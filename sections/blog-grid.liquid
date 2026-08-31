@@ -1,3 +1,4 @@
+{% unless blog.handle == 'recipies' %}
 {{ 'blog-grid.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'blog-grid.js' | asset_url }}" defer></script>
 <section class="blog-grid">
@@ -88,6 +89,7 @@
     </div>
   </div>
 </section>
+{% endunless %}
 
 {% schema %}
 {

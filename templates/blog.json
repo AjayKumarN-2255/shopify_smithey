@@ -9,6 +9,10 @@
  */
 {
     "sections": {
+        "blog-recipies-listing": {
+            "type": "blog-recipies-listing",
+            "settings": {}
+        },
         "blog-featured": {
             "type": "blog-featured",
             "settings": {
@@ -45,6 +49,7 @@
         }
     },
     "order": [
+        "blog-recipies-listing",
         "blog-featured",
         "blog-grid",
         "blog_featured_R3ckGG",
