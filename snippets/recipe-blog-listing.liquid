@@ -44,7 +44,7 @@
             aria-expanded="false"
             aria-controls="recipe-filter-course"
           >
-            <span>By Course</span>
+            <span>BY COURSE</span>
             <svg
               class="recipe-listing__filter-chevron"
               width="12"
@@ -116,7 +116,7 @@
             aria-expanded="false"
             aria-controls="recipe-filter-shape"
           >
-            <span>By Shape</span>
+            <span>BY SHAPE</span>
             <svg
               class="recipe-listing__filter-chevron"
               width="12"
@@ -242,15 +242,14 @@
 
   .recipe-listing__container {
     width: 100%;
-    max-width: 70rem;
     margin: 0 auto;
   }
 
   .recipe-listing__filters {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    gap: 1rem 1.5rem;
+    align-items: flex-start;
+    gap: 0.75rem 1rem;
     margin-bottom: 2rem;
   }
 
@@ -260,32 +259,38 @@
     font-weight: 400;
     color: #112626;
     flex-shrink: 0;
+    line-height: 2.5rem;
   }
 
   .recipe-listing__filters-controls {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem;
+    align-items: flex-start;
+    gap: 0.5rem;
   }
 
   .recipe-listing__filter-dropdown {
     position: relative;
+    min-width: 13.5rem;
+    border: 1px solid #b68b32;
+    background: #f5f5f5;
   }
 
   .recipe-listing__filter-toggle {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 2rem;
-    min-width: 11rem;
+    gap: 1.5rem;
+    width: 100%;
+    min-height: 2.5rem;
     padding: 0.65rem 1rem;
-    border: 1px solid #b68b32;
-    background: #f5f5f5;
+    border: none;
+    background: transparent;
     color: #112626;
-    font-family: sans-serif;
+    font-family: Gotham, ui-sans-serif, sans-serif;
     font-size: 0.75rem;
     font-weight: 700;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     cursor: pointer;
     line-height: 1;
@@ -293,6 +298,7 @@
 
   .recipe-listing__filter-chevron {
     flex-shrink: 0;
+    color: #112626;
     transition: transform 0.2s ease;
   }
 
@@ -302,15 +308,9 @@
 
   .recipe-listing__filter-panel {
     display: none;
-    position: absolute;
-    top: calc(100% + 2px);
-    left: 0;
-    z-index: 10;
-    min-width: 100%;
-    padding: 0.75rem 0;
-    border: 1px solid #b68b32;
-    background: #fff;
-    box-shadow: 0 4px 12px rgba(17, 38, 38, 0.08);
+    padding: 0.25rem 0 0.5rem;
+    border-top: 1px solid #b68b32;
+    background: #f5f5f5;
   }
 
   .recipe-listing__filter-dropdown.is-open .recipe-listing__filter-panel {
@@ -321,18 +321,18 @@
     display: flex;
     align-items: center;
     gap: 0.65rem;
-    padding: 0.5rem 1rem;
+    padding: 0.45rem 1rem;
     cursor: pointer;
-    font-family: sans-serif;
+    font-family: Gotham, ui-sans-serif, sans-serif;
     font-size: 0.75rem;
     font-weight: 700;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     color: #112626;
   }
 
   .recipe-listing__filter-option:hover {
-    background: #faf8f4;
+    background: rgba(182, 139, 50, 0.08);
   }
 
   .recipe-listing__filter-option input[type='checkbox'] {
@@ -348,6 +348,7 @@
     flex-wrap: wrap;
     align-items: center;
     gap: 0.75rem 1.25rem;
+    flex: 1 1 100%;
   }
 
   .recipe-listing__active-tag {
@@ -387,11 +388,13 @@
   .recipe-listing__grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 14px;
+    gap: 0.7rem;
+    align-items: stretch;
   }
 
   .recipe-listing__card {
     width: 100%;
+    height: 100%;
   }
 
   .recipe-listing__empty {
@@ -431,23 +434,27 @@
     color: #fff;
   }
 
-  /* Cook-menu card styles (shared) */
+  /* Recipe listing card styles */
   .recipe-listing .cook-menu__recipe-card {
-    display: block;
-    background-color: #29403f;
-    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: #2d4140;
+    padding: 0.7rem;
     text-decoration: none;
     color: inherit;
+    transition: background-color 0.2s ease;
   }
 
   .recipe-listing .cook-menu__recipe-card:hover {
-    background-color: #384c49;
+    background-color: #354b4a;
   }
 
   .recipe-listing .cook-menu__recipe-card-image {
     width: 100%;
-    aspect-ratio: 211 / 161;
+    height: 22.25rem;
     overflow: hidden;
+    flex-shrink: 0;
   }
 
   .recipe-listing .cook-menu__recipe-card-image img {
@@ -457,12 +464,22 @@
     display: block;
   }
 
+  .recipe-listing .cook-menu__recipe-card-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 7rem;
+    padding-top: 0.8rem;
+    text-align: left;
+  }
+
   .recipe-listing .cook-menu__recipe-card-title {
-    font-size: 24px;
-    margin: 16px 0;
+    margin: 0;
+    font-size: 1.2rem;
     font-weight: 700;
-    color: #f3f3f3;
-    font-family: sans-serif;
+    line-height: 1.25;
+    color: #fff;
+    font-family: Georgia, 'Times New Roman', serif;
     transition: color 0.2s ease;
   }
 
@@ -472,22 +489,40 @@
 
   .recipe-listing .cook-menu__recipe-card-meta {
     display: flex;
-    gap: 10px;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 0.5rem;
+    width: 100%;
+    margin-top: auto;
+    padding-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .recipe-listing .cook-menu__recipe-card-meta-left {
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    flex-wrap: nowrap;
+    gap: 0.5rem 0.75rem;
+    min-width: 0;
   }
 
   .recipe-listing .cook-menu__recipe-card-servings,
   .recipe-listing .cook-menu__recipe-card-cook-time {
     margin: 0;
     display: inline-flex;
-    gap: 3px;
+    gap: 0.15rem;
     align-items: center;
     color: #fff;
-    font-size: 15px;
+    font-size: 0.75rem;
     font-style: italic;
-    font-family: sans-serif;
+    font-family: Gotham, ui-sans-serif, sans-serif;
     white-space: nowrap;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  .recipe-listing .cook-menu__recipe-card-servings svg,
+  .recipe-listing .cook-menu__recipe-card-cook-time svg {
     flex-shrink: 0;
   }
 
@@ -496,18 +531,19 @@
     color: #fff;
     border-radius: 50px;
     margin-left: auto;
-    font-size: 10px;
+    font-size: 0.5rem;
     font-weight: 400;
-    font-family: sans-serif;
+    font-family: Gotham, ui-sans-serif, sans-serif;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 4px 10px;
+    padding: 0.2rem 0.5rem;
     text-transform: uppercase;
     white-space: nowrap;
     flex-shrink: 0;
-    line-height: 1;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
   }
 
   @media (min-width: 640px) {
