@@ -1,1 +1,167 @@
-this is single product template
+{{ 'product.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'product.js' | asset_url }}" defer></script>
+
+<section class="product">
+  <div class="product__container">
+    <div class="product__layout">
+      {% assign featured_image = product.featured_image | default: product.images.first %}
+
+      <div class="product__media-column">
+        {% assign rating = product.metafields.custom.rating.value | default: 5 %}
+        {% assign reviews_count = product.metafields.custom.reviews_count | default: 0 %}
+
+        <div class="product__mobile-header">
+          <div class="product__mobile-header-top">
+            <h1 class="product__mobile-title">{{ product.title }}</h1>
+
+            <div class="product__mobile-pricing">
+              {% if product.compare_at_price > product.price %}
+                <span class="product__mobile-compare-price">{{ product.compare_at_price | money }}</span>
+              {% endif %}
+              <span class="product__mobile-price">{{ product.price | money }}</span>
+            </div>
+          </div>
+
+          <div class="product__mobile-reviews">
+            <span class="product__mobile-stars" aria-hidden="true">
+              {% for i in (1..5) %}
+                {% if i <= rating %}
+                  ★
+                {% else %}
+                  ☆
+                {% endif %}
+              {% endfor %}
+            </span>
+            {% if reviews_count > 0 %}
+              <span class="product__mobile-review-count">{{ reviews_count }} Reviews</span>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="product__gallery" data-product-gallery>
+        <div class="product__media">
+          {% if featured_image %}
+            {{
+              featured_image
+              | image_url: width: 911, height: 911, crop: 'center'
+              | image_tag:
+                loading: 'lazy',
+                class: 'product__image',
+                alt: featured_image.alt,
+                width: 700,
+                height: 700,
+                widths: '700, 911',
+                sizes: '(min-width: 1700px) 911px, 700px',
+                data-product-main-image: ''
+            }}
+          {% endif %}
+        </div>
+
+        {% if product.images.size > 1 %}
+          <div class="product__thumbnails">
+            {% for image in product.images %}
+              <button
+                type="button"
+                class="product__thumbnail"
+                data-image-src="{{ image | image_url: width: 911, height: 911, crop: 'center' }}"
+                aria-label="{{ image.alt | default: product.title | escape }}"
+              >
+                {{
+                  image
+                  | image_url: width: 150, height: 150, crop: 'center'
+                  | image_tag:
+                    loading: 'lazy',
+                    class: 'product__thumbnail-image',
+                    alt: image.alt,
+                    width: 150,
+                    height: 150
+                }}
+              </button>
+            {% endfor %}
+          </div>
+        {% endif %}
+        </div>
+      </div>
+
+      <div class="product__details">
+        <div class="product__info">
+          <h1 class="product__title product__title--desktop">{{ product.title }}</h1>
+
+          <div class="product__reviews product__reviews--desktop">
+            <span class="product__stars" aria-hidden="true">
+              {% for i in (1..5) %}
+                {% if i <= rating %}
+                  ★
+                {% else %}
+                  ☆
+                {% endif %}
+              {% endfor %}
+            </span>
+            {% if reviews_count > 0 %}
+              <a href="#reviews" class="product__review-link">{{ reviews_count }} Reviews</a>
+            {% endif %}
+          </div>
+
+          <div class="product__pricing product__pricing--desktop">
+            <span class="product__price">{{ product.price | money }}</span>
+            {% if product.compare_at_price > product.price %}
+              <span class="product__compare-price">{{ product.compare_at_price | money }}</span>
+            {% endif %}
+          </div>
+
+          {% if product.description != blank %}
+            <div class="product__description">
+              {{ product.description | strip_html | truncate: 200 }}
+            </div>
+          {% endif %}
+
+          {% form 'product', product, class: 'product__form' %}
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+
+            <button type="submit" class="product__add-to-cart" {% unless product.available %}disabled{% endunless %}>
+              <span class="product__add-to-cart-label">Add to Cart</span>
+              <span class="product__add-to-cart-price">{{ product.price | money }}</span>
+            </button>
+          {% endform %}
+
+          <button type="button" class="product__engraving">
+            <span class="product__engraving-label">Add Custom Engraving</span>
+            <span class="product__engraving-icon" aria-hidden="true">+</span>
+          </button>
+
+          <div class="product__badges">
+            <div class="product__badge">
+              <img
+                alt="US Made"
+                class="product__badge-image"
+                loading="lazy"
+                src="https://smithey.com/cdn/shop/files/usa_500x.png?v=1695064478"
+              >
+              <span class="product__badge-label">US Made</span>
+            </div>
+
+            <div class="product__badge">
+              <img
+                alt="Lifetime Guarantee"
+                class="product__badge-image"
+                loading="lazy"
+                src="https://smithey.com/cdn/shop/files/Smithey_Icons_16-01_500x.png?v=1695064129"
+              >
+              <span class="product__badge-label">Lifetime Guarantee</span>
+            </div>
+
+            <div class="product__badge">
+              <img
+                alt="PFOA &amp; PTFE Free"
+                class="product__badge-image"
+                loading="lazy"
+                src="https://smithey.com/cdn/shop/files/PFAFree_500x.png?v=1752782855"
+              >
+              <span class="product__badge-label">PFOA &amp; PTFE Free</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
