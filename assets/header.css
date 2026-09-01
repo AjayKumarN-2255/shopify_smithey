@@ -202,7 +202,7 @@ body.no-scroll {
   }
 
   .mega-menu-container--open {
-    max-height: 40rem;
+    max-height: 50rem;
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
   }

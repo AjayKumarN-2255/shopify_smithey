@@ -1,1 +1,250 @@
-this is shop menu
+<div class="shop-menu">
+  <div class="shop-menu__container">
+    <div class="shop-menu__column shop-menu__column--left">
+      <div class="shop-menu__categories">
+        <h3 class="shop-menu__categories-title">Shop by category</h3>
+
+        <a href="{{ collections['build-your-own-bundle'].url | default: '/collections/build-your-own-bundle' }}">Build Your Own Bundle</a>
+        <a href="{{ collections['accessories'].url | default: '/collections/accessories' }}">Accessories</a>
+        <a href="{{ collections['factory-seconds'].url | default: '/collections/factory-seconds' }}">Factory Seconds</a>
+        <a href="{{ collections['glass-lids'].url | default: '/collections/glass-lids' }}">Glass lids</a>
+        <a href="{{ collections['carbon-steel-lid'].url | default: '/collections/carbon-steel-lid' }}">Carbon Steel Lid</a>
+        <a href="{{ collections['gift-cards'].url | default: '/collections/gift-cards' }}">Gift cards</a>
+
+        <a href="{{ routes.collections_url | default: '/collections' }}" class="shop-menu__categories-cta">Shop all</a>
+      </div>
+    </div>
+
+    <div class="shop-menu__column shop-menu__column--right">
+      {% assign cookware_collection = collections.cookware %}
+
+      {% if cookware_collection != blank %}
+        <div class="shop-menu__featured-products">
+          <div class="shop-menu__featured-products-list">
+            {% for product in cookware_collection.products limit: 3 %}
+              <a href="{{ routes.collections_url | default: '/collections' }}" class="shop-menu__product-card">
+                <div class="shop-menu__product-card-image">
+                  {% if product.featured_image %}
+                    {{ product.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: product.title }}
+                  {% endif %}
+                </div>
+
+                <div class="shop-menu__product-card-content">
+                  <h4 class="shop-menu__product-card-title">{{ product.title }}</h4>
+
+                  {% if product.metafields.custom.menu_description != blank %}
+                    <p class="shop-menu__product-card-description">
+                      {{ product.metafields.custom.menu_description }}
+                    </p>
+                  {% elsif product.metafields.custom.material != blank %}
+                    <p class="shop-menu__product-card-description">
+                      {{ product.metafields.custom.material }}
+                    </p>
+                  {% endif %}
+                </div>
+              </a>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<style>
+  .shop-menu {
+    width: 100%;
+  }
+
+  .shop-menu__container {
+    width: 100%;
+    max-width: 70rem;
+    margin: auto;
+    display: flex;
+  }
+
+  .shop-menu__column--left {
+    width: 17.5rem;
+  }
+
+  .shop-menu__categories {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .shop-menu__categories-title {
+    margin: 0 0 0.5rem;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1;
+    letter-spacing: 0.005em;
+    color: #b68b32;
+    font-family: sans-serif;
+  }
+
+  .shop-menu__categories a:not(.shop-menu__categories-cta) {
+    display: inline-flex;
+    align-items: center;
+    padding-left: 0;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-family: sans-serif;
+    line-height: 1;
+    transform: translateX(0);
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+
+  .shop-menu__categories a:not(.shop-menu__categories-cta)::before {
+    content: "";
+    display: block;
+    flex-shrink: 0;
+    width: 0;
+    height: 13px;
+    margin-right: 0;
+    overflow: hidden;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='13' viewBox='0 0 12 13' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.35463 8.89844L0.000141144 13L1.08022 6.5L0.000141712 0L5.23159 4.00684L11.9982 6.47559L5.35463 8.89844Z' fill='%23B3B3B3'/%3E%3C/svg%3E");
+    background-size: 12px 13px;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, width 0.3s ease-in-out, margin-right 0.3s ease-in-out;
+  }
+
+  .shop-menu__categories a:not(.shop-menu__categories-cta):hover {
+    color: #b68b32;
+    transform: translateX(10px);
+  }
+
+  .shop-menu__categories a:not(.shop-menu__categories-cta):hover::before {
+    width: 12px;
+    opacity: 1;
+    margin-right: 8px;
+    transform: translateX(0);
+  }
+
+  .shop-menu__categories-cta {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    background-color: #b68b32;
+    transition: all 0.3s ease;
+    padding: 16px 32px;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.7px;
+    font-weight: 700;
+    line-height: 1;
+    box-sizing: border-box;
+    color: #112626;
+    text-decoration: none;
+    font-family: sans-serif;
+    border-radius: 0;
+    border: none;
+  }
+
+  .shop-menu__categories-cta:hover {
+    background-color: #254140;
+    color: #b68b32;
+  }
+
+  .shop-menu__column--right {
+    width: 52.5rem;
+  }
+
+  .shop-menu__featured-products-list {
+    display: flex;
+    gap: 14px;
+  }
+
+  .shop-menu__product-card {
+    flex: 0 0 calc((100% - 28px) / 3);
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    height: 24.05rem;
+    border-radius: 10px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .shop-menu__product-card-image {
+    flex: 0 0 17.05rem;
+    width: 100%;
+    height: 17.05rem;
+    min-height: 17.05rem;
+    background-color: #d9d9d9;
+    overflow: hidden;
+  }
+
+  .shop-menu__product-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .shop-menu__product-card-content {
+    flex: 0 0 7rem;
+    width: 100%;
+    height: 7rem;
+    min-height: 7rem;
+    background-color: #2a4140;
+    padding: 16px;
+    transition: background-color 0.2s ease;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .shop-menu__product-card:hover .shop-menu__product-card-content {
+    background-color: #384c49;
+  }
+
+  .shop-menu__product-card-title {
+    display: flex;
+    align-items: center;
+    margin: 0 0 8px;
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1.2;
+    color: #fff;
+    font-family: sans-serif;
+    transition: color 0.2s ease;
+  }
+
+  .shop-menu__product-card-title::before {
+    content: "";
+    display: block;
+    flex-shrink: 0;
+    width: 12px;
+    height: 13px;
+    margin-right: 8px;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='13' viewBox='0 0 12 13' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.35463 8.89844L0.000141144 13L1.08022 6.5L0.000141712 0L5.23159 4.00684L11.9982 6.47559L5.35463 8.89844Z' fill='%23B68B32'/%3E%3C/svg%3E");
+    background-size: 12px 13px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .shop-menu__product-card:hover .shop-menu__product-card-title {
+    color: #b68b32;
+  }
+
+  .shop-menu__product-card-description {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: 0.05em;
+    color: #f3f3f3;
+    font-family: serif;
+  }
+</style>

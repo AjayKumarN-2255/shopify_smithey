@@ -249,9 +249,9 @@
   .recipe-listing__filters {
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-start;
+    align-items: center;
     gap: 0.75rem 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
 
   .recipe-listing__filters-label {
@@ -266,7 +266,7 @@
   .recipe-listing__filters-controls {
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-start;
+    align-items: center;
     gap: 0.5rem;
   }
 
@@ -309,9 +309,15 @@
 
   .recipe-listing__filter-panel {
     display: none;
-    padding: 0.25rem 0 0.5rem;
-    border-top: 1px solid #b68b32;
+    position: absolute;
+    top: calc(100% + 2px);
+    left: 0;
+    z-index: 10;
+    min-width: 100%;
+    padding: 0.5rem 0;
+    border: 1px solid #b68b32;
     background: #f5f5f5;
+    box-shadow: 0 4px 12px rgba(17, 38, 38, 0.08);
   }
 
   .recipe-listing__filter-dropdown.is-open .recipe-listing__filter-panel {
@@ -349,7 +355,6 @@
     flex-wrap: wrap;
     align-items: center;
     gap: 0.75rem 1.25rem;
-    flex: 1 1 100%;
   }
 
   .recipe-listing__active-tag {
@@ -366,7 +371,8 @@
     letter-spacing: 0.04em;
     text-transform: uppercase;
     cursor: pointer;
-    line-height: 1;
+    line-height: 2.5rem;
+    white-space: nowrap;
   }
 
   .recipe-listing__active-tag span {

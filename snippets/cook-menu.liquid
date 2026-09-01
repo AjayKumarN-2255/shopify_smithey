@@ -80,8 +80,8 @@
                 </div>
               </a>
             {% endfor %}
+          </div>
         </div>
-      </div>
       {% endif %}
     </div>
   </div>
@@ -139,7 +139,7 @@
   }
 
   .recipe-categories a:not(.recipe-categories__cta)::before {
-    content: "";
+    content: '';
     display: block;
     flex-shrink: 0;
     width: 0;
@@ -152,7 +152,8 @@
     background-position: center;
     opacity: 0;
     transform: translateX(-10px);
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, width 0.3s ease-in-out, margin-right 0.3s ease-in-out;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, width 0.3s ease-in-out,
+      margin-right 0.3s ease-in-out;
   }
 
   .recipe-categories a:not(.recipe-categories__cta):hover {
@@ -192,7 +193,8 @@
   }
 
   .recipe-categories__cta:hover {
-    --tw-bg-opacity: 0.9;
+    background-color: #254140;
+    color: #b68b32;
   }
 
   .cook-menu__column--right {
