@@ -41,7 +41,8 @@
 .product__mobile-title {
   margin: 0;
   flex: 1;
-  font-size: 1rem;
+  font-size: 24px;
+  max-width: 12rem;
   font-weight: 700;
   letter-spacing: 0.05em;
   line-height: 1.3;
@@ -64,8 +65,8 @@
 }
 
 .product__mobile-price {
-  font-size: 1.1rem;
-  font-weight: 700;
+  font-size: 24px;
+  font-weight: 400;
   color: #b68b32;
 }
 
@@ -77,13 +78,14 @@
 
 .product__mobile-stars {
   color: #b68b32;
-  font-size: 0.85rem;
+  font-size: 15px;
   letter-spacing: 0.1em;
 }
 
 .product__mobile-review-count {
-  font-size: 0.65rem;
+  font-size: 11.2px;
   color: #9a9a9a;
+  font-weight: bold;
 }
 
 .product__title.product__title--desktop,
@@ -158,7 +160,7 @@
 
 .product__title {
   margin: 0 0 0.75rem;
-  font-size: 1.1rem;
+  font-size: 32px;
   font-weight: 700;
   letter-spacing: 0.05em;
   line-height: 1.3;
@@ -181,8 +183,8 @@
 }
 
 .product__review-link {
-  font-size: 0.65rem;
-  font-weight: 600;
+  font-size: 10px;
+  /* font-weight: 600; */
   letter-spacing: 0.08em;
   text-transform: uppercase;
   text-decoration: underline;
@@ -198,8 +200,8 @@
 }
 
 .product__price {
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-size: 28px;
+  /* font-weight: 700; */
   color: #b68b32;
 }
 
@@ -210,15 +212,20 @@
 }
 
 .product__description {
-  margin: 0 0 1.5rem;
   font-family: Sentinel, ui-serif, serif;
-  font-size: 0.95rem;
+  font-size: 16px;
+  max-width: 24rem;
   line-height: 1.6;
   color: #112626;
+  margin: 0 auto 1rem;
 }
 
 .product__form {
   margin-bottom: 0.5rem;
+  width: 100%;
+  max-width: 24rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .product__add-to-cart {
@@ -226,12 +233,13 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 1rem;
+  padding: 1.5rem;
   border: none;
+  border-radius: 0;
   background-color: #b68b32;
   color: #112626;
   font-family: Gotham, ui-sans-serif, sans-serif;
-  font-size: 0.75rem;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -253,13 +261,15 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 1rem;
-  margin-bottom: 2rem;
+  max-width: 24rem;
+  padding: 1.5rem;
+  margin: 0 auto 2rem;
   border: none;
+  border-radius: 0;
   background-color: #e8e8e8;
   color: #112626;
   font-family: Gotham, ui-sans-serif, sans-serif;
-  font-size: 0.75rem;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -275,12 +285,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   width: 1.25rem;
   height: 1.25rem;
   border-radius: 50%;
   background-color: #112626;
   color: #fff;
-  font-size: 0.9rem;
+  font-size: 14px;
+  font-weight: 700;
   line-height: 1;
 }
 
@@ -392,23 +404,26 @@
 
   .product__description {
     font-family: inherit;
-    font-size: 0.8rem;
+    font-size: 15px;
+    line-height: 1.4;
     margin-bottom: 1.25rem;
   }
 
   .product__form {
     margin-bottom: 0.75rem;
+    max-width: none;
   }
 
   .product__add-to-cart {
-    padding: 0.85rem 1rem;
-    color: #fff;
+    padding: 1rem;
+    color: #112626;
     font-family: inherit;
   }
 
   .product__engraving {
-    padding: 0.85rem 1rem;
-    margin-bottom: 1.25rem;
+    padding: 1rem;
+    max-width: none;
+    margin: 0 0 1.25rem;
     font-family: inherit;
   }
 
