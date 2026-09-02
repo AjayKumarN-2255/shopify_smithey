@@ -1,5 +1,5 @@
 {{ 'product.css' | asset_url | stylesheet_tag }}
-<script src="{{ 'product.js' | asset_url }}" defer></script>
+<script src="{{ 'product-gallery.js' | asset_url }}" defer></script>
 
 <section class="product">
   <div class="product__container">
@@ -39,47 +39,69 @@
         </div>
 
         <div class="product__gallery" data-product-gallery>
-        <div class="product__media">
-          {% if featured_image %}
-            {{
-              featured_image
-              | image_url: width: 911, height: 911, crop: 'center'
-              | image_tag:
-                loading: 'lazy',
-                class: 'product__image',
-                alt: featured_image.alt,
-                width: 700,
-                height: 700,
-                widths: '700, 911',
-                sizes: '(min-width: 1700px) 911px, 700px',
-                data-product-main-image: ''
-            }}
-          {% endif %}
-        </div>
-
-        {% if product.images.size > 1 %}
-          <div class="product__thumbnails">
-            {% for image in product.images %}
-              <button
-                type="button"
-                class="product__thumbnail"
-                data-image-src="{{ image | image_url: width: 911, height: 911, crop: 'center' }}"
-                aria-label="{{ image.alt | default: product.title | escape }}"
-              >
+          <div class="product__media" data-product-media-track>
+            {% if product.images.size > 0 %}
+              {% for image in product.images %}
+                <div class="product__media-slide" data-product-media-slide>
+                  {{
+                    image
+                    | image_url: width: 911, height: 911, crop: 'center'
+                    | image_tag:
+                      loading: 'lazy',
+                      class: 'product__image',
+                      alt: image.alt | default: product.title,
+                      width: 700,
+                      height: 700,
+                      widths: '700, 911',
+                      sizes: '(min-width: 1700px) 911px, 700px'
+                  }}
+                </div>
+              {% endfor %}
+            {% elsif featured_image %}
+              <div class="product__media-slide" data-product-media-slide>
                 {{
-                  image
-                  | image_url: width: 150, height: 150, crop: 'center'
+                  featured_image
+                  | image_url: width: 911, height: 911, crop: 'center'
                   | image_tag:
                     loading: 'lazy',
-                    class: 'product__thumbnail-image',
-                    alt: image.alt,
-                    width: 150,
-                    height: 150
+                    class: 'product__image',
+                    alt: featured_image.alt,
+                    width: 700,
+                    height: 700,
+                    widths: '700, 911',
+                    sizes: '(min-width: 1700px) 911px, 700px'
                 }}
-              </button>
-            {% endfor %}
+              </div>
+            {% endif %}
           </div>
-        {% endif %}
+
+          {% if product.images.size > 1 %}
+            <div class="product__thumbnails">
+              {% for image in product.images %}
+                <button
+                  type="button"
+                  class="product__thumbnail"
+                  data-product-thumbnail
+                  data-image-index="{{ forloop.index0 }}"
+                  aria-label="{{ image.alt | default: product.title | escape }}"
+                  {% if forloop.first %}
+                    aria-current="true"
+                  {% endif %}
+                >
+                  {{
+                    image
+                    | image_url: width: 150, height: 150, crop: 'center'
+                    | image_tag:
+                      loading: 'lazy',
+                      class: 'product__thumbnail-image',
+                      alt: image.alt,
+                      width: 150,
+                      height: 150
+                  }}
+                </button>
+              {% endfor %}
+            </div>
+          {% endif %}
         </div>
       </div>
 
@@ -118,7 +140,13 @@
           {% form 'product', product, class: 'product__form' %}
             <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
 
-            <button type="submit" class="product__add-to-cart" {% unless product.available %}disabled{% endunless %}>
+            <button
+              type="submit"
+              class="product__add-to-cart"
+              {% unless product.available %}
+                disabled
+              {% endunless %}
+            >
               <span class="product__add-to-cart-label">Add to Cart</span>
               <span class="product__add-to-cart-price">{{ product.price | money }}</span>
             </button>
@@ -161,7 +189,102 @@
             </div>
           </div>
         </div>
+
+        {% assign related_products = product.metafields['shopify--discovery--product_recommendation'].related_products.value %}
+        {% if related_products != blank %}
+          <div class="product__pairings">
+            <h2 class="product__pairings-title">Perfect Pairings</h2>
+
+            <div class="product__pairings-grid">
+              {% for related_product in related_products %}
+                <div class="product__pairing-card">
+                  <div class="product__pairing-body">
+                    <a href="{{ related_product.url }}" class="product__pairing-media">
+                      {% if related_product.featured_image %}
+                        {{
+                          related_product.featured_image
+                          | image_url: width: 600
+                          | image_tag:
+                            loading: 'lazy',
+                            class: 'product__pairing-image',
+                            alt: related_product.featured_image.alt,
+                            width: 300,
+                            height: 185
+                        }}
+                      {% endif %}
+                    </a>
+
+                    <h3 class="product__pairing-name">{{ related_product.title }}</h3>
+                  </div>
+
+                  {% form 'product', related_product, class: 'product__pairing-form' %}
+                    <input
+                      type="hidden"
+                      name="id"
+                      value="{{ related_product.selected_or_first_available_variant.id }}"
+                    >
+
+                    <button
+                      type="submit"
+                      class="product__pairing-add-to-cart"
+                      {% unless related_product.available %}
+                        disabled
+                      {% endunless %}
+                    >
+                      <span class="product__pairing-add-to-cart-label">Add to Cart</span>
+                      <span class="product__pairing-add-to-cart-price">{{ related_product.price | money }}</span>
+                    </button>
+                  {% endform %}
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+
+        <div class="product__why-set">
+          <h2 class="product__why-set-title">Why This Set?</h2>
+          <div class="product__why-set-content">
+            Comprised of our quintessential No. 12 skillet and our No. 12 Flat Top Griddle, both complement one another
+            yet also serve their own unique applications in the kitchen. The No. 12 flat top is designed as a custom fit
+            lid to sit atop your No. 12 skillet, but also functions as a daily use griddle. An exceptional gift for
+            anyone from the newlywed to the most discerning chef, these skillets are destined to be modern heirlooms in
+            any home. Use them well.
+          </div>
+        </div>
       </div>
     </div>
   </div>
+
+  {% assign related_blogs = product.metafields.custom.related_blogs.value %}
+  {% if related_blogs != blank %}
+    <div class="product__related-blogs">
+      <div class="product__related-blogs-inner">
+        {% assign related_blog_category = product.metafields.custom.material.value %}
+        <h2 class="product__related-blogs-heading">THE CASE FOR OUR {{ related_blog_category | upcase }}</h2>
+
+        <div class="product__related-blogs-grid">
+          {% for article in related_blogs %}
+            <article class="product__related-blog-card">
+              {% if article.image %}
+                <div class="product__related-blog-media">
+                  {{
+                    article.image
+                    | image_url: width: 902, height: 902, crop: 'center'
+                    | image_tag: loading: 'lazy', class: 'product__related-blog-image', alt: article.image.alt
+                    | default: article.title, width: 451, height: 451
+                  }}
+                </div>
+              {% endif %}
+
+              <h3 class="product__related-blog-title">{{ article.title }}</h3>
+
+              <div class="product__related-blog-excerpt">
+                {{ article.excerpt | default: article.content }}
+              </div>
+            </article>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
 </section>

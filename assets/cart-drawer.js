@@ -47,6 +47,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let isRequesting = false;
 
+    const overlay = document.getElementById('cart-drawer-overlay');
+
+    function openCartDrawer() {
+        if (!drawer || !overlay) return;
+
+        drawer.classList.add('is-open');
+        overlay.classList.add('is-open');
+        document.body.classList.add('no-scroll');
+    }
+
+    function closeCartDrawer() {
+        if (!drawer || !overlay) return;
+
+        drawer.classList.remove('is-open');
+        overlay.classList.remove('is-open');
+        document.body.classList.remove('no-scroll');
+    }
+
+    window.SmitheyCart = {
+        open: openCartDrawer,
+        close: closeCartDrawer,
+    };
+
     const placeholderRegex = /\{\{\s*(\w+)\s*\}\}/;
 
     function defaultOption(opt, def) {
@@ -377,7 +400,7 @@ document.addEventListener('DOMContentLoaded', () => {
         syncRecommendations(cart);
     }
 
-    async function runCartRequest(request) {
+    async function runCartRequest(request, options = {}) {
         if (isRequesting) return;
 
         isRequesting = true;
@@ -392,8 +415,17 @@ document.addEventListener('DOMContentLoaded', () => {
             } catch (uiError) {
                 console.error('Cart UI update failed after successful AJAX request', uiError, cart);
             }
+
+            if (options.openDrawer) {
+                openCartDrawer();
+            }
         } catch (error) {
             console.error('Cart AJAX request failed', error);
+
+            if (options.openDrawer) {
+                openCartDrawer();
+            }
+
             showError(error.message || 'Something went wrong. Please try again.');
         } finally {
             setControlsBusy(false);
@@ -408,9 +440,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    drawer.addEventListener('submit', (event) => {
+    document.addEventListener('submit', (event) => {
         const form = event.target.closest('form[action*="/cart/add"]');
-        if (!form || !drawer.contains(form)) return;
+        if (!form) return;
 
         event.preventDefault();
 
@@ -422,8 +454,12 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        runCartRequest(() => addToCart(variantId));
+        runCartRequest(() => addToCart(variantId), { openDrawer: true });
     });
+
+    overlay?.addEventListener('click', closeCartDrawer);
+
+    drawer.querySelector('.cart-drawer__close')?.addEventListener('click', closeCartDrawer);
 
     drawer.addEventListener('click', (event) => {
         const quantityButton = event.target.closest('.cart-drawer__quantity-button');
