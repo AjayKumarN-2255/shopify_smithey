@@ -1,58 +1,79 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
-    "sections": {
-        "blog-recipies-listing": {
-            "type": "blog-recipies-listing",
-            "settings": {}
-        },
-        "blog-featured": {
-            "type": "blog-featured",
-            "settings": {
-                "title": "The Smithey Journal",
-                "blog": "journal",
-                "limit": 6,
-                "offset": 1
-            }
-        },
-        "blog-grid": {
-            "type": "blog-grid",
-            "settings": {
-                "blog": "journal",
-                "limit": 3,
-                "offset": 1
-            }
-        },
-        "blog_featured_R3ckGG": {
-            "type": "blog-featured",
-            "name": "Blog Featured",
-            "settings": {
-                "title": "",
-                "blog": "journal",
-                "limit": 3,
-                "offset": 2
-            }
-        },
-        "featured-article": {
-            "type": "featured-article",
-            "settings": {
-                "article": "journal/cast-of-characters-stephen",
-                "background_color": "#495a57"
-            }
-        }
+  "sections": {
+    "blog-recipies-listing": {
+      "type": "blog-recipies-listing",
+      "settings": {}
     },
-    "order": [
-        "blog-recipies-listing",
-        "blog-featured",
-        "blog-grid",
-        "blog_featured_R3ckGG",
-        "featured-article"
-    ]
+    "blog-featured": {
+      "type": "blog-featured",
+      "settings": {
+        "title": "The Smithey Journal",
+        "blog": "journal",
+        "limit": 6,
+        "offset": 1
+      }
+    },
+    "blog-grid": {
+      "type": "blog-grid",
+      "settings": {
+        "blog": "journal",
+        "limit": 3,
+        "offset": 1
+      }
+    },
+    "blog_featured_R3ckGG": {
+      "type": "blog-featured",
+      "name": "Blog Featured",
+      "settings": {
+        "title": "",
+        "blog": "journal",
+        "limit": 3,
+        "offset": 2
+      }
+    },
+    "featured-article": {
+      "type": "featured-article",
+      "settings": {
+        "article": "journal/cast-of-characters-stephen",
+        "background_color": "#495a57"
+      }
+    },
+    "content_builder_r7cHMX": {
+      "type": "content-builder",
+      "blocks": {
+        "button_TgWzYh": {
+          "type": "button",
+          "settings": {
+            "button_text": "View all stories",
+            "button_link": "shopify://blogs/journal",
+            "button_bg_color": "#B68B32",
+            "button_text_color": "#112626",
+            "position": "left",
+            "btn_position_desktop": "center",
+            "btn_position_mobile": "center",
+            "custom_css": "& .content-builder__button-link{\n  font-size:22px; \n  text-transform:uppercase;\n  padding:28px 49px;\n  margin:42px 0;\n}\n&{\n  margin:0;\n}\n@media (min-width: 920px) {\n  & .content-builder__button-link {\n    margin:0;\n     padding: 32px 56px;\n  }\n}"
+          }
+        }
+      },
+      "block_order": ["button_TgWzYh"],
+      "custom_css": [
+        "@media (min-width: 920px) {#content-builder-template--21962039558279__content_builder_r7cHMX .content-builder__right {width: 0; } #content-builder-template--21962039558279__content_builder_r7cHMX .content-builder__left {max-width: 100%; width: 100%; }}"
+      ],
+      "name": "Content Builder",
+      "settings": {
+        "background_color": "#ffffff",
+        "desktop_padding": 2.4,
+        "mobile_padding": 0,
+        "show_features": false
+      }
+    }
+  },
+  "order": [
+    "blog-recipies-listing",
+    "blog-featured",
+    "blog-grid",
+    "blog_featured_R3ckGG",
+    "featured-article",
+    "content_builder_r7cHMX"
+  ]
 }
