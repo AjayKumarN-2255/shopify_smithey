@@ -6,7 +6,7 @@
   >
     <img
       src="{{ block.settings.image | image_url: width: 2000 }}"
-      alt="{{ block.settings.image.alt | escape }}"
+      alt="{{ block.settings.alt_text | default: block.settings.image.alt | default: 'Content image' | escape }}"
       width="{{ block.settings.image.width }}"
       height="{{ block.settings.image.height }}"
     >
@@ -40,7 +40,6 @@
     #content-builder-image-{{ block.id }} {
       height: {{ block.settings.image_large_desktop_height }}rem;
       margin-top: 0;
-      margin-bottom: 4rem;
     }
   }
 
