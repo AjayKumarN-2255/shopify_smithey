@@ -5,6 +5,16 @@
       {{ section.settings.title }}
     </h2>
   {% endif %}
+
+  {% if blog.handle == 'journal' and section.settings.title != blank %}
+    <nav class="blog-featured__tags" aria-label="Journal categories">
+      <a href="/blogs/journal">Care</a>
+      <a href="/blogs/journal">Craft</a>
+      <a href="/blogs/journal">Culinary</a>
+      <a href="/blogs/journal">Smithey Stories</a>
+    </nav>
+  {% endif %}
+
   <div class="blog-featured__container">
     {% if section.settings.blog != blank %}
       {% for article in section.settings.blog.articles limit: section.settings.limit offset: section.settings.offset %}
@@ -49,7 +59,37 @@
     text-align: center;
     text-transform: uppercase;
     font-weight: bold;
-    margin: 3rem 0;
+    margin: 3rem 0 1.5rem;
+  }
+
+  .blog-featured__tags {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.85rem;
+    margin: 0 auto 3rem;
+    padding: 0 1rem;
+    max-width: 62rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .blog-featured__tags::-webkit-scrollbar {
+    display: none;
+  }
+
+  .blog-featured__tags a {
+    color: #112626;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 
   .blog-featured__container {
@@ -83,7 +123,7 @@
     font-size: 12px;
     font-weight: 300;
     font-style: italic;
-    margin: 2rem 0;
+    margin: 2.98rem 0 2rem;
     line-height: 1.25rem;
   }
 
@@ -101,11 +141,16 @@
   @media (min-width: 920px) {
     .blog-featured__heading {
       font-size: 36px;
-      margin: 2.4rem 0;
+      margin: 2.4rem 0 2.6rem;
+    }
+    .blog-featured__tags {
+      gap: 1.6rem;
+      margin-bottom: 2.4rem;
+      padding: 0;
     }
     .blog-featured__excerpt {
       font-size: 16px;
-      margin: 1rem 0;
+      margin: 2.6rem 0 1rem;
       line-height: 1.25rem;
       max-width: 23rem;
     }
