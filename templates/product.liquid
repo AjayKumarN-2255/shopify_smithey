@@ -2,6 +2,12 @@
 <script src="{{ 'product-gallery.js' | asset_url }}" defer></script>
 
 <section class="product">
+  <nav class="product__breadcrumbs" aria-label="Collections">
+    <a href="{{ routes.all_products_collection_url }}" class="product__breadcrumb-link">All</a>
+    <span class="product__breadcrumb-separator" aria-hidden="true">-</span>
+    <a href="{{ collections.sets.url | default: '/collections/sets' }}" class="product__breadcrumb-link product__breadcrumb-link--current">Sets</a>
+  </nav>
+
   <div class="product__container">
     <div class="product__layout">
       {% assign featured_image = product.featured_image | default: product.images.first %}

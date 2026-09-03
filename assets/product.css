@@ -2,6 +2,38 @@
   width: 100%;
 }
 
+.product__breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-top: 1px solid #112626;
+  font-family: Gotham, ui-sans-serif, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.product__breadcrumb-link {
+  color: #7e8989;
+  text-decoration: none;
+}
+
+.product__breadcrumb-link:hover {
+  color: #112626;
+}
+
+.product__breadcrumb-link--current {
+  color: #112626;
+}
+
+.product__breadcrumb-separator {
+  color: #7e8989;
+}
+
 .product__container {
   padding: 1rem;
 }

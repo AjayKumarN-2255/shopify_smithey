@@ -1,18 +1,13 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "our-story-hero": {
       "type": "our-story-hero",
+      "custom_css": [
+        ".our-story-hero__content {padding: 10px 30px; border: 5px solid #b68b32;}"
+      ],
       "settings": {
         "title": "Our Story",
+        "subtitle": "",
         "image": "shopify://shop_images/9F69E0DD-5A15-4AF6-B9F0-28AB046165D5_1_105_c_2000x_fa85b017-d7cd-49be-8335-67e2a35f7d9b.webp",
         "desktop_height": 28,
         "mobile_height": 40
@@ -32,7 +27,8 @@
             "content_desktop_size": 0.8,
             "content_mobile_size": 1,
             "content_color": "#112626",
-            "position": "left"
+            "position": "left",
+            "custom_css": ""
           }
         },
         "image_grid_dxDUxt": {
@@ -43,7 +39,8 @@
             "grid_desktop_height": 23.5,
             "grid_mobile_height": 22.7,
             "grid_large_desktop_height": 23.5,
-            "position": "left"
+            "position": "left",
+            "custom_css": ""
           }
         },
         "image_4Fd3Yg": {
@@ -53,7 +50,8 @@
             "image_mobile_height": 16.5,
             "image_desktop_height": 22.2,
             "image_large_desktop_height": 29,
-            "position": "right"
+            "position": "right",
+            "custom_css": ""
           }
         },
         "text_WhrJcg": {
@@ -67,7 +65,8 @@
             "content_desktop_size": 0.8,
             "content_mobile_size": 1,
             "content_color": "#112626",
-            "position": "right"
+            "position": "right",
+            "custom_css": ""
           }
         }
       },
@@ -81,7 +80,8 @@
       "settings": {
         "background_color": "#ffffff",
         "desktop_padding": 2.5,
-        "mobile_padding": 1
+        "mobile_padding": 1,
+        "show_features": false
       }
     },
     "content_builder_EgcRme": {
@@ -94,7 +94,8 @@
             "image_mobile_height": 16.5,
             "image_desktop_height": 24.5,
             "image_large_desktop_height": 29.6,
-            "position": "left"
+            "position": "left",
+            "custom_css": ""
           }
         },
         "text_89yA4g": {
@@ -108,14 +109,12 @@
             "content_desktop_size": 0.8,
             "content_mobile_size": 1,
             "content_color": "#112626",
-            "position": "right"
+            "position": "right",
+            "custom_css": ""
           }
         }
       },
-      "block_order": [
-        "image_4NdYqy",
-        "text_89yA4g"
-      ],
+      "block_order": ["image_4NdYqy", "text_89yA4g"],
       "custom_css": [
         "@media (min-width: 920px) {#content-builder-template--21580182683783__content_builder_EgcRme .content-builder__right {justify-content: center; }}"
       ],
@@ -123,7 +122,8 @@
       "settings": {
         "background_color": "#f8f8f8",
         "desktop_padding": 2.5,
-        "mobile_padding": 1
+        "mobile_padding": 1,
+        "show_features": false
       }
     },
     "content_builder_6qcbFF": {
@@ -140,7 +140,8 @@
             "content_desktop_size": 0.8,
             "content_mobile_size": 1,
             "content_color": "#112626",
-            "position": "left"
+            "position": "left",
+            "custom_css": ""
           }
         },
         "image_grid_VkhFhJ": {
@@ -151,7 +152,8 @@
             "grid_desktop_height": 23.5,
             "grid_mobile_height": 22.7,
             "grid_large_desktop_height": 23.5,
-            "position": "left"
+            "position": "left",
+            "custom_css": ""
           }
         },
         "image_KqLJ7Y": {
@@ -161,7 +163,8 @@
             "image_mobile_height": 16.5,
             "image_desktop_height": 22.2,
             "image_large_desktop_height": 29,
-            "position": "right"
+            "position": "right",
+            "custom_css": ""
           }
         },
         "text_RdPw9n": {
@@ -175,7 +178,8 @@
             "content_desktop_size": 2,
             "content_mobile_size": 1,
             "content_color": "#112626",
-            "position": "right"
+            "position": "right",
+            "custom_css": ""
           }
         }
       },
@@ -192,7 +196,8 @@
       "settings": {
         "background_color": "#ffffff",
         "desktop_padding": 2.5,
-        "mobile_padding": 1
+        "mobile_padding": 1,
+        "show_features": false
       }
     },
     "video-banner": {
