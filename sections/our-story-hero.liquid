@@ -92,20 +92,27 @@
   }
 
   .our-story-hero__content{
-    wid
     border:5px solid #b68b32;
     padding: 10px 30px;
   }
 
-  .contact-input input{
+  .contact-input {
+    display: flex;
+    justify-content: center;
     width: 100%;
-    padding: 0.75rem;
+  }
+
+  .contact-input input,
+  .contact-input__field {
+    width: 100%;
+    height: 2.25rem;
     margin: 2rem 0;
     border-radius: 10px;
     font-size: 14px;
-    padding: 1rem;
+    padding: 0 1rem;
     border: none;
     outline: none;
+    box-sizing: border-box;
   }
 
   .contact-card-container{
@@ -145,6 +152,12 @@
 
     .our-story-hero__title {
       font-size: 36px;
+    }
+
+    .contact-input input,
+    .contact-input__field {
+      width: 29.75rem; /* 595px / 20 */
+      height: 2.25rem; /* 45px / 20 */
     }
 
     .contact-card-container {
