@@ -6,6 +6,24 @@
       <h1 class="registration__title">Registration</h1>
     </header>
 
+    <div
+      id="success-message"
+      class="registration__success registration__hidden"
+      role="status"
+      aria-live="polite"
+      hidden
+    >
+      <p class="registration__success-text">Thanks for registering your Smithey! Use it well.</p>
+      <button
+        type="button"
+        id="success-close"
+        class="registration__success-close"
+        aria-label="Dismiss success message"
+      >
+        &times;
+      </button>
+    </div>
+
     <form id="registration-form" class="registration__form" novalidate>
       <!-- Name -->
       <div class="registration__row">
@@ -20,8 +38,9 @@
             placeholder="First Name"
             required
             class="registration__input"
+            autocomplete="given-name"
           >
-          {% comment %} <p class="registration__error registration__hidden" data-error-for="firstName">Please fill in field</p> {% endcomment %}
+          <p class="registration__error registration__hidden" data-error-for="firstName" hidden>Please fill in field</p>
         </div>
         <div class="registration__field">
           <label for="lastName" class="registration__label">
@@ -34,8 +53,9 @@
             placeholder="Last Name"
             required
             class="registration__input"
+            autocomplete="family-name"
           >
-          {% comment %} <p class="registration__error registration__hidden" data-error-for="lastName">Please fill in field</p> {% endcomment %}
+          <p class="registration__error registration__hidden" data-error-for="lastName" hidden>Please fill in field</p>
         </div>
       </div>
 
@@ -49,8 +69,9 @@
           placeholder="Email"
           required
           class="registration__input"
+          autocomplete="email"
         >
-        {% comment %} <p class="registration__error registration__hidden" data-error-for="email">Invalid email</p> {% endcomment %}
+        <p class="registration__error registration__hidden" data-error-for="email" hidden>Invalid email</p>
       </div>
 
       <!-- Address -->
@@ -63,6 +84,7 @@
             type="text"
             placeholder="Address Line 1"
             class="registration__input"
+            autocomplete="address-line1"
           >
         </div>
         <div class="registration__field">
@@ -73,6 +95,7 @@
             type="text"
             placeholder="Address Line 2"
             class="registration__input"
+            autocomplete="address-line2"
           >
         </div>
         <div class="registration__row">
@@ -84,6 +107,7 @@
               type="text"
               placeholder="City"
               class="registration__input"
+              autocomplete="address-level2"
             >
           </div>
           <div class="registration__field">
@@ -94,6 +118,7 @@
               type="text"
               placeholder="State"
               class="registration__input"
+              autocomplete="address-level1"
             >
           </div>
           <div class="registration__field">
@@ -104,13 +129,14 @@
               type="text"
               placeholder="Postal/Zip"
               class="registration__input"
+              autocomplete="postal-code"
             >
           </div>
         </div>
       </div>
 
       <!-- Purchase source -->
-      <div class="registration__field">
+      <fieldset class="registration__field registration__fieldset">
         <legend class="registration__label">
           Where did you purchase your Smithey?
           <span class="registration__required">*</span>
@@ -145,12 +171,15 @@
             <span>I received my Smithey as a gift</span>
           </label>
         </div>
-      </div>
+        <p class="registration__error registration__hidden" data-error-for="purchaseSource" hidden>
+          Please select an option
+        </p>
+      </fieldset>
 
       <!-- How they learned -->
-      <div class="registration__field">
+      <fieldset class="registration__field registration__fieldset">
         <legend class="registration__label">Where did you first learn about Smithey?</legend>
-        <div class="registration__radio-group col-3 ">
+        <div class="registration__radio-group col-3">
           <label class="registration__option-label">
             <input type="radio" name="learnAbout" value="Friend or family" class="registration__option">
             <span>Friend or family</span>
@@ -176,7 +205,7 @@
             <span>Another website</span>
           </label>
         </div>
-      </div>
+      </fieldset>
 
       <hr class="registration__divider">
 
@@ -217,7 +246,6 @@
                 name="castIron"
                 value="No. 11 American Anniversary Skillet"
                 class="registration__option"
-
               ><span>No. 11 American Anniversary Skillet</span></label
             >
             <label class="registration__option-label"
@@ -346,106 +374,136 @@
           >
           <span>I agree, keep me in the loop with occasional emails!</span>
         </label>
-        {% comment %} <p class="registration__error registration__hidden" data-error-for="consent">Please fill in field</p> {% endcomment %}
+        <p class="registration__error registration__hidden" data-error-for="consent" hidden>Please fill in field</p>
       </div>
 
-      <button
-        type="submit"
-        class="registration__button"
-      >
-        Submit
-      </button>
+      <button type="submit" class="registration__button">Submit</button>
     </form>
-
-    <div
-      id="success-message"
-      class="registration__success registration__hidden"
-    >
-      {% comment %} <p class="registration__description">Thanks for registering your Smithey! Use it well.</p> {% endcomment %}
-    </div>
   </div>
 
   <script>
-    const form = document.getElementById('registration-form');
-    const retailerField = document.getElementById('retailer-field');
-    const magazineField = document.getElementById('magazine-field');
-    const websiteField = document.getElementById('website-field');
-    const successMessage = document.getElementById('success-message');
+    (function () {
+      const form = document.getElementById('registration-form');
+      const successMessage = document.getElementById('success-message');
+      const successClose = document.getElementById('success-close');
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    function showError(name, show) {
-      const el = document.querySelector(`[data-error-for="${name}"]`);
-      if (el) el.classList.toggle('registration__hidden', !show);
-    }
-
-    function clearErrors() {
-      document.querySelectorAll('.registration__error').forEach((el) => {
-        el.classList.add('registration__hidden');
-      });
-    }
-
-    document.querySelectorAll('input[name="purchaseSource"]').forEach((input) => {
-      input.addEventListener('change', () => {
-        const isRetailer = input.value === 'From a retailer' && input.checked;
-        retailerField.classList.toggle('registration__hidden', !isRetailer);
-        if (!isRetailer) document.getElementById('retailer').value = '';
-      });
-    });
-
-    document.querySelectorAll('input[name="learnAbout"]').forEach((input) => {
-      input.addEventListener('change', () => {
-        magazineField.classList.toggle('registration__hidden', input.value !== 'Magazine/Print');
-        websiteField.classList.toggle('registration__hidden', input.value !== 'Another website');
-        if (input.value !== 'Magazine/Print') {
-          document.getElementById('magazine').value = '';
+      function setHidden(el, hidden) {
+        if (!el) return;
+        el.classList.toggle('registration__hidden', hidden);
+        if (hidden) {
+          el.setAttribute('hidden', '');
+        } else {
+          el.removeAttribute('hidden');
         }
-        if (input.value !== 'Another website') {
-          document.getElementById('website').value = '';
+      }
+
+      function showError(name, show) {
+        const el = document.querySelector('[data-error-for="' + name + '"]');
+        setHidden(el, !show);
+
+        const field = form.elements[name];
+        if (field) {
+          const targets = field.length && field[0] && field[0].type === 'radio'
+            ? Array.from(field)
+            : [field];
+          targets.forEach(function (input) {
+            if (input && input.classList) {
+              input.classList.toggle('registration__input--error', show);
+            }
+          });
         }
+      }
+
+      function clearErrors() {
+        document.querySelectorAll('.registration__error').forEach(function (el) {
+          setHidden(el, true);
+        });
+        form.querySelectorAll('.registration__input--error').forEach(function (el) {
+          el.classList.remove('registration__input--error');
+        });
+      }
+
+      function validate() {
+        clearErrors();
+
+        let valid = true;
+        const firstName = form.firstName.value.trim();
+        const lastName = form.lastName.value.trim();
+        const email = form.email.value.trim();
+        const purchaseSource = form.querySelector('input[name="purchaseSource"]:checked');
+        const consent = form.consent.checked;
+
+        if (!firstName) {
+          showError('firstName', true);
+          valid = false;
+        }
+        if (!lastName) {
+          showError('lastName', true);
+          valid = false;
+        }
+        if (!email || !emailPattern.test(email)) {
+          showError('email', true);
+          valid = false;
+        }
+        if (!purchaseSource) {
+          showError('purchaseSource', true);
+          valid = false;
+        }
+        if (!consent) {
+          showError('consent', true);
+          valid = false;
+        }
+
+        return valid;
+      }
+
+      ['firstName', 'lastName', 'email'].forEach(function (name) {
+        form.elements[name].addEventListener('input', function () {
+          showError(name, false);
+        });
       });
-    });
 
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-      clearErrors();
+      form.querySelectorAll('input[name="purchaseSource"]').forEach(function (input) {
+        input.addEventListener('change', function () {
+          showError('purchaseSource', false);
+        });
+      });
 
-      let valid = true;
-      const firstName = form.firstName.value.trim();
-      const lastName = form.lastName.value.trim();
-      const email = form.email.value.trim();
-      const purchaseSource = form.querySelector('input[name="purchaseSource"]:checked');
-      const consent = form.consent.checked;
+      form.consent.addEventListener('change', function () {
+        showError('consent', false);
+      });
 
-      if (!firstName) {
-        showError('firstName', true);
-        valid = false;
-      }
-      if (!lastName) {
-        showError('lastName', true);
-        valid = false;
-      }
-      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        showError('email', true);
-        valid = false;
-      }
-      if (!purchaseSource) {
-        showError('purchaseSource', true);
-        valid = false;
-      }
-      if (!consent) {
-        showError('consent', true);
-        valid = false;
-      }
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
 
-      if (!valid) return;
+        if (!validate()) {
+          const firstError = form.querySelector('.registration__error:not(.registration__hidden), .registration__input--error');
+          if (firstError) {
+            firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+          return;
+        }
 
-      const data = Object.fromEntries(new FormData(form).entries());
-      data.castIron = [...form.querySelectorAll('input[name="castIron"]:checked')].map((el) => el.value);
-      data.carbonSteel = [...form.querySelectorAll('input[name="carbonSteel"]:checked')].map((el) => el.value);
+        const data = Object.fromEntries(new FormData(form).entries());
+        data.castIron = Array.from(form.querySelectorAll('input[name="castIron"]:checked')).map(function (el) {
+          return el.value;
+        });
+        data.carbonSteel = Array.from(form.querySelectorAll('input[name="carbonSteel"]:checked')).map(function (el) {
+          return el.value;
+        });
 
-      console.log('Registration submitted:', data);
+        // Mock submission — replace with real endpoint when ready
+        console.log('Registration submitted (mock):', data);
 
-      form.classList.add('registration__hidden');
-      successMessage.classList.remove('registration__hidden');
-    });
+        setHidden(form, true);
+        setHidden(successMessage, false);
+        successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+
+      successClose.addEventListener('click', function () {
+        setHidden(successMessage, true);
+      });
+    })();
   </script>
 </div>
