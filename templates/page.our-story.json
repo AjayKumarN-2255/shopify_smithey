@@ -1,4 +1,4 @@
-{
+ {
   "sections": {
     "our-story-hero": {
       "type": "our-story-hero",
@@ -113,13 +113,16 @@
             "content_mobile_size": 1,
             "content_color": "#112626",
             "position": "right",
-            "custom_css": ""
+            "custom_css": "@media (min-width: 920px) {\n  .content-builder__content {\n    margin-top: 1.5rem;\n  }\n}"
           }
         }
       },
-      "block_order": ["image_4NdYqy", "text_89yA4g"],
+      "block_order": [
+        "image_4NdYqy",
+        "text_89yA4g"
+      ],
       "custom_css": [
-        "@media (min-width: 920px) {#content-builder-template--21580182683783__content_builder_EgcRme .content-builder__right {justify-content: center; }}"
+        "@media (min-width: 920px) {#content-builder-template--21819620130951__content_builder_EgcRme .content-builder__right {justify-content: center; }}"
       ],
       "name": "Content Builder",
       "settings": {
