@@ -68,7 +68,7 @@
       ],
       "custom_css": [
         ".content-builder__image {margin: 0;}",
-        ".content-builder__container {gap: 0;}",
+        ".content-builder__container {gap: 0; padding-left: 0; padding-top: 0; padding-bottom: 0;}",
         ".content-builder {padding: 1.2rem;}",
         "@media (min-width: 920px) {.content-builder {padding: 2.5rem 0; } .content-builder__right {padding: 4rem; justify-content: center; }}"
       ],
@@ -91,6 +91,7 @@
       "settings": {
         "background_color": "#ffffff",
         "video_url": "https://cdn.shopify.com/videos/c/o/v/dfb7550f7ace4c94986db2bff645ff21.mp4",
+        "poster": "shopify://shop_images/qa_-_1_8_1000x_ad474bdc-4d49-4c53-a164-24bdd78f6883.webp",
         "heading": "WATCH THE PROCESS"
       }
     },
