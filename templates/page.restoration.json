@@ -1,22 +1,17 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "our_story_hero_awGwYn": {
       "type": "our-story-hero",
       "custom_css": [
-        ".our-story-hero__content {border: none;}"
+        ".our-story-hero__content {border: none;}",
+        ".our-story-hero__title {font-size: 14px; margin-bottom: 4px;}",
+        ".our-story-hero__subtitle {font-size: 44px; color: white; font-weight: 700; line-height: 1; text-align: center;}",
+        "@media (min-width: 920px) {.our-story-hero__title {font-size: 22px; margin-bottom: 16px; } .our-story-hero__subtitle {font-size: 64px; }}"
       ],
       "name": "Our Story Hero",
       "settings": {
-        "title": "THE RESTORATION SHOP",
+        "title": "NEW SEASONING. SAME SOUL.",
+        "subtitle": "THE RESTORATION SHOP",
         "image": "shopify://shop_images/Smithey_1.1_1255.webp",
         "desktop_height": 32,
         "mobile_height": 42
@@ -29,6 +24,7 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/qa_-_1_5.webp",
+            "alt_text": "Content image",
             "image_mobile_height": 24.2,
             "image_desktop_height": 50,
             "image_large_desktop_height": 50,
@@ -60,7 +56,8 @@
             "button_text_color": "#112626",
             "position": "right",
             "btn_position_desktop": "left",
-            "btn_position_mobile": "center"
+            "btn_position_mobile": "center",
+            "custom_css": ""
           }
         }
       },
@@ -79,7 +76,8 @@
       "settings": {
         "background_color": "#ffffff",
         "desktop_padding": 2.5,
-        "mobile_padding": 1
+        "mobile_padding": 1,
+        "show_features": false
       }
     },
     "video_banner_QwbqWG": {
