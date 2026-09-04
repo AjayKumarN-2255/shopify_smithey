@@ -38,7 +38,7 @@
                         "image_desktop_height": 18.6,
                         "image_large_desktop_height": 18.6,
                         "position": "right",
-                        "custom_css": "@media (min-width: 920px) {\n  & {\n    margin: 0;\n  }\n\n  #content-builder-template--21669638897799__content_builder_WMcbeV .content-builder__left {\n    justify-content: space-evenly;\n  }\n\n& {\n  margin: 0;\n  transition: transform 0.5s ease;\n  overflow:hidden;\n}\n\n&:hover  img{\n  transform: scale(1.02);\n}\n}"
+                        "custom_css": "@media (min-width: 920px) {\n  & {\n    margin: 0;\n    overflow: hidden;\n  }\n\n  #content-builder-template--21669638897799__content_builder_WMcbeV\n    .content-builder__left {\n    justify-content: space-evenly;\n  }\n\n  & img {\n    transition: transform 0.5s ease;\n  }\n\n  &:hover img {\n    transform: scale(1.02);\n  }\n}"
                     }
                 },
                 "text_qLCxPm": {
