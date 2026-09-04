@@ -30,8 +30,10 @@
   padding-bottom: 0.25rem;
   border-bottom: 1px solid transparent;
   color: #f3f3f3;
+  transition: color 0.3s ease;
 }
 
+.contact-tab__button:hover .contact-tab__label,
 .contact-tab__label.is-active {
   color: #b68b32;
 }
