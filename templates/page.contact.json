@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
     "sections": {
         "our_story_hero_GKKVKx": {
@@ -100,7 +109,7 @@
                         "image_desktop_height": 25.2,
                         "image_large_desktop_height": 25.2,
                         "position": "left",
-                        "custom_css": "@media (min-width: 920px) {\n  #content-builder-template--21669638897799__content_builder_W8QDa9 .content-builder__right {\n    justify-content: space-evenly;\n  }\n}\n\n@media (min-width: 1700px) {\n  & {\n    margin-top: 0;\n    margin-bottom: 0;\n  }\n}"
+                        "custom_css": "@media (min-width: 920px) {\n  #content-builder-template--21669638897799__content_builder_W8QDa9 .content-builder__right {\n    justify-content: space-evenly;\n  }\n#content-builder-template--21819619967111__content_builder_W8QDa9\n  .content-builder__right {\n  justify-content: center;\n}\n}\n\n@media (min-width: 1700px) {\n  & {\n    margin-top: 0;\n    margin-bottom: 0;\n  }\n}"
                     }
                 },
                 "text_6LyiX6": {
@@ -115,7 +124,7 @@
                         "content_mobile_size": 0.9,
                         "content_color": "#112626",
                         "position": "right",
-                        "custom_css": ".content-builder__title{\n text-align : center;\n margin:1rem auto;\n}\n.content-builder__content{\n text-align:center;\n  word-spacing: 2px;\n}\n@media (min-width: 920px) {\n  .content-builder__title {\n    text-align: left; \n  }\n.content-builder__content{\n text-align:start;\n  word-spacing: unset;\n  max-width:28rem;\n font-size:0.85rem\n}\n}"
+                        "custom_css": ".content-builder__title{\n text-align : center;\n margin:1rem auto;\n}\n.content-builder__content{\n text-align:center;\n  word-spacing: 2px;\n}\n@media (min-width: 920px) {\n  .content-builder__title {\n    text-align: left; \n  }\n.content-builder__content{\n text-align:start;\n  word-spacing: unset;\n  max-width:28rem;\n margin-bottom:3rem;\n font-size:0.85rem\n}\n}"
                     }
                 },
                 "button_jqYfUn": {
@@ -138,14 +147,14 @@
                 "button_jqYfUn"
             ],
             "custom_css": [
-                "#content-builder-template--21669638897799__content_builder_W8QDa9 .content-builder__container {padding-top: 2rem; padding-bottom: 2rem;}",
-                "@media (min-width: 920px) {#content-builder-template--21669638897799__content_builder_W8QDa9 .content-builder__container {padding-top: 4rem; padding-bottom: 4rem; }}",
-                "@media (min-width: 1700px) {#content-builder-template--21669638897799__content_builder_W8QDa9 .content-builder__container {max-width: 80rem; margin: 0 auto; }}"
+                "#content-builder-template--21819619967111__content_builder_W8QDa9 .content-builder__container {padding-top: 2rem; padding-bottom: 2rem;}",
+                "@media (min-width: 920px) {#content-builder-template--21819619967111__content_builder_W8QDa9 .content-builder__container {padding-top: 4rem; padding-bottom: 4rem; }}",
+                "@media (min-width: 1700px) {#content-builder-template--21819619967111__content_builder_W8QDa9 .content-builder__container {max-width: 70rem; margin: 0 auto; }}"
             ],
             "name": "Content Builder",
             "settings": {
                 "background_color": "#e4dfda",
-                "desktop_padding": 2.5,
+                "desktop_padding": 2.1,
                 "mobile_padding": 1,
                 "show_features": false
             }
