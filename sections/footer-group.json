@@ -55,13 +55,13 @@
                 "menu_3"
             ],
             "settings": {
-                "background_color": "#0b2626"
+                "background_color": "#102A2A"
             }
         },
         "footer-bottom": {
             "type": "footer-bottom",
             "settings": {
-                "background_color": "#032626",
+                "background_color": "#102A2A",
                 "logo": "shopify://shop_images/smithey.svg",
                 "copyright": "COPYRIGHT SMITHEY IRONWARE 2026.",
                 "menu": "footer-bottom-menu"
