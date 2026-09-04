@@ -61,12 +61,18 @@
   width: 92vw;
   height: 250px;
   flex-shrink: 0;
+  overflow: hidden;
 }
 
 .blog-card__image img {
   width: 100%;
   height: 100%;
   object-fit: fill;
+  transition: transform 0.4s ease;
+}
+
+.blog-card:hover .blog-card__image img {
+  transform: scale(1.05);
 }
 
 .blog-card__content {
