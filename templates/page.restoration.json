@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "our_story_hero_awGwYn": {
@@ -57,7 +66,7 @@
             "position": "right",
             "btn_position_desktop": "left",
             "btn_position_mobile": "center",
-            "custom_css": ""
+            "custom_css": "& .content-builder__button-link {\n  transition: color 0.3s ease, background-color 0.3s ease;\n}\n\n& .content-builder__button-link:hover {\n  color: #fff !important;\n  background-color: #0b2626 !important;\n}"
           }
         }
       },
