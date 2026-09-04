@@ -73,17 +73,35 @@
       {% endif %}
 
       {% if section.settings.show_search %}
-        <a href="{{ routes.search_url }}" class="header-icon">
+        <button
+          type="button"
+          class="header-icon header-search-toggle"
+          aria-label="Search"
+          aria-expanded="false"
+          aria-controls="HeaderSearch-{{ section.id }}"
+          data-search-open
+        >
           <svg
-            class="header-icon__svg"
+            class="header-icon__svg header-search-toggle__open"
             viewBox="0 0 18 17"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
           >
             <circle cx="6.73684" cy="6.73684" r="5.73684" stroke="currentColor" stroke-width="2"></circle>
             <line x1="10.8126" y1="10.2402" x2="16.7073" y2="16.1349" stroke="currentColor" stroke-width="2"></line>
           </svg>
-        </a>
+          <svg
+            class="header-icon__svg header-search-toggle__close"
+            viewBox="0 0 22 22"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path d="M17.1875 4.8125L4.8125 17.1875" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path>
+            <path d="M17.1875 17.1875L4.8125 4.8125" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path>
+          </svg>
+        </button>
       {% endif %}
 
       {% if section.settings.show_account and shop.customer_accounts_enabled %}
@@ -148,6 +166,99 @@
     {% endif %}
   </div>
 
+  {% if section.settings.show_search %}
+    {% assign popular_searches = section.settings.popular_searches | newline_to_br | split: '<br />' %}
+
+    <div
+      id="HeaderSearch-{{ section.id }}"
+      class="header-search"
+      data-header-search
+      data-search-url="{{ routes.search_url }}"
+      data-predictive-url="{{ routes.predictive_search_url }}"
+      aria-hidden="true"
+    >
+      <div class="header-search__backdrop" data-search-close tabindex="-1"></div>
+
+      <div
+        class="header-search__panel"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Search"
+      >
+        <form
+          action="{{ routes.search_url }}"
+          method="get"
+          role="search"
+          class="header-search__form"
+          data-search-form
+        >
+          <div class="header-search__field">
+            <input
+              id="HeaderSearchInput-{{ section.id }}"
+              type="search"
+              name="q"
+              value="{{ search.terms | escape }}"
+              placeholder="Search Smithey…"
+              class="header-search__input"
+              autocomplete="off"
+              autocorrect="off"
+              autocapitalize="characters"
+              spellcheck="false"
+              data-search-input
+            >
+
+            <button
+              type="submit"
+              class="header-search__submit"
+              aria-label="Submit search"
+            >
+              <svg width="26" height="30" viewBox="0 0 26 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M26 14.9432L11.5969 20.5387L-0.000222087 30L2.34005 14.9986L0.000217438 -6.67176e-05L11.332 9.24475L26 14.9432Z" fill="#FFFFFF"></path>
+              </svg>
+            </button>
+          </div>
+
+          <input type="hidden" name="options[prefix]" value="last">
+        </form>
+
+        <div class="header-search__columns">
+          <div class="header-search__column header-search__column--popular">
+            <h2 class="header-search__heading">Popular Searches</h2>
+            <ul class="header-search__list" role="list">
+              {% for term in popular_searches %}
+                {% assign clean_term = term | strip %}
+                {% if clean_term != blank %}
+                  <li>
+                    <a
+                      href="{{ routes.search_url }}?q={{ clean_term | url_encode }}"
+                      class="header-search__link"
+                    >
+                      {{ clean_term }}
+                    </a>
+                  </li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          </div>
+
+          <div
+            class="header-search__column header-search__column--suggested"
+            data-suggested-column
+            hidden
+          >
+            <h2 class="header-search__heading">Suggested Searches</h2>
+            <ul
+              class="header-search__list"
+              role="list"
+              data-suggested-searches
+              aria-live="polite"
+            ></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
   <!-- Mobile Menu Logo -->
   {% render 'header-mobile-menu', left_menu: section.settings.left_menu, right_menu: section.settings.right_menu %}
 </header>
@@ -176,6 +287,13 @@
       "id": "show_search",
       "label": "Show search",
       "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "popular_searches",
+      "label": "Popular searches",
+      "info": "One search term per line",
+      "default": "Glass Lids\n12\" Skillet\nSets\nCarbon Steel\nSalt Keeper\nUltimate Set"
     },
     {
       "type": "checkbox",
