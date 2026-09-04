@@ -1,0 +1,28 @@
+{% comment %}
+  Resolves the active journal category for filtering.
+  Prefers native current_tags, then ?category=, then /tagged/ URL segment.
+  Usage: {% capture active_category %}{% render 'journal-active-category' %}{% endcapture %}
+{% endcomment %}
+
+{%- liquid
+  assign value = blank
+
+  if current_tags.size > 0
+    assign value = current_tags.first
+  else
+    capture category_param
+      render 'get-url-param', key: 'category'
+    endcapture
+    assign category_param = category_param | strip
+    if category_param != blank
+      assign value = category_param
+    else
+      capture tag_from_url
+        render 'get-url-tag'
+      endcapture
+      assign value = tag_from_url | strip
+    endif
+  endif
+
+  echo value | replace: '-', ' ' | strip | downcase
+-%}

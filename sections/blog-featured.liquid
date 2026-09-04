@@ -1,4 +1,27 @@
 {% unless blog.handle == 'recipies' %}
+{%- liquid
+  capture active_category
+    render 'journal-active-category'
+  endcapture
+  assign active_category = active_category | strip
+
+  assign source_blog = section.settings.blog
+  if active_category == blank and blog != blank and source_blog != blank and blog.handle == source_blog.handle
+    assign source_blog = blog
+  elsif source_blog == blank and blog != blank
+    assign source_blog = blog
+  elsif source_blog == blank
+    assign source_blog = blogs.journal
+  endif
+
+  assign article_limit = section.settings.limit
+  assign article_offset = section.settings.offset
+  if active_category != blank
+    assign article_offset = 0
+  endif
+
+  assign journal_base = blog.url | default: source_blog.url | default: '/blogs/journal'
+-%}
 <section class="blog-featured">
   {% if section.settings.title != blank %}
     <h2 class="blog-featured__heading">
@@ -8,16 +31,77 @@
 
   {% if blog.handle == 'journal' and section.settings.title != blank %}
     <nav class="blog-featured__tags" aria-label="Journal categories">
-      <a href="/blogs/journal">Care</a>
-      <a href="/blogs/journal">Craft</a>
-      <a href="/blogs/journal">Culinary</a>
-      <a href="/blogs/journal">Smithey Stories</a>
+      <a
+        href="{{ journal_base }}?category=care"
+        {% if active_category == 'care' %}
+          aria-current="page" class="is-active"
+        {% endif %}
+      >
+        Care
+      </a>
+      <a
+        href="{{ journal_base }}?category=craft"
+        {% if active_category == 'craft' %}
+          aria-current="page" class="is-active"
+        {% endif %}
+      >
+        Craft
+      </a>
+      <a
+        href="{{ journal_base }}?category=culinary"
+        {% if active_category == 'culinary' %}
+          aria-current="page" class="is-active"
+        {% endif %}
+      >
+        Culinary
+      </a>
+      <a
+        href="{{ journal_base }}?category=smithey-stories"
+        {% if active_category == 'smithey stories' %}
+          aria-current="page" class="is-active"
+        {% endif %}
+      >
+        Smithey Stories
+      </a>
     </nav>
   {% endif %}
 
   <div class="blog-featured__container">
-    {% if section.settings.blog != blank %}
-      {% for article in section.settings.blog.articles limit: section.settings.limit offset: section.settings.offset %}
+    {% if source_blog != blank %}
+      {% assign shown = 0 %}
+      {% assign skipped = 0 %}
+      {% for article in source_blog.articles %}
+        {% assign article_category = article.metafields.custom.category | strip | downcase %}
+        {% assign matches_category = false %}
+
+        {% if active_category == blank %}
+          {% assign matches_category = true %}
+        {% elsif article_category == active_category %}
+          {% assign matches_category = true %}
+        {% else %}
+          {% for tag in article.tags %}
+            {% assign tag_down = tag | downcase %}
+            {% if tag_down == active_category %}
+              {% assign matches_category = true %}
+              {% break %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+
+        {% unless matches_category %}
+          {% continue %}
+        {% endunless %}
+
+        {% if skipped < article_offset %}
+          {% assign skipped = skipped | plus: 1 %}
+          {% continue %}
+        {% endif %}
+
+        {% if shown >= article_limit %}
+          {% break %}
+        {% endif %}
+        {% assign shown = shown | plus: 1 %}
+
         <article class="blog-featured__card">
           {% if article.image %}
             <div class="blog-featured__image">
@@ -90,6 +174,10 @@
     text-transform: uppercase;
     white-space: nowrap;
     flex-shrink: 0;
+  }
+
+  .blog-featured__tags a.is-active {
+    color: #b68b32;
   }
 
   .blog-featured__container {

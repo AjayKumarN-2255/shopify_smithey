@@ -1,4 +1,25 @@
 {% unless blog.handle == 'recipies' %}
+{%- liquid
+  capture active_category
+    render 'journal-active-category'
+  endcapture
+  assign active_category = active_category | strip
+
+  assign source_blog = section.settings.blog
+  if active_category == blank and blog != blank and source_blog != blank and blog.handle == source_blog.handle
+    assign source_blog = blog
+  elsif source_blog == blank and blog != blank
+    assign source_blog = blog
+  elsif source_blog == blank
+    assign source_blog = blogs.journal
+  endif
+
+  assign article_limit = section.settings.limit
+  assign article_offset = section.settings.offset
+  if active_category != blank
+    assign article_offset = 0
+  endif
+-%}
 {{ 'blog-grid.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'blog-grid.js' | asset_url }}" defer></script>
 <section class="blog-grid">
@@ -23,10 +44,40 @@
         </svg>
       </button>
       <div class="blog-grid__track">
-        {% for article in section.settings.blog.articles
-          limit: section.settings.limit
-          offset: section.settings.offset
-        %}
+        {% assign shown = 0 %}
+        {% assign skipped = 0 %}
+        {% for article in source_blog.articles %}
+          {% assign article_category = article.metafields.custom.category | strip | downcase %}
+          {% assign matches_category = false %}
+
+          {% if active_category == blank %}
+            {% assign matches_category = true %}
+          {% elsif article_category == active_category %}
+            {% assign matches_category = true %}
+          {% else %}
+            {% for tag in article.tags %}
+              {% assign tag_down = tag | downcase %}
+              {% if tag_down == active_category %}
+                {% assign matches_category = true %}
+                {% break %}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+
+          {% unless matches_category %}
+            {% continue %}
+          {% endunless %}
+
+          {% if skipped < article_offset %}
+            {% assign skipped = skipped | plus: 1 %}
+            {% continue %}
+          {% endif %}
+
+          {% if shown >= article_limit %}
+            {% break %}
+          {% endif %}
+          {% assign shown = shown | plus: 1 %}
+
           <div class="blog-grid__carousel-image">
             <img
               src="{{ article.image | image_url: width: 1200 }}"
@@ -65,7 +116,40 @@
     </div>
     <!-- Side List -->
     <div class="blog-grid__list">
-      {% for article in section.settings.blog.articles limit: section.settings.limit offset: section.settings.offset %}
+      {% assign shown = 0 %}
+      {% assign skipped = 0 %}
+      {% for article in source_blog.articles %}
+        {% assign article_category = article.metafields.custom.category | strip | downcase %}
+        {% assign matches_category = false %}
+
+        {% if active_category == blank %}
+          {% assign matches_category = true %}
+        {% elsif article_category == active_category %}
+          {% assign matches_category = true %}
+        {% else %}
+          {% for tag in article.tags %}
+            {% assign tag_down = tag | downcase %}
+            {% if tag_down == active_category %}
+              {% assign matches_category = true %}
+              {% break %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+
+        {% unless matches_category %}
+          {% continue %}
+        {% endunless %}
+
+        {% if skipped < article_offset %}
+          {% assign skipped = skipped | plus: 1 %}
+          {% continue %}
+        {% endif %}
+
+        {% if shown >= article_limit %}
+          {% break %}
+        {% endif %}
+        {% assign shown = shown | plus: 1 %}
+
         <article class="blog-grid__card">
           <div class="blog-grid__card-image">
             <img
