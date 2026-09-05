@@ -42,7 +42,7 @@
             "content_mobile_size": 1,
             "content_color": "#112626",
             "position": "right",
-            "custom_css": ".content-builder__content {\n    margin-bottom: 2rem;\n  }\n@media (min-width: 920px) {\n  .content-builder__content {\n    margin-bottom: 3.3rem;\n    max-width:20rem;\n    font-size: 23px;\n    letter-spacing: 1px;\n    line-height: 27px;\n  }\n}"
+            "custom_css": ".content-builder__content {\n    margin-bottom: 2rem;\n  }\n@media (min-width: 920px) {\n  .content-builder__content {\n    margin-bottom: 3.3rem;\n    max-width:20rem;\n    font-size: 23px;\n    letter-spacing: 1px;\n    line-height: 27px;\n  }\n}\n@media (min-width: 1400px) {\n  .content-builder__content {\n    max-width:27rem;\n  }\n}"
           }
         },
         "text_YDHx6E": {
@@ -72,7 +72,7 @@
         ".content-builder__image {margin: 0;}",
         ".content-builder__right {padding: 2rem 1.5rem;}",
         ".content-builder__container {gap: 0;}",
-        "@media (min-width: 920px) {.content-builder__right {padding: 2.5rem 8.5rem !important; justify-content: start; }}"
+        "@media (min-width: 920px) {.content-builder__right {padding: 2.5rem 9rem !important; justify-content: start; }}"
       ],
       "name": "Content Builder",
       "settings": {

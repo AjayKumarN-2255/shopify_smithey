@@ -40,8 +40,40 @@
             "
           >
             <a href="{{ product.url }}" class="product-card__link">
-              <div class="product-card__image-wrapper">
-                {{ product.featured_image | image_url: width: 800 | image_tag: loading: 'lazy' }}
+              {% assign secondary_image = nil %}
+              {% if product.images.size > 1 %}
+                {% for image in product.images %}
+                  {% unless image == product.featured_image %}
+                    {% assign secondary_image = image %}
+                    {% break %}
+                  {% endunless %}
+                {% endfor %}
+              {% endif %}
+
+              <div class="product-card__image-wrapper{% if secondary_image != blank %} product-card__image-wrapper--has-secondary{% endif %}">
+                {% if product.featured_image != blank %}
+                  {% assign primary_alt = product.featured_image.alt | default: product.title %}
+                  {{
+                    product.featured_image
+                    | image_url: width: 800
+                    | image_tag:
+                      loading: 'lazy',
+                      class: 'product-card__image product-card__image--primary',
+                      alt: primary_alt
+                  }}
+                {% endif %}
+
+                {% if secondary_image != blank %}
+                  {% assign secondary_alt = secondary_image.alt | default: product.title %}
+                  {{
+                    secondary_image
+                    | image_url: width: 800
+                    | image_tag:
+                      loading: 'lazy',
+                      class: 'product-card__image product-card__image--secondary',
+                      alt: secondary_alt
+                  }}
+                {% endif %}
               </div>
 
               <div class="product-card__content">
