@@ -16,6 +16,7 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/3E537CC4-1AFE-406F-868D-3964B3EAD40F_1_201_a.webp",
+            "alt_text": "Content image",
             "image_mobile_height": 22.8,
             "image_desktop_height": 46.8,
             "image_large_desktop_height": 40,
@@ -85,8 +86,9 @@
       "name": "Content Builder",
       "settings": {
         "background_color": "#f7f7f7",
-        "desktop_padding": 2.5,
-        "mobile_padding": 1
+        "desktop_padding": 0,
+        "mobile_padding": 0,
+        "show_features": false
       }
     },
     "main_collection_products_KqNY3p": {
@@ -99,7 +101,7 @@
       "name": "Main Collection Products",
       "settings": {
         "custom_title": "Available on select cookware & sets",
-        "background_color": "#F8F8F8",
+        "background_color": "#f8f8f8",
         "collection": "cookware",
         "products_to_show": 10,
         "desktop_columns": "3",
