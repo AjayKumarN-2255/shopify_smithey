@@ -1,155 +1,119 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "our_story_hero_awGwYn": {
-      "type": "our-story-hero",
-      "custom_css": [
-        ".our-story-hero__content {border: none; padding: 0;}",
-        ".our-story-hero__title {font-size: 14px; margin-bottom: 4px;}",
-        ".our-story-hero__subtitle {font-size: 44px; color: white; font-weight: 700; line-height: 1; text-align: center;}",
-        "@media (min-width: 920px) {.our-story-hero__title {font-size: 22px; margin-bottom: 16px; } .our-story-hero__subtitle {font-size: 64px; }}"
-      ],
-      "name": "Our Story Hero",
-      "settings": {
-        "title": "NEW SEASONING. SAME SOUL.",
-        "subtitle": "THE RESTORATION SHOP",
-        "image": "shopify://shop_images/Smithey_1.1_1255.webp",
-        "desktop_height": 32,
-        "mobile_height": 42
-      }
-    },
-    "content_builder_8LwAtU": {
+    "content_builder_Vzagdc": {
       "type": "content-builder",
       "blocks": {
-        "image_ffeTRW": {
+        "image_aLAwB9": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/qa_-_1_5.webp",
+            "image": "shopify://shop_images/3E537CC4-1AFE-406F-868D-3964B3EAD40F_1_201_a.webp",
             "alt_text": "Content image",
-            "image_mobile_height": 24.2,
-            "image_desktop_height": 50,
-            "image_large_desktop_height": 50,
+            "image_mobile_height": 22.8,
+            "image_desktop_height": 43.4,
+            "image_large_desktop_height": 40,
             "position": "left",
             "custom_css": ""
           }
         },
-        "text_KqjMQN": {
+        "text_dBW3iD": {
           "type": "text",
           "settings": {
-            "title": "OUR LOVE OF CAST IRON LIVES ON",
-            "title_desktop_size": 1.9,
-            "title_mobile_size": 1.7,
-            "title_color": "#112626",
-            "content": "<p><br/> Smithey Ironware was born out of a passion for collecting, restoring, and cooking with cast iron. We have heard the stories of your friends putting your prized pan through the dishwasher or leaving your favorite skillet by the campfire in the rain. Or maybe you have an old vintage pan passed down through generations that has seen better days.<br/><br/>With the launch of our restoration shop, we will bring your cast iron back to life.<br/></p>",
-            "content_desktop_size": 1,
+            "title": "MAKE IT PERSONAL",
+            "title_desktop_size": 1.1,
+            "title_mobile_size": 1,
+            "title_color": "#b68b32",
+            "content": "<h1>SMITHEY ENGRAVING</h1>",
+            "content_desktop_size": 2.1,
+            "content_mobile_size": 2.1,
+            "content_color": "#112626",
+            "position": "right",
+            "custom_css": ".content-builder__content{\n    line-height: 45px;\n    margin-bottom:2rem;\n}\n.content-builder__title{\n   margin-bottom:0.5rem;\n}\n@media (min-width: 920px) {\n  .content-builder__content {\n    line-height: 60px;\n    max-width:20rem;\n    margin-bottom:2.5rem;\n  }\n}"
+          }
+        },
+        "text_LtwTNx": {
+          "type": "text",
+          "settings": {
+            "title": "",
+            "title_desktop_size": 2,
+            "title_mobile_size": 1,
+            "title_color": "#b68b32",
+            "content": "<p>Personalization has always been at the heart of what we do at Smithey. After all, what's more personal than a piece of heirloom cookware that gets passed down over generations with all manner of precious memories and milestone meals baked in—literally!</p>",
+            "content_desktop_size": 0.8,
             "content_mobile_size": 1,
             "content_color": "#112626",
             "position": "right",
-            "custom_css": ".content-builder__title {\n  text-align: center;\n  margin: 1.5rem auto 0;\n}\n\n@media (min-width: 920px) {\n  .content-builder__title {\n    text-align: left;\n    margin: 1.5rem 0;\n    max-width:28rem;\n  }\n  .content-builder__content {\n     font-size: 0.9rem;\n      line-height: 27px;\n      word-spacing: 4px;\n      max-width: 26rem;\n      margin-bottom:1rem\n  }\n}\n\n@media (min-width: 1700px) {\n  .content-builder__title {\n    max-width: 32rem;\n  }\n  .content-builder__content {\n    max-width: 30rem;\n  }\n}"
+            "custom_css": ".content-builder__content {\n    margin-bottom: 2rem;\n  }\n@media (min-width: 920px) {\n  .content-builder__content {\n    margin-bottom: 3.3rem;\n    max-width:20rem;\n    font-size: 23px;\n    letter-spacing: 1px;\n    line-height: 27px;\n  }\n}\n@media (min-width: 1400px) {\n  .content-builder__content {\n    max-width:27rem;\n  }\n}"
           }
         },
-        "button_YqxwKt": {
-          "type": "button",
+        "text_YDHx6E": {
+          "type": "text",
           "settings": {
-            "button_text": "SHOP RESTORATION",
-            "button_link": "shopify://products/indian-pan",
-            "button_bg_color": "#b68b32",
-            "button_text_color": "#112626",
+            "title": "HERE'S HOW IT WORKS:",
+            "title_desktop_size": 1.1,
+            "title_mobile_size": 1,
+            "title_color": "#112626",
+            "content": "<ol><li><em> Enter your personal message</em></li><li><em>Preview your message, confirm and checkout</em></li><li><em>Our engravers will craft this for you in one week or less</em></li></ol>",
+            "content_desktop_size": 0.8,
+            "content_mobile_size": 1,
+            "content_color": "#112626",
             "position": "right",
-            "btn_position_desktop": "left",
-            "btn_position_mobile": "center",
-            "custom_css": "& .content-builder__button-link {\n  transition: color 0.3s ease, background-color 0.3s ease;\n}\n\n& .content-builder__button-link:hover {\n  color: #fff !important;\n  background-color: #0b2626 !important;\n}"
+            "custom_css": ".content-builder__content ol {\n  margin: 0;\n  padding-left: 1rem;\n}\n\n.content-builder__content li {\n  margin-bottom: 0.5rem;\n  max-width: 20rem;\n  color: #112626; \n  font-size: 20px;\n  letter-spacing: 1px;\n  line-height: 27px;\n}\n\n.content-builder__title {\n  margin-bottom: 1rem;\n}\n\n.content-builder__content li:last-child {\n  margin-bottom: 0;\n}\n\n.content-builder__content li::marker {\n  color: #B68B32; \n  font-weight: 700;\n}\n\n.content-builder__content li em {\n  font-style: italic;\n}"
           }
         }
       },
       "block_order": [
-        "image_ffeTRW",
-        "text_KqjMQN",
-        "button_YqxwKt"
+        "image_aLAwB9",
+        "text_dBW3iD",
+        "text_LtwTNx",
+        "text_YDHx6E"
       ],
       "custom_css": [
+        ".content-builder {padding: 0;}",
         ".content-builder__image {margin: 0;}",
-        ".content-builder__container {gap: 0; padding-left: 0; padding-top: 0; padding-bottom: 0;}",
-        ".content-builder {padding: 1.2rem; padding-right: 0;}",
-        "@media (min-width: 920px) {.content-builder {padding: 2.5rem 0; } .content-builder__right {padding: 4rem; justify-content: center; }}"
+        ".content-builder__right {padding: 2rem 1.5rem;}",
+        ".content-builder__container {gap: 0;}",
+        "@media (min-width: 920px) {.content-builder__right {padding: 2.5rem 9rem !important; justify-content: start; }}"
       ],
       "name": "Content Builder",
       "settings": {
-        "background_color": "#ffffff",
-        "desktop_padding": 2.5,
-        "mobile_padding": 1,
+        "background_color": "#f7f7f7",
+        "desktop_padding": 0,
+        "mobile_padding": 0,
         "show_features": false
       }
     },
-    "video_banner_QwbqWG": {
-      "type": "video-banner",
+    "main_collection_products_KqNY3p": {
+      "type": "main-collection-products",
       "custom_css": [
-        ".video-banner {padding: 0 1rem; margin: 0;}",
-        ".video-banner__heading {font-size: 1.75rem; color: #112626; margin-bottom: 0.5rem;}",
-        "@media (min-width: 920px) {.video-banner__video {height: 38rem; } .video-banner__overlay {position: relative; }}"
+        ".main-collection-products__title {margin-top: 0; margin-bottom: 2rem; font-size: 1.3rem;}",
+        ".main-collection-products {padding-top: 2.5rem;}",
+        "@media (min-width: 920px) {.main-collection-products__title {font-size: 1.5rem; }}"
       ],
-      "name": "Video Banner",
+      "name": "Main Collection Products",
       "settings": {
-        "background_color": "#ffffff",
-        "video_url": "https://cdn.shopify.com/videos/c/o/v/dfb7550f7ace4c94986db2bff645ff21.mp4",
-        "poster": "shopify://shop_images/qa_-_1_8_1000x_ad474bdc-4d49-4c53-a164-24bdd78f6883.webp",
-        "heading": "WATCH THE PROCESS"
-      }
-    },
-    "faq-section": {
-      "type": "faq-section",
-      "blocks": {
-        "faq_qzXeeP": {
-          "type": "faq",
-          "settings": {
-            "question": "WHAT TYPES OF CAST IRON DO YOU RESTORE?",
-            "answer": "<p>We restore all types of cast iron cookware, including skillets, Dutch ovens, griddles, and more. Whether it's a vintage piece or a modern Smithey that needs some love, we can bring it back to life.</p>"
-          }
-        },
-        "faq_iaHBE4": {
-          "type": "faq",
-          "settings": {
-            "question": "HOW LONG DOES THE RESTORATION PROCESS TAKE?",
-            "answer": "<p>The restoration process typically takes 2-4 weeks from the time we receive your cookware. This includes inspection, stripping, re-seasoning, and quality control before shipping back to you.</p>"
-          }
-        },
-        "faq_NYDP7B": {
-          "type": "faq",
-          "settings": {
-            "question": "HOW DO I SHIP MY CAST IRON TO YOU?",
-            "answer": "<p>After placing your restoration order, you'll receive detailed shipping instructions. We recommend wrapping your cookware securely and using a sturdy box. Shipping costs to our facility are the customer's responsibility.</p>"
-          }
-        },
-        "faq_4TXYcV": {
-          "type": "faq",
-          "settings": {
-            "question": "WHAT IS INCLUDED IN THE RESTORATION?",
-            "answer": "<p>Our restoration service includes a complete strip of old seasoning, rust removal, surface smoothing if needed, and multiple layers of our signature seasoning. Your piece will be returned ready to cook.</p>"
-          }
-        },
-        "faq_67k7Jx": {
-          "type": "faq",
-          "settings": {
-            "question": "DO YOU OFFER A WARRANTY ON RESTORED PIECES?",
-            "answer": "<p>Yes! All restored cookware comes with our satisfaction guarantee. If you're not happy with the restoration, contact us within 30 days and we'll make it right.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "faq_qzXeeP",
-        "faq_iaHBE4",
-        "faq_NYDP7B",
-        "faq_4TXYcV",
-        "faq_67k7Jx"
-      ],
-      "settings": {
-        "title": "Frequently Asked Questions"
+        "custom_title": "Available on select cookware & sets",
+        "background_color": "#f8f8f8",
+        "collection": "cookware",
+        "products_to_show": 10,
+        "desktop_columns": "3",
+        "mobile_columns": "2",
+        "featured_product_index_desktop": 5,
+        "featured_product_index_mobile": 5,
+        "featured_column_span": 2
       }
     }
   },
   "order": [
-    "our_story_hero_awGwYn",
-    "content_builder_8LwAtU",
-    "video_banner_QwbqWG",
-    "faq-section"
+    "content_builder_Vzagdc",
+    "main_collection_products_KqNY3p"
   ]
 }
