@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "content_builder_Vzagdc": {
@@ -16,8 +7,9 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/3E537CC4-1AFE-406F-868D-3964B3EAD40F_1_201_a.webp",
+            "alt_text": "Content image",
             "image_mobile_height": 22.8,
-            "image_desktop_height": 46.8,
+            "image_desktop_height": 43.4,
             "image_large_desktop_height": 40,
             "position": "left",
             "custom_css": ""
@@ -35,7 +27,7 @@
             "content_mobile_size": 2.1,
             "content_color": "#112626",
             "position": "right",
-            "custom_css": ".content-builder__content{\n    line-height: 45px;\n    margin-bottom:2rem;\n}\n.content-builder__title{\n   margin-bottom:0.5rem;\n}\n@media (min-width: 920px) {\n  .content-builder__content {\n    line-height: 60px;\n    max-width:20rem;\n    margin-bottom:2rem;\n  }\n}"
+            "custom_css": ".content-builder__content{\n    line-height: 45px;\n    margin-bottom: 2.79rem;\n}\n.content-builder__title{\n   margin-bottom:0.5rem;\n}\n@media (min-width: 920px) {\n  .content-builder__content {\n    line-height: 60px;\n    max-width:20rem;\n    margin-bottom:2.5rem;\n  }\n}"
           }
         },
         "text_LtwTNx": {
@@ -50,7 +42,7 @@
             "content_mobile_size": 1,
             "content_color": "#112626",
             "position": "right",
-            "custom_css": ".content-builder__content {\n    margin-bottom: 2rem;\n  }\n@media (min-width: 920px) {\n  .content-builder__content {\n    line-height: 23px;\n    margin-bottom: 2rem;\n    max-width:20rem\n  }\n}"
+            "custom_css": ".content-builder__content {\n    margin-bottom: 4.14rem;\n  }\n@media (min-width: 920px) {\n  .content-builder__content {\n    margin-bottom: 3.3rem;\n    max-width:20rem;\n    font-size: 23px;\n    letter-spacing: 1px;\n    line-height: 27px;\n  }\n}\n@media (min-width: 1400px) {\n  .content-builder__content {\n    max-width:27rem;\n  }\n}"
           }
         },
         "text_YDHx6E": {
@@ -65,7 +57,7 @@
             "content_mobile_size": 1,
             "content_color": "#112626",
             "position": "right",
-            "custom_css": ".content-builder__content ol {\n  margin: 0;\n  padding-left: 1rem;\n}\n\n.content-builder__content li {\n  margin-bottom: 0.5rem;\n  max-width: 20rem;\n  line-height:25px;\n  color: #112626; \n}\n\n.content-builder__title {\n  margin-bottom: 1rem;\n}\n\n.content-builder__content li:last-child {\n  margin-bottom: 0;\n}\n\n.content-builder__content li::marker {\n  color: #B68B32; \n  font-weight: 700;\n}\n\n.content-builder__content li em {\n  font-style: italic;\n}"
+            "custom_css": ".content-builder__content ol {\n  margin: 0;\n  padding-left: 1rem;\n}\n\n.content-builder__title {\n  margin-bottom: 1rem;\n}\n\n.content-builder__content li:last-child {\n  margin-bottom: 0;\n}\n\n .content-builder__content li {\n  margin-bottom:1rem;\n}\n\n\n.content-builder__content li:last-child {\n  margin-bottom: 0;\n}\n\n.content-builder__content li::marker {\n  color: #B68B32; \n  font-weight: 700;\n}\n\n.content-builder__content li em {\n  font-style: italic;\n}\n\n@media (min-width: 920px) {\n  .content-builder__content li {\n    margin-bottom: 0.5rem;\n    max-width: 20rem;\n    color: #112626;\n    font-size: 20px;\n    letter-spacing: 1px;\n    line-height: 27px;\n  }\n}"
           }
         }
       },
@@ -80,13 +72,14 @@
         ".content-builder__image {margin: 0;}",
         ".content-builder__right {padding: 2rem 1.5rem;}",
         ".content-builder__container {gap: 0;}",
-        "@media (min-width: 920px) {.content-builder__right {padding: 2.5rem 8.5rem !important; justify-content: start; }}"
+        "@media (min-width: 920px) {.content-builder__right {padding: 2.5rem 9rem !important; justify-content: start; }}"
       ],
       "name": "Content Builder",
       "settings": {
         "background_color": "#f7f7f7",
-        "desktop_padding": 2.5,
-        "mobile_padding": 1
+        "desktop_padding": 0,
+        "mobile_padding": 0,
+        "show_features": false
       }
     },
     "main_collection_products_KqNY3p": {
@@ -99,7 +92,7 @@
       "name": "Main Collection Products",
       "settings": {
         "custom_title": "Available on select cookware & sets",
-        "background_color": "#F8F8F8",
+        "background_color": "#f8f8f8",
         "collection": "cookware",
         "products_to_show": 10,
         "desktop_columns": "3",
