@@ -95,29 +95,6 @@
   }
 </style>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const root = document.getElementById('content-builder-{{ section.id }}');
-    if (!root) return;
-
-    const faqItems = root.querySelectorAll('.faq__item');
-
-    faqItems.forEach((item) => {
-      const question = item.querySelector('.faq__question');
-      if (!question) return;
-
-      question.addEventListener('click', () => {
-        const isOpen = item.classList.contains('is-open');
-
-        faqItems.forEach((faq) => faq.classList.remove('is-open'));
-
-        if (!isOpen) {
-          item.classList.add('is-open');
-        }
-      });
-    });
-  });
-</script>
 
 {% schema %}
 {

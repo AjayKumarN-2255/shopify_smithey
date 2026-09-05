@@ -142,7 +142,9 @@
         "faq_67k7Jx"
       ],
       "custom_css": [
-        ".faq {padding: 0 1.21rem;}"
+        ".faq {padding: 0 1.21rem;}",
+        ".faq__title {margin-top: 3rem;}",
+        "@media (min-width: 920px) {.faq__title {margin-top: 6rem; margin-bottom: 3rem; }}"
       ],
       "settings": {
         "title": "Frequently Asked Questions"

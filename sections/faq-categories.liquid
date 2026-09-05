@@ -203,27 +203,6 @@
   }
 </style>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const root = document.getElementById('faq-categories-{{ section.id }}');
-    if (!root) return;
-
-    const faqItems = root.querySelectorAll('.faq__item');
-
-    faqItems.forEach((item) => {
-      const question = item.querySelector('.faq__question');
-      if (!question || question.dataset.faqBound === 'true') return;
-
-      question.dataset.faqBound = 'true';
-      question.addEventListener('click', (event) => {
-        event.preventDefault();
-        const isOpen = item.classList.contains('is-open');
-        faqItems.forEach((faq) => faq.classList.remove('is-open'));
-        if (!isOpen) item.classList.add('is-open');
-      });
-    });
-  });
-</script>
 
 {% schema %}
 {

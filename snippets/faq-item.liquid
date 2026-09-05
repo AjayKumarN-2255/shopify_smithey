@@ -90,3 +90,48 @@
     {{ block.settings.custom_css | replace: '&', selector }}
   </style>
 {% endif %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const item = document.getElementById('content-builder-faq-{{ block.id }}');
+    if (!item) return;
+
+    const question = item.querySelector('.faq__question');
+    if (!question || question.dataset.faqBound === 'true') return;
+
+    question.dataset.faqBound = 'true';
+    question.setAttribute('role', 'button');
+    question.setAttribute('tabindex', '0');
+    question.setAttribute('aria-expanded', 'false');
+
+    const toggleFaq = () => {
+      const isOpen = item.classList.contains('is-open');
+      const scope =
+        item.closest('.faq__items') ||
+        item.closest('.faq-categories__items') ||
+        item.closest('.content-builder') ||
+        item.parentElement;
+
+      if (scope) {
+        scope.querySelectorAll('.faq__item').forEach((faq) => {
+          faq.classList.remove('is-open');
+          const faqQuestion = faq.querySelector('.faq__question');
+          if (faqQuestion) faqQuestion.setAttribute('aria-expanded', 'false');
+        });
+      }
+
+      if (!isOpen) {
+        item.classList.add('is-open');
+        question.setAttribute('aria-expanded', 'true');
+      }
+    };
+
+    question.addEventListener('click', toggleFaq);
+    question.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        toggleFaq();
+      }
+    });
+  });
+</script>
