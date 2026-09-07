@@ -63,7 +63,7 @@
                         "content_mobile_size": 1,
                         "content_color": "#112626",
                         "position": "left",
-                        "custom_css": ".content-builder__content a {\n color:#747474;\n}\n\n@media (min-width: 920px) {\n  .content-builder__content {\n    margin: 0.5rem;\n  }\n}"
+                        "custom_css": ".content-builder__content a {\n color:#747474;\n}\n.content-builder__content{\n max-width: 20rem;\n margin-bottom:1.5rem;\n}\n@media (min-width: 920px) {\n  .content-builder__content {\n    margin: 0.5rem;\n    max-width: unset;\n  }\n}"
                     }
                 }
             },
@@ -219,6 +219,11 @@
                 "faq_84yN9d",
                 "faq_FRHpxr",
                 "faq_8pzawd"
+            ],
+            "custom_css": [
+                ".faq-categories__right {display: none;}",
+                ".faq__question {padding: 1rem 0; height: unset;}",
+                "@media (min-width: 920px) {.faq-categories__right {display: block; }}"
             ],
             "name": "FAQ Categories",
             "settings": {
