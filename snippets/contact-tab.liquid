@@ -268,8 +268,12 @@
 
         // Mock email send — no network request
         window.setTimeout(() => {
+          const contactTab = emailForm.closest('.contact-tab');
+          const tabActions = contactTab?.querySelector('.contact-tab__actions');
+
           emailForm.hidden = true;
           successState.hidden = false;
+          if (tabActions) tabActions.style.visibility = 'hidden';
           emailForm.closest('.contact-tab__content')?.classList.add('is-success');
         }, 600);
       });
