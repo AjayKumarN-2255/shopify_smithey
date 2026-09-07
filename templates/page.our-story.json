@@ -1,4 +1,4 @@
- {
+{
   "sections": {
     "our-story-hero": {
       "type": "our-story-hero",
@@ -47,6 +47,7 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/Smithey_02_2021_0893_1000x1000_d0763c1e-bee6-40fb-a6ad-d74d92017501.jpg",
+            "alt_text": "Content image",
             "image_mobile_height": 16.5,
             "image_desktop_height": 22.2,
             "image_large_desktop_height": 29,
@@ -84,7 +85,8 @@
         "background_color": "#ffffff",
         "desktop_padding": 2.5,
         "mobile_padding": 1,
-        "show_features": false
+        "show_features": false,
+        "custom_css": ""
       }
     },
     "content_builder_EgcRme": {
@@ -94,6 +96,7 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/Forged_farm_3pc_set_left_side_1000x1000_ee4513b2-2b4f-43f1-be4f-ed15a2bec2b3.webp",
+            "alt_text": "Content image",
             "image_mobile_height": 16.5,
             "image_desktop_height": 24.5,
             "image_large_desktop_height": 29.6,
@@ -121,15 +124,14 @@
         "image_4NdYqy",
         "text_89yA4g"
       ],
-      "custom_css": [
-        "@media (min-width: 920px) {#content-builder-template--21819620130951__content_builder_EgcRme .content-builder__right {justify-content: center; }}"
-      ],
+      "custom_css": [],
       "name": "Content Builder",
       "settings": {
         "background_color": "#f8f8f8",
         "desktop_padding": 2.5,
         "mobile_padding": 1,
-        "show_features": false
+        "show_features": false,
+        "custom_css": "@media (min-width: 920px) {\n  #SECTION_ID .content-builder__right {\n    justify-content: center;\n  }\n}"
       }
     },
     "content_builder_6qcbFF": {
@@ -166,6 +168,7 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/13E867A6-6972-439C-B18F-8D8997A438D0_1000x1000_cb089a0b-eafd-40a9-93d9-fc000b8dcbd0.webp",
+            "alt_text": "Content image",
             "image_mobile_height": 16.5,
             "image_desktop_height": 22.2,
             "image_large_desktop_height": 29,
@@ -203,7 +206,8 @@
         "background_color": "#ffffff",
         "desktop_padding": 2.5,
         "mobile_padding": 1,
-        "show_features": false
+        "show_features": false,
+        "custom_css": ""
       }
     },
     "video-banner": {
