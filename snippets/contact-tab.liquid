@@ -75,52 +75,80 @@
       class="contact-tab__content"
       data-content="email"
     >
-      <div class="contact-tab__form-row">
-        <div class="contact-tab__form-field">
-          <label class="contact-tab__form-label"> Name* </label>
-          <input
-            class="contact-tab__form-input"
-            type="text"
-            name="contact[name]"
-            required
-          >
-        </div>
-        <div class="contact-tab__form-field">
-          <label class="contact-tab__form-label"> Email* </label>
-
-          <div class="contact-tab__form-input-wrapper">
+      <form class="contact-tab__form" novalidate>
+        <div class="contact-tab__form-row">
+          <div class="contact-tab__form-field">
+            <label class="contact-tab__form-label"> Name* </label>
             <input
               class="contact-tab__form-input"
-              type="email"
-              name="contact[email]"
+              type="text"
+              name="contact[name]"
               required
             >
           </div>
+          <div class="contact-tab__form-field">
+            <label class="contact-tab__form-label"> Email* </label>
+
+            <div class="contact-tab__form-input-wrapper">
+              <input
+                class="contact-tab__form-input"
+                type="email"
+                name="contact[email]"
+                required
+              >
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="contact-tab__form-field">
-        <label class="contact-tab__form-label"> Order Number (Optional) </label>
-        <input
-          class="contact-tab__form-input"
-          type="text"
-          name="contact[Order Number]"
+        <div class="contact-tab__form-field">
+          <label class="contact-tab__form-label"> Order Number (Optional) </label>
+          <input
+            class="contact-tab__form-input"
+            type="text"
+            name="contact[Order Number]"
+          >
+        </div>
+        <div class="contact-tab__form-field">
+          <label class="contact-tab__form-label"> How Can We Help?* </label>
+          <textarea
+            class="contact-tab__form-textarea"
+            name="contact[body]"
+            rows="6"
+            required
+          ></textarea>
+        </div>
+        <button
+          type="submit"
+          class="contact-tab__form-submit"
+          disabled
         >
+          Send Message
+        </button>
+      </form>
+
+      <div class="contact-tab__success" hidden>
+        <div class="contact-tab__success-icon" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none">
+            <circle
+              cx="32"
+              cy="32"
+              r="30"
+              stroke="currentColor"
+              stroke-width="1.5"
+            ></circle>
+            <path
+              d="M20 33.5L28 41.5L44 24"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+          </svg>
+        </div>
+        <p class="contact-tab__success-title">Message received. Thank you!</p>
+        <p class="contact-tab__success-text">
+          Our team will get back to you within one business day.
+        </p>
       </div>
-      <div class="contact-tab__form-field">
-        <label class="contact-tab__form-label"> How Can We Help?* </label>
-        <textarea
-          class="contact-tab__form-textarea"
-          name="contact[body]"
-          rows="6"
-          required
-        ></textarea>
-      </div>
-      <button
-        type="submit"
-        class="contact-tab__form-submit"
-      >
-        Send Message
-      </button>
     </div>
 
     <div
@@ -180,6 +208,14 @@
   document.addEventListener('DOMContentLoaded', () => {
     const tabs = document.querySelectorAll('.contact-tab__item');
     const contents = document.querySelectorAll('.contact-tab__content');
+    const emailForm = document.querySelector('.contact-tab__form');
+    const submitButton = emailForm?.querySelector('.contact-tab__form-submit');
+    const successState = document.querySelector('.contact-tab__success');
+
+    const updateSubmitState = () => {
+      if (!emailForm || !submitButton) return;
+      submitButton.disabled = !emailForm.checkValidity();
+    };
 
     tabs.forEach((tab) => {
       const button = tab.querySelector('.contact-tab__button');
@@ -214,5 +250,29 @@
         }
       });
     });
+
+    if (emailForm && submitButton && successState) {
+      emailForm.addEventListener('input', updateSubmitState);
+      updateSubmitState();
+
+      emailForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        if (!emailForm.checkValidity()) {
+          updateSubmitState();
+          return;
+        }
+
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending…';
+
+        // Mock email send — no network request
+        window.setTimeout(() => {
+          emailForm.hidden = true;
+          successState.hidden = false;
+          emailForm.closest('.contact-tab__content')?.classList.add('is-success');
+        }, 600);
+      });
+    }
   });
 </script>

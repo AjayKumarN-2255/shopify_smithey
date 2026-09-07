@@ -130,6 +130,61 @@
   display: flex;
   border: none;
   outline: none;
+  transition: opacity 0.2s ease;
+}
+
+.contact-tab__form-submit:not(:disabled) {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.contact-tab__success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2.5rem 1rem 3rem;
+  width: 100%;
+}
+
+.contact-tab__success[hidden] {
+  display: none;
+}
+
+.contact-tab__success-icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  color: #b68b32;
+  margin-bottom: 1.75rem;
+}
+
+.contact-tab__success-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.contact-tab__success-title {
+  margin: 0 0 0.75rem;
+  color: #ffffff;
+  font-family: Sentinel, ui-serif, serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.contact-tab__success-text {
+  margin: 0;
+  color: #ffffff;
+  font-family: Sentinel, ui-serif, serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.contact-tab__content.is-success {
+  max-height: 500px;
 }
 
 /* tab call and text styling */
@@ -224,5 +279,23 @@
   .contact-tab__text-description {
     font-size: 16px;
     max-width: unset;
+  }
+
+  .contact-tab__success {
+    padding: 3rem 1rem 3.5rem;
+  }
+
+  .contact-tab__success-icon {
+    width: 4rem;
+    height: 4rem;
+    margin-bottom: 2rem;
+  }
+
+  .contact-tab__success-title {
+    font-size: 28px;
+  }
+
+  .contact-tab__success-text {
+    font-size: 18px;
   }
 }
