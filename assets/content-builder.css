@@ -2,6 +2,15 @@
   width: 100%;
 }
 
+/* Rich text headings use browser em sizes (h1 ≈ 2em), which doubles
+   the rem size set on .content-builder__content. Force inherit. */
+.content-builder__content :is(h1, h2, h3, h4, h5, h6),
+.content-builder__feature-description :is(h1, h2, h3, h4, h5, h6) {
+  font-size: inherit;
+  line-height: inherit;
+  margin: 0;
+}
+
 .content-builder__container {
   width: 100%;
   display: flex;

@@ -84,19 +84,13 @@
       }
 
       @media (min-width: 920px) {
+        html {
+          font-size: 20px;
+        }
+
         .template-other .header-wrapper {
           padding-top: calc(1rem + 4.5px);
           padding-bottom: calc(1rem + 4.5px);
-        }
-      }
-
-      @media screen and (min-width: 992px) {
-        html {
-          font-size: clamp(
-            18px,
-            calc(18px + (20 - 18) * ((100vw - 992px) / (1500 - 992))),
-            20px
-          );
         }
       }
     </style>
