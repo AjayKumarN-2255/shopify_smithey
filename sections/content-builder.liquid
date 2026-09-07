@@ -95,6 +95,12 @@
   }
 </style>
 
+{% if section.settings.custom_css != blank %}
+  {% assign section_css_selector = '#content-builder-' | append: section.id %}
+  <style>
+    {{ section.settings.custom_css | replace: '#SECTION_ID', section_css_selector }}
+  </style>
+{% endif %}
 
 {% schema %}
 {
@@ -123,6 +129,12 @@
       "id": "show_features",
       "label": "Show Feature Section",
       "default": false
+    },
+    {
+      "type": "textarea",
+      "id": "custom_css",
+      "label": "Custom CSS",
+      "info": "Use #SECTION_ID to target this section. Example: #SECTION_ID .content-builder__container { padding: 2rem; }"
     }
   ],
   "blocks": [
