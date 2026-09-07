@@ -184,11 +184,11 @@
             "title_mobile_size": 1,
             "title_color": "#a91010",
             "content": "<h2>From the kitchen to the campfire, <em><strong>USE IT WELL.</strong></em></h2>",
-            "content_desktop_size": 2,
+            "content_desktop_size": 1.8,
             "content_mobile_size": 1,
             "content_color": "#112626",
             "position": "right",
-            "custom_css": ""
+            "custom_css": "@media (min-width: 920px) {\n .content-builder__content {\n    text-align: center;\n    margin-top:3.5rem;\n  }\n}"
           }
         }
       },
@@ -207,7 +207,7 @@
         "desktop_padding": 2.5,
         "mobile_padding": 1,
         "show_features": false,
-        "custom_css": ""
+        "custom_css": "@media (min-width: 920px) {\n  #SECTION_ID .content-builder__right {\n    justify-content: start !important;\n  }\n}"
       }
     },
     "video-banner": {
