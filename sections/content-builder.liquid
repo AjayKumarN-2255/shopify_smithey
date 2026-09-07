@@ -14,6 +14,9 @@
             {% when 'image' %}
               {% render 'content-builder-image', block: block %}
 
+            {% when 'video' %}
+              {% render 'content-builder-video', block: block %}
+
             {% when 'image_grid' %}
               {% render 'content-builder-image-grid', block: block %}
 
@@ -42,6 +45,9 @@
 
             {% when 'image' %}
               {% render 'content-builder-image', block: block %}
+
+            {% when 'video' %}
+              {% render 'content-builder-video', block: block %}
 
             {% when 'image_grid' %}
               {% render 'content-builder-image-grid', block: block %}
@@ -267,6 +273,110 @@
           "id": "custom_css",
           "label": "Custom CSS",
           "info": "Use '&' to target this block. Example: '& { margin-top: 2rem; }' or '& img { object-fit: contain; }'"
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "name": "Video",
+      "settings": [
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video"
+        },
+        {
+          "type": "text",
+          "id": "video_url",
+          "label": "Video URL (optional)",
+          "info": "Used only when no Shopify video is selected. Direct MP4 URL."
+        },
+        {
+          "type": "image_picker",
+          "id": "poster",
+          "label": "Thumbnail / poster image",
+          "info": "Optional. Shown as an image until clicked, then the video plays. If empty, the video shows normally."
+        },
+        {
+          "type": "number",
+          "id": "video_mobile_height",
+          "label": "Video Mobile Height (rem)",
+          "default": 20
+        },
+        {
+          "type": "number",
+          "id": "video_desktop_height",
+          "label": "Video Desktop Height (rem)",
+          "default": 30
+        },
+        {
+          "type": "number",
+          "id": "video_large_desktop_height",
+          "label": "Video Large Desktop Height (rem)",
+          "default": 36
+        },
+        {
+          "type": "checkbox",
+          "id": "autoplay",
+          "label": "Autoplay",
+          "info": "Browsers require muted autoplay. Muted will be forced when enabled.",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "muted",
+          "label": "Muted",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "loop",
+          "label": "Loop",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "show_controls",
+          "label": "Show controls",
+          "default": true
+        },
+        {
+          "type": "select",
+          "id": "play_behavior",
+          "label": "Play behavior",
+          "options": [
+            {
+              "value": "standard",
+              "label": "Standard (use controls)"
+            },
+            {
+              "value": "click_to_play",
+              "label": "Click to play"
+            }
+          ],
+          "default": "standard"
+        },
+        {
+          "type": "select",
+          "id": "position",
+          "label": "Position",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "right"
+        },
+        {
+          "type": "textarea",
+          "id": "custom_css",
+          "label": "Custom CSS",
+          "info": "Use '&' to target this block. Example: '& { margin-top: 2rem; }' or '& video { object-fit: contain; }'"
         }
       ]
     },
