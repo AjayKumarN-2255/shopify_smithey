@@ -32,7 +32,12 @@
                 "contact_card_Awh4Rg"
             ],
             "custom_css": [
-                ".our-story-hero__content {border: none;}"
+                "@media (max-width: 919px) {.our-story-hero {min-height: 40vh !important; }}",
+                ".our-story-hero__content {border: none;}",
+                ".our-story-hero__title {font-size: 30px; text-transform: capitalize;}",
+                ".contact-card__icon {display: flex; align-items: end;}",
+                "@media (min-width: 920px) {.our-story-hero__title {font-size: 40px; }}",
+                "@media (min-width: 1700px) {.our-story-hero {min-height: 40vh !important; }}"
             ],
             "name": "Our Story Hero",
             "settings": {
