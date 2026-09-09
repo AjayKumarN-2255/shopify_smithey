@@ -88,12 +88,12 @@
                         "title_desktop_size": 1.6,
                         "title_mobile_size": 2,
                         "title_color": "#b68b32",
-                        "content": "<p>Give your skillet a quick wash with mild dish soap and warm water to remove any debris, or caked-on food. (Yes, using dish soap is fine!). Rinse and dry your Smithey </p>",
+                        "content": "<p>A well-seasoned skillet is like a badge of honor. Cook on it frequently, use it often, and it will get better with time. If you have any questions, shoot us an email at <a href=\"mailto:support@smithey.com\" target=\"_blank\" title=\"mailto:support@smithey.com\"><span style=\"text-decoration:underline\">support@smithey.com</span></a>. We'll be back to you quickly....we promise.</p>",
                         "content_desktop_size": 0.7,
                         "content_mobile_size": 0.9,
                         "content_color": "#112626",
                         "position": "left",
-                        "custom_css": ".content-builder__title{\n  margin:1rem 0;\n}\n.content-builder__content {\n    margin-bottom:2rem;\n}\n@media (min-width: 920px) {\n  .content-builder__content {\n    max-width: 25rem;\n  }\n}\n\n@media (min-width: 1700px) {\n  .content-builder__content {\n    max-width: 28rem;\n  }\n}"
+                        "custom_css": ".content-builder__title{\n  margin:1rem 0;\n}\n.content-builder__content {\n    margin-bottom:2rem;\n}\n.content-builder__content a{\n  color:#112626;\n}\n@media (min-width: 920px) {\n  .content-builder__content {\n    max-width: 25rem;\n  }\n}\n\n@media (min-width: 1700px) {\n  .content-builder__content {\n    max-width: 28rem;\n  }\n}"
                     }
                 },
                 "faq_dRUHAe": {
