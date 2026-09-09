@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "our_story_hero_Vaxz3V": {
@@ -107,7 +116,7 @@
             "content_mobile_size": 0.9,
             "content_color": "#112626",
             "position": "left",
-            "custom_css": ".content-builder__title{\n  margin:1rem 0;\n}\n.content-builder__content {\n    margin-bottom:2rem;\n}\n.content-builder__content a{\n    color:#112626;\n}\n@media (min-width: 920px) {\n  .content-builder__content {\n    max-width: 25rem;\n  }\n}\n\n@media (min-width: 1700px) {\n  .content-builder__content {\n    max-width: 28rem;\n    text-align:start;\n  }\n}"
+            "custom_css": ".content-builder__title{\n  margin:1rem 0;\n}\n.content-builder__content {\n    margin-bottom:2rem;\n}\n\n.content-builder__content a{\n    color:#112626;\n}\n\n@media (min-width: 920px) {\n  .content-builder__content {\n    max-width: 25rem;\n  }\n}\n\n@media (min-width: 1700px) {\n  .content-builder__content {\n    max-width: 28rem;\n    text-align:start;\n  }\n}"
           }
         },
         "faq_dRUHAe": {
@@ -144,17 +153,14 @@
         "faq_4XUhdR",
         "faq_4qcnFn"
       ],
-      "custom_css": [
-        "#content-builder-template--21635132129415__content_builder_Vy43YA .content-builder__right {padding-bottom: 2rem;}",
-        "@media (min-width: 920px) {#content-builder-template--21635132129415__content_builder_Vy43YA .content-builder__container {gap: 0; } #content-builder-template--21635132129415__content_builder_Vy43YA .content-builder__left {align-items: center; } #content-builder-template--21635132129415__content_builder_Vy43YA .content-builder__right {padding: 0.25rem 0 5rem; }}"
-      ],
+      "custom_css": [],
       "name": "Content Builder",
       "settings": {
         "background_color": "#ffffff",
         "desktop_padding": 1.6,
         "mobile_padding": 0.8,
         "show_features": false,
-        "custom_css": ""
+        "custom_css": "#SECTION_ID .content-builder__right {\n  padding-bottom: 2rem;\n}\n\n@media (min-width: 920px) {\n  #SECTION_ID .content-builder__container {\n    gap: 0;\n  }\n\n  #SECTION_ID .content-builder__left {\n    align-items: center;\n  }\n\n  #SECTION_ID .content-builder__right {\n    padding: 0.25rem 0 3rem;\n  }\n}"
       }
     }
   },
