@@ -185,6 +185,27 @@
   }
 }
 
+/* Tablet: keep SIGN UP on one line inside the bordered form */
+@media (min-width: 920px) and (max-width: 1199px) {
+  .footer__newsletter-form {
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .footer__newsletter-input {
+    min-width: 0;
+    flex: 1 1 auto;
+    padding: 0 0.75rem;
+  }
+
+  .footer__newsletter-button {
+    flex-shrink: 0;
+    white-space: nowrap;
+    width: auto;
+    padding: 0 0.85rem;
+  }
+}
+
 @media (min-width: 1550px) {
   .footer__newsletter-form {
     height: 2.5rem;
