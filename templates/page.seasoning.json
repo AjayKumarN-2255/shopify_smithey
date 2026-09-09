@@ -32,7 +32,7 @@
                         "content_mobile_size": 0.9,
                         "content_color": "#112626",
                         "position": "left",
-                        "custom_css": ".content-builder__title {\n  text-align: center;\n  margin:0 auto 1rem auto;\n}\n\n@media (min-width: 920px) {\n  .content-builder__title {\n    text-align: left;\n    margin:unset;\n  }\n}"
+                        "custom_css": ".content-builder__title {\n  text-align: center;\n  margin:0 auto 1rem auto;\n}\n\n@media (min-width: 920px) {\n  .content-builder__title {\n    text-align: left;\n    margin-left: 0;\n    margin-right: 0;\n    margin-top: 0;\n  }\n}"
                     }
                 },
                 "video_aHmkKk": {

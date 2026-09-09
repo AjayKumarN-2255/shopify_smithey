@@ -81,6 +81,10 @@
     justify-content: start;
     gap: 1rem;
   }
+  .media-tabs__text .content-builder__title {
+    margin-bottom: 1.6rem;
+  }
+
   .media-tabs__panel-title {
     text-transform: uppercase;
     font-size: 20px;
