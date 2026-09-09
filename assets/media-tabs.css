@@ -27,7 +27,7 @@
   text-transform: uppercase;
   letter-spacing: 0.103rem;
   padding: 0.5rem 0;
-  color: #112626;
+  color: #7e8989;
   border: none;
   outline: none;
   cursor: pointer;
@@ -36,6 +36,7 @@
 }
 
 .media-tabs__tab-button.is-active {
+  color: #112626;
   border-bottom: 3px solid #b68b32;
 }
 
