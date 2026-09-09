@@ -3,15 +3,28 @@
         "main": {
             "type": "founder-message",
             "custom_css": [
+                ".founder-message__title {color: #b68b32; font-size: 13px;}",
                 "@media (min-width: 920px) {.founder-message__image img {height: 41rem; } .founder-message__image {height: 41rem; flex: 0 0 50%; } .founder-message__container {flex-direction: row-reverse; max-width: 57rem; gap: 0; padding: 0; } .founder-message__content {flex: 0 0 50%; padding: 2rem 2rem 0 1.5rem; } .founder-message {padding: 3rem 0 !important; } .founder-message__description p {font-size: 16px; line-height: 27px; margin-bottom: 1rem; color: #112625; }}"
             ],
             "settings": {
                 "article": "news/a-message-from-the-founder",
                 "background_color": "#dfdfdf"
             }
+        },
+        "content_builder_jcwhQX": {
+            "type": "content-builder",
+            "name": "Content Builder",
+            "settings": {
+                "background_color": "#ffffff",
+                "desktop_padding": 0,
+                "mobile_padding": 0,
+                "show_features": false,
+                "custom_css": ".founder-message__description p {\n    font-size: 18px !important;\n    line-height: 1.3  !important;\n}\np{\nmargin-bottom:0 !important;\n}\nh5 {\n  color: #b68b32;\n  font-size: 14px;\n  text-align:center;\n}\nh4 {\n  font-size: 14px;\n  text-align:center;\n  transform: translateY(-13px);\n  letter-spacing:1px;\n  font-weight:400;\n   margin: auto;\n   max-width: 20rem;\n}"
+            }
         }
     },
     "order": [
-        "main"
+        "main",
+        "content_builder_jcwhQX"
     ]
 }
