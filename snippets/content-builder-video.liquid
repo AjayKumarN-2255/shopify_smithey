@@ -118,32 +118,113 @@
         <div class="content-builder-video__overlay"></div>
       {% endif %}
     </div>
+
+    {% if has_poster or play_behavior == 'click_to_play' %}
+      <div
+        class="content-builder-video__modal"
+        id="content-builder-video-modal-{{ block.id }}"
+        hidden
+        aria-hidden="true"
+      >
+        <button
+          type="button"
+          class="content-builder-video__modal-close"
+          aria-label="Close video"
+        >
+          <svg
+            class="content-builder-video__modal-close-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
+            <path d="M5 5l14 14M19 5 5 19"></path>
+          </svg>
+        </button>
+        <div class="content-builder-video__modal-player"></div>
+      </div>
+    {% endif %}
   </div>
 
   {% if has_poster or play_behavior == 'click_to_play' %}
     <script>
       (function () {
         const root = document.getElementById('content-builder-video-{{ block.id }}');
-        if (!root) return;
+        if (!root || root.dataset.videoBound === 'true') return;
+        root.dataset.videoBound = 'true';
 
+        const container = root.querySelector('.content-builder-video__container');
         const video = root.querySelector('.content-builder-video__video');
         const trigger =
           root.querySelector('.content-builder-video__thumbnail') ||
           root.querySelector('.content-builder-video__play');
+        const modal = document.getElementById('content-builder-video-modal-{{ block.id }}');
+        const modalPlayer = modal && modal.querySelector('.content-builder-video__modal-player');
+        const modalClose = modal && modal.querySelector('.content-builder-video__modal-close');
 
-        if (!video || !trigger) return;
+        if (!video || !trigger || !container || !modal || !modalPlayer) return;
 
-        const syncState = () => {
+        document.body.appendChild(modal);
+
+        const desktopQuery = window.matchMedia('(min-width: 920px)');
+        let isModalOpen = false;
+
+        const syncInlineState = () => {
+          if (isModalOpen) return;
           root.classList.toggle('is-playing', !video.paused);
         };
 
+        const openModal = () => {
+          if (isModalOpen) return;
+          isModalOpen = true;
+          modal.hidden = false;
+          modal.setAttribute('aria-hidden', 'false');
+          modal.classList.add('is-open');
+          document.body.classList.add('content-builder-video-modal-open');
+          modalPlayer.appendChild(video);
+          video.play();
+        };
+
+        const closeModal = () => {
+          if (!isModalOpen) return;
+          isModalOpen = false;
+          video.pause();
+          container.insertBefore(video, container.firstChild);
+          modal.classList.remove('is-open');
+          modal.hidden = true;
+          modal.setAttribute('aria-hidden', 'true');
+          document.body.classList.remove('content-builder-video-modal-open');
+          root.classList.remove('is-playing');
+        };
+
         trigger.addEventListener('click', () => {
+          if (desktopQuery.matches) {
+            openModal();
+            return;
+          }
           video.play();
         });
 
-        video.addEventListener('play', syncState);
-        video.addEventListener('pause', syncState);
-        video.addEventListener('ended', syncState);
+        if (modalClose) {
+          modalClose.addEventListener('click', closeModal);
+        }
+
+        modal.addEventListener('click', (event) => {
+          if (event.target === modal) closeModal();
+        });
+
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape' && isModalOpen) closeModal();
+        });
+
+        video.addEventListener('play', syncInlineState);
+        video.addEventListener('pause', syncInlineState);
+        video.addEventListener('ended', syncInlineState);
+
+        desktopQuery.addEventListener('change', (event) => {
+          if (!event.matches && isModalOpen) closeModal();
+        });
       })();
     </script>
   {% endif %}
@@ -196,6 +277,11 @@
     object-fit: cover;
     object-position: center;
     display: block;
+    transition: transform 0.35s ease;
+  }
+
+  #content-builder-video-{{ block.id }} .content-builder-video__thumbnail:hover .content-builder-video__thumbnail-image {
+    transform: scale(1.05);
   }
 
   #content-builder-video-{{ block.id }} .content-builder-video__play {
@@ -212,11 +298,18 @@
     padding: 0;
     border: 0;
     border-radius: 50%;
-    background-color: #b68b32;
-    color: #112626;
+    background-color: #000000;
+    color: #ffffff;
     transform: translate(-50%, -50%);
     cursor: pointer;
     pointer-events: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  #content-builder-video-{{ block.id }} .content-builder-video__thumbnail:hover .content-builder-video__play,
+  #content-builder-video-{{ block.id }} button.content-builder-video__play:hover {
+    background-color: #b68b32;
+    color: #112626;
   }
 
   #content-builder-video-{{ block.id }} .content-builder-video__play-icon {
@@ -254,10 +347,71 @@
     pointer-events: none;
   }
 
+  #content-builder-video-modal-{{ block.id }} {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.72);
+  }
+
+  #content-builder-video-modal-{{ block.id }}.is-open {
+    display: flex;
+  }
+
+  #content-builder-video-modal-{{ block.id }} .content-builder-video__modal-close {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0.5rem;
+    border: 0;
+    background: transparent;
+    color: #ffffff;
+    cursor: pointer;
+  }
+
+  #content-builder-video-modal-{{ block.id }} .content-builder-video__modal-close-icon {
+    width: 1.75rem;
+    height: 1.75rem;
+    display: block;
+  }
+
+  #content-builder-video-modal-{{ block.id }} .content-builder-video__modal-player {
+    width: 100%;
+    max-width: 1024px;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    max-height: 576px;
+    background: #000000;
+  }
+
+  #content-builder-video-modal-{{ block.id }} .content-builder-video__modal-player .content-builder-video__video,
+  #content-builder-video-modal-{{ block.id }} .content-builder-video__modal-player video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+  }
+
   @media (min-width: 920px) {
     #content-builder-video-{{ block.id }} {
       height: {{ desktop_height }}rem;
       margin-top: 0;
+    }
+
+    #content-builder-video-modal-{{ block.id }} .content-builder-video__modal-player {
+      height: 576px;
+      max-height: 576px;
+      aspect-ratio: auto;
     }
   }
 
@@ -266,6 +420,10 @@
       height: {{ large_desktop_height }}rem;
       margin-top: 0;
     }
+  }
+
+  body.content-builder-video-modal-open {
+    overflow: hidden;
   }
 
   {{ block.settings.custom_css | replace: '&', selector }}
