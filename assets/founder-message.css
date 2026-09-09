@@ -1,5 +1,5 @@
 .founder-message {
-  padding: 1.25rem;
+  padding: 0 0 1.25rem;
 }
 
 .founder-message-container {
@@ -8,11 +8,12 @@
 
 .founder-message__container {
   width: 100%;
-  background-color: #f3f3f3;
-  padding: 1rem;
+  background-color: transparent;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 0;
+  position: relative;
 }
 
 .founder-message__image {
@@ -23,6 +24,15 @@
   display: block;
   width: 100%;
   height: 31.5rem;
+  object-fit: cover;
+}
+
+.founder-message__content {
+  position: relative;
+  z-index: 1;
+  background-color: #ffffff;
+  margin: -1.5rem 1.25rem 0;
+  padding: 1.5rem 1.25rem 1rem;
 }
 
 .founder-message__title {
@@ -87,6 +97,8 @@
     max-width: 52rem;
     margin: auto;
     gap: 1.5rem;
+    background-color: #f3f3f3;
+    padding: 1rem;
   }
   .founder-message__image img {
     height: 34rem;
@@ -97,6 +109,8 @@
   .founder-message__content {
     flex: 0 0 55%;
     padding: 2rem 2rem 0 1rem;
+    margin: 0;
+    background-color: transparent;
   }
   .founder-message__highlights {
     flex-direction: row;
