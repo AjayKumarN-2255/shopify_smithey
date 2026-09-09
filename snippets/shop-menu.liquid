@@ -339,8 +339,8 @@
     }
   }
 
-  /* 1024–1250 — balanced mid layout, 3 cards fully visible */
-  @media (min-width: 1024px) and (max-width: 1250px) {
+  /* 1024–1440 — balanced mid layout, 3 cards fully visible */
+  @media (min-width: 1024px) and (max-width: 1440px) {
     .shop-menu__container {
       gap: 1.25rem;
       max-width: 100%;
@@ -417,8 +417,34 @@
     }
   }
 
+  /* 1280–1440 — slightly roomier mid sizing */
+  @media (min-width: 1280px) and (max-width: 1440px) {
+    .shop-menu__column--left {
+      flex: 0 0 13rem;
+      width: 13rem;
+      max-width: 13rem;
+    }
+
+    .shop-menu__categories a:not(.shop-menu__categories-cta) {
+      font-size: 0.9375rem;
+    }
+
+    .shop-menu__product-card-title {
+      font-size: 16px;
+    }
+
+    .shop-menu__product-card-description {
+      font-size: 13px;
+    }
+
+    .shop-menu__product-card-content {
+      min-height: 6rem;
+      padding: 14px;
+    }
+  }
+
   /* Full desktop */
-  @media (min-width: 1251px) {
+  @media (min-width: 1441px) {
     .shop-menu__column--left {
       flex: 0 0 17.5rem;
       width: 17.5rem;

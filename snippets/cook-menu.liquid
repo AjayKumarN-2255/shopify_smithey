@@ -386,8 +386,8 @@
     }
   }
 
-  /* 1024–1250 — balanced mid layout, 3 cards fully visible */
-  @media (min-width: 1024px) and (max-width: 1250px) {
+  /* 1024–1440 — balanced mid layout, 3 cards fully visible */
+  @media (min-width: 1024px) and (max-width: 1440px) {
     .cook-menu__container {
       gap: 1.25rem;
       max-width: 100%;
@@ -467,8 +467,30 @@
     }
   }
 
+  /* 1280–1440 — slightly roomier mid sizing */
+  @media (min-width: 1280px) and (max-width: 1440px) {
+    .cook-menu__column--left {
+      flex: 0 0 13rem;
+      width: 13rem;
+      max-width: 13rem;
+    }
+
+    .recipe-categories a:not(.recipe-categories__cta) {
+      font-size: 0.9375rem;
+    }
+
+    .cook-menu__recipe-card-title {
+      font-size: 18px;
+    }
+
+    .cook-menu__recipe-card-servings,
+    .cook-menu__recipe-card-cook-time {
+      font-size: 13px;
+    }
+  }
+
   /* Full desktop */
-  @media (min-width: 1251px) {
+  @media (min-width: 1441px) {
     .cook-menu__column--left {
       flex: 0 0 17.5rem;
       width: 17.5rem;

@@ -487,20 +487,36 @@ body.is-search-open .section-announcement-bar {
   }
 }
 
-/* 1024–1200 — tighter padding so 3 mega cards fit */
-@media (min-width: 1024px) and (max-width: 1200px) {
+/* 1024–1440 — tighter padding so 3 mega / shop / cook cards fit */
+@media (min-width: 1024px) and (max-width: 1440px) {
   .site-header {
-    padding: 0 1rem;
+    padding: 0 1.25rem;
   }
 
   .mega-menu-container {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
   }
 
   .mega-menu-container--open {
     padding-top: 2rem;
     padding-bottom: 2rem;
+  }
+
+  .mega-menu__grid > * {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}
+
+@media (min-width: 1280px) and (max-width: 1440px) {
+  .site-header {
+    padding: 0 1.5rem;
+  }
+
+  .mega-menu-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 }
 
