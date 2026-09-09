@@ -82,6 +82,10 @@
       font-size: 20px;
       line-height: 28px;
     }
+
+    .faq__item:last-child {
+      margin-bottom: 4rem;
+    }
   }
 </style>
 
@@ -104,13 +108,17 @@
     question.setAttribute('tabindex', '0');
     question.setAttribute('aria-expanded', 'false');
 
+    const getFaqScope = () =>
+      item.closest('.faq__items') ||
+      item.closest('.faq-categories__items') ||
+      item.closest('.content-builder__right') ||
+      item.closest('.content-builder__left') ||
+      item.closest('.content-builder') ||
+      item.parentElement;
+
     const toggleFaq = () => {
       const isOpen = item.classList.contains('is-open');
-      const scope =
-        item.closest('.faq__items') ||
-        item.closest('.faq-categories__items') ||
-        item.closest('.content-builder') ||
-        item.parentElement;
+      const scope = getFaqScope();
 
       if (scope) {
         scope.querySelectorAll('.faq__item').forEach((faq) => {
@@ -133,5 +141,16 @@
         toggleFaq();
       }
     });
+
+    const scope = getFaqScope();
+    if (scope && scope.dataset.faqInitOpen !== 'true') {
+      scope.dataset.faqInitOpen = 'true';
+      const firstFaq = scope.querySelector('.faq__item');
+      if (firstFaq) {
+        firstFaq.classList.add('is-open');
+        const firstQuestion = firstFaq.querySelector('.faq__question');
+        if (firstQuestion) firstQuestion.setAttribute('aria-expanded', 'true');
+      }
+    }
   });
 </script>

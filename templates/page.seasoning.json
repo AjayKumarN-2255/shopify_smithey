@@ -130,17 +130,14 @@
                 "faq_4XUhdR",
                 "faq_4qcnFn"
             ],
-            "custom_css": [
-                "#content-builder-template--21635132194951__content_builder_Vy43YA .content-builder__right {padding-bottom: 2rem;}",
-                "@media (min-width: 920px) {#content-builder-template--21635132194951__content_builder_Vy43YA .content-builder__container {gap: 0; } #content-builder-template--21635132194951__content_builder_Vy43YA .content-builder__left {align-items: center; } #content-builder-template--21635132194951__content_builder_Vy43YA .content-builder__right {padding: 0.25rem 0 5rem; }}"
-            ],
+            "custom_css": [],
             "name": "Content Builder",
             "settings": {
                 "background_color": "#ffffff",
                 "desktop_padding": 1.6,
                 "mobile_padding": 0.8,
                 "show_features": false,
-                "custom_css": ""
+                "custom_css": "#SECTION_ID .content-builder__right {\n  padding-bottom: 2rem;\n}\n\n@media (min-width: 920px) {\n  #SECTION_ID .content-builder__container {\n    gap: 0;\n  }\n\n  #SECTION_ID .content-builder__left {\n    align-items: center;\n  }\n\n  #SECTION_ID .content-builder__right {\n    padding: 0.25rem 0 4rem;\n  }\n}"
             }
         }
     },
