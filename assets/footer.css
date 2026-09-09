@@ -186,23 +186,74 @@
 }
 
 /* Tablet: keep SIGN UP on one line inside the bordered form */
-@media (min-width: 920px) and (max-width: 1199px) {
+@media (min-width: 920px) and (max-width: 1250px) {
   .footer__newsletter-form {
     max-width: 100%;
     min-width: 0;
+    overflow: hidden;
   }
 
   .footer__newsletter-input {
     min-width: 0;
     flex: 1 1 auto;
+    width: 0;
     padding: 0 0.75rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+  }
+
+  .footer__newsletter-input::placeholder {
+    letter-spacing: 0.06em;
   }
 
   .footer__newsletter-button {
+    flex: 0 0 auto;
     flex-shrink: 0;
     white-space: nowrap;
     width: auto;
+    min-width: fit-content;
     padding: 0 0.85rem;
+    font-size: 0.6875rem;
+    letter-spacing: 0.1em;
+  }
+}
+
+/* 1024–1250 — prevent SIGN UP / placeholder clipping */
+@media (min-width: 1024px) and (max-width: 1250px) {
+  .footer__column--newsletter {
+    min-width: 0;
+  }
+
+  .footer__newsletter-form {
+    max-width: 100%;
+    min-width: 0;
+    height: 3.25rem;
+    box-sizing: border-box;
+  }
+
+  .footer__newsletter-input {
+    min-width: 0;
+    flex: 1 1 0;
+    width: 0;
+    padding: 0 0.65rem;
+    font-size: 0.6875rem;
+    letter-spacing: 0.04em;
+  }
+
+  .footer__newsletter-input::placeholder {
+    letter-spacing: 0.04em;
+  }
+
+  .footer__newsletter-button {
+    flex: 0 0 auto;
+    flex-shrink: 0;
+    white-space: nowrap;
+    width: auto;
+    min-width: max-content;
+    padding: 0 0.75rem;
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    overflow: visible;
   }
 }
 
