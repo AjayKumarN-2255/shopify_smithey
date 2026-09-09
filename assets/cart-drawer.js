@@ -342,6 +342,13 @@ document.addEventListener('DOMContentLoaded', () => {
         return Boolean(cart && Array.isArray(cart.items));
     }
 
+    function syncCartIndicator(cart) {
+        const hasItems = (cart.item_count || 0) > 0;
+        document.querySelectorAll('[data-cart-indicator]').forEach((indicator) => {
+            indicator.classList.toggle('is-hidden', !hasItems);
+        });
+    }
+
     function renderCart(cart) {
         if (!isCartState(cart)) {
             console.error('Unexpected cart payload; skipped UI update', cart);
@@ -354,6 +361,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (countEl) countEl.textContent = String(cart.item_count || 0);
         if (subtotalEl) subtotalEl.textContent = formatMoney(cart.total_price || 0);
+        syncCartIndicator(cart);
 
         if (!cart.item_count) {
             if (itemsEl) itemsEl.innerHTML = '';

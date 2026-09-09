@@ -372,7 +372,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    const cartIcon = document.querySelector('.header-cart__icon');
+    const cartIcon = document.querySelector('[data-cart-icon], .header-cart__icon');
     const cartOverlay = document.querySelector('.cart-drawer-overlay');
     const cartClose = document.querySelector('.cart-drawer__close');
 
