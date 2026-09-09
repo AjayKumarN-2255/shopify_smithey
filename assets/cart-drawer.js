@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function setControlsBusy(busy) {
         drawer.querySelectorAll(
-            '.cart-drawer__add-button, button.cart-drawer__remove, .cart-drawer__quantity-button'
+            '.cart-drawer__add-button, button.cart-drawer__remove, .cart-drawer__quantity-button, [data-gift-note-save], [data-gift-note-cancel], [data-gift-note-open]'
         ).forEach((button) => {
             button.disabled = busy;
             button.setAttribute('aria-busy', busy ? 'true' : 'false');
@@ -363,6 +363,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (subtotalEl) subtotalEl.textContent = formatMoney(cart.total_price || 0);
         syncCartIndicator(cart);
 
+        if (giftNoteInput && typeof cart.note === 'string') {
+            savedGiftNote = cart.note;
+        }
+
         if (!cart.item_count) {
             if (itemsEl) itemsEl.innerHTML = '';
             setEmptyState(true);
@@ -514,4 +518,93 @@ document.addEventListener('DOMContentLoaded', () => {
 
         runCartRequest(() => changeCartItem(lineKey, 0));
     });
+
+    const giftNoteRoot = drawer.querySelector('[data-gift-note]');
+    const giftNoteOpen = drawer.querySelector('[data-gift-note-open]');
+    const giftNoteForm = drawer.querySelector('[data-gift-note-form]');
+    const giftNoteInput = drawer.querySelector('[data-gift-note-input]');
+    const giftNoteCount = drawer.querySelector('[data-gift-note-count]');
+    const giftNoteSave = drawer.querySelector('[data-gift-note-save]');
+    const giftNoteCancel = drawer.querySelector('[data-gift-note-cancel]');
+    const giftNoteMax = 450;
+    const giftNoteCloseDelay = 400;
+    let savedGiftNote = giftNoteInput ? giftNoteInput.value : '';
+    let giftNoteCloseTimer = null;
+
+    function updateGiftNoteCount() {
+        if (!giftNoteInput || !giftNoteCount) return;
+        const length = giftNoteInput.value.length;
+        giftNoteCount.textContent = `${length}/${giftNoteMax}`;
+    }
+
+    function clearGiftNoteField() {
+        if (!giftNoteInput) return;
+        giftNoteInput.value = '';
+        updateGiftNoteCount();
+    }
+
+    function openGiftNoteForm() {
+        if (!giftNoteOpen || !giftNoteForm || !giftNoteInput) return;
+        if (giftNoteCloseTimer) {
+            clearTimeout(giftNoteCloseTimer);
+            giftNoteCloseTimer = null;
+        }
+        giftNoteOpen.hidden = true;
+        giftNoteForm.hidden = false;
+        giftNoteInput.value = '';
+        updateGiftNoteCount();
+        giftNoteInput.focus();
+    }
+
+    function closeGiftNoteForm({ clearField = true, delay = giftNoteCloseDelay } = {}) {
+        if (!giftNoteOpen || !giftNoteForm || !giftNoteInput) return;
+
+        if (giftNoteCloseTimer) {
+            clearTimeout(giftNoteCloseTimer);
+            giftNoteCloseTimer = null;
+        }
+
+        giftNoteCloseTimer = setTimeout(() => {
+            if (clearField) clearGiftNoteField();
+            giftNoteForm.hidden = true;
+            giftNoteOpen.hidden = false;
+            giftNoteCloseTimer = null;
+        }, delay);
+    }
+
+    async function updateCartNote(note) {
+        const response = await fetch(cartApiUrl('cart/update.js'), {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json'
+            },
+            body: JSON.stringify({ note })
+        });
+
+        return parseCartResponse(response);
+    }
+
+    if (giftNoteRoot && giftNoteOpen && giftNoteForm && giftNoteInput) {
+        updateGiftNoteCount();
+
+        giftNoteOpen.addEventListener('click', openGiftNoteForm);
+
+        giftNoteInput.addEventListener('input', updateGiftNoteCount);
+
+        giftNoteCancel?.addEventListener('click', () => {
+            closeGiftNoteForm({ clearField: true });
+        });
+
+        giftNoteSave?.addEventListener('click', () => {
+            const note = giftNoteInput.value.slice(0, giftNoteMax);
+
+            runCartRequest(async () => {
+                const cart = await updateCartNote(note);
+                savedGiftNote = note;
+                closeGiftNoteForm({ clearField: true });
+                return cart;
+            });
+        });
+    }
 });

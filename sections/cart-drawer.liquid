@@ -182,15 +182,58 @@
   </div>
 
   <!-- Gift Note -->
-  <div class="cart-drawer__gift-note"{% if cart.item_count == 0 %} hidden{% endif %}>
-    <label class="cart-drawer__gift-note-label">
-      <input
-        type="checkbox"
-        class="cart-drawer__gift-note-checkbox"
-      >
+  <div
+    class="cart-drawer__gift-note"
+    data-gift-note
+    {% if cart.item_count == 0 %}hidden{% endif %}
+  >
+    <button
+      type="button"
+      class="cart-drawer__gift-note-trigger"
+      data-gift-note-open
+    >
+      <span class="cart-drawer__gift-note-plus" aria-hidden="true">+</span>
+      <span>ADD A GIFT NOTE TO YOUR ORDER</span>
+    </button>
 
-      <span> ADD A GIFT NOTE TO YOUR ORDER </span>
-    </label>
+    <div
+      class="cart-drawer__gift-note-form"
+      data-gift-note-form
+      hidden
+    >
+      <textarea
+        class="cart-drawer__gift-note-textarea"
+        data-gift-note-input
+        name="note"
+        maxlength="450"
+        rows="5"
+        placeholder="Your message"
+        aria-label="Gift note"
+      >{{ cart.note }}</textarea>
+
+      <div class="cart-drawer__gift-note-meta">
+        <span class="cart-drawer__gift-note-count" data-gift-note-count>
+          {{ cart.note.size | default: 0 }}/450
+        </span>
+      </div>
+
+      <div class="cart-drawer__gift-note-actions">
+        <button
+          type="button"
+          class="cart-drawer__gift-note-save"
+          data-gift-note-save
+        >
+          SAVE NOTE
+        </button>
+        <button
+          type="button"
+          class="cart-drawer__gift-note-cancel"
+          data-gift-note-cancel
+        >
+          CANCEL
+        </button>
+      </div>
+    </div>
   </div>
 
   <!-- Footer -->
