@@ -59,7 +59,7 @@ body.no-scroll {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 0.75rem;
+  font-size: 0.6rem; /* 12px when 1rem = 20px */
   font-weight: 800;
   padding: 1rem 0;
 }
@@ -98,6 +98,18 @@ body.no-scroll {
 }
 
 .header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* 20px */
+}
+
+.header-right-nav {
+  display: none;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.header-right-icons {
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -376,7 +388,11 @@ body.is-search-open .section-announcement-bar {
 
 @media (min-width: 920px) {
   .site-header {
-    padding: 0 1.875rem;
+    padding: 0 1.5rem;
+  }
+
+  .header-wrapper {
+    padding: 1.25rem 0;
   }
 
   .hamburger {
@@ -401,8 +417,18 @@ body.is-search-open .section-announcement-bar {
     gap: 1rem;
   }
 
+  .header-right-nav {
+    display: flex;
+    gap: 1.6rem;
+  }
+
+  .header--scrolled .header-right-nav {
+    display: flex;
+    gap: 1.6rem;
+  }
+
   .header-left span,
-  .header-right span {
+  .header-right-nav span {
     color: white;
     cursor: pointer;
   }

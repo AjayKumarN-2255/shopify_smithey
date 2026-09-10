@@ -1,18 +1,9 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "banner": {
       "type": "banner",
       "settings": {
-        "banner_height": 82,
+        "banner_height": 100,
         "banner_link": "",
         "subheading": "LIMITED EDITION",
         "heading": "<p>NO. 11 AMERICAN<br/>ANNIVERSARY SKILLET</p>",

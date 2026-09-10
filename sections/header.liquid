@@ -61,87 +61,91 @@
 
     <!-- Right Menu -->
     <div class="header-right">
-      {% if section.settings.right_menu != blank %}
-        {% for link in section.settings.right_menu.links %}
-          <span
-            data-menu-trigger="{{ link.handle }}"
-            class="header-right-link"
-          >
-            {{ link.title }}
-          </span>
-        {% endfor %}
-      {% endif %}
+      <nav class="header-right-nav">
+        {% if section.settings.right_menu != blank %}
+          {% for link in section.settings.right_menu.links %}
+            <span
+              data-menu-trigger="{{ link.handle }}"
+              class="header-right-link"
+            >
+              {{ link.title }}
+            </span>
+          {% endfor %}
+        {% endif %}
+      </nav>
 
-      {% if section.settings.show_search %}
-        <button
-          type="button"
-          class="header-icon header-search-toggle"
-          aria-label="Search"
-          aria-expanded="false"
-          aria-controls="HeaderSearch-{{ section.id }}"
-          data-search-open
-        >
-          <svg
-            class="header-icon__svg header-search-toggle__open"
-            viewBox="0 0 18 17"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
+      <div class="header-right-icons">
+        {% if section.settings.show_search %}
+          <button
+            type="button"
+            class="header-icon header-search-toggle"
+            aria-label="Search"
+            aria-expanded="false"
+            aria-controls="HeaderSearch-{{ section.id }}"
+            data-search-open
           >
-            <circle cx="6.73684" cy="6.73684" r="5.73684" stroke="currentColor" stroke-width="2"></circle>
-            <line x1="10.8126" y1="10.2402" x2="16.7073" y2="16.1349" stroke="currentColor" stroke-width="2"></line>
-          </svg>
-          <svg
-            class="header-icon__svg header-search-toggle__close"
-            viewBox="0 0 22 22"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-          >
-            <path d="M17.1875 4.8125L4.8125 17.1875" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path>
-            <path d="M17.1875 17.1875L4.8125 4.8125" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path>
-          </svg>
-        </button>
-      {% endif %}
+            <svg
+              class="header-icon__svg header-search-toggle__open"
+              viewBox="0 0 18 17"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <circle cx="6.73684" cy="6.73684" r="5.73684" stroke="currentColor" stroke-width="2"></circle>
+              <line x1="10.8126" y1="10.2402" x2="16.7073" y2="16.1349" stroke="currentColor" stroke-width="2"></line>
+            </svg>
+            <svg
+              class="header-icon__svg header-search-toggle__close"
+              viewBox="0 0 22 22"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path d="M17.1875 4.8125L4.8125 17.1875" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path>
+              <path d="M17.1875 17.1875L4.8125 4.8125" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path>
+            </svg>
+          </button>
+        {% endif %}
 
-      {% if section.settings.show_account and shop.customer_accounts_enabled %}
-        <a href="{{ routes.account_url }}" class="header-icon user-account">
-          <svg
-            class="header-icon__svg"
-            viewBox="0 0 17 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M1 18.5002V16.0251C1 13.816 2.79086 12.0251 5 12.0251H11.8001C14.0092 12.0251 15.8001 13.816 15.8001 16.0251V18.5002" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
-            <circle cx="8.39845" cy="4.62502" r="3.62502" stroke="currentColor" stroke-width="2"></circle>
-          </svg>
-        </a>
-      {% endif %}
+        {% if section.settings.show_account and shop.customer_accounts_enabled %}
+          <a href="{{ routes.account_url }}" class="header-icon user-account">
+            <svg
+              class="header-icon__svg"
+              viewBox="0 0 17 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M1 18.5002V16.0251C1 13.816 2.79086 12.0251 5 12.0251H11.8001C14.0092 12.0251 15.8001 13.816 15.8001 16.0251V18.5002" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+              <circle cx="8.39845" cy="4.62502" r="3.62502" stroke="currentColor" stroke-width="2"></circle>
+            </svg>
+          </a>
+        {% endif %}
 
-      {% if section.settings.show_cart %}
-        <button
-          type="button"
-          class="header-icon header-cart"
-          aria-label="Cart"
-          data-cart-icon
-        >
-          <svg
-            class="header-icon__svg header-cart__icon"
-            viewBox="0 0 16 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
+        {% if section.settings.show_cart %}
+          <button
+            type="button"
+            class="header-icon header-cart"
+            aria-label="Cart"
+            data-cart-icon
           >
-            <rect x="1" y="5.18433" width="14" height="13.1579" rx="2" stroke="currentColor" stroke-width="2"></rect>
-            <path d="M10.3852 9.18735V4.04392C10.3852 2.72619 9.31698 1.65796 7.99925 1.65796C6.68151 1.65796 5.61328 2.72619 5.61328 4.04392V9.18735" stroke="currentColor" stroke-width="2"></path>
-          </svg>
-          <span
-            class="header-cart__indicator{% if cart.item_count == 0 %} is-hidden{% endif %}"
-            data-cart-indicator
-            aria-hidden="true"
-          ></span>
-        </button>
-      {% endif %}
+            <svg
+              class="header-icon__svg header-cart__icon"
+              viewBox="0 0 16 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <rect x="1" y="5.18433" width="14" height="13.1579" rx="2" stroke="currentColor" stroke-width="2"></rect>
+              <path d="M10.3852 9.18735V4.04392C10.3852 2.72619 9.31698 1.65796 7.99925 1.65796C6.68151 1.65796 5.61328 2.72619 5.61328 4.04392V9.18735" stroke="currentColor" stroke-width="2"></path>
+            </svg>
+            <span
+              class="header-cart__indicator{% if cart.item_count == 0 %} is-hidden{% endif %}"
+              data-cart-indicator
+              aria-hidden="true"
+            ></span>
+          </button>
+        {% endif %}
+      </div>
     </div>
   </div>
 
