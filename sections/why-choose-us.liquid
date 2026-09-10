@@ -1,13 +1,13 @@
 {{ 'why-choose-us.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'why-choose-us.js' | asset_url }}" defer></script>
-<section
-  class="why-us"
-  style="background-color: {{ section.settings.background_color }};"
->
+<section class="why-us">
   <div class="why-us-wrapper">
     <div class="why-us-content">
       {% if section.settings.logo != blank %}
-        <div class="why-us-logo">
+        <div
+          class="why-us-logo"
+          style="--why-us-logo: url('{{ section.settings.logo | image_url: width: 150 }}');"
+        >
           {{ section.settings.logo | image_url: width: 150 | image_tag: loading: 'lazy' }}
         </div>
       {% endif %}
