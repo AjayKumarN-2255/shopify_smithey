@@ -246,12 +246,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    if (!header || !announcementBar) return;
+    if (!header) return;
 
     // Enter once past the announcement; exit only at the top.
     // Hiding the bar reduces scrollY — a single threshold caused rapid
     // add/remove of header--scrolled (menu bar blink while scrolling).
-    const enterAt = announcementBar.offsetHeight;
+    // Announcement bar is optional (may be removed from the header group).
+    const enterAt = announcementBar ? announcementBar.offsetHeight : 0;
     const exitAt = 1;
     let isScrolled = false;
 
@@ -259,7 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (scrolled === isScrolled) return;
         isScrolled = scrolled;
         header.classList.toggle('header--scrolled', scrolled);
-        if (!isSearchOpen()) {
+        if (announcementBar && !isSearchOpen()) {
             announcementBar.style.display = scrolled ? 'none' : '';
         }
     };
@@ -285,10 +286,12 @@ document.addEventListener('DOMContentLoaded', () => {
         hamburger.addEventListener('click', () => {
             if (isSearchOpen()) closeSearch();
 
-            window.scrollTo({
-                top: enterAt + 1,
-                behavior: 'smooth'
-            });
+            if (enterAt > 0) {
+                window.scrollTo({
+                    top: enterAt + 1,
+                    behavior: 'smooth'
+                });
+            }
 
             setScrolled(true);
 
