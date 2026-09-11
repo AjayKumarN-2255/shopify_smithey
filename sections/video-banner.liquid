@@ -3,6 +3,12 @@
   style="background-color: {{ section.settings.background_color }};"
 >
   <div class="video-banner__wrapper">
+    {% if section.settings.heading != blank %}
+      <h2 class="video-banner__heading video-banner__heading--outside">
+        {{ section.settings.heading }}
+      </h2>
+    {% endif %}
+
     {% if section.settings.video_url != blank %}
       <div class="video-banner__media">
         <video
@@ -36,7 +42,7 @@
         <div class="video-banner__overlay">
           <div class="video-banner__content">
             {% if section.settings.heading != blank %}
-              <h2 class="video-banner__heading">
+              <h2 class="video-banner__heading video-banner__heading--overlay">
                 {{ section.settings.heading }}
               </h2>
             {% endif %}
@@ -110,8 +116,8 @@
 <style>
   .video-banner {
     width: 100%;
-    padding: 1.5rem 1rem;
-    margin: 3.5rem 0;
+    padding: 25px 10px 35px 10px;
+    margin: 50px 0 3.5rem;
   }
 
   .video-banner__wrapper {
@@ -183,6 +189,17 @@
     margin: 0;
   }
 
+  .video-banner__heading--outside {
+    display: block;
+    max-width: 20rem;
+    margin: auto;
+    margin-bottom: 0.25rem;
+  }
+
+  .video-banner__heading--overlay {
+    display: none;
+  }
+
   .video-banner__play {
     display: flex;
     align-items: center;
@@ -203,13 +220,12 @@
 
   @media (min-width: 920px) {
     .video-banner {
-      padding: 3rem 1rem ;
-      margin: 2.25rem 0;
+      padding: 80px 30px;
+      margin: 50px 0 2.25rem;
     }
 
     .video-banner__wrapper {
       width: 100%;
-      max-width: 95%;
       margin: 0 auto;
     }
 
@@ -217,6 +233,14 @@
       width: 100%;
       height: 42.5rem;
       object-fit: cover;
+    }
+
+    .video-banner__heading--outside {
+      display: none;
+    }
+
+    .video-banner__heading--overlay {
+      display: block;
     }
 
     .video-banner__content {
@@ -235,6 +259,12 @@
     .video-banner__play svg {
       width: 2.5rem;
       height: 2.5rem;
+    }
+  }
+
+  @media (min-width: 1700px) {
+    .video-banner__video {
+      height: 50rem;
     }
   }
 </style>
