@@ -15,7 +15,7 @@
 }
 
 .image-with-content__content {
-  padding: 30px;
+  padding: 50px 30px;
 }
 
 .image-with-content__eyebrow {
@@ -33,7 +33,7 @@
   font-weight: 600;
   letter-spacing: 0.01em;
   line-height: 1.2;
-  margin: 0 0 1.2rem;
+  margin: 0 0 24px;
   color: #f5f1e8;
   max-width: 20rem;
 }
@@ -41,20 +41,20 @@
 .image-with-content__description {
   font-size: 1.25rem;
   font-weight: 325;
-  margin: 0 0 1.2rem;
+  margin: 0 0 24px;
   color: #f5f1e8;
   opacity: 0.9;
 }
 
 .image-with-content__text {
   font-size: 1.08rem;
-  margin: 0 0 14px;
+  margin: 0 0 24px;
   color: #f5f1e8;
 }
 
 .image-with-content__button {
   display: inline-block;
-  padding: 1rem 2.5rem;
+  padding: 1.2rem 3rem;
   font-size: 0.9rem;
   margin-top: 1rem;
   font-weight: 700;
@@ -110,18 +110,22 @@
   .image-with-content__heading {
     font-size: 1.6rem;
     max-width: unset;
+    margin-bottom: 32px;
   }
 
   .image-with-content__description {
     font-size: 1.1rem;
+    margin-bottom: 32px;
   }
 
   .image-with-content__text {
     font-size: 0.75rem;
-    margin: 0 0 20px;
+    margin: 0 0 32px;
   }
   .image-with-content__button {
     font-size: 0.65rem;
+    margin-top: 0;
+    padding: 0.9rem 2.5rem;
   }
 }
 
