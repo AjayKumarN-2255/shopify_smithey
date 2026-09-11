@@ -1,5 +1,6 @@
 .founder-message {
-  padding: 0 0 1.25rem;
+  padding: 1rem;
+  padding-top: 34px;
 }
 
 .founder-message-container {
@@ -8,12 +9,14 @@
 
 .founder-message__container {
   width: 100%;
-  background-color: transparent;
-  padding: 0;
+  background-color: #f3f3f3;
+  padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 0;
   position: relative;
+  overflow: visible;
+  margin-bottom: 4rem;
 }
 
 .founder-message__image {
@@ -30,9 +33,60 @@
 .founder-message__content {
   position: relative;
   z-index: 1;
-  background-color: #ffffff;
-  margin: -1.5rem 1.25rem 0;
-  padding: 1.5rem 1.25rem 1rem;
+  background-color: transparent;
+  margin: 0;
+  padding: 24px 0 0;
+  overflow: visible;
+}
+
+.founder-message__description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  overflow: hidden;
+}
+
+.founder-message__description h4 {
+  display: none;
+  color: #112626;
+}
+
+.founder-message__description p {
+  font-size: 13px;
+  line-height: 15px;
+  margin-bottom: 0.75rem;
+}
+
+.founder-message__read-more {
+  display: block;
+  margin-top: 24px;
+  margin-bottom: 70px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #112626;
+  text-decoration: none;
+  text-align: left;
+}
+
+.founder-message__signature {
+  position: absolute;
+  left: 9%;
+  /* right: auto; */
+  right: 0;
+  bottom: -30%;
+  width: 315px;
+  pointer-events: none;
+}
+
+.founder-message__signature img {
+  display: block;
+  width: 315px;
+  height: 160px;
+  object-fit: contain;
 }
 
 .founder-message__title {
@@ -43,16 +97,6 @@
   text-transform: uppercase;
   max-width: 20rem;
   margin-bottom: 1rem;
-  color: #112626;
-}
-
-.founder-message__description p {
-  font-size: 13px;
-  line-height: 15px;
-  margin-bottom: 2rem;
-}
-
-.founder-message__description h4 {
   color: #112626;
 }
 
@@ -76,7 +120,23 @@
 
 @media (min-width: 920px) {
   .founder-message {
-    padding: 5.5rem 0 1rem 0;
+    padding: 8.25rem 0 1rem 0;
+  }
+  .founder-message__container {
+    width: 100%;
+    flex-direction: row;
+    max-width: 52rem;
+    margin: auto;
+    margin-bottom: 0;
+    gap: 0;
+    background-color: #f3f3f3;
+    padding: 16px;
+  }
+  .founder-message__description {
+    display: block;
+    -webkit-line-clamp: unset;
+    overflow: visible;
+    margin-bottom: 24px;
   }
   .founder-message__description p {
     font-size: 15px;
@@ -84,21 +144,17 @@
     margin-bottom: 1rem;
   }
   .founder-message__description h4 {
+    display: block;
     font-size: 15px;
     margin-bottom: 0.75rem;
   }
   .founder-message__title {
     text-transform: uppercase;
     color: #112626;
+    margin-bottom: 13px;
   }
-  .founder-message__container {
-    width: 100%;
-    flex-direction: row;
-    max-width: 52rem;
-    margin: auto;
-    gap: 1.5rem;
-    background-color: #f3f3f3;
-    padding: 1rem;
+  .founder-message__read-more {
+    display: none;
   }
   .founder-message__image img {
     height: 34rem;
@@ -108,13 +164,22 @@
   }
   .founder-message__content {
     flex: 0 0 55%;
-    padding: 2rem 2rem 0 1rem;
+    padding: 32px 48px 0 48px;
     margin: 0;
     background-color: transparent;
+  }
+  .founder-message__signature {
+    left: auto;
+    right: -25%;
+    bottom: -10%;
+    width: 315px;
+    transform: none;
   }
   .founder-message__highlights {
     flex-direction: row;
     justify-content: center;
     gap: 1.5rem;
+    margin-top: 3rem;
+    margin-bottom: 2.25rem;
   }
 }

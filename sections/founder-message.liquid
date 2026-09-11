@@ -22,6 +22,32 @@
         <div class="founder-message__description">
           {{ article.content }}
         </div>
+
+        {% if section.settings.read_more_page != blank %}
+          <a
+            href="{{ section.settings.read_more_page.url }}"
+            class="founder-message__read-more"
+          >
+            + READ MORE
+          </a>
+        {% elsif article.url != blank %}
+          <a
+            href="{{ article.url }}"
+            class="founder-message__read-more"
+          >
+            + READ MORE
+          </a>
+        {% endif %}
+
+        <div class="founder-message__signature">
+          <img
+            src="https://smithey.com/cdn/shop/files/signature-gold_1_1000x.png?v=1666869902&v=74101"
+            alt="Isaac Morton signature"
+            loading="lazy"
+            width="315"
+            height="160"
+          >
+        </div>
       </div>
     </div>
 
@@ -72,6 +98,11 @@
       "id": "background_color",
       "label": "Background Color",
       "default": "#dfdfdf"
+    },
+    {
+      "type": "page",
+      "id": "read_more_page",
+      "label": "Read more page"
     }
   ],
   "blocks": [

@@ -107,8 +107,9 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  height: 50px;
   margin-top: 37px;
-  padding: 1rem 0;
+  padding: 0;
   border: 2px solid #b68b32;
   text-decoration: none;
   text-transform: uppercase;
