@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const cards = slider.querySelectorAll(".recipe-card");
         const prevBtn = slider.querySelector(".recipe-slider__button--prev");
         const nextBtn = slider.querySelector(".recipe-slider__button--next");
+        const dotsContainer = slider.querySelector(".recipe-slider__dots");
 
         if (!rail || !viewport || !cards.length) return;
 
@@ -16,16 +17,56 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         function getVisibleCards() {
-            if (viewport.offsetWidth >= 1024) return 3;
+            if (viewport.offsetWidth >= 1250) return 3;
+            if (viewport.offsetWidth >= 1024) return 2;
 
             const cardWidth = getCardStep();
             return Math.max(1, Math.floor(viewport.offsetWidth / cardWidth));
         }
 
+        function getMaxIndex() {
+            return Math.max(0, cards.length - getVisibleCards());
+        }
+
+        function isMobileDots() {
+            return window.innerWidth < 920;
+        }
+
+        function renderDots() {
+            if (!dotsContainer) return;
+
+            if (!isMobileDots()) {
+                dotsContainer.innerHTML = "";
+                return;
+            }
+
+            const totalDots = getMaxIndex() + 1;
+            const existing = dotsContainer.querySelectorAll(".recipe-slider__dot");
+
+            if (existing.length !== totalDots) {
+                dotsContainer.innerHTML = "";
+
+                for (let i = 0; i < totalDots; i++) {
+                    const dot = document.createElement("button");
+                    dot.type = "button";
+                    dot.className = "recipe-slider__dot";
+                    dot.setAttribute("aria-label", `Go to slide ${i + 1}`);
+                    dot.addEventListener("click", () => {
+                        currentIndex = i;
+                        updateValues();
+                    });
+                    dotsContainer.appendChild(dot);
+                }
+            }
+
+            dotsContainer.querySelectorAll(".recipe-slider__dot").forEach((dot, index) => {
+                dot.classList.toggle("is-active", index === currentIndex);
+            });
+        }
+
         function updateValues() {
             const cardWidth = getCardStep();
-            const visibleCards = getVisibleCards();
-            const maxIndex = Math.max(0, cards.length - visibleCards);
+            const maxIndex = getMaxIndex();
 
             if (currentIndex > maxIndex) {
                 currentIndex = maxIndex;
@@ -35,12 +76,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (prevBtn) prevBtn.disabled = currentIndex === 0;
             if (nextBtn) nextBtn.disabled = currentIndex >= maxIndex;
+
+            renderDots();
         }
 
         if (nextBtn) {
             nextBtn.addEventListener("click", () => {
-                const visibleCards = getVisibleCards();
-                const maxIndex = Math.max(0, cards.length - visibleCards);
+                const maxIndex = getMaxIndex();
 
                 if (currentIndex < maxIndex) {
                     currentIndex++;
