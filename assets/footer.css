@@ -121,7 +121,9 @@
 
 @media (min-width: 920px) {
   .footer {
-    padding: 3rem 1.5rem;
+    padding: unset;
+    padding-top: 3.2rem;
+    padding-inline-start: 1.6rem;
   }
   .footer__heading {
     font-size: 0.75rem;

@@ -1,8 +1,5 @@
 {{ 'footer.css' | asset_url | stylesheet_tag }}
-<footer
-  class="footer"
-  style="background-color: {{ section.settings.background_color }};"
->
+<footer class="footer">
   <div class="footer__container">
     {% if section.settings.logo != blank %}
       <div class="footer__branding">
@@ -91,6 +88,13 @@
 </footer>
 
 <style>
+  #shopify-section-{{ section.id }},
+  .footer {
+    background-color: {{ section.settings.background_color }};
+    background-image: url(https://smithey.com/cdn/shop/files/smithey-texture-dark.jpg?v=1676068986);
+    background-repeat: repeat;
+  }
+
   @media (min-width: 992px) {
     .footer__column {
       width: var(--footer-block-width);
