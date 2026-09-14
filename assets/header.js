@@ -35,12 +35,27 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+    const closeMobilePanels = () => {
+        document.querySelectorAll('.mobile-menu-panel--active').forEach((panel) => {
+            panel.classList.remove('mobile-menu-panel--active');
+            panel.setAttribute('aria-hidden', 'true');
+        });
+
+        document.querySelectorAll('[data-mobile-panel-trigger]').forEach((trigger) => {
+            trigger.setAttribute('aria-expanded', 'false');
+        });
+
+        mobileMenu?.classList.remove('mobile-menu__nav--panel-open');
+        header?.classList.remove('site-header--mobile-panel-open');
+    };
+
     const closeMobileMenu = () => {
         const hamburger = document.querySelector('.hamberger-menu');
         const closeIcon = document.querySelector('.hamberger-close-menu');
 
         if (!mobileMenu?.classList.contains('mobile-menu--open')) return;
 
+        closeMobilePanels();
         mobileMenu.classList.remove('mobile-menu--open');
         if (closeIcon) closeIcon.style.display = 'none';
         if (hamburger) hamburger.style.display = 'block';
@@ -241,7 +256,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && isSearchOpen()) {
+        if (event.key !== 'Escape') return;
+
+        const activePanel = document.querySelector('.mobile-menu-panel--active');
+        if (activePanel) {
+            const panelName = activePanel.dataset.mobilePanel;
+            const trigger = document.querySelector(
+                `[data-mobile-panel-trigger="${panelName}"]`
+            );
+
+            activePanel.classList.remove('mobile-menu-panel--active');
+            activePanel.setAttribute('aria-hidden', 'true');
+            mobileMenu?.classList.remove('mobile-menu__nav--panel-open');
+            header?.classList.remove('site-header--mobile-panel-open');
+
+            document.querySelectorAll('[data-mobile-panel-trigger]').forEach((item) => {
+                item.setAttribute('aria-expanded', 'false');
+            });
+
+            trigger?.focus();
+            return;
+        }
+
+        if (isSearchOpen()) {
             closeSearch();
         }
     });
@@ -302,12 +339,78 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         closeIcon.addEventListener('click', () => {
+            closeMobilePanels();
             mobileMenu.classList.remove('mobile-menu--open');
             closeIcon.style.display = 'none';
             hamburger.style.display = 'block';
             syncBodyScroll();
         });
     }
+
+    // Mobile Shop / Cook secondary panels
+    const mobilePanelTriggers = document.querySelectorAll('[data-mobile-panel-trigger]');
+
+    const openMobilePanel = (panelName, trigger) => {
+        const panel = document.querySelector(`[data-mobile-panel="${panelName}"]`);
+        if (!panel) return;
+
+        closeMobilePanels();
+
+        panel.classList.add('mobile-menu-panel--active');
+        panel.setAttribute('aria-hidden', 'false');
+        mobileMenu?.classList.add('mobile-menu__nav--panel-open');
+        header?.classList.add('site-header--mobile-panel-open');
+
+        if (trigger) {
+            trigger.setAttribute('aria-expanded', 'true');
+        }
+
+        // Keep body scroll locked while the main mobile menu remains open
+        syncBodyScroll();
+
+        const backButton = panel.querySelector('[data-mobile-panel-close]');
+        window.requestAnimationFrame(() => {
+            backButton?.focus();
+        });
+    };
+
+    const closeMobilePanel = (panel, returnFocusTo) => {
+        if (!panel) return;
+
+        panel.classList.remove('mobile-menu-panel--active');
+        panel.setAttribute('aria-hidden', 'true');
+        mobileMenu?.classList.remove('mobile-menu__nav--panel-open');
+        header?.classList.remove('site-header--mobile-panel-open');
+
+        document.querySelectorAll('[data-mobile-panel-trigger]').forEach((trigger) => {
+            trigger.setAttribute('aria-expanded', 'false');
+        });
+
+        // Do not remove no-scroll — main mobile menu is still open
+        syncBodyScroll();
+        returnFocusTo?.focus();
+    };
+
+    mobilePanelTriggers.forEach((trigger) => {
+        trigger.addEventListener('click', (event) => {
+            event.preventDefault();
+
+            const panelName = trigger.dataset.mobilePanelTrigger;
+            openMobilePanel(panelName, trigger);
+        });
+    });
+
+    document.querySelectorAll('[data-mobile-panel-close]').forEach((closeBtn) => {
+        closeBtn.addEventListener('click', () => {
+            const panel = closeBtn.closest('[data-mobile-panel]');
+            const panelName = panel?.dataset.mobilePanel;
+            const trigger = panelName
+                ? document.querySelector(`[data-mobile-panel-trigger="${panelName}"]`)
+                : null;
+
+            closeMobilePanel(panel, trigger);
+        });
+    });
 
     // open mega menu based on each click
     const triggers = document.querySelectorAll('[data-menu-trigger]');
