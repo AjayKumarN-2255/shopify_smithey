@@ -1,4 +1,5 @@
 {{ 'footer.css' | asset_url | stylesheet_tag }}
+
 <footer class="footer">
   <div class="footer__container">
     {% if section.settings.logo != blank %}
@@ -14,74 +15,134 @@
     {% endif %}
 
     <div class="footer__flex">
+      {% assign column_index = 0 %}
+
       {% for block in section.blocks %}
-        {% case block.type %}
-          {% when 'newsletter' %}
-            <div
-              class="footer__column footer__column--newsletter"
-              {{ block.shopify_attributes }}
-              style="--footer-block-width: {{ block.settings.column_width }}%;"
-            >
-              {% if block.settings.heading != blank %}
-                <h3 class="footer__heading">
-                  {{ block.settings.heading }}
-                </h3>
-              {% endif %}
+        {% if block.type == 'column' %}
+          {% assign column_index = column_index | plus: 1 %}
+          {% assign column_key = column_index | append: '' %}
 
-              {% if block.settings.description != blank %}
-                <div class="footer__description">
-                  {{ block.settings.description }}
-                </div>
-              {% endif %}
+          <div
+            class="footer__column-wrapper"
+            style="--footer-block-width: {{ block.settings.desktop_width }};"
+            {{ block.shopify_attributes }}
+          >
+            {% for child in section.blocks %}
+              {% if child.type == 'menu' or child.type == 'newsletter' or child.type == 'text' %}
+                {% assign show_desktop = false %}
+                {% assign show_mobile = false %}
 
-              {% if block.settings.show_input %}
-                <form class="footer__newsletter-form">
-                  <input
-                    type="email"
-                    name="contact[email]"
-                    class="footer__newsletter-input"
-                    placeholder="Email Address"
-                    required
-                  >
+                {% if child.settings.desktop_column == column_key %}
+                  {% assign show_desktop = true %}
+                {% endif %}
 
-                  <button
-                    type="submit"
-                    class="footer__newsletter-button"
-                  >
-                    SIGN UP
-                  </button>
-                </form>
-              {% endif %}
-            </div>
+                {% if child.settings.mobile_column == column_key %}
+                  {% assign show_mobile = true %}
+                {% endif %}
 
-          {% when 'menu_column' %}
-            <div
-              class="footer__column footer__column--menu"
-              {{ block.shopify_attributes }}
-              style="--footer-block-width: {{ block.settings.column_width }}%;"
-            >
-              {% if block.settings.heading != blank %}
-                <h3 class="footer__heading">
-                  {{ block.settings.heading }}
-                </h3>
-              {% endif %}
+                {% if show_desktop or show_mobile %}
+                  {% if show_desktop and show_mobile %}
+                    {% assign visibility_class = '' %}
+                  {% elsif show_desktop %}
+                    {% assign visibility_class = 'footer__column--desktop-only' %}
+                  {% else %}
+                    {% assign visibility_class = 'footer__column--mobile-only' %}
+                  {% endif %}
 
-              {% if block.settings.menu != blank %}
-                <ul class="footer__menu-list">
-                  {% for link in block.settings.menu.links %}
-                    <li class="footer__menu-item">
-                      <a
-                        href="{{ link.url }}"
-                        class="footer__menu-link"
+                  {% case child.type %}
+                    {% when 'newsletter' %}
+                      <div
+                        class="footer__column footer__column--newsletter {{ visibility_class }}"
+                        {% if show_desktop %}
+                          {{ child.shopify_attributes }}
+                        {% endif %}
                       >
-                        {{ link.title }}
-                      </a>
-                    </li>
-                  {% endfor %}
-                </ul>
+                        {% if child.settings.heading != blank %}
+                          <h3 class="footer__heading">
+                            {{ child.settings.heading }}
+                          </h3>
+                        {% endif %}
+
+                        {% if child.settings.description != blank %}
+                          <div class="footer__description">
+                            {{ child.settings.description }}
+                          </div>
+                        {% endif %}
+
+                        {% if child.settings.show_input %}
+                          <form class="footer__newsletter-form">
+                            <input
+                              type="email"
+                              name="contact[email]"
+                              class="footer__newsletter-input"
+                              placeholder="Email Address"
+                              required
+                            >
+
+                            <button
+                              type="submit"
+                              class="footer__newsletter-button"
+                            >
+                              SIGN UP
+                            </button>
+                          </form>
+                        {% endif %}
+                      </div>
+
+                    {% when 'menu' %}
+                      <div
+                        class="footer__column footer__column--menu {{ visibility_class }}"
+                        {% if show_desktop %}
+                          {{ child.shopify_attributes }}
+                        {% endif %}
+                      >
+                        {% if child.settings.heading != blank %}
+                          <h3 class="footer__heading">
+                            {{ child.settings.heading }}
+                          </h3>
+                        {% endif %}
+
+                        {% if child.settings.menu != blank %}
+                          <ul class="footer__menu-list">
+                            {% for link in child.settings.menu.links %}
+                              <li class="footer__menu-item">
+                                <a
+                                  href="{{ link.url }}"
+                                  class="footer__menu-link"
+                                >
+                                  {{ link.title }}
+                                </a>
+                              </li>
+                            {% endfor %}
+                          </ul>
+                        {% endif %}
+                      </div>
+
+                    {% when 'text' %}
+                      <div
+                        class="footer__column footer__column--text {{ visibility_class }}"
+                        {% if show_desktop %}
+                          {{ child.shopify_attributes }}
+                        {% endif %}
+                      >
+                        {% if child.settings.heading != blank %}
+                          <h3 class="footer__heading">
+                            {{ child.settings.heading }}
+                          </h3>
+                        {% endif %}
+
+                        {% if child.settings.text != blank %}
+                          <div class="footer__description">
+                            {{ child.settings.text }}
+                          </div>
+                        {% endif %}
+                      </div>
+                  {% endcase %}
+                {% endif %}
               {% endif %}
-            </div>
-        {% endcase %}
+            {% endfor %}
+          </div>
+        {% endif %}
       {% endfor %}
     </div>
   </div>
@@ -95,10 +156,30 @@
     background-repeat: repeat;
   }
 
-  @media (min-width: 992px) {
-    .footer__column {
+  #shopify-section-{{ section.id }} .footer__container {
+    padding: {{ section.settings.mobile_container_padding }};
+  }
+
+  #shopify-section-{{ section.id }} .footer__column--desktop-only {
+    display: none;
+  }
+
+  @media (min-width: 920px) {
+    #shopify-section-{{ section.id }} .footer__container {
+      padding: {{ section.settings.desktop_container_padding }};
+    }
+
+    #shopify-section-{{ section.id }} .footer__column-wrapper {
       width: var(--footer-block-width);
       flex: 0 0 var(--footer-block-width);
+    }
+
+    #shopify-section-{{ section.id }} .footer__column--desktop-only {
+      display: block;
+    }
+
+    #shopify-section-{{ section.id }} .footer__column--mobile-only {
+      display: none;
     }
   }
 </style>
@@ -117,23 +198,84 @@
       "type": "image_picker",
       "id": "logo",
       "label": "Footer Logo"
+    },
+    {
+      "type": "text",
+      "id": "mobile_container_padding",
+      "label": "Mobile Container Padding",
+      "default": "0 1rem 0 1rem",
+      "info": "Accepts any valid CSS padding value, e.g. 0 1rem 0 1rem"
+    },
+    {
+      "type": "text",
+      "id": "desktop_container_padding",
+      "label": "Desktop Container Padding",
+      "default": "0 1rem 0 1rem",
+      "info": "Accepts any valid CSS padding value, e.g. 0 1rem 0 1rem"
     }
   ],
   "blocks": [
     {
-      "type": "newsletter",
-      "name": "Newsletter",
-      "limit": 1,
+      "type": "column",
+      "name": "Column",
+      "limit": 5,
       "settings": [
         {
-          "type": "range",
-          "id": "column_width",
-          "label": "Column Width (%)",
-          "min": 10,
-          "max": 60,
-          "step": 1,
-          "default": 30
+          "type": "text",
+          "id": "desktop_width",
+          "label": "Desktop Column Width",
+          "default": "10rem",
+          "info": "Enter a CSS width value such as 10rem, 15rem, or 20rem."
+        }
+      ]
+    },
+    {
+      "type": "menu",
+      "name": "Menu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Quick Links"
         },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Navigation Menu"
+        },
+        {
+          "type": "select",
+          "id": "desktop_column",
+          "label": "Desktop Column",
+          "options": [
+            { "value": "1", "label": "Column 1" },
+            { "value": "2", "label": "Column 2" },
+            { "value": "3", "label": "Column 3" },
+            { "value": "4", "label": "Column 4" },
+            { "value": "5", "label": "Column 5" }
+          ],
+          "default": "1"
+        },
+        {
+          "type": "select",
+          "id": "mobile_column",
+          "label": "Mobile Column",
+          "options": [
+            { "value": "1", "label": "Column 1" },
+            { "value": "2", "label": "Column 2" },
+            { "value": "3", "label": "Column 3" },
+            { "value": "4", "label": "Column 4" },
+            { "value": "5", "label": "Column 5" }
+          ],
+          "default": "1"
+        }
+      ]
+    },
+    {
+      "type": "newsletter",
+      "name": "Newsletter",
+      "settings": [
         {
           "type": "text",
           "id": "heading",
@@ -150,32 +292,76 @@
           "id": "show_input",
           "label": "Show Email Input",
           "default": true
+        },
+        {
+          "type": "select",
+          "id": "desktop_column",
+          "label": "Desktop Column",
+          "options": [
+            { "value": "1", "label": "Column 1" },
+            { "value": "2", "label": "Column 2" },
+            { "value": "3", "label": "Column 3" },
+            { "value": "4", "label": "Column 4" },
+            { "value": "5", "label": "Column 5" }
+          ],
+          "default": "1"
+        },
+        {
+          "type": "select",
+          "id": "mobile_column",
+          "label": "Mobile Column",
+          "options": [
+            { "value": "1", "label": "Column 1" },
+            { "value": "2", "label": "Column 2" },
+            { "value": "3", "label": "Column 3" },
+            { "value": "4", "label": "Column 4" },
+            { "value": "5", "label": "Column 5" }
+          ],
+          "default": "1"
         }
       ]
     },
     {
-      "type": "menu_column",
-      "name": "Menu Column",
+      "type": "text",
+      "name": "Text",
       "settings": [
-        {
-          "type": "range",
-          "id": "column_width",
-          "label": "Column Width (%)",
-          "min": 10,
-          "max": 60,
-          "step": 1,
-          "default": 20
-        },
         {
           "type": "text",
           "id": "heading",
           "label": "Heading",
-          "default": "Quick Links"
+          "default": "Heading"
         },
         {
-          "type": "link_list",
-          "id": "menu",
-          "label": "Navigation Menu"
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Add your text here.</p>"
+        },
+        {
+          "type": "select",
+          "id": "desktop_column",
+          "label": "Desktop Column",
+          "options": [
+            { "value": "1", "label": "Column 1" },
+            { "value": "2", "label": "Column 2" },
+            { "value": "3", "label": "Column 3" },
+            { "value": "4", "label": "Column 4" },
+            { "value": "5", "label": "Column 5" }
+          ],
+          "default": "1"
+        },
+        {
+          "type": "select",
+          "id": "mobile_column",
+          "label": "Mobile Column",
+          "options": [
+            { "value": "1", "label": "Column 1" },
+            { "value": "2", "label": "Column 2" },
+            { "value": "3", "label": "Column 3" },
+            { "value": "4", "label": "Column 4" },
+            { "value": "5", "label": "Column 5" }
+          ],
+          "default": "1"
         }
       ]
     }
@@ -185,13 +371,56 @@
       "name": "Footer",
       "blocks": [
         {
-          "type": "newsletter"
+          "type": "column",
+          "settings": {
+            "desktop_width": "15rem"
+          }
         },
         {
-          "type": "menu_column"
+          "type": "column",
+          "settings": {
+            "desktop_width": "10rem"
+          }
         },
         {
-          "type": "menu_column"
+          "type": "column",
+          "settings": {
+            "desktop_width": "10rem"
+          }
+        },
+        {
+          "type": "newsletter",
+          "settings": {
+            "heading": "Newsletter",
+            "show_input": true,
+            "desktop_column": "1",
+            "mobile_column": "1"
+          }
+        },
+        {
+          "type": "menu",
+          "settings": {
+            "heading": "Quick Links",
+            "desktop_column": "2",
+            "mobile_column": "2"
+          }
+        },
+        {
+          "type": "menu",
+          "settings": {
+            "heading": "Support",
+            "desktop_column": "3",
+            "mobile_column": "3"
+          }
+        },
+        {
+          "type": "text",
+          "settings": {
+            "heading": "About",
+            "text": "<p>Add your text here.</p>",
+            "desktop_column": "1",
+            "mobile_column": "1"
+          }
         }
       ]
     }

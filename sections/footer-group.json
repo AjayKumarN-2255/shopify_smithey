@@ -14,49 +14,103 @@
         "footer": {
             "type": "footer",
             "blocks": {
+                "column_1": {
+                    "type": "column",
+                    "settings": {
+                        "desktop_width": "16.25rem"
+                    }
+                },
+                "column_2": {
+                    "type": "column",
+                    "settings": {
+                        "desktop_width": "8.75rem"
+                    }
+                },
+                "column_3": {
+                    "type": "column",
+                    "settings": {
+                        "desktop_width": "8.75rem"
+                    }
+                },
+                "column_4": {
+                    "type": "column",
+                    "settings": {
+                        "desktop_width": "7.6rem"
+                    }
+                },
+                "column_TUNMpN": {
+                    "type": "column",
+                    "settings": {
+                        "desktop_width": "10rem"
+                    }
+                },
                 "newsletter": {
                     "type": "newsletter",
                     "settings": {
-                        "column_width": 30,
                         "heading": "Newsletter",
                         "description": "<p>Join our community to be the first to learn about new cookware launches, recipes, and Smithey specials.</p>",
-                        "show_input": true
+                        "show_input": true,
+                        "desktop_column": "1",
+                        "mobile_column": "1"
                     }
                 },
                 "menu_1": {
-                    "type": "menu_column",
+                    "type": "menu",
                     "settings": {
-                        "column_width": 20,
                         "heading": "Shop",
-                        "menu": "footer-support"
+                        "menu": "footer-support",
+                        "desktop_column": "2",
+                        "mobile_column": "2"
                     }
                 },
                 "menu_2": {
-                    "type": "menu_column",
+                    "type": "menu",
                     "settings": {
-                        "column_width": 20,
                         "heading": "Support",
-                        "menu": "footer-company"
+                        "menu": "footer-company",
+                        "desktop_column": "3",
+                        "mobile_column": "3"
                     }
                 },
                 "menu_3": {
-                    "type": "menu_column",
+                    "type": "menu",
                     "settings": {
-                        "column_width": 20,
                         "heading": "Company",
-                        "menu": "footer-quick-links"
+                        "menu": "footer-quick-links",
+                        "desktop_column": "4",
+                        "mobile_column": "4"
+                    }
+                },
+                "text_RhdDny": {
+                    "type": "text",
+                    "settings": {
+                        "heading": "Text Us",
+                        "text": "<p><a href=\"sms:+18436190082\">843-619-0082</a></p>",
+                        "desktop_column": "2",
+                        "mobile_column": "5"
                     }
                 }
             },
             "block_order": [
+                "column_1",
+                "column_2",
+                "column_3",
+                "column_4",
+                "column_TUNMpN",
                 "newsletter",
                 "menu_1",
                 "menu_2",
-                "menu_3"
+                "menu_3",
+                "text_RhdDny"
+            ],
+            "custom_css": [
+                "@media (min-width: 920px) {.footer__flex > :nth-child(5) {display: none; } .footer__flex > :nth-child(2) {justify-content: space-between; }}"
             ],
             "settings": {
                 "background_color": "#102a2a",
-                "logo": "shopify://shop_images/bird.svg"
+                "logo": "shopify://shop_images/bird.svg",
+                "mobile_container_padding": "0 1.702rem 7.8rem  1.702rem",
+                "desktop_container_padding": "0 3.5rem 5.6rem 1.6rem"
             }
         },
         "footer-bottom": {
@@ -65,7 +119,9 @@
                 "background_color": "#102a2a",
                 "logo": "shopify://shop_images/smithey.svg",
                 "copyright": "COPYRIGHT SMITHEY IRONWARE 2026.",
-                "menu": "footer-bottom-menu"
+                "menu": "footer-bottom-menu",
+                "privacy_choices_label": "YOUR PRIVACY CHOICES",
+                "privacy_choices_link": ""
             }
         }
     },

@@ -1,12 +1,14 @@
 .footer {
-  padding: 3rem 1.5rem;
+  padding: unset;
+  padding-top: 3rem;
 }
 
 .footer__heading {
   color: #b68b32;
   text-transform: uppercase;
   font-size: 0.875rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: 14px;
+  font-weight: 400;
 }
 
 .footer__title {
@@ -16,7 +18,8 @@
 }
 
 .footer__logo {
-  width: 5rem;
+  width: 70px;
+  height: 64px;
   margin: 0 auto;
 }
 
@@ -27,12 +30,13 @@
   align-items: center;
   margin: auto;
   gap: 2rem;
-  margin-bottom: 4rem;
+  margin-bottom: 3.69rem;
 }
 
 .footer__logo img {
-  width: 100%;
-  height: auto;
+  width: 70px;
+  height: 64px;
+  object-fit: contain;
   display: block;
 }
 
@@ -53,6 +57,10 @@
 
 .footer__menu-list li {
   margin-bottom: 0.5rem;
+}
+
+.footer__menu-list li:last-child {
+  margin-bottom: 0;
 }
 
 .footer__menu-link {
@@ -115,19 +123,69 @@
   column-gap: 2rem;
 }
 
+.footer__column-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  min-width: 0;
+}
+
 .footer__flex > :first-child {
   grid-column: span 2;
+}
+
+.footer__column--text .footer__description {
+  text-align: start;
+  margin-bottom: 0;
+  color: #ffffff;
+  font-size: 0.975rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.footer__column--text .footer__description a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: inherit;
+  font-weight: inherit;
 }
 
 @media (min-width: 920px) {
   .footer {
     padding: unset;
     padding-top: 3.2rem;
-    padding-inline-start: 1.6rem;
+  }
+  .footer__branding {
+    margin-bottom: 3.2rem;
   }
   .footer__heading {
     font-size: 0.75rem;
+    font-weight: 700;
+    margin-bottom: 18px;
   }
+
+  .footer__menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .footer__menu-list li {
+    margin-bottom: 0;
+    line-height: 1;
+  }
+
+  .footer__menu-list li:last-child {
+    margin-bottom: 0;
+  }
+
+  .footer__menu-link {
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 1;
+    display: inline-block;
+  }
+
   .footer__column--newsletter .footer__heading {
     text-align: start;
   }
@@ -137,9 +195,16 @@
     text-align: start;
   }
 
-  .footer__menu-link {
+  .footer__column--text .footer__description {
     font-size: 0.75rem;
     font-weight: 400;
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  .footer__column--text .footer__description a {
+    color: #ffffff;
+    text-decoration: none;
   }
 
   .footer__newsletter-form {
@@ -174,7 +239,11 @@
   .footer__flex {
     display: flex;
     gap: 2.25rem;
-    justify-content: center;
+    justify-content: space-between;
+  }
+
+  .footer__flex > :first-child {
+    grid-column: auto;
   }
 
   .footer__description {
@@ -182,7 +251,8 @@
   }
 
   .footer__logo {
-    width: 4rem;
+    width: 70px;
+    height: 64px;
     margin: 0 auto;
   }
 }
