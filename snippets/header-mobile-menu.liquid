@@ -161,6 +161,8 @@
 
               <div class="mobile-panel-cook">
                 {% if mobile_cook_blog != blank %}
+                  <h3 class="mobile-panel__section-label">Featured Recipes</h3>
+
                   <div class="mobile-panel-cook__featured">
                     {% for article in mobile_cook_blog.articles limit: 2 %}
                       <a href="{{ article.url }}" class="mobile-panel-cook__feature">
@@ -357,7 +359,7 @@
   .mobile-panel__links a {
     display: block;
     color: #fff;
-    font-size: 1.125rem;
+    font-size: 20px;
     font-weight: 700;
     line-height: 1.15;
     letter-spacing: 0.04em;
@@ -392,7 +394,7 @@
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
-    margin-bottom: 1.75rem;
+    margin-bottom: 35px;
   }
 
   .mobile-panel-cook__feature {
@@ -403,6 +405,7 @@
     color: inherit;
     overflow: hidden;
     background-color: #2a4140;
+    border-radius: 3px;
   }
 
   .mobile-panel-cook__feature-image {
@@ -430,8 +433,8 @@
   }
 
   .mobile-panel-cook__feature-title {
-    font-family: Sentinel, var(--font-heading), ui-serif, serif;
-    font-size: 1.25rem;
+    font-family: Sentinel, ui-serif, serif;
+    font-size: 20px;
     font-weight: 400;
     line-height: 1.2;
     color: #fff;
