@@ -104,7 +104,8 @@
                 "text_RhdDny"
             ],
             "custom_css": [
-                "@media (min-width: 920px) {.footer__flex > :nth-child(5) {display: none; } .footer__flex > :nth-child(2) {justify-content: space-between; }}"
+                "@media (min-width: 1250px) {.footer__flex > :nth-child(5) {display: none; }}",
+                "@media (min-width: 920px) {.footer__flex > :nth-child(2) {justify-content: space-between; }}"
             ],
             "settings": {
                 "background_color": "#102a2a",
