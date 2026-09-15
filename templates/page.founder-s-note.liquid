@@ -1,0 +1,113 @@
+{% section 'founder-message' %}
+
+<style>
+  .founder-message__description {
+    display: block;
+    -webkit-line-clamp: unset;
+    overflow: visible;
+  }
+
+  .founder-message__read-more,
+  .founder-message__signature {
+    display: none;
+  }
+
+  .founder-message__container {
+    padding: 0;
+    margin: 0;
+  }
+
+  .founder-message__content {
+    padding: 15px;
+  }
+
+  .founder-message__title {
+    font-size: 13px;
+    color: #b68b32;
+    margin-bottom: 18px;
+    letter-spacing: 1px;
+  }
+
+  .founder-message__description,
+  .founder-message__description p {
+    font-size: 18px;
+    line-height: 1.4;
+    font-weight: 500;
+    color: #112626;
+  }
+
+  .founder-message__description h4 {
+    display: block;
+  }
+
+  .founder-message__description .w-\[312px\] {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .founder-message__description .w-\[312px\] h5,
+  .founder-message__description .w-\[312px\] h4 {
+    font-size: 14px;
+  }
+
+  .founder-message__description .w-\[312px\] h5 {
+    color: #b68b32;
+  }
+
+  .founder-message__description .w-\[312px\] h4 {
+    color: #112626;
+    font-weight: 500 !important;
+    letter-spacing: 1px;
+    margin-top: 5px;
+  }
+
+  .founder-message__description .w-\[312px\] h4 strong {
+    font-weight: 500 !important;
+  }
+
+  @media (max-width: 919px) {
+    .founder-message__description .w-\[312px\] h4 {
+      max-width: 20rem;
+      letter-spacing: 2px;
+      margin-bottom: 7px;
+    }
+  }
+
+  @media (min-width: 920px) {
+    .founder-message {
+      padding: 3rem 0;
+    }
+
+    .founder-message__container {
+      width: 100%;
+      max-width: 56rem;
+      height: 42rem;
+      margin-left: auto;
+      margin-right: auto;
+      flex-direction: row-reverse;
+    }
+
+    .founder-message__image,
+    .founder-message__content {
+      flex: 0 0 50%;
+      height: 100%;
+    }
+
+    .founder-message__content {
+      padding: 30px;
+    }
+
+    .founder-message__image img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+</style>
