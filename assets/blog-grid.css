@@ -111,20 +111,19 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 3rem;
-  height: 3rem;
+  width: 47px;
+  height: 50px;
   background: #c28b2c;
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  opacity: 0.8;
   z-index: 10;
 }
 
 .blog-grid__button--prev {
-  left: 0.5rem;
+  left: 0;
 }
 
 .blog-grid__button--prev svg {
@@ -132,12 +131,13 @@
 }
 
 .blog-grid__button--next {
-  right: 0.5rem;
+  right: 0;
 }
 
 .blog-grid__button svg {
-  width: 1.25rem;
-  height: auto;
+  width: 19px;
+  height: 22px;
+  opacity: 0.7;
 }
 
 .blog-grid__track {
@@ -158,8 +158,27 @@
   .blog-grid__wrapper {
     flex-direction: row;
     align-items: flex-start;
+    max-width: 1200px;
     gap: 2rem;
-    margin: 3rem auto;
+    margin: 2.4rem auto;
+  }
+
+  .blog-grid__button {
+    width: 51px;
+    height: 54px;
+  }
+
+  .blog-grid__button--prev {
+    left: 0.5rem;
+  }
+
+  .blog-grid__button--next {
+    right: 0.5rem;
+  }
+
+  .blog-grid__button svg {
+    width: 18px;
+    height: 21px;
   }
 
   .blog-grid__carousel {
