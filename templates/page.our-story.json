@@ -196,7 +196,7 @@
             "content_mobile_size": 2.6,
             "content_color": "#112626",
             "position": "right",
-            "custom_css": ".content-builder__content h2 {\n      text-align: center;\n       font-weight: 400 !important;\n       line-height: 1.4;\n       margin: 2rem 0;\n}\n.content-builder__content em {\n    color:#b68b32;\n}\n@media (min-width: 920px) {\n .content-builder__content {\n    text-align: center;\n    margin-top:3.5rem;\n  }\n}\n\n@media (min-width: 1700px) {\n   .content-builder__content {\n      max-width:25rem;\n      text-align:center;\n      margin:3.5rem auto;\n  }\n}"
+            "custom_css": ".content-builder__content h2 {\n      text-align: center;\n       font-weight: 400 !important;\n       line-height: 1.6;\n       letter-spacing: 1px;\n       margin: 2rem 0 1.8rem 0;\n}\n.content-builder__content em {\n    color:#b68b32;\n}\n@media (min-width: 920px) {\n .content-builder__content {\n    text-align: center;\n    margin-top:3.5rem;\n  }\n}\n\n@media (min-width: 1700px) {\n   .content-builder__content {\n      max-width:25rem;\n      text-align:center;\n      margin:3.5rem auto;\n  }\n}"
           }
         }
       },
@@ -206,23 +206,27 @@
         "image_KqLJ7Y",
         "text_RdPw9n"
       ],
-      "custom_css": [
-        "@media (min-width: 920px) {#content-builder-text-text_RdPw9n .content-builder__content {line-height: 65px; } #content-builder-text-text_RdPw9n h2 {font-weight: 400; } #content-builder-text-text_RdPw9n em {color: #b68b32; }}"
-      ],
+      "custom_css": [],
       "name": "Content Builder",
       "settings": {
         "background_color": "#ffffff",
         "desktop_padding": 2.5,
-        "mobile_padding": 1,
+        "mobile_padding": 1.1,
         "show_features": false,
-        "custom_css": "@media (min-width: 920px) {\n  #SECTION_ID .content-builder__right {\n    justify-content: start !important;\n  }\n}"
+        "custom_css": "#SECTION_ID .content-builder__container {\n  padding-top: 30px;\n}\n@media (min-width: 920px) {\n  #SECTION_ID em {\n    color: #b68b32;\n  }\n  #SECTION_ID .content-builder__container {\n    padding-top: 50px;\n  }\n  #SECTION_ID .content-builder__right {\n    justify-content: start !important;\n  }\n}"
       }
     },
     "video-banner": {
       "type": "video-banner",
+      "custom_css": [
+        ".video-banner {padding: 20px 10px 35px 10px;}",
+        ".video-banner__heading--outside {font-size: 30px;}",
+        "@media (min-width: 920px) {.video-banner {margin-top: 0 !important; padding: 80px 30px; }}"
+      ],
       "settings": {
         "background_color": "#112626",
         "video_url": "https://cdn.shopify.com/videos/c/o/v/dfb7550f7ace4c94986db2bff645ff21.mp4",
+        "poster": "shopify://shop_images/2021_Round-Carbon-Roaster_5_-_Large_8b219f46-4d61-47b3-a375-1f1269ad225c.webp",
         "heading": "THE SMITHEY STORY"
       }
     }
