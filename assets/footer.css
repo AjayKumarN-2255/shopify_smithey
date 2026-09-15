@@ -121,6 +121,23 @@
   background: rgba(194, 139, 44, 0.12);
 }
 
+.footer__newsletter-social {
+  display: none;
+}
+
+@media (min-width: 1250px) {
+  .footer__newsletter-form {
+    margin-bottom: 0;
+  }
+
+  .footer__newsletter-social {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-top: 26px;
+  }
+}
+
 .footer__flex {
   display: grid;
   grid-template-columns: 1fr 1fr;
