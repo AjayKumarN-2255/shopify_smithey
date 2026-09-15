@@ -7,4 +7,22 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{}
+{
+  "current": {
+    "sections": {
+      "cart-drawer": {
+        "type": "cart-drawer",
+        "settings": {}
+      },
+      "founder-message": {
+        "type": "founder-message",
+        "settings": {
+          "article": "news/a-message-from-the-founders",
+          "background_color": "#dfdfdf",
+          "read_more_page": ""
+        }
+      }
+    },
+    "content_for_index": []
+  }
+}
