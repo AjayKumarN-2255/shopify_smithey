@@ -12,14 +12,15 @@
     "our-story-hero": {
       "type": "our-story-hero",
       "custom_css": [
-        ".our-story-hero__content {padding: 10px 30px; border: 5px solid #b68b32;}"
+        ".our-story-hero__content {padding: 10px 30px; border: 5px solid #b68b32;}",
+        "@media (min-width: 1550px) {.our-story-hero {min-height: 256px !important; }}"
       ],
       "settings": {
         "title": "Our Story",
         "subtitle": "",
         "image": "shopify://shop_images/9F69E0DD-5A15-4AF6-B9F0-28AB046165D5_1_105_c_2000x_fa85b017-d7cd-49be-8335-67e2a35f7d9b.webp",
         "desktop_height": 31,
-        "mobile_height": 40
+        "mobile_height": 38
       }
     },
     "content_builder_kCjJCn": {
@@ -37,7 +38,7 @@
             "content_mobile_size": 1,
             "content_color": "#112626",
             "position": "left",
-            "custom_css": ""
+            "custom_css": ".content-builder__title {\n  margin-bottom:1.1rem;\n}"
           }
         },
         "image_grid_dxDUxt": {
@@ -58,10 +59,10 @@
             "image": "shopify://shop_images/Smithey_02_2021_0893_1000x1000_d0763c1e-bee6-40fb-a6ad-d74d92017501.jpg",
             "alt_text": "Content image",
             "image_mobile_height": 16.5,
-            "image_desktop_height": 22.2,
+            "image_desktop_height": 21.3,
             "image_large_desktop_height": 29,
             "position": "right",
-            "custom_css": "@media (min-width: 920px) {\n    #content-builder-image-image_4Fd3Yg {\n        height: 22.2rem;\n        margin-top: 0;\n        margin-bottom: 0;\n    }\n}\n@media (min-width: 1700px) {\n    & {\n        height: 29rem;\n        margin-top: 0;\n        margin-bottom: 0;\n    }\n}"
+            "custom_css": "&{\n margin: 1.1rem 0;\n}\n@media (min-width: 920px) {\n    #content-builder-image-image_4Fd3Yg {\n        height: 22.2rem;\n        margin-top: 0;\n        margin-bottom: 0;\n    }\n}\n@media (min-width: 1700px) {\n    & {\n        height: 29rem;\n        margin-top: 0;\n        margin-bottom: 0;\n    }\n}"
           }
         },
         "text_WhrJcg": {
@@ -76,7 +77,7 @@
             "content_mobile_size": 1,
             "content_color": "#112626",
             "position": "right",
-            "custom_css": ".content-builder__content {\n  margin-top:4rem;\n}"
+            "custom_css": ".content-builder__content {\n  margin-bottom: 30px;\n}\n\n@media (min-width: 920px) {\n  .content-builder__content {\n    margin-top: 4rem;\n  }\n}"
           }
         }
       },
@@ -86,16 +87,14 @@
         "image_4Fd3Yg",
         "text_WhrJcg"
       ],
-      "custom_css": [
-        "@media (min-width: 920px) {#content-builder-template--21819620130951__content_builder_kCjJCn .content-builder__left {gap: 0; } #content-builder-template--21819620130951__content_builder_kCjJCn .content-builder__right {justify-content: start; }}"
-      ],
+      "custom_css": [],
       "name": "Content Builder",
       "settings": {
         "background_color": "#ffffff",
         "desktop_padding": 2.5,
-        "mobile_padding": 1,
+        "mobile_padding": 1.1,
         "show_features": false,
-        "custom_css": ""
+        "custom_css": "#SECTION_ID .content-builder__container {\n  padding-top: 30px;\n}\n@media (min-width: 920px) {\n  #SECTION_ID .content-builder__left {\n    gap: 0;\n  }\n#SECTION_ID .content-builder__container {\n  padding-top: 50px;\n}\n  #SECTION_ID .content-builder__right {\n    justify-content: start;\n  }\n}"
       }
     },
     "content_builder_EgcRme": {
