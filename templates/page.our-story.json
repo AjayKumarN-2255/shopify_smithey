@@ -109,7 +109,7 @@
             "image_desktop_height": 24.5,
             "image_large_desktop_height": 29.6,
             "position": "left",
-            "custom_css": ""
+            "custom_css": "&{\n margin:0;\n}\n& img{\n margin:0;\n}"
           }
         },
         "text_89yA4g": {
@@ -124,7 +124,7 @@
             "content_mobile_size": 1,
             "content_color": "#112626",
             "position": "right",
-            "custom_css": "@media (min-width: 920px) {\n  .content-builder__content {\n    margin-top: 1.5rem;\n  }\n}"
+            "custom_css": ".content-builder__title{\n margin:30px 0;\n letter-spacing:2px;\n max-width:unset;\n}\n  .content-builder__content {\n    margin-bottom: 30px;\n  }\n@media (min-width: 920px) {\n  .content-builder__content {\n    margin-top: 1.5rem;\n  }\n}"
           }
         }
       },
@@ -137,9 +137,9 @@
       "settings": {
         "background_color": "#f8f8f8",
         "desktop_padding": 2.5,
-        "mobile_padding": 1,
+        "mobile_padding": 1.1,
         "show_features": false,
-        "custom_css": "@media (min-width: 920px) {\n  #SECTION_ID .content-builder__right {\n    justify-content: center;\n  }\n}"
+        "custom_css": "#SECTION_ID .content-builder__container {\n  padding-top: 30px;\n}\n\n@media (min-width: 920px) {\n  #SECTION_ID .content-builder__container {\n    padding-top: 50px;\n    gap:1.5rem;\n  }\n\n  #SECTION_ID .content-builder__right {\n    justify-content: center;\n  }\n}"
       }
     },
     "content_builder_6qcbFF": {
