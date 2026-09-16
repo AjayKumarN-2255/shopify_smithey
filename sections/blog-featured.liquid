@@ -32,14 +32,6 @@
   {% if blog.handle == 'journal' and section.settings.title != blank %}
     <nav class="blog-featured__tags" aria-label="Journal categories">
       <a
-        href="{{ journal_base }}"
-        {% if active_category == blank %}
-          aria-current="page" class="is-active"
-        {% endif %}
-      >
-        All
-      </a>
-      <a
         href="{{ journal_base }}?view=care"
         {% if active_category == 'care' %}
           aria-current="page" class="is-active"

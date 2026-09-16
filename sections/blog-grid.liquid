@@ -22,7 +22,13 @@
 -%}
 {{ 'blog-grid.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'blog-grid.js' | asset_url }}" defer></script>
-<section class="blog-grid">
+<section
+  class="blog-grid"
+  {% if active_category != blank %}
+    style="display: none;"
+    aria-hidden="true"
+  {% endif %}
+>
   <div class="blog-grid__wrapper">
     <!-- Carousel -->
     <div class="blog-grid__carousel">
@@ -117,7 +123,7 @@
       {% assign shown = 0 %}
       {% assign skipped = 0 %}
       {% for article in source_blog.articles %}
-        {% assign article_category = article.metafields.custom.category | strip | downcase %}
+        {% assign article_category = article.metafields.custom.category | strip | downcase | replace: '-', ' ' %}
         {% assign matches_category = false %}
 
         {% if active_category == blank %}
@@ -126,7 +132,7 @@
           {% assign matches_category = true %}
         {% else %}
           {% for tag in article.tags %}
-            {% assign tag_down = tag | downcase %}
+            {% assign tag_down = tag | downcase | replace: '-', ' ' %}
             {% if tag_down == active_category %}
               {% assign matches_category = true %}
               {% break %}
