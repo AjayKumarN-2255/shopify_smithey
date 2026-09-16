@@ -32,7 +32,15 @@
   {% if blog.handle == 'journal' and section.settings.title != blank %}
     <nav class="blog-featured__tags" aria-label="Journal categories">
       <a
-        href="{{ journal_base }}?category=care"
+        href="{{ journal_base }}"
+        {% if active_category == blank %}
+          aria-current="page" class="is-active"
+        {% endif %}
+      >
+        All
+      </a>
+      <a
+        href="{{ journal_base }}?view=care"
         {% if active_category == 'care' %}
           aria-current="page" class="is-active"
         {% endif %}
@@ -40,7 +48,7 @@
         Care
       </a>
       <a
-        href="{{ journal_base }}?category=craft"
+        href="{{ journal_base }}?view=craft"
         {% if active_category == 'craft' %}
           aria-current="page" class="is-active"
         {% endif %}
@@ -48,7 +56,7 @@
         Craft
       </a>
       <a
-        href="{{ journal_base }}?category=culinary"
+        href="{{ journal_base }}?view=culinary"
         {% if active_category == 'culinary' %}
           aria-current="page" class="is-active"
         {% endif %}
@@ -56,7 +64,7 @@
         Culinary
       </a>
       <a
-        href="{{ journal_base }}?category=smithey-stories"
+        href="{{ journal_base }}?view=smithey-stories"
         {% if active_category == 'smithey stories' %}
           aria-current="page" class="is-active"
         {% endif %}
@@ -71,7 +79,7 @@
       {% assign shown = 0 %}
       {% assign skipped = 0 %}
       {% for article in source_blog.articles %}
-        {% assign article_category = article.metafields.custom.category | strip | downcase %}
+        {% assign article_category = article.metafields.custom.category | strip | downcase | replace: '-', ' ' %}
         {% assign matches_category = false %}
 
         {% if active_category == blank %}
@@ -80,7 +88,7 @@
           {% assign matches_category = true %}
         {% else %}
           {% for tag in article.tags %}
-            {% assign tag_down = tag | downcase %}
+            {% assign tag_down = tag | downcase | replace: '-', ' ' %}
             {% if tag_down == active_category %}
               {% assign matches_category = true %}
               {% break %}

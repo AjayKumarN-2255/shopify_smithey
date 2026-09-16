@@ -1,27 +1,25 @@
 {% comment %}
   Resolves the active journal category for filtering.
-  Prefers native current_tags, then ?category=, then /tagged/ URL segment.
+
+  Uses supported Liquid only (works on published storefronts):
+  1. template.suffix from ?view=care|craft|culinary|smithey-stories
+  2. current_tags from /blogs/.../tagged/...
+  3. /tagged/ segment via request.path
+
+  Does not use content_for_header / pageurl (unreliable in production).
   Usage: {% capture active_category %}{% render 'journal-active-category' %}{% endcapture %}
 {% endcomment %}
 
 {%- liquid
   assign value = blank
+  assign suffix = template.suffix | strip | downcase
 
-  if current_tags.size > 0
+  if template.name == 'blog' and suffix != blank and suffix != 'recipies'
+    assign value = suffix
+  elsif current_tags.size > 0
     assign value = current_tags.first
-  else
-    capture category_param
-      render 'get-url-param', key: 'category'
-    endcapture
-    assign category_param = category_param | strip
-    if category_param != blank
-      assign value = category_param
-    else
-      capture tag_from_url
-        render 'get-url-tag'
-      endcapture
-      assign value = tag_from_url | strip
-    endif
+  elsif request.path contains '/tagged/'
+    assign value = request.path | split: '/tagged/' | last | split: '/' | first | url_decode
   endif
 
   echo value | replace: '-', ' ' | strip | downcase

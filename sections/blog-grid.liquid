@@ -46,7 +46,7 @@
         {% assign shown = 0 %}
         {% assign skipped = 0 %}
         {% for article in source_blog.articles %}
-          {% assign article_category = article.metafields.custom.category | strip | downcase %}
+          {% assign article_category = article.metafields.custom.category | strip | downcase | replace: '-', ' ' %}
           {% assign matches_category = false %}
 
           {% if active_category == blank %}
@@ -55,7 +55,7 @@
             {% assign matches_category = true %}
           {% else %}
             {% for tag in article.tags %}
-              {% assign tag_down = tag | downcase %}
+              {% assign tag_down = tag | downcase | replace: '-', ' ' %}
               {% if tag_down == active_category %}
                 {% assign matches_category = true %}
                 {% break %}
