@@ -1,0 +1,37 @@
+{% comment %}
+  Journal category filter links. Requires: journal_base, active_category
+{% endcomment %}
+<nav class="blog-featured__tags" aria-label="Journal categories">
+  <a
+    href="{{ journal_base }}?view=care"
+    {% if active_category == 'care' %}
+      aria-current="page" class="is-active"
+    {% endif %}
+  >
+    Care
+  </a>
+  <a
+    href="{{ journal_base }}?view=craft"
+    {% if active_category == 'craft' %}
+      aria-current="page" class="is-active"
+    {% endif %}
+  >
+    Craft
+  </a>
+  <a
+    href="{{ journal_base }}?view=culinary"
+    {% if active_category == 'culinary' %}
+      aria-current="page" class="is-active"
+    {% endif %}
+  >
+    Culinary
+  </a>
+  <a
+    href="{{ journal_base }}?view=smithey-stories"
+    {% if active_category == 'smithey stories' %}
+      aria-current="page" class="is-active"
+    {% endif %}
+  >
+    Smithey Stories
+  </a>
+</nav>

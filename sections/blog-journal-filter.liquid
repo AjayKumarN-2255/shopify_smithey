@@ -6,44 +6,46 @@
   assign active_category = active_category | strip
 
   assign source_blog = section.settings.blog
-  if blog != blank and source_blog != blank and blog.handle == source_blog.handle
-    assign source_blog = blog
-  elsif source_blog == blank and blog != blank
+  if source_blog == blank and blog != blank
     assign source_blog = blog
   elsif source_blog == blank
     assign source_blog = blogs.journal
   endif
 
-  assign article_limit = section.settings.limit
-  assign article_offset = section.settings.offset
   assign journal_base = blog.url | default: source_blog.url | default: '/blogs/journal'
 -%}
-{% if active_category == blank %}
-<section class="blog-featured">
+
+{% if active_category != blank %}
+<section class="blog-featured blog-featured--filtered">
   {% if section.settings.title != blank %}
     <h2 class="blog-featured__heading">
       {{ section.settings.title }}
     </h2>
   {% endif %}
 
-  {% if blog.handle == 'journal' and section.settings.title != blank %}
-    {% render 'journal-category-nav', journal_base: journal_base, active_category: active_category %}
-  {% endif %}
+  {% render 'journal-category-nav', journal_base: journal_base, active_category: active_category %}
 
   <div class="blog-featured__container">
     {% if source_blog != blank %}
-      {% assign shown = 0 %}
-      {% assign skipped = 0 %}
       {% for article in source_blog.articles %}
-        {% if skipped < article_offset %}
-          {% assign skipped = skipped | plus: 1 %}
-          {% continue %}
+        {% assign article_category = article.metafields.custom.category | strip | downcase | replace: '-', ' ' %}
+        {% assign matches_category = false %}
+
+        {% if article_category == active_category %}
+          {% assign matches_category = true %}
+        {% else %}
+          {% for tag in article.tags %}
+            {% assign tag_down = tag | downcase | replace: '-', ' ' %}
+            {% if tag_down == active_category %}
+              {% assign matches_category = true %}
+              {% break %}
+            {% endif %}
+          {% endfor %}
         {% endif %}
 
-        {% if shown >= article_limit %}
-          {% break %}
-        {% endif %}
-        {% assign shown = shown | plus: 1 %}
+        {% unless matches_category %}
+          {% continue %}
+        {% endunless %}
 
         {% render 'blog-featured-card', article: article %}
       {% endfor %}
@@ -57,7 +59,7 @@
 
 {% schema %}
 {
-  "name": "Blog Featured",
+  "name": "Journal filter listing",
   "settings": [
     {
       "type": "text",
@@ -69,27 +71,11 @@
       "type": "blog",
       "id": "blog",
       "label": "Select blog"
-    },
-    {
-      "type": "range",
-      "id": "limit",
-      "label": "Number of articles",
-      "min": 1,
-      "max": 12,
-      "default": 3
-    },
-    {
-      "type": "range",
-      "id": "offset",
-      "label": "Skip articles",
-      "min": 0,
-      "max": 12,
-      "default": 0
     }
   ],
   "presets": [
     {
-      "name": "Blog Featured"
+      "name": "Journal filter listing"
     }
   ]
 }

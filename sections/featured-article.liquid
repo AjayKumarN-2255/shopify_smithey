@@ -1,11 +1,4 @@
 {% unless blog.handle == 'recipies' %}
-{%- liquid
-  capture active_category
-    render 'journal-active-category'
-  endcapture
-  assign active_category = active_category | strip
--%}
-{% if active_category == blank %}
 <section
   class="featured-article"
   style="background-color: {{ section.settings.background_color }};"
@@ -166,7 +159,6 @@
     }
   }
 </style>
-{% endif %}
 {% endunless %}
 
 {% schema %}

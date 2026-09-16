@@ -1,0 +1,30 @@
+{% comment %}
+  Blog featured card. Requires: article
+{% endcomment %}
+<article class="blog-featured__card">
+  {% if article.image %}
+    <div class="blog-featured__image">
+      <img
+        src="{{ article.image | image_url: width: 800 }}"
+        alt="{{ article.image.alt | escape }}"
+        loading="lazy"
+      >
+    </div>
+  {% endif %}
+
+  <div class="blog-featured__content">
+    {% if article.metafields.custom.category != blank %}
+      <div class="blog-featured__category">
+        {{ article.metafields.custom.category }}
+      </div>
+    {% endif %}
+
+    <h2 class="blog-featured__title">
+      {{ article.title }}
+    </h2>
+
+    <div class="blog-featured__excerpt">
+      {{ article.excerpt | default: article.content | strip_html | truncate: 180 }}
+    </div>
+  </div>
+</article>

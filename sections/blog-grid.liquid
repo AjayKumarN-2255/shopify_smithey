@@ -16,19 +16,11 @@
 
   assign article_limit = section.settings.limit
   assign article_offset = section.settings.offset
-  if active_category != blank
-    assign article_offset = 0
-  endif
 -%}
+{% if active_category == blank %}
 {{ 'blog-grid.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'blog-grid.js' | asset_url }}" defer></script>
-<section
-  class="blog-grid"
-  {% if active_category != blank %}
-    style="display: none;"
-    aria-hidden="true"
-  {% endif %}
->
+<section class="blog-grid">
   <div class="blog-grid__wrapper">
     <!-- Carousel -->
     <div class="blog-grid__carousel">
@@ -177,6 +169,7 @@
     </div>
   </div>
 </section>
+{% endif %}
 {% endunless %}
 
 {% schema %}

@@ -1,13 +1,3 @@
-{%- liquid
-  capture active_category
-    render 'journal-active-category'
-  endcapture
-  assign active_category = active_category | strip
--%}
-{% comment %}
-  On journal filter views (?view=care|…), omit this section from the DOM.
-{% endcomment %}
-{% unless template.name == 'blog' and blog.handle == 'journal' and active_category != blank %}
 {{ 'content-builder.css' | asset_url | stylesheet_tag }}
 <section
   id="content-builder-{{ section.id }}"
@@ -117,7 +107,6 @@
     {{ section.settings.custom_css | replace: '#SECTION_ID', section_css_selector }}
   </style>
 {% endif %}
-{% endunless %}
 
 {% schema %}
 {

@@ -1,0 +1,123 @@
+<style>
+  .blog-featured__heading {
+    color: #b68b32;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin: 3rem 0 40px;
+  }
+
+  .blog-featured__tags {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.85rem;
+    margin: 0 auto 3rem;
+    padding: 0 1rem;
+    max-width: 62rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .blog-featured__tags::-webkit-scrollbar {
+    display: none;
+  }
+
+  .blog-featured__tags a {
+    color: #112626;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .blog-featured__tags a.is-active {
+    color: #b68b32;
+  }
+
+  .blog-featured__container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 62rem;
+    margin: auto;
+    padding: 0 1rem;
+    gap: 1.75rem;
+  }
+
+  .blog-featured__category {
+    font-size: 12px;
+    font-weight: 300;
+    text-transform: uppercase;
+    margin: 14px 0 20px;
+    color: #b68b32;
+    letter-spacing: 2px;
+  }
+
+  .blog-featured__title {
+    font-size: 28px;
+    line-height: 1;
+    font-weight: 300;
+    color: #112626;
+    margin-bottom: 1rem;
+  }
+
+  .blog-featured__excerpt {
+    font-family: Sentinel, ui-serif, serif;
+    font-size: 16px;
+    font-weight: 300;
+    font-style: italic;
+    margin: 2.98rem 0 2rem;
+    line-height: 1.5rem;
+  }
+
+  .blog-featured__image {
+    width: 100%;
+    height: 18.14rem;
+  }
+
+  .blog-featured__image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (min-width: 920px) {
+    .blog-featured__category {
+      margin: 0.75rem 0 22px;
+    }
+    .blog-featured__heading {
+      font-size: 36px;
+      margin: 2.4rem 0 2.6rem;
+    }
+    .blog-featured__tags {
+      gap: 1.6rem;
+      margin-bottom: 2.4rem;
+      padding: 0;
+    }
+    .blog-featured__excerpt {
+      margin: calc(2.6rem - 6px) 0 20px;
+      line-height: 1.25rem;
+      max-width: 23rem;
+    }
+    .blog-featured__container {
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 1200px;
+      padding: 0;
+      gap: 32px;
+      margin-bottom: 3rem;
+    }
+    .blog-featured__image {
+      height: 12.75rem;
+    }
+  }
+</style>
