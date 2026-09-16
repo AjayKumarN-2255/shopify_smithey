@@ -91,6 +91,31 @@
     height: 100%;
   }
 
+  .blog-featured__pagination {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    margin: 0 auto 3rem;
+    padding: 0 1rem;
+  }
+
+  .blog-featured__pagination-link {
+    padding: 0 0 0.25rem;
+    border-bottom: 1px solid transparent;
+    color: #112626;
+    font-family: sans-serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1;
+    text-decoration: none;
+  }
+
+  .blog-featured__pagination-link.is-active {
+    border-bottom-color: #112626;
+  }
+
   @media (min-width: 920px) {
     .blog-featured__category {
       margin: 0.75rem 0 22px;

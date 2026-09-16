@@ -80,17 +80,6 @@
 
 {% if total_pages > 1 %}
   <nav class="recipe-listing__pagination" aria-label="Recipe pagination">
-    {% if current_page > 1 %}
-      <button
-        type="button"
-        class="recipe-listing__pagination-btn"
-        data-recipe-page="{{ current_page | minus: 1 }}"
-        aria-label="Previous page"
-      >
-        &larr; Prev
-      </button>
-    {% endif %}
-
     {% for page_num in (1..total_pages) %}
       <button
         type="button"
@@ -104,16 +93,5 @@
         {{ page_num }}
       </button>
     {% endfor %}
-
-    {% if current_page < total_pages %}
-      <button
-        type="button"
-        class="recipe-listing__pagination-btn"
-        data-recipe-page="{{ current_page | plus: 1 }}"
-        aria-label="Next page"
-      >
-        Next &rarr;
-      </button>
-    {% endif %}
   </nav>
 {% endif %}
