@@ -154,7 +154,7 @@ body.no-scroll {
   }
 }
 
-.header--scrolled {
+.site-header.header--scrolled {
   position: fixed;
   top: 0;
   left: 0;
