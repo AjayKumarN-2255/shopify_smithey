@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "banner": {
@@ -14,7 +5,6 @@
       "settings": {
         "banner_height": 100,
         "banner_link": "",
-        "poster_alt": "Smithey cookware hero banner",
         "subheading": "THIS AUTUMN",
         "heading": "<p>ELEVATE EVERYDAY         </p>",
         "button_label": "SHOP NOW",
@@ -29,8 +19,7 @@
           "settings": {
             "faq_title": "polished cook surface",
             "faq_content": "<p>We polish our interior to a satin like finish making our cook surface easy to clean and naturally non-stick.</p>",
-            "faq_image": "shopify://shop_images/no_10_chef_skillet_dark_with_8_low_res_500x_ad08c87c-14db-4481-983f-5b51b2d0a3e6.webp",
-            "faq_image_alt": "Smithey chef skillet with polished cook surface"
+            "faq_image": "shopify://shop_images/no_10_chef_skillet_dark_with_8_low_res_500x_ad08c87c-14db-4481-983f-5b51b2d0a3e6.webp"
           }
         },
         "faq_LpUQ8n": {
@@ -38,8 +27,7 @@
           "settings": {
             "faq_title": "Made in the USA",
             "faq_content": "<p>Our cookware is designed and crafted by a team of passionate folks on an old Naval Base in Charleston, SC.</p>",
-            "faq_image": "shopify://shop_images/Boxes_Flags-small_500x_2c5f558f-5493-446e-bf68-5d8dca8aef0a.webp",
-            "faq_image_alt": "Smithey cookware boxes with American flags"
+            "faq_image": "shopify://shop_images/Boxes_Flags-small_500x_2c5f558f-5493-446e-bf68-5d8dca8aef0a.webp"
           }
         },
         "faq_xgWk3L": {
@@ -47,15 +35,13 @@
           "settings": {
             "faq_title": "Lifetime Gift",
             "faq_content": "<p>We craft cookware intended to be used daily for generations and become a true heirloom in your family’s kitchen.</p>",
-            "faq_image": "shopify://shop_images/smithey_holiday_2021_2.1_26637-small_500x_7b2f7924-09c9-4959-924e-d13fafaf6de3.webp",
-            "faq_image_alt": "Smithey cookware styled as a lifetime holiday gift"
+            "faq_image": "shopify://shop_images/smithey_holiday_2021_2.1_26637-small_500x_7b2f7924-09c9-4959-924e-d13fafaf6de3.webp"
           }
         }
       },
       "block_order": ["faq_636VmT", "faq_LpUQ8n", "faq_xgWk3L"],
       "settings": {
         "logo": "shopify://shop_images/logo.svg",
-        "logo_alt": "Smithey logo",
         "title": "Why Smithey?",
         "subtitle": "US Made Modern heirlooms",
         "background_color": "#0c2727"
@@ -66,7 +52,6 @@
       "settings": {
         "heading": "AT HOME ON OUR RANGE...",
         "collection": "cookware",
-        "image_alt": "Smithey cookware product",
         "products_to_show": 8,
         "button_label": "SHOP ALL BEST SELLERS",
         "button_link": "shopify://collections"
@@ -74,13 +59,15 @@
     },
     "image-with-content": {
       "type": "image-with-content",
+      "custom_css": [
+        "@media (min-width: 1600px) {.image-with-content {height: 35.7rem; } .image-with-content__media, .image-with-content__media img {height: 35.7rem; }}"
+      ],
       "settings": {
         "image": "shopify://shop_images/Frame_1_29.webp",
-        "image_alt": "Smithey cookware free of PFAS and synthetic coatings",
         "image_position": "left",
         "background_color": "#0b2424",
         "eyebrow": "US MADE COOKWARE",
-        "heading": "<h2>COOK WITH</h2><h2></h2><h2> CONFIDENCE,<br/>NOT CHEMICALS.</h2>",
+        "heading": "<h2>COOK WITH CONFIDENCE,<br/>NOT CHEMICALS.</h2>",
         "description": "<p>Smithey is 100% free of PFAS, pre-seasoned only with pure grapeseed oil.</p>",
         "content": "<p>We believe your cookware shouldn't come with a list of questionable chemicals. No synthetic coatings that flake or break down. No compromises. Just cookware that gets better with every meal and lasts generations.</p>",
         "button_label": "LEARN MORE",
@@ -93,7 +80,6 @@
         "background_color": "#112626",
         "video_url": "https://cdn.shopify.com/videos/c/o/v/dfb7550f7ace4c94986db2bff645ff21.mp4",
         "poster": "shopify://shop_images/qa_-_1_6_1000x_87322a74-3d42-4da8-a1a0-c54176668898.webp",
-        "poster_alt": "The Smithey story video thumbnail",
         "heading": "THE SMITHEY STORY"
       }
     },
@@ -102,7 +88,6 @@
       "settings": {
         "heading": "What's cooking with smithey",
         "blog": "recipies",
-        "image_alt": "Smithey recipe",
         "articles_to_show": 6,
         "button_label": "VIEW ALL RECIPES",
         "button_link": "shopify://blogs/recipies",
@@ -125,15 +110,13 @@
         "comparison_item_hkd7EU": {
           "type": "comparison_item",
           "settings": {
-            "article": "comparison/cast-iron",
-            "image_alt": "Smithey cast iron cookware"
+            "article": "comparison/cast-iron"
           }
         },
         "comparison_item_rRYPFA": {
           "type": "comparison_item",
           "settings": {
-            "article": "comparison/carbon-steel",
-            "image_alt": "Smithey carbon steel cookware"
+            "article": "comparison/carbon-steel"
           }
         }
       },
@@ -180,8 +163,6 @@
       ],
       "settings": {
         "article": "news/a-message-from-the-founder",
-        "image_alt": "Smithey founder Isaac Morton",
-        "signature_alt": "Isaac Morton signature",
         "background_color": "#dfdfdf",
         "read_more_page": ""
       }
