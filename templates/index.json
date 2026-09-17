@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "banner": {
@@ -60,6 +69,7 @@
     "image-with-content": {
       "type": "image-with-content",
       "custom_css": [
+        ".image-with-content__heading em {color: #f5f1e8; font-style: normal; font-weight: 400;}",
         "@media (min-width: 1600px) {.image-with-content {height: 35.7rem; } .image-with-content__media, .image-with-content__media img {height: 35.7rem; }}"
       ],
       "settings": {
@@ -67,7 +77,7 @@
         "image_position": "left",
         "background_color": "#0b2424",
         "eyebrow": "US MADE COOKWARE",
-        "heading": "<h2>COOK WITH CONFIDENCE,<br/>NOT CHEMICALS.</h2>",
+        "heading": "<h2>COOK WITH<br/>CONFIDENCE,<br/><em>NOT CHEMICALS.</em></h2>",
         "description": "<p>Smithey is 100% free of PFAS, pre-seasoned only with pure grapeseed oil.</p>",
         "content": "<p>We believe your cookware shouldn't come with a list of questionable chemicals. No synthetic coatings that flake or break down. No compromises. Just cookware that gets better with every meal and lasts generations.</p>",
         "button_label": "LEARN MORE",
