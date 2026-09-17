@@ -190,9 +190,10 @@
     flex: 0 0 calc((100vw - 2rem - 3rem) / 4);
   }
   .product-slider__cta {
-    max-width: 250px;
+    max-width: 246px;
     margin: auto;
     margin-top: 1.3rem;
+    margin-bottom: 0.5rem;
   }
   .product-slider__button {
     width: 48px;
