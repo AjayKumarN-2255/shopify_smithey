@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "our_story_hero_Vaxz3V": {
@@ -15,15 +6,16 @@
         ".our-story-hero {display: flex; align-items: flex-end; justify-content: flex-start; padding: 2.5rem 0;}",
         ".our-story-hero__content {padding: 20px; border: none; color: #ffffff;}",
         ".our-story-hero__title {text-align: start; font-size: 2.5rem; line-height: 1; margin-bottom: 1rem;}",
-        "@media (min-width: 920px) {.our-story-hero {padding: 2.5rem 1rem; } .our-story-hero__title {font-size: 3rem; max-width: 30rem; line-height: 52px; } .our-story-hero__subtitle {max-width: 25rem; }}"
+        "@media (min-width: 920px) {.our-story-hero {padding: 2.25rem 1rem; } .our-story-hero__title {font-size: 3rem; max-width: 30rem; line-height: 52px; } .our-story-hero__subtitle {max-width: 25rem; }}",
+        "@media (min-width: 1700px) {.our-story-hero {height: 29rem !important; }}"
       ],
       "name": "Our Story Hero",
       "settings": {
         "title": "Seasoning your smithey",
         "subtitle": "Like a classic car or a well-tended garden, your Smithey gives back what you put into it.",
         "image": "shopify://shop_images/Smithey_1.1_1255.webp",
-        "desktop_height": 56,
-        "mobile_height": 64
+        "desktop_height": 54,
+        "mobile_height": 70
       }
     },
     "media_tabs_nYT7NX": {
@@ -134,12 +126,7 @@
           }
         }
       },
-      "block_order": [
-        "text_Q4Vcwf",
-        "faq_dRUHAe",
-        "faq_4XUhdR",
-        "faq_4qcnFn"
-      ],
+      "block_order": ["text_Q4Vcwf", "faq_dRUHAe", "faq_4XUhdR", "faq_4qcnFn"],
       "custom_css": [],
       "name": "Content Builder",
       "settings": {
