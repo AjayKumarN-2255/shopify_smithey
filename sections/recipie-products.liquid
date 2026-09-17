@@ -50,7 +50,14 @@
             <div class="recipe-card">
               <a href="{{ article.url }}" class="recipe-card__link">
                 <div class="recipe-card__image">
-                  {{ article.image | image_url: width: 600 | image_tag: loading: 'lazy' }}
+                  {% assign recipe_image_alt = article.image.alt | default: article.title | default: section.settings.image_alt %}
+                  {{
+                    article.image
+                    | image_url: width: 600
+                    | image_tag:
+                      loading: 'lazy',
+                      alt: recipe_image_alt
+                  }}
                 </div>
 
                 <div class="recipe-card__content">
@@ -145,6 +152,12 @@
       "type": "blog",
       "id": "blog",
       "label": "Recipe Blog"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Fallback image alt text",
+      "default": "Smithey recipe"
     },
     {
       "type": "range",

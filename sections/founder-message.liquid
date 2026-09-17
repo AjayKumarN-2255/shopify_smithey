@@ -10,7 +10,13 @@
     <div class="founder-message__container">
       <div class="founder-message__image">
         {% if article.image %}
-          {{ article.image | image_url: width: 900 | image_tag: loading: 'lazy' }}
+          {{
+            article.image
+            | image_url: width: 900
+            | image_tag:
+              loading: 'lazy',
+              alt: section.settings.image_alt
+          }}
         {% endif %}
       </div>
 
@@ -42,7 +48,7 @@
         <div class="founder-message__signature">
           <img
             src="https://smithey.com/cdn/shop/files/signature-gold_1_1000x.png?v=1666869902&v=74101"
-            alt="Isaac Morton signature"
+            alt="{{ section.settings.signature_alt | escape }}"
             loading="lazy"
             width="315"
             height="160"
@@ -92,6 +98,18 @@
       "type": "article",
       "id": "article",
       "label": "Founder Article"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Founder image alt text",
+      "default": "Smithey founder Isaac Morton"
+    },
+    {
+      "type": "text",
+      "id": "signature_alt",
+      "label": "Signature image alt text",
+      "default": "Isaac Morton signature"
     },
     {
       "type": "color",

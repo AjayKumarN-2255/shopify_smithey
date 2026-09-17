@@ -29,7 +29,13 @@
             <div class="comparison-card__header">
               {% if article.image %}
                 <div class="comparison-card__image">
-                  {{ article.image | image_url: width: 900 | image_tag: loading: 'lazy' }}
+                  {{
+                    article.image
+                    | image_url: width: 900
+                    | image_tag:
+                      loading: 'lazy',
+                      alt: block.settings.image_alt
+                  }}
                 </div>
               {% endif %}
 
@@ -109,6 +115,12 @@
           "type": "article",
           "id": "article",
           "label": "Comparison Article"
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "Image alt text",
+          "default": "Smithey cookware comparison"
         }
       ]
     }

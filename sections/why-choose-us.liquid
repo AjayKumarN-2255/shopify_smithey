@@ -8,7 +8,13 @@
           class="why-us-logo"
           style="--why-us-logo: url('{{ section.settings.logo | image_url: width: 150 }}');"
         >
-          {{ section.settings.logo | image_url: width: 150 | image_tag: loading: 'lazy' }}
+          {{
+            section.settings.logo
+            | image_url: width: 150
+            | image_tag:
+              loading: 'lazy',
+              alt: section.settings.logo_alt
+          }}
         </div>
       {% endif %}
 
@@ -60,7 +66,13 @@
           <div class="why-us-faq-content">
             {% if block.settings.faq_image != blank %}
               <div class="why-us-faq-image">
-                {{ block.settings.faq_image | image_url: width: 600 | image_tag: loading: 'lazy' }}
+                {{
+                  block.settings.faq_image
+                  | image_url: width: 600
+                  | image_tag:
+                    loading: 'lazy',
+                    alt: block.settings.faq_image_alt
+                }}
               </div>
             {% endif %}
 
@@ -84,6 +96,12 @@
       "type": "image_picker",
       "id": "logo",
       "label": "Logo"
+    },
+    {
+      "type": "text",
+      "id": "logo_alt",
+      "label": "Logo alt text",
+      "default": "Smithey logo"
     },
     {
       "type": "text",
@@ -125,6 +143,12 @@
           "type": "image_picker",
           "id": "faq_image",
           "label": "FAQ Image"
+        },
+        {
+          "type": "text",
+          "id": "faq_image_alt",
+          "label": "FAQ image alt text",
+          "default": "Smithey cookware feature"
         }
       ]
     }

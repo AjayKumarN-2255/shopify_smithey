@@ -9,7 +9,10 @@
         {{
           section.settings.image
           | image_url: width: 1200
-          | image_tag: loading: 'lazy', class: 'image-with-content__image'
+          | image_tag:
+            loading: 'lazy',
+            class: 'image-with-content__image',
+            alt: section.settings.image_alt
         }}
       </div>
     {% endif %}
@@ -59,6 +62,12 @@
       "type": "image_picker",
       "id": "image",
       "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image alt text",
+      "default": "Smithey cookware free of PFAS and synthetic coatings"
     },
     {
       "type": "select",

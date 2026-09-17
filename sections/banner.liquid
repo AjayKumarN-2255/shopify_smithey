@@ -56,7 +56,7 @@
           >
           <img
             src="https://smithey.com/cdn/shop/files/preview_images/8a3e7145d8814f28b208488bb639f68e.thumbnail.0000000000_small.jpg?v=1779217395"
-            alt="Banner Video"
+            alt="{{ section.settings.poster_alt | escape }}"
           >
         </video>
       {% endif %}
@@ -109,6 +109,12 @@
       "type": "video",
       "id": "video",
       "label": "Background video"
+    },
+    {
+      "type": "text",
+      "id": "poster_alt",
+      "label": "Poster image alt text",
+      "default": "Smithey cookware hero banner"
     },
     {
       "type": "range",

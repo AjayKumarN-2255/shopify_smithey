@@ -48,7 +48,7 @@
 
                 <div class="product-card__image{% if secondary_image != blank %} product-card__image--has-secondary{% endif %}">
                   {% if product.featured_image != blank %}
-                    {% assign primary_alt = product.featured_image.alt | default: product.title %}
+                    {% assign primary_alt = product.featured_image.alt | default: product.title | default: section.settings.image_alt %}
                     {{
                       product.featured_image
                       | image_url: width: 600
@@ -60,7 +60,7 @@
                   {% endif %}
 
                   {% if secondary_image != blank %}
-                    {% assign secondary_alt = secondary_image.alt | default: product.title %}
+                    {% assign secondary_alt = secondary_image.alt | default: product.title | default: section.settings.image_alt %}
                     {{
                       secondary_image
                       | image_url: width: 600
@@ -156,6 +156,12 @@
       "type": "collection",
       "id": "collection",
       "label": "Collection"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Fallback image alt text",
+      "default": "Smithey cookware product"
     },
     {
       "type": "range",

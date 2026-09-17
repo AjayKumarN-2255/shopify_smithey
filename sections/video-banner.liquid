@@ -32,7 +32,7 @@
           <img
             class="video-banner__poster"
             src="{{ section.settings.poster | image_url: width: 1920 }}"
-            alt="{{ section.settings.heading | escape }}"
+            alt="{{ section.settings.poster_alt | escape }}"
             width="{{ section.settings.poster.width }}"
             height="{{ section.settings.poster.height }}"
             loading="lazy"
@@ -289,6 +289,12 @@
       "type": "image_picker",
       "id": "poster",
       "label": "Thumbnail / Poster Image"
+    },
+    {
+      "type": "text",
+      "id": "poster_alt",
+      "label": "Poster image alt text",
+      "default": "The Smithey story video thumbnail"
     },
     {
       "type": "text",
