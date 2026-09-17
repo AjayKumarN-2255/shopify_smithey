@@ -429,6 +429,10 @@ body.is-search-open .section-announcement-bar {
     font-weight: 700;
   }
 
+  .header-right-icons {
+    gap: 1.4rem;
+  }
+
   .header-right-nav {
     display: flex;
     gap: 1.6rem;
