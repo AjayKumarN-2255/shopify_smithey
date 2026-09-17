@@ -33,6 +33,12 @@ document.addEventListener("DOMContentLoaded", () => {
             rail.querySelectorAll(".product-card--clone").forEach((clone) => clone.remove());
         }
 
+        function updatePrevButtonVisibility() {
+            if (!prevBtn) return;
+            // Hide prev when on the first slide set
+            prevBtn.classList.toggle("is-visible", currentIndex !== cloneCount);
+        }
+
         function buildLoop() {
             removeClones();
             originalCards = [...rail.querySelectorAll(".product-card")];
@@ -71,6 +77,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 rail.offsetHeight;
                 rail.classList.remove("product-slider__rail--no-transition");
             }
+
+            updatePrevButtonVisibility();
         }
 
         function normalizePosition() {
@@ -82,6 +90,8 @@ document.addEventListener("DOMContentLoaded", () => {
             } else if (currentIndex < cloneCount) {
                 currentIndex = cloneCount + total - 1;
                 setPosition(false);
+            } else {
+                updatePrevButtonVisibility();
             }
         }
 

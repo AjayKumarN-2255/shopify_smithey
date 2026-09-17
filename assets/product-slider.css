@@ -177,6 +177,11 @@
 
 .product-slider__button--prev {
   left: -0.5rem;
+  display: none;
+}
+
+.product-slider__button--prev.is-visible {
+  display: flex;
 }
 
 .product-slider__button--next {
@@ -233,6 +238,9 @@
   .product-slider__button {
     width: 48px;
     height: 44px;
+  }
+  .product-slider__button--prev {
+    display: flex;
   }
   .product-card__image {
     width: 100%;
