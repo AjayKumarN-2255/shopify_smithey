@@ -73,7 +73,7 @@
 .why-us-faq-header {
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
+  margin-top: 19px;
 }
 
 .why-us-faq-title {
@@ -81,7 +81,7 @@
   line-height: 1.0625rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  margin-bottom: 30px;
+  margin-bottom: 28px;
   font-weight: 600;
 }
 
@@ -164,7 +164,7 @@
   }
 
   .why-us-faq-item:last-child .why-us-faq-title {
-    margin-bottom: 30px;
+    margin-bottom: 28px;
   }
 
   .why-us-faq-text {
