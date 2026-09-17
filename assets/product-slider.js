@@ -15,6 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
         let cardWidth = 0;
         let isAnimating = false;
         let animationTimer = null;
+        let startX = 0;
+        let endX = 0;
 
         const transitionDuration = 400;
 
@@ -127,6 +129,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
         nextBtn.addEventListener("click", () => move(1));
         prevBtn.addEventListener("click", () => move(-1));
+
+        viewport.addEventListener("touchstart", (e) => {
+            startX = e.touches[0].clientX;
+        });
+
+        viewport.addEventListener("touchend", (e) => {
+            endX = e.changedTouches[0].clientX;
+
+            const diff = startX - endX;
+            const threshold = 50;
+
+            if (Math.abs(diff) < threshold) return;
+
+            if (diff > 0) move(1);
+            else move(-1);
+        });
 
         let resizeTimer;
         window.addEventListener("resize", () => {
