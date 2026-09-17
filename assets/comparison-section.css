@@ -116,6 +116,11 @@
   font-size: 14px;
   font-weight: 700;
   color: #112626;
+  transition: background-color 0.2s ease;
+}
+
+.comparison-card__button:hover {
+  background-color: #b68b32;
 }
 
 @media (min-width: 920px) {
