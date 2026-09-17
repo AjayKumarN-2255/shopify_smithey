@@ -1,10 +1,10 @@
 .banner {
   position: relative;
   background-color: lightblue;
-  height: 44rem; /* ~360px */
+  height: 45.75rem; /* ~640px when 1rem ≈ 14.1px */
 }
 
-@media (min-width: 370px) and (max-width: 919px) {
+@media (min-width: 375px) and (max-width: 919px) {
   .banner {
     height: 100vh;
     max-height: 690px;
