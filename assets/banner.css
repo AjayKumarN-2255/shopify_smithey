@@ -24,7 +24,7 @@
 
 .banner-content {
   position: absolute;
-  bottom: 60px;
+  bottom: 66px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -33,6 +33,12 @@
   text-align: left;
   right: auto;
   z-index: 2;
+}
+
+@media (max-width: 374px) {
+  .banner-content {
+    bottom: 64px;
+  }
 }
 
 .banner-subheading {
@@ -119,7 +125,7 @@
   }
 
   .banner-content {
-    bottom: 80px;
+    bottom: 83px;
   }
 }
 
