@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "banner": {
@@ -5,8 +14,8 @@
       "settings": {
         "banner_height": 100,
         "banner_link": "",
-        "subheading": "LIMITED EDITION",
-        "heading": "<p>NO. 11 AMERICAN<br/>ANNIVERSARY SKILLET</p>",
+        "subheading": "THIS AUTUMN",
+        "heading": "<p>ELEVATE EVERYDAY         </p>",
         "button_label": "SHOP NOW",
         "button_link": ""
       }
@@ -39,11 +48,7 @@
           }
         }
       },
-      "block_order": [
-        "faq_636VmT",
-        "faq_LpUQ8n",
-        "faq_xgWk3L"
-      ],
+      "block_order": ["faq_636VmT", "faq_LpUQ8n", "faq_xgWk3L"],
       "settings": {
         "logo": "shopify://shop_images/logo.svg",
         "title": "Why Smithey?",
@@ -121,10 +126,7 @@
           }
         }
       },
-      "block_order": [
-        "comparison_item_hkd7EU",
-        "comparison_item_rRYPFA"
-      ],
+      "block_order": ["comparison_item_hkd7EU", "comparison_item_rRYPFA"],
       "settings": {
         "eyebrow": "Subtle Differences",
         "heading": "<p><strong>Cast Iron vs Carbon Steel...</strong></p>",
@@ -167,7 +169,8 @@
       ],
       "settings": {
         "article": "news/a-message-from-the-founder",
-        "background_color": "#dfdfdf"
+        "background_color": "#dfdfdf",
+        "read_more_page": ""
       }
     }
   },
