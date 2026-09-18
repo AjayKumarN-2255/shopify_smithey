@@ -141,16 +141,5 @@
         toggleFaq();
       }
     });
-
-    const scope = getFaqScope();
-    if (scope && scope.dataset.faqInitOpen !== 'true') {
-      scope.dataset.faqInitOpen = 'true';
-      const firstFaq = scope.querySelector('.faq__item');
-      if (firstFaq) {
-        firstFaq.classList.add('is-open');
-        const firstQuestion = firstFaq.querySelector('.faq__question');
-        if (firstQuestion) firstQuestion.setAttribute('aria-expanded', 'true');
-      }
-    }
   });
 </script>
