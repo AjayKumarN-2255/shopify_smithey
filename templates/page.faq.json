@@ -37,14 +37,14 @@
         ".contact-card__icon {display: flex; align-items: end;}",
         "@media (max-width: 919px) {.our-story-hero__content {padding: 20px 16px; }}",
         "@media (min-width: 920px) {.our-story-hero__title {font-size: 40px; }}",
-        "@media (min-width: 1700px) {.our-story-hero {min-height: 40vh !important; }}"
+        "@media (min-width: 1700px) {.our-story-hero {min-height: 356px !important; }}"
       ],
       "name": "Our Story Hero",
       "settings": {
         "title": "Frequently Asked Questions",
         "subtitle": "",
         "image": "shopify://shop_images/Screen_Shot_2021-06-09_at_4.51.33_PM.webp",
-        "desktop_height": 42,
+        "desktop_height": 43,
         "mobile_height": 40
       }
     },
@@ -220,8 +220,8 @@
         ".faq-categories__right {display: none;}",
         ".faq__question {padding: 1rem 0; height: unset;}",
         ".faq-categories {padding-bottom: 0;}",
-        ".faq__answer{font-weight: 400;}",
-        "@media (min-width: 920px) {.faq-categories__container {gap: 1.5rem !important; } .faq-categories__right {display: block; }}",
+        ".faq__answer {font-weight: 400;}",
+        "@media (min-width: 920px) {.faq-categories__container {gap: 1.5rem !important; } .faq-categories__right {display: block; } .faq__question.is-open {padding-bottom: 5px; }}",
         "@media (min-width: 1700px) {.faq-categories__container {gap: 2.5rem !important; }}"
       ],
       "name": "FAQ Categories",
