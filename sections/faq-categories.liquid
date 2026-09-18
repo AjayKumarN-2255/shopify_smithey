@@ -2,6 +2,7 @@
   id="faq-categories-{{ section.id }}"
   class="faq-categories"
   style="background-color: {{ section.settings.background_color }};"
+  data-faq-categories
 >
   <div class="faq-categories__container">
     <div
@@ -13,6 +14,7 @@
           <div
             id="faq-category-{{ category.settings.category_id }}"
             class="faq-categories__group"
+            data-faq-group
           >
             <h2 class="faq-categories__heading">
               {{ category.settings.title }}
@@ -33,15 +35,22 @@
     <aside
       class="faq-categories__right"
       style="--right-width: {{ section.settings.right_width }}%;"
+      data-faq-nav
     >
       <ul class="faq-categories__nav">
+        {% assign faq_nav_index = 0 %}
         {% for category in section.blocks %}
           {% if category.type == 'category' %}
             <li>
-              <a href="#faq-category-{{ category.settings.category_id }}">
+              <a
+                href="#faq-category-{{ category.settings.category_id }}"
+                data-faq-nav-link
+                {% if faq_nav_index == 0 %}class="is-active"{% endif %}
+              >
                 {{ category.settings.title }}
               </a>
             </li>
+            {% assign faq_nav_index = faq_nav_index | plus: 1 %}
           {% endif %}
         {% endfor %}
       </ul>
@@ -63,6 +72,10 @@
 
   #faq-categories-{{ section.id }} .faq-categories__group + .faq-categories__group {
     margin-top: 0;
+  }
+
+  #faq-categories-{{ section.id }} .faq-categories__group {
+    scroll-margin-top: calc(var(--faq-sticky-offset, 0px) + 37px);
   }
 
   #faq-categories-{{ section.id }} .faq-categories__heading {
@@ -111,6 +124,10 @@
     letter-spacing: 0;
     text-transform: none;
     color: #112626;
+  }
+
+  #faq-categories-{{ section.id }} .faq-categories__nav a.is-active {
+    font-weight: 700;
   }
 
   #faq-categories-{{ section.id }} .faq__item {
@@ -178,7 +195,7 @@
       width: var(--right-width);
       flex: 0 0 var(--right-width);
       position: sticky;
-      top: 2rem;
+      top: calc(var(--faq-sticky-offset, 0px) + 37px);
     }
 
     #faq-categories-{{ section.id }} .faq-categories__heading {
@@ -203,6 +220,77 @@
   }
 </style>
 
+<script>
+  (function () {
+    var root = document.getElementById('faq-categories-{{ section.id }}');
+    if (!root) return;
+
+    var groups = root.querySelectorAll('[data-faq-group]');
+    var links = root.querySelectorAll('[data-faq-nav-link]');
+    var stickyAside = root.querySelector('[data-faq-nav]');
+    if (!groups.length || !links.length) return;
+
+    var HEADER_GAP = 37;
+
+    function getHeader() {
+      return document.querySelector('.site-header');
+    }
+
+    function getHeaderOffset() {
+      var header = getHeader();
+      if (!header) return 0;
+
+      var styles = window.getComputedStyle(header);
+      if (styles.position === 'fixed' || styles.position === 'sticky') {
+        return header.offsetHeight;
+      }
+
+      return 0;
+    }
+
+    function updateStickyOffset() {
+      if (!stickyAside) return;
+      root.style.setProperty('--faq-sticky-offset', getHeaderOffset() + 'px');
+    }
+
+    function setActiveLink(id) {
+      links.forEach(function (link) {
+        var isActive = link.getAttribute('href') === '#' + id;
+        link.classList.toggle('is-active', isActive);
+      });
+    }
+
+    function updateActiveFromScroll() {
+      var marker = getHeaderOffset() + HEADER_GAP + 1;
+      var activeId = groups[0].id;
+
+      groups.forEach(function (group) {
+        if (group.getBoundingClientRect().top <= marker) {
+          activeId = group.id;
+        }
+      });
+
+      setActiveLink(activeId);
+    }
+
+    function onScrollOrResize() {
+      updateStickyOffset();
+      updateActiveFromScroll();
+    }
+
+    links.forEach(function (link) {
+      link.addEventListener('click', function () {
+        var id = link.getAttribute('href').slice(1);
+        if (id) setActiveLink(id);
+      });
+    });
+
+    window.addEventListener('scroll', onScrollOrResize, { passive: true });
+    window.addEventListener('resize', onScrollOrResize);
+
+    onScrollOrResize();
+  })();
+</script>
 
 {% schema %}
 {
