@@ -95,7 +95,7 @@
             "content_mobile_size": 0.9,
             "content_color": "#112626",
             "position": "left",
-            "custom_css": ".content-builder__title{\n  margin:1rem 0;\n}\n.content-builder__content {\n    margin-bottom:2rem;\n}\n.content-builder__content a{\n  color:#112626;\n}\n@media (min-width: 920px) {\n  .content-builder__content {\n    max-width: 25rem;\n  }\n}\n\n@media (min-width: 1700px) {\n  .content-builder__content {\n    max-width: 28rem;\n  }\n}"
+            "custom_css": ".content-builder__title{\n  margin:1rem 0;\n}\n.content-builder__content {\n    margin-bottom:2rem;\nfont-family: Sentinel, sans-serif !important;\n}\n.content-builder__content a{\n  color:#112626;\n}\n@media (min-width: 920px) {\n  .content-builder__content {\n    max-width: 25rem;\n  }\n}\n\n@media (min-width: 1700px) {\n  .content-builder__content {\n    max-width: 28rem;\n  }\n}"
           }
         },
         "faq_dRUHAe": {
@@ -104,7 +104,7 @@
             "question": "How often do I need to season my skillet?",
             "answer": "<p>Occasionally, your Smithey may need a fresh layer of seasoning, especially after cooking acidic foods or giving it a thorough scrub to remove stuck-on food. With regular use, your skillet will continue to season naturally, developing a darker, smoother cooking surface over time. If your seasoning has been stripped, simply follow one of the seasoning methods above to restore it.</p>",
             "position": "right",
-            "custom_css": ".faq__question-text {\n  color: #112626;\n  font-size: 18px;\n  padding-right:1rem;\n}\n\n.faq__item {\n  border-top: 2px dotted #7e899280;\n  border-bottom: none;\n}\n\n.faq__answer {\n  font-size: 13px;\n  word-spacing: 2px;\n}\n\n@media (min-width: 920px) {\n  .faq__item {\n    border-top: none;\n    max-width: 28rem;\n    border-bottom: 2px dotted #7e899280;\n  }\n\n  .faq__question-text {\n    font-size: 22px;\n  }\n\n  .faq__answer {\n    word-spacing: unset;\n  }\n\n  .faq__question {\n    align-items: start;\n  }\n}\n\n@media (min-width: 1700px) {\n  .faq__item {\n    max-width: 38rem;\n  }\n}"
+            "custom_css": ".faq__question-text {\n  color: #112626;\n  font-size: 18px;\n  padding-right:1rem;\n}\n\n.faq__item {\n  border-top: 2px dotted #7e899280;\n  border-bottom: none;\n}\n\n.faq__answer {\n  font-size: 13px;\n  word-spacing: 2px;\nfont-family: Sentinel, sans-serif !important;\n}\n\n@media (min-width: 920px) {\n  .faq__item {\n    border-top: none;\n    max-width: 28rem;\n    border-bottom: 2px dotted #7e899280;\n  }\n\n  .faq__question-text {\n    font-size: 22px;\n  }\n\n  .faq__answer {\n    word-spacing: unset;\n  }\n\n  .faq__question {\n    align-items: start;\n  }\n}\n\n@media (min-width: 1700px) {\n  .faq__item {\n    max-width: 38rem;\n  }\n}"
           }
         },
         "faq_4XUhdR": {
@@ -113,7 +113,7 @@
             "question": "Can I cook acidic foods in my Smithey?",
             "answer": "<p>Yes! You can absolutely cook acidic foods in your Smithey. Dishes made with ingredients like tomatoes, lemons, or vinegar may strip or discolor the seasoning, especially on a newer skillet before the seasoning has fully matured. This is completely normal and nothing to worry about—you can simply re-season your Smithey and keep cooking. As your seasoning continues to develop, acidic foods will have less of an effect on the cooking surface.</p>",
             "position": "right",
-            "custom_css": ".faq__question-text {\n  color: #112626;\n  font-size: 18px; \n  padding-right:1rem;\n}\n\n.faq__item {\n  border-top: 2px dotted #7e899280;\n  border-bottom: none;\n}\n\n.faq__answer {\n  font-size: 13px;\n  word-spacing: 2px;\n}\n\n@media (min-width: 920px) {\n  .faq__item {\n    border-top: none;\n    max-width: 28rem;\n    border-bottom: 2px dotted #7e899280;\n  }\n\n  .faq__question-text {\n    font-size: 22px;\n  }\n\n  .faq__answer {\n    word-spacing: unset;\n  }\n\n  .faq__question {\n    align-items: start;\n  }\n}\n\n@media (min-width: 1700px) {\n  .faq__item {\n    max-width: 38rem;\n  }\n}"
+            "custom_css": ".faq__question-text {\n  color: #112626;\n  font-size: 18px; \n  padding-right:1rem;\n}\n\n.faq__item {\n  border-top: 2px dotted #7e899280;\n  border-bottom: none;\n}\n\n.faq__answer {\n  font-size: 13px;\n  word-spacing: 2px;\nfont-family: Sentinel, sans-serif !important;\n}\n\n@media (min-width: 920px) {\n  .faq__item {\n    border-top: none;\n    max-width: 28rem;\n    border-bottom: 2px dotted #7e899280;\n  }\n\n  .faq__question-text {\n    font-size: 22px;\n  }\n\n  .faq__answer {\n    word-spacing: unset;\n  }\n\n  .faq__question {\n    align-items: start;\n  }\n}\n\n@media (min-width: 1700px) {\n  .faq__item {\n    max-width: 38rem;\n  }\n}"
           }
         },
         "faq_4qcnFn": {
@@ -122,7 +122,7 @@
             "question": "Why is my skillet changing color?",
             "answer": "<p>As you cook with your Smithey, it's normal for the appearance of the seasoning to change. Certain foods—especially acidic ingredients—can strip away a small amount of seasoning. This is completely normal and easy to restore by adding another layer of seasoning. Over time, your Smithey's cooking surface will continue to mature, becoming darker, smoother, and more naturally nonstick. Eventually, it will develop the deep jet-black color that cast iron enthusiasts love—that's the goal!</p>",
             "position": "right",
-            "custom_css": ".faq__question-text {\n  color: #112626;\n  font-size: 18px;\n  padding-right:1rem;\n}\n\n.faq__item {\n  border-top: 2px dotted #7e899280;\n  border-bottom: none;\n}\n\n.faq__answer {\n  font-size: 13px;\n  word-spacing: 2px;\n}\n\n@media (min-width: 920px) {\n  .faq__item {\n    border-top: none;\n    max-width: 28rem;\n    border-bottom: 2px dotted #7e899280;\n  }\n\n  .faq__question-text {\n    font-size: 22px;\n  }\n\n  .faq__answer {\n    word-spacing: unset;\n  }\n\n  .faq__question {\n    align-items: start;\n  }\n}\n\n@media (min-width: 1700px) {\n  .faq__item {\n    max-width: 38rem;\n  }\n}"
+            "custom_css": ".faq__question-text {\n  color: #112626;\n  font-size: 18px;\n  padding-right:1rem;\n}\n\n.faq__item {\n  border-top: 2px dotted #7e899280;\n  border-bottom: none;\n}\n\n.faq__answer {\n  font-size: 13px;\n  word-spacing: 2px;\nfont-family: Sentinel, sans-serif !important;\n}\n\n@media (min-width: 920px) {\n  .faq__item {\n    border-top: none;\n    max-width: 28rem;\n    border-bottom: 2px dotted #7e899280;\n  }\n\n  .faq__question-text {\n    font-size: 22px;\n  }\n\n  .faq__answer {\n    word-spacing: unset;\n  }\n\n  .faq__question {\n    align-items: start;\n  }\n}\n\n@media (min-width: 1700px) {\n  .faq__item {\n    max-width: 38rem;\n  }\n}"
           }
         }
       },
