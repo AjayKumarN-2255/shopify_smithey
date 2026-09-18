@@ -219,7 +219,8 @@
       "custom_css": [
         ".faq-categories__right {display: none;}",
         ".faq__question {padding: 1rem 0; height: unset;}",
-        " .faq-categories {padding-bottom: 0; }",
+        ".faq-categories {padding-bottom: 0;}",
+        ".faq__answer{font-weight: 400;}",
         "@media (min-width: 920px) {.faq-categories__container {gap: 1.5rem !important; } .faq-categories__right {display: block; }}",
         "@media (min-width: 1700px) {.faq-categories__container {gap: 2.5rem !important; }}"
       ],
