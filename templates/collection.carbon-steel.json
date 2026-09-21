@@ -60,11 +60,47 @@
         "featured_product_index_mobile": 0,
         "featured_column_span": 2
       }
+    },
+    "quote_slider_carbon": {
+      "type": "quote-slider",
+      "blocks": {
+        "quote_1": {
+          "type": "quote",
+          "settings": {
+            "subheading": "THE 5 BEST CARBON STEEL PANS TO SEAR, FRY, AND BAKE IN, ACCORDING TO OUR TESTS",
+            "quote": "Smithey’s hand-forged carbon steel skillets are stunning pieces of cookware that are just waiting to become family heirlooms.",
+            "attribution": "-FOOD AND WINE",
+            "cta_label": "SHOP OVAL ROASTER",
+            "cta_link": ""
+          }
+        },
+        "quote_2": {
+          "type": "quote",
+          "settings": {
+            "subheading": "THE 5 BEST CARBON STEEL PANS TO SEAR, FRY, AND BAKE IN, ACCORDING TO OUR TESTS",
+            "quote": "Smithey’s hand-forged carbon steel skillets are stunning pieces of cookware that are just waiting to become family heirlooms.",
+            "attribution": "-FOOD AND WINE",
+            "cta_label": "SHOP OVAL ROASTER",
+            "cta_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "quote_1",
+        "quote_2"
+      ],
+      "name": "Quote Slider",
+      "settings": {
+        "heading": "HOT OFF THE PRESS",
+        "background_color": "#be893d",
+        "text_color": "#112626"
+      }
     }
   },
   "order": [
     "content_builder_XHPQjt",
     "our_story_hero_tfKiet",
-    "main"
+    "main",
+    "quote_slider_carbon"
   ]
 }
