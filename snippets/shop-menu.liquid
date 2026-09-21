@@ -4,11 +4,15 @@
       <div class="shop-menu__categories">
         <h3 class="shop-menu__categories-title">Shop by category</h3>
 
-        <a href="{{ collections['build-your-own-bundle'].url | default: '/collections/build-your-own-bundle' }}">Build Your Own Bundle</a>
+        <a href="{{ collections['build-your-own-bundle'].url | default: '/collections/build-your-own-bundle' }}"
+          >Build Your Own Bundle</a
+        >
         <a href="{{ collections['accessories'].url | default: '/collections/accessories' }}">Accessories</a>
         <a href="{{ collections['factory-seconds'].url | default: '/collections/factory-seconds' }}">Factory Seconds</a>
         <a href="{{ collections['glass-lids'].url | default: '/collections/glass-lids' }}">Glass lids</a>
-        <a href="{{ collections['carbon-steel-lid'].url | default: '/collections/carbon-steel-lid' }}">Carbon Steel Lid</a>
+        <a href="{{ collections['carbon-steel-lid'].url | default: '/collections/carbon-steel-lid' }}"
+          >Carbon Steel Lid</a
+        >
         <a href="{{ collections['gift-cards'].url | default: '/collections/gift-cards' }}">Gift cards</a>
 
         <a href="{{ routes.collections_url | default: '/collections' }}" class="shop-menu__categories-cta">Shop all</a>
@@ -16,30 +20,30 @@
     </div>
 
     <div class="shop-menu__column shop-menu__column--right">
-      {% assign cookware_collection = collections.cookware %}
+      {% assign cookware_collection = collections.shop %}
 
       {% if cookware_collection != blank %}
         <div class="shop-menu__featured-products">
           <div class="shop-menu__featured-products-list">
             {% for product in cookware_collection.products limit: 3 %}
-              <a href="{{ routes.collections_url | default: '/collections' }}" class="shop-menu__product-card">
+              <a href="/collections/{{ product.title | handleize }}" class="shop-menu__product-card">
                 <div class="shop-menu__product-card-image">
                   {% if product.featured_image %}
-                    {{ product.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: product.title }}
+                    {{
+                      product.featured_image
+                      | image_url: width: 600
+                      | image_tag: loading: 'lazy', alt: product.title
+                    }}
                   {% endif %}
                 </div>
 
                 <div class="shop-menu__product-card-content">
                   <h4 class="shop-menu__product-card-title">{{ product.title }}</h4>
 
-                  {% if product.metafields.custom.menu_description != blank %}
-                    <p class="shop-menu__product-card-description">
-                      {{ product.metafields.custom.menu_description }}
-                    </p>
-                  {% elsif product.metafields.custom.material != blank %}
-                    <p class="shop-menu__product-card-description">
-                      {{ product.metafields.custom.material }}
-                    </p>
+                  {% if product.description != blank %}
+                    <div class="shop-menu__product-card-description">
+                      {{ product.description }}
+                    </div>
                   {% endif %}
                 </div>
               </a>
@@ -106,7 +110,7 @@
   }
 
   .shop-menu__categories a:not(.shop-menu__categories-cta)::before {
-    content: "";
+    content: '';
     display: block;
     flex-shrink: 0;
     width: 0;
@@ -119,7 +123,8 @@
     background-position: center;
     opacity: 0;
     transform: translateX(-10px);
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, width 0.3s ease-in-out, margin-right 0.3s ease-in-out;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, width 0.3s ease-in-out,
+      margin-right 0.3s ease-in-out;
   }
 
   .shop-menu__categories a:not(.shop-menu__categories-cta):hover {
@@ -238,7 +243,7 @@
   }
 
   .shop-menu__product-card-title::before {
-    content: "";
+    content: '';
     display: block;
     flex-shrink: 0;
     width: 12px;

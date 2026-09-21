@@ -6,16 +6,39 @@
 >
   <div class="main-collection-container">
     {% assign collection = section.settings.collection %}
+
+    {% if section.settings.show_inline_nav %}
+      <ul class="inline-nav">
+        <li>
+          <a href="/products/glass-lids">GLASS LIDS</a>
+        </li>
+
+        <li>
+          <a href="/collections/accessories">Accessories</a>
+        </li>
+
+        <li>
+          <a href="/collections/best-sellers">Best Sellers</a>
+        </li>
+
+        <li>
+          <a href="/products/giftcard">Gift Cards</a>
+        </li>
+      </ul>
+    {% endif %}
+
     {% if collection != blank %}
-      <div class="main-collection-products__header">
-        <h2 class="main-collection-products__title">
-          {% if section.settings.custom_title != blank %}
-            {{ section.settings.custom_title }}
-          {% else %}
-            {{ collection.title }}
-          {% endif %}
-        </h2>
-      </div>
+      {% if section.settings.show_collection_title %}
+        <div class="main-collection-products__header">
+          <h2 class="main-collection-products__title">
+            {% if section.settings.custom_title != blank %}
+              {{ section.settings.custom_title }}
+            {% else %}
+              {{ collection.title }}
+            {% endif %}
+          </h2>
+        </div>
+      {% endif %}
     {% endif %}
     {% if collection != blank %}
       <div class="main-collection-products__grid">
@@ -150,6 +173,18 @@
 {
   "name": "Main Collection Products",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_inline_nav",
+      "label": "Show top navigation",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_title",
+      "label": "Show collection title",
+      "default": true
+    },
     {
       "type": "text",
       "id": "custom_title",
