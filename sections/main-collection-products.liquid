@@ -5,7 +5,14 @@
   style="background-color: {{ section.settings.background_color }};"
 >
   <div class="main-collection-container">
-    {% assign collection = section.settings.collection %}
+    {% comment %}
+      On collection pages, keep the page collection so the picker cannot
+      override it with the wrong collection (e.g. "All").
+      Use the section picker only when this section is placed elsewhere.
+    {% endcomment %}
+    {% unless request.page_type == 'collection' and collection != blank %}
+      {% assign collection = section.settings.collection %}
+    {% endunless %}
 
     {% if section.settings.show_inline_nav %}
       <ul class="inline-nav">

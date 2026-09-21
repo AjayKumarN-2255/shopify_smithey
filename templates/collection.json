@@ -3,6 +3,8 @@
         "main": {
             "type": "main-collection-products",
             "settings": {
+                "show_inline_nav": true,
+                "show_collection_title": false,
                 "custom_title": "",
                 "background_color": "#ffffff",
                 "collection": "all",
