@@ -564,6 +564,13 @@ body.is-search-open .section-announcement-bar {
   }
 }
 
+@media (min-width: 1440px) {
+  .mega-menu-container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
 @media (min-width: 920px) and (max-width: 1023px) {
   .site-header {
     padding: 0 0.875rem;

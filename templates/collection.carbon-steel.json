@@ -1,7 +1,43 @@
 {
   "sections": {
+    "content_builder_XHPQjt": {
+      "type": "content-builder",
+      "name": "Content Builder",
+      "settings": {
+        "background_color": "#ffffff",
+        "desktop_padding": 2.5,
+        "mobile_padding": 1,
+        "show_features": false,
+        "custom_css": ".our-story-hero__content {\n  padding: 0 !important;\n}\n.content-builder__container{\ndisplay:none;\n}\n.our-story-hero {\n  padding: 63px 28px;\n}\n\n@media (min-width: 920px) {\n  .our-story-hero {\n    padding: 72px 32px;\n  }\n}"
+      }
+    },
+    "our_story_hero_tfKiet": {
+      "type": "our-story-hero",
+      "custom_css": [
+        ".our-story-hero__content {border: none;}",
+        ".our-story-hero {align-items: end; justify-content: start;}",
+        ".our-story-hero__title {text-align: start; font-size: 22px; margin-bottom: 7px; max-width: 20rem;}",
+        ".our-story-hero__subtitle {color: white; font-size: 16px; font-family: Sentinel, ui-serif, serif; max-width: 20rem;}",
+        "@media (min-width: 920px) {.our-story-hero__title {font-size: 45px; max-width: 40rem; margin-bottom: 12px; } .our-story-hero__subtitle {font-size: 24px; max-width: 40rem; }}"
+      ],
+      "name": "Our Story Hero",
+      "settings": {
+        "title": "Lighten Up With Our Carbon Steel Collection",
+        "subtitle": "Our lightweight carbon steel skillets are naturally non-stick making sauteing, perfecting your chef toss, and stove-to-table serving effortless.",
+        "image": "shopify://shop_images/stir-fry.webp",
+        "desktop_height": 87,
+        "mobile_height": 78
+      }
+    },
     "main": {
       "type": "main-collection-products",
+      "custom_css": [
+        ".main-collection-products{background-color: #e4dfda !important;}",
+        ".main-collection-products__grid {padding: 28px !important; max-width: 62rem; gap: 28px;}",
+        ".product-card__image-wrapper {min-height: 15.32rem;}",
+        ".product-card__content {min-height: 7.1rem;}",
+        "@media (min-width: 920px) {.main-collection-products__grid {gap: 32px; } .product-card__image-wrapper {height: 23.25rem; } .main-collection-products{padding-top: 40px}}"
+      ],
       "settings": {
         "show_inline_nav": false,
         "show_collection_title": false,
@@ -10,7 +46,7 @@
         "collection": "carbon-steel",
         "products_to_show": 8,
         "desktop_columns": "2",
-        "mobile_columns": "2",
+        "mobile_columns": "1",
         "featured_product_index_desktop": 0,
         "featured_product_index_mobile": 0,
         "featured_column_span": 2
@@ -18,6 +54,8 @@
     }
   },
   "order": [
+    "content_builder_XHPQjt",
+    "our_story_hero_tfKiet",
     "main"
   ]
 }
