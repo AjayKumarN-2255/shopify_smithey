@@ -35,11 +35,13 @@
   background-color: transparent;
 }
 
-.inline-nav a:hover {
+.inline-nav a:hover,
+.inline-nav a.active {
   color: #112626;
 }
 
-.inline-nav a:hover::after {
+.inline-nav a:hover::after,
+.inline-nav a.active::after {
   background-color: #b68b32;
 }
 

@@ -21,11 +21,27 @@
         </li>
 
         <li>
-          <a href="/collections/accessories">Accessories</a>
+          <a
+            href="/collections/accessories"
+            {% if collection.handle == 'accessories' %}
+              class="active"
+              aria-current="page"
+            {% endif %}
+          >
+            Accessories
+          </a>
         </li>
 
         <li>
-          <a href="/collections/best-sellers">Best Sellers</a>
+          <a
+            href="/collections/best-sellers"
+            {% if collection.handle == 'best-sellers' %}
+              class="active"
+              aria-current="page"
+            {% endif %}
+          >
+            Best Sellers
+          </a>
         </li>
 
         <li>
