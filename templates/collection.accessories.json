@@ -8,23 +8,25 @@
  * ------------------------------------------------------------
  */
 {
-  "sections": {
-    "main": {
-      "type": "main-collection-products",
-      "settings": {
-        "custom_title": "",
-        "background_color": "#ffffff",
-        "collection": "all",
-        "products_to_show": 8,
-        "desktop_columns": "3",
-        "mobile_columns": "2",
-        "featured_product_index_desktop": 0,
-        "featured_product_index_mobile": 0,
-        "featured_column_span": 2
-      }
-    }
-  },
-  "order": [
-    "main"
-  ]
+    "sections": {
+        "main": {
+            "type": "main-collection-products",
+            "settings": {
+                "show_inline_nav": true,
+                "show_collection_title": false,
+                "custom_title": "",
+                "background_color": "#ffffff",
+                "collection": "accessories",
+                "products_to_show": 8,
+                "desktop_columns": "3",
+                "mobile_columns": "2",
+                "featured_product_index_desktop": 1,
+                "featured_product_index_mobile": 0,
+                "featured_column_span": 2
+            }
+        }
+    },
+    "order": [
+        "main"
+    ]
 }
