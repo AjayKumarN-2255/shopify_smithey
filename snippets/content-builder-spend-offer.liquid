@@ -1,0 +1,212 @@
+{% assign selector = '#content-builder-spend-offer-' | append: block.id %}
+
+<div
+  id="content-builder-spend-offer-{{ block.id }}"
+  class="content-builder__spend-offer"
+  {{ block.shopify_attributes }}
+>
+  <div class="content-builder__spend-offer-container">
+    {% if block.settings.spend_text_1 != blank or block.settings.offer_text_1 != blank %}
+      <div class="content-builder__spend-offer-col content-builder__spend-offer-col--start">
+        {% if block.settings.offer_link_1 != blank %}
+          <a href="{{ block.settings.offer_link_1 }}" class="content-builder__spend-offer-link">
+        {% endif %}
+
+        {% if block.settings.spend_text_1 != blank %}
+          <p class="content-builder__spend-offer-title">{{ block.settings.spend_text_1 }}</p>
+        {% endif %}
+
+        {% if block.settings.offer_text_1 != blank %}
+          <span class="content-builder__spend-offer-badge">{{ block.settings.offer_text_1 }}</span>
+        {% endif %}
+
+        {% if block.settings.offer_link_1 != blank %}
+          </a>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if block.settings.spend_text_2 != blank or block.settings.offer_text_2 != blank %}
+      <div class="content-builder__spend-offer-col content-builder__spend-offer-col--center">
+        {% if block.settings.offer_link_2 != blank %}
+          <a href="{{ block.settings.offer_link_2 }}" class="content-builder__spend-offer-link">
+        {% endif %}
+
+        {% if block.settings.spend_text_2 != blank %}
+          <p class="content-builder__spend-offer-title">{{ block.settings.spend_text_2 }}</p>
+        {% endif %}
+
+        {% if block.settings.offer_text_2 != blank %}
+          <span class="content-builder__spend-offer-badge">{{ block.settings.offer_text_2 }}</span>
+        {% endif %}
+
+        {% if block.settings.offer_link_2 != blank %}
+          </a>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if block.settings.spend_text_3 != blank or block.settings.offer_text_3 != blank %}
+      <div class="content-builder__spend-offer-col content-builder__spend-offer-col--end">
+        {% if block.settings.offer_link_3 != blank %}
+          <a href="{{ block.settings.offer_link_3 }}" class="content-builder__spend-offer-link">
+        {% endif %}
+
+        {% if block.settings.spend_text_3 != blank %}
+          <p class="content-builder__spend-offer-title">{{ block.settings.spend_text_3 }}</p>
+        {% endif %}
+
+        {% if block.settings.offer_text_3 != blank %}
+          <span class="content-builder__spend-offer-badge">{{ block.settings.offer_text_3 }}</span>
+        {% endif %}
+
+        {% if block.settings.offer_link_3 != blank %}
+          </a>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<style>
+  {{ selector }} {
+    width: 100%;
+    max-width: 100%;
+    align-self: stretch;
+    margin: 0;
+  }
+
+  {{ selector }} .content-builder__spend-offer-container {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    background-color: {{ block.settings.background_color }};
+    padding: 0;
+  }
+
+  {{ selector }} .content-builder__spend-offer-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.35rem;
+    padding: 0;
+    min-width: 0;
+  }
+
+  {{ selector }} .content-builder__spend-offer-col--start {
+    flex: 0.9;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  {{ selector }} .content-builder__spend-offer-col--center {
+    flex: 1.2;
+    align-items: center;
+    text-align: center;
+  }
+
+  {{ selector }} .content-builder__spend-offer-col--end {
+    flex: 0.9;
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  {{ selector }} .content-builder__spend-offer-col:not(:last-child) {
+    border-right: 1px dotted rgba(255, 255, 255, 0.35);
+  }
+
+  {{ selector }} .content-builder__spend-offer-link {
+    display: flex;
+    flex-direction: column;
+    align-items: inherit;
+    justify-content: center;
+    gap: 0.35rem;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  {{ selector }} .content-builder__spend-offer-title {
+    margin: 0;
+    color: {{ block.settings.spend_text_color }};
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  {{ selector }} .content-builder__spend-offer-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: {{ block.settings.offer_bg_color }};
+    color: {{ block.settings.offer_text_color }};
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1;
+    padding: 0.28rem 0.7rem;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  @media (min-width: 920px) {
+    {{ selector }} .content-builder__spend-offer-container {
+      padding: 0;
+    }
+
+    {{ selector }} .content-builder__spend-offer-col {
+      gap: 8px;
+      padding: 0;
+    }
+
+    {{ selector }} .content-builder__spend-offer-col--start,
+    {{ selector }} .content-builder__spend-offer-col--end {
+      flex: 1 1 0;
+    }
+
+    {{ selector }} .content-builder__spend-offer-col--center {
+      flex: 0 0 265px;
+      width: 265px;
+    }
+
+    {{ selector }} .content-builder__spend-offer-link {
+      gap: 8px;
+    }
+
+    {{ selector }} .content-builder__spend-offer-title {
+      font-size: 16px;
+    }
+
+    {{ selector }} .content-builder__spend-offer-badge {
+      font-size: 14px;
+      padding: 0.45rem 1.15rem;
+    }
+  }
+
+  @media (min-width: 1700px) {
+    {{ selector }} .content-builder__spend-offer-col,
+    {{ selector }} .content-builder__spend-offer-link {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    {{ selector }} .content-builder__spend-offer-col--start,
+    {{ selector }} .content-builder__spend-offer-col--start .content-builder__spend-offer-link {
+      justify-content: flex-start;
+    }
+
+    {{ selector }} .content-builder__spend-offer-col--center,
+    {{ selector }} .content-builder__spend-offer-col--center .content-builder__spend-offer-link {
+      justify-content: center;
+    }
+
+    {{ selector }} .content-builder__spend-offer-col--end,
+    {{ selector }} .content-builder__spend-offer-col--end .content-builder__spend-offer-link {
+      justify-content: flex-end;
+    }
+  }
+
+  {{ block.settings.custom_css | replace: '&', selector }}
+</style>

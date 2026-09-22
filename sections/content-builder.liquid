@@ -31,6 +31,9 @@
 
             {% when 'login-form' %}
               {% render 'content-builder-login-form', block: block %}
+
+            {% when 'spend-offer' %}
+              {% render 'content-builder-spend-offer', block: block %}
           {% endcase %}
         {% endif %}
       {% endfor %}
@@ -63,6 +66,9 @@
 
             {% when 'login-form' %}
               {% render 'content-builder-login-form', block: block %}
+
+            {% when 'spend-offer' %}
+              {% render 'content-builder-spend-offer', block: block %}
           {% endcase %}
         {% endif %}
       {% endfor %}
@@ -736,6 +742,125 @@
           "id": "answer",
           "label": "Answer",
           "default": "<p>We accept returns within 30 days of purchase.</p>"
+        },
+        {
+          "type": "select",
+          "id": "position",
+          "label": "Position",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "textarea",
+          "id": "custom_css",
+          "label": "Custom CSS",
+          "info": "Use '&' to target this block. Example: '& { margin-top: 2rem; }'"
+        }
+      ]
+    },
+    {
+      "type": "spend-offer",
+      "name": "Spend Offer",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Column 1"
+        },
+        {
+          "type": "text",
+          "id": "spend_text_1",
+          "label": "Spend text",
+          "default": "Spend $450"
+        },
+        {
+          "type": "text",
+          "id": "offer_text_1",
+          "label": "Offer text",
+          "default": "$50 off"
+        },
+        {
+          "type": "url",
+          "id": "offer_link_1",
+          "label": "Offer link"
+        },
+        {
+          "type": "header",
+          "content": "Column 2"
+        },
+        {
+          "type": "text",
+          "id": "spend_text_2",
+          "label": "Spend text",
+          "default": "Spend $600"
+        },
+        {
+          "type": "text",
+          "id": "offer_text_2",
+          "label": "Offer text",
+          "default": "$75 off"
+        },
+        {
+          "type": "url",
+          "id": "offer_link_2",
+          "label": "Offer link"
+        },
+        {
+          "type": "header",
+          "content": "Column 3"
+        },
+        {
+          "type": "text",
+          "id": "spend_text_3",
+          "label": "Spend text",
+          "default": "Spend $750"
+        },
+        {
+          "type": "text",
+          "id": "offer_text_3",
+          "label": "Offer text",
+          "default": "$125 off"
+        },
+        {
+          "type": "url",
+          "id": "offer_link_3",
+          "label": "Offer link"
+        },
+        {
+          "type": "header",
+          "content": "Style"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background color",
+          "default": "#112626"
+        },
+        {
+          "type": "color",
+          "id": "spend_text_color",
+          "label": "Spend text color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "offer_bg_color",
+          "label": "Offer badge background",
+          "default": "#c49a4a"
+        },
+        {
+          "type": "color",
+          "id": "offer_text_color",
+          "label": "Offer badge text color",
+          "default": "#ffffff"
         },
         {
           "type": "select",
