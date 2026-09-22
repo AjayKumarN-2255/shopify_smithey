@@ -53,17 +53,17 @@
               <div class="bundle-products__grid">
                 {% for product in tab_collection.products %}
                   <article class="bundle-products__card">
-                    <a href="{{ product.url }}" class="bundle-products__card-link">
-                      {% assign secondary_image = nil %}
-                      {% if product.images.size > 1 %}
-                        {% for image in product.images %}
-                          {% unless image == product.featured_image %}
-                            {% assign secondary_image = image %}
-                            {% break %}
-                          {% endunless %}
-                        {% endfor %}
-                      {% endif %}
+                    {% assign secondary_image = nil %}
+                    {% if product.images.size > 1 %}
+                      {% for image in product.images %}
+                        {% unless image == product.featured_image %}
+                          {% assign secondary_image = image %}
+                          {% break %}
+                        {% endunless %}
+                      {% endfor %}
+                    {% endif %}
 
+                    <a href="{{ product.url }}" class="bundle-products__card-image-link">
                       <div class="bundle-products__card-image{% if secondary_image != blank %} bundle-products__card-image--has-secondary{% endif %}">
                         {% if product.tags contains 'engravable' or product.tags contains 'Engravable' %}
                           <span class="bundle-products__card-badge">Engravable</span>
@@ -93,44 +93,52 @@
                           }}
                         {% endif %}
                       </div>
-
-                      <div class="bundle-products__card-content">
-                        <h3 class="bundle-products__card-title">{{ product.title }}</h3>
-
-                        {% if product.metafields.custom.material != blank %}
-                          <p class="bundle-products__card-material">
-                            {{ product.metafields.custom.material }}
-                          </p>
-                        {% endif %}
-
-                        <div class="bundle-products__card-footer">
-                          <div class="bundle-products__card-reviews">
-                            {% assign rating = product.metafields.custom.rating.value | default: 0 %}
-                            <span class="bundle-products__card-rating">
-                              {% for i in (1..5) %}
-                                {% if i <= rating %}★{% else %}☆{% endif %}
-                              {% endfor %}
-                            </span>
-                            {% if product.metafields.custom.reviews_count != blank %}
-                              <span class="bundle-products__card-review-count">
-                                {{ product.metafields.custom.reviews_count }} Reviews
-                              </span>
-                            {% endif %}
-                          </div>
-
-                          <span class="bundle-products__card-price">
-                            {{ product.price | money }}
-                          </span>
-                        </div>
-                      </div>
                     </a>
 
-                    {% assign card_description = product.description | strip_html | strip %}
-                    {% if card_description != blank %}
-                      <p class="bundle-products__card-description">
-                        {{ card_description }}
-                      </p>
-                    {% endif %}
+                    <div class="bundle-products__card-info">
+                      <a href="{{ product.url }}" class="bundle-products__card-link">
+                        <div class="bundle-products__card-content">
+                          <h3 class="bundle-products__card-title">{{ product.title }}</h3>
+
+                          {% if product.metafields.custom.material != blank %}
+                            <p class="bundle-products__card-material">
+                              {{ product.metafields.custom.material }}
+                            </p>
+                          {% endif %}
+
+                          <div class="bundle-products__card-footer">
+                            <div class="bundle-products__card-reviews">
+                              {% assign rating = product.metafields.custom.rating.value | default: 0 %}
+                              <span class="bundle-products__card-rating">
+                                {% for i in (1..5) %}
+                                  {% if i <= rating %}★{% else %}☆{% endif %}
+                                {% endfor %}
+                              </span>
+                              {% if product.metafields.custom.reviews_count != blank %}
+                                <span class="bundle-products__card-review-count">
+                                  {{ product.metafields.custom.reviews_count }} Reviews
+                                </span>
+                              {% endif %}
+                            </div>
+
+                            <span class="bundle-products__card-price">
+                              {{ product.price | money }}
+                            </span>
+                          </div>
+                        </div>
+                      </a>
+
+                      {% assign card_description = product.description | strip_html | strip %}
+                      {% if card_description != blank %}
+                        <p class="bundle-products__card-description">
+                          {{ card_description }}
+                        </p>
+                      {% endif %}
+
+                      <a href="{{ product.url }}" class="bundle-products__card-details">
+                        See details
+                      </a>
+                    </div>
 
                     <hr class="bundle-products__card-divider">
 
