@@ -1,0 +1,244 @@
+{{ 'bundle-products.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'bundle-products.js' | asset_url }}" defer></script>
+
+<section
+  id="bundle-products-{{ section.id }}"
+  class="bundle-products"
+>
+  <div class="bundle-products__container">
+    <div class="bundle-products__header">
+      <div class="bundle-products__header-left">
+        {% if section.blocks.size > 0 %}
+          <nav class="bundle-products__tabs" aria-label="Bundle collections">
+            {% for block in section.blocks %}
+              <button
+                type="button"
+                class="bundle-products__tab{% if forloop.first %} is-active{% endif %}"
+                data-tab="{{ block.id }}"
+                aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}"
+                {{ block.shopify_attributes }}
+              >
+                {{ block.settings.title }}
+              </button>
+            {% endfor %}
+          </nav>
+        {% endif %}
+      </div>
+
+      <div class="bundle-products__header-right">
+        <h2 class="bundle-products__bundle-title">
+          {{ section.settings.bundle_heading }}
+        </h2>
+      </div>
+    </div>
+
+    <div class="bundle-products__body">
+      <div class="bundle-products__left">
+        {% for block in section.blocks %}
+          {% assign tab_collection = block.settings.collection %}
+          {% assign tab_title = block.settings.title | default: tab_collection.title %}
+
+          <div
+            class="bundle-products__panel"
+            id="bundle-products-panel-{{ block.id }}"
+            data-panel="{{ block.id }}"
+          >
+            {% if tab_title != blank %}
+              <h2 class="bundle-products__title" id="bundle-products-heading-{{ block.id }}">
+                {{ tab_title }}
+              </h2>
+            {% endif %}
+
+            {% if tab_collection != blank and tab_collection.products.size > 0 %}
+              <div class="bundle-products__grid">
+                {% for product in tab_collection.products %}
+                  <article class="bundle-products__card">
+                    <a href="{{ product.url }}" class="bundle-products__card-link">
+                      {% assign secondary_image = nil %}
+                      {% if product.images.size > 1 %}
+                        {% for image in product.images %}
+                          {% unless image == product.featured_image %}
+                            {% assign secondary_image = image %}
+                            {% break %}
+                          {% endunless %}
+                        {% endfor %}
+                      {% endif %}
+
+                      <div class="bundle-products__card-image{% if secondary_image != blank %} bundle-products__card-image--has-secondary{% endif %}">
+                        {% if product.tags contains 'engravable' or product.tags contains 'Engravable' %}
+                          <span class="bundle-products__card-badge">Engravable</span>
+                        {% endif %}
+
+                        {% if product.featured_image != blank %}
+                          {% assign primary_alt = product.featured_image.alt | default: product.title %}
+                          {{
+                            product.featured_image
+                            | image_url: width: 800
+                            | image_tag:
+                              loading: 'lazy',
+                              class: 'bundle-products__card-image-primary',
+                              alt: primary_alt
+                          }}
+                        {% endif %}
+
+                        {% if secondary_image != blank %}
+                          {% assign secondary_alt = secondary_image.alt | default: product.title %}
+                          {{
+                            secondary_image
+                            | image_url: width: 800
+                            | image_tag:
+                              loading: 'lazy',
+                              class: 'bundle-products__card-image-secondary',
+                              alt: secondary_alt
+                          }}
+                        {% endif %}
+                      </div>
+
+                      <div class="bundle-products__card-content">
+                        <h3 class="bundle-products__card-title">{{ product.title }}</h3>
+
+                        {% if product.metafields.custom.material != blank %}
+                          <p class="bundle-products__card-material">
+                            {{ product.metafields.custom.material }}
+                          </p>
+                        {% endif %}
+
+                        <div class="bundle-products__card-footer">
+                          <div class="bundle-products__card-reviews">
+                            {% assign rating = product.metafields.custom.rating.value | default: 0 %}
+                            <span class="bundle-products__card-rating">
+                              {% for i in (1..5) %}
+                                {% if i <= rating %}★{% else %}☆{% endif %}
+                              {% endfor %}
+                            </span>
+                            {% if product.metafields.custom.reviews_count != blank %}
+                              <span class="bundle-products__card-review-count">
+                                {{ product.metafields.custom.reviews_count }} Reviews
+                              </span>
+                            {% endif %}
+                          </div>
+
+                          <span class="bundle-products__card-price">
+                            {{ product.price | money }}
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+
+                    {% assign card_description = product.description | strip_html | strip %}
+                    {% if card_description != blank %}
+                      <p class="bundle-products__card-description">
+                        {{ card_description }}
+                      </p>
+                    {% endif %}
+
+                    <hr class="bundle-products__card-divider">
+
+                    <button
+                      type="button"
+                      class="bundle-products__card-button"
+                      data-product-id="{{ product.id }}"
+                    >
+                      {{ section.settings.button_text }}
+                    </button>
+                  </article>
+                  {% endfor %}
+              </div>
+            {% else %}
+              <p class="bundle-products__empty-collection">No products in this collection.</p>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+
+      <aside class="bundle-products__right">
+        <div class="bundle-products__empty">
+          {{ section.settings.empty_text }}
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+{% if section.settings.custom_css != blank %}
+  {% assign section_css_selector = '#bundle-products-' | append: section.id %}
+  <style>
+    {{ section.settings.custom_css | replace: '#SECTION_ID', section_css_selector }}
+  </style>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Bundle Products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "bundle_heading",
+      "label": "Bundle heading",
+      "default": "Your Bundle"
+    },
+    {
+      "type": "text",
+      "id": "empty_text",
+      "label": "Empty bundle text",
+      "default": "+ Add your first item"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Add to bundle button",
+      "default": "Add to Bundle"
+    },
+    {
+      "type": "textarea",
+      "id": "custom_css",
+      "label": "Custom CSS",
+      "info": "Use #SECTION_ID to target this section. Example: #SECTION_ID { padding: 2rem; }"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "items",
+      "name": "Items",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Tab name",
+          "default": "Cast Iron"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bundle Products",
+      "blocks": [
+        {
+          "type": "items",
+          "settings": {
+            "title": "Cast Iron"
+          }
+        },
+        {
+          "type": "items",
+          "settings": {
+            "title": "Carbon Steel"
+          }
+        },
+        {
+          "type": "items",
+          "settings": {
+            "title": "Accessories"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

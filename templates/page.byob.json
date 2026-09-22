@@ -1,71 +1,102 @@
 {
-    "sections": {
-        "content-builder": {
-            "type": "content-builder",
-            "blocks": {
-                "text_hLbKQq": {
-                    "type": "text",
-                    "settings": {
-                        "title": "Design your smithey BUNDLE",
-                        "title_desktop_size": 2.6,
-                        "title_mobile_size": 2.6,
-                        "title_color": "#ffffff",
-                        "content": "<p>Craft a collection to fit your kitchen's needs. Save more as your set grows.</p>",
-                        "content_desktop_size": 0.7,
-                        "content_mobile_size": 1,
-                        "content_color": "#ffffff",
-                        "position": "left",
-                        "custom_css": ".content-builder__title{\n   max-width:unset;\n   line-height:1;\n}\n@media (min-width: 920px) {\n  .content-builder__title {\n    max-width: 25rem;\n    margin-bottom:16px;\n  }\n}\n@media (min-width: 1700px) {\n  .content-builder__title {\n    max-width: unset;\n  }\n}"
-                    }
-                },
-                "spend_offer_Nry3pb": {
-                    "type": "spend-offer",
-                    "settings": {
-                        "spend_text_1": "Spend $450",
-                        "offer_text_1": "$50 off",
-                        "offer_link_1": "",
-                        "spend_text_2": "Spend $600",
-                        "offer_text_2": "$75 off",
-                        "offer_link_2": "",
-                        "spend_text_3": "Spend $750",
-                        "offer_text_3": "$125 off",
-                        "offer_link_3": "",
-                        "background_color": "#183131",
-                        "spend_text_color": "#ffffff",
-                        "offer_bg_color": "#c49a4a",
-                        "offer_text_color": "#112626",
-                        "position": "left",
-                        "custom_css": ""
-                    }
-                },
-                "image_3XVTf4": {
-                    "type": "image",
-                    "settings": {
-                        "image": "shopify://shop_images/2024_Holiday_16_1.webp",
-                        "alt_text": "Content image",
-                        "image_mobile_height": 10.6,
-                        "image_desktop_height": 14.3,
-                        "image_large_desktop_height": 18.5,
-                        "position": "right",
-                        "custom_css": "&  {\n  margin-bottom: 0;\n  margin-top:0;\n}"
-                    }
-                }
-            },
-            "block_order": [
-                "text_hLbKQq",
-                "spend_offer_Nry3pb",
-                "image_3XVTf4"
-            ],
-            "settings": {
-                "background_color": "#183131",
-                "desktop_padding": 2,
-                "mobile_padding": 0,
-                "show_features": false,
-                "custom_css": "#SECTION_ID .content-builder__container {\n  flex-direction: column-reverse;\n}\n#SECTION_ID .content-builder__left {\n  padding: 21px 8px;\n}\n@media (min-width: 920px) {\n  #SECTION_ID .content-builder__container {\n    flex-direction: row;\n    padding-left: 0;\n    padding-right: 0;\n  }\n#SECTION_ID .content-builder__left {\n  padding: 24px 40px;\n}\n}\n@media (min-width: 1700px) {\n  #SECTION_ID .content-builder__left {\n     display:flex;\n     justify-content:center;\n  }\n}"
-            }
+  "sections": {
+    "content-builder": {
+      "type": "content-builder",
+      "blocks": {
+        "text_hLbKQq": {
+          "type": "text",
+          "settings": {
+            "title": "Design your smithey BUNDLE",
+            "title_desktop_size": 2.6,
+            "title_mobile_size": 2.6,
+            "title_color": "#ffffff",
+            "content": "<p>Craft a collection to fit your kitchen's needs. Save more as your set grows.</p>",
+            "content_desktop_size": 0.7,
+            "content_mobile_size": 1,
+            "content_color": "#ffffff",
+            "position": "left",
+            "custom_css": ".content-builder__title{\n   max-width:unset;\n   line-height:1;\n}\n@media (min-width: 920px) {\n  .content-builder__title {\n    max-width: 25rem;\n    margin-bottom:16px;\n  }\n}\n@media (min-width: 1700px) {\n  .content-builder__title {\n    max-width: unset;\n  }\n}"
+          }
+        },
+        "spend_offer_Nry3pb": {
+          "type": "spend-offer",
+          "settings": {
+            "spend_text_1": "Spend $450",
+            "offer_text_1": "$50 off",
+            "offer_link_1": "",
+            "spend_text_2": "Spend $600",
+            "offer_text_2": "$75 off",
+            "offer_link_2": "",
+            "spend_text_3": "Spend $750",
+            "offer_text_3": "$125 off",
+            "offer_link_3": "",
+            "background_color": "#183131",
+            "spend_text_color": "#ffffff",
+            "offer_bg_color": "#c49a4a",
+            "offer_text_color": "#112626",
+            "position": "left",
+            "custom_css": ""
+          }
+        },
+        "image_3XVTf4": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/2024_Holiday_16_1.webp",
+            "alt_text": "Content image",
+            "image_mobile_height": 10.6,
+            "image_desktop_height": 14.3,
+            "image_large_desktop_height": 18.5,
+            "position": "right",
+            "custom_css": "&  {\n  margin-bottom: 0;\n  margin-top:0;\n}"
+          }
         }
+      },
+      "block_order": ["text_hLbKQq", "spend_offer_Nry3pb", "image_3XVTf4"],
+      "settings": {
+        "background_color": "#183131",
+        "desktop_padding": 2,
+        "mobile_padding": 0,
+        "show_features": false,
+        "custom_css": "#SECTION_ID .content-builder__container {\n  flex-direction: column-reverse;\n}\n#SECTION_ID .content-builder__left {\n  padding: 21px 8px;\n}\n@media (min-width: 920px) {\n  #SECTION_ID .content-builder__container {\n    flex-direction: row;\n    padding-left: 0;\n    padding-right: 0;\n  }\n#SECTION_ID .content-builder__left {\n  padding: 24px 40px;\n}\n}\n@media (min-width: 1700px) {\n  #SECTION_ID .content-builder__left {\n     display:flex;\n     justify-content:center;\n  }\n}"
+      }
     },
-    "order": [
-        "content-builder"
-    ]
+    "bundle-products": {
+      "type": "bundle-products",
+      "blocks": {
+        "collection_tab_cast_iron": {
+          "type": "items",
+          "settings": {
+            "title": "Cast Iron",
+            "collection": "cast-iron"
+          }
+        },
+        "collection_tab_carbon_steel": {
+          "type": "items",
+          "settings": {
+            "title": "Carbon Steel",
+            "collection": "carbon-steel"
+          }
+        },
+        "collection_tab_accessories": {
+          "type": "items",
+          "settings": {
+            "title": "Accessories",
+            "collection": "accessories"
+          }
+        }
+      },
+      "block_order": [
+        "collection_tab_cast_iron",
+        "collection_tab_carbon_steel",
+        "collection_tab_accessories"
+      ],
+      "settings": {
+        "bundle_heading": "Your Bundle",
+        "empty_text": "+ Add your first item",
+        "button_text": "Add to Bundle",
+        "custom_css": ""
+      }
+    }
+  },
+  "order": ["content-builder", "bundle-products"]
 }
