@@ -72,9 +72,71 @@
                 "show_features": false,
                 "custom_css": "#SECTION_ID .content-builder__left{\n  width: 100%;\n  background:white;\n  max-width: 56rem;\n  padding:30px 0;\n  margin:auto;\n  gap:0;\n}\n#SECTION_ID .content-builder__right {\n  display: none;\n}"
             }
+        },
+        "content_builder_4zVCF3": {
+            "type": "content-builder",
+            "blocks": {
+                "text_xwq4La": {
+                    "type": "text",
+                    "settings": {
+                        "title": "FAQS: FACTORY SECONDS",
+                        "title_desktop_size": 1.6,
+                        "title_mobile_size": 2,
+                        "title_color": "#b68b32",
+                        "content": "<p>Smithey Factory Seconds may have small cosmetic or seasoning imperfections that do not affect the cook quality of your Smithey in any way. Inventory quantities are extremely limited, and your cart contents and order are not guaranteed until checkout is complete. All factory seconds are final sale.</p>",
+                        "content_desktop_size": 0.7,
+                        "content_mobile_size": 1.1,
+                        "content_color": "#112626",
+                        "position": "left",
+                        "custom_css": ".content-builder__title {\n  margin-bottom: 20px;\n  margin-top:42px;\n}\n.content-builder__content{\n    font-family: Sentinel, sans-serif !important;\n  margin-bottom:40px;\n}\n@media (min-width: 920px) {\n  .content-builder__title {\n    margin-top:20px;\n    margin-bottom:20px;\n    max-width:20rem;\n  }\n  .content-builder__content {\n    max-width: 24rem;\n  }\n}\n@media (min-width: 1700px) {\n   .content-builder__title {\n     max-width:unset;\n  }\n  .content-builder__content {\n    max-width: unset;\n  }\n}"
+                    }
+                },
+                "faq_6gbmQc": {
+                    "type": "faq",
+                    "settings": {
+                        "question": "What is the Return Policy for Factory Seconds cookware?",
+                        "answer": "<p>All Factory Seconds sales are final.  We will not accept returns or exchanges on any pieces purchased during the Seconds Sale.</p>",
+                        "position": "right",
+                        "custom_css": ".faq__question-text {\n  color: #112626;\n  font-size: 18px;\n  padding-right:1rem;\n}\n\n.faq__item {\n  border-top: 2px dotted #7e899280;\n  border-bottom: none;\n}\n\n.faq__answer {\n  font-size: 13px;\n  word-spacing: 2px;\n    font-family: Sentinel, sans-serif !important;\n}\n\n@media (min-width: 920px) {\n  .faq__item {\n    border-top: none;\n    max-width: 28rem;\n    border-bottom: 2px dotted #7e899280;\n  }\n\n  .faq__question-text {\n    font-size: 22px;\n  }\n\n  .faq__answer {\n    word-spacing: unset;\n  }\n\n  .faq__question {\n    align-items: start;\n  }\n}\n\n@media (min-width: 1700px) {\n  .faq__item {\n    max-width: 38rem;\n  }\n}"
+                    }
+                },
+                "faq_hw9TwL": {
+                    "type": "faq",
+                    "settings": {
+                        "question": "Can I use other discounts or promo codes on Factory Seconds pieces?",
+                        "answer": "<p>No, additional discounts cannot be applied to Factory Seconds, as these items are already specially priced for the sale.</p>",
+                        "position": "right",
+                        "custom_css": ".faq__question-text {\n  color: #112626;\n  font-size: 18px;\n  padding-right:1rem;\n}\n\n.faq__item {\n  border-top: 2px dotted #7e899280;\n  border-bottom: none;\n}\n\n.faq__answer {\n  font-size: 13px;\n  word-spacing: 2px;\n    font-family: Sentinel, sans-serif !important;\n}\n\n@media (min-width: 920px) {\n  .faq__item {\n    border-top: none;\n    max-width: 28rem;\n    border-bottom: 2px dotted #7e899280;\n  }\n\n  .faq__question-text {\n    font-size: 22px;\n  }\n\n  .faq__answer {\n    word-spacing: unset;\n  }\n\n  .faq__question {\n    align-items: start;\n  }\n}\n\n@media (min-width: 1700px) {\n  .faq__item {\n    max-width: 38rem;\n  }\n}"
+                    }
+                },
+                "faq_TDGHpt": {
+                    "type": "faq",
+                    "settings": {
+                        "question": "Can I have my Factory Seconds pieces engraved?",
+                        "answer": "<p>Yes, Factory Seconds pieces can be engraved.</p>",
+                        "position": "right",
+                        "custom_css": ".faq__question-text {\n  color: #112626;\n  font-size: 18px;\n  padding-right:1rem;\n}\n\n.faq__item {\n  border-top: 2px dotted #7e899280;\n  border-bottom: none;\n}\n\n.faq__answer {\n  font-size: 13px;\n  word-spacing: 2px;\n    font-family: Sentinel, sans-serif !important;\n}\n\n@media (min-width: 920px) {\n  .faq__item {\n    border-top: none;\n    max-width: 28rem;\n    border-bottom: 2px dotted #7e899280;\n  }\n\n  .faq__question-text {\n    font-size: 22px;\n  }\n\n  .faq__answer {\n    word-spacing: unset;\n  }\n\n  .faq__question {\n    align-items: start;\n  }\n}\n\n@media (min-width: 1700px) {\n  .faq__item {\n    max-width: 38rem;\n  }\n}"
+                    }
+                }
+            },
+            "block_order": [
+                "text_xwq4La",
+                "faq_6gbmQc",
+                "faq_hw9TwL",
+                "faq_TDGHpt"
+            ],
+            "name": "Content Builder",
+            "settings": {
+                "background_color": "#ffffff",
+                "desktop_padding": 1.6,
+                "mobile_padding": 0.7,
+                "show_features": false,
+                "custom_css": "#SECTION_ID .content-builder__container {\n  gap: 1rem;\n}\n.faq__item:last-of-type {\n  margin-bottom: 70px;\n  border-bottom: 2px dotted #7e899280;\n}\n@media (min-width: 920px) {\n  #SECTION_ID .content-builder__container {\n    padding-left: 0;\n    padding-right: 0;\n  }\n.faq__item:last-of-type {\n  margin-bottom: 80px;\n}\n #SECTION_ID .content-builder__left {\n    padding: 0 6.25rem;\n  }\n}\n@media (min-width: 1700px) {\n  #SECTION_ID .content-builder__left {\n    padding: 0 9rem;\n  }\n}"
+            }
         }
     },
     "order": [
-        "content_builder"
+        "content_builder",
+        "content_builder_4zVCF3"
     ]
 }
