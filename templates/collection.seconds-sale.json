@@ -1,32 +1,64 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
-  "sections": {
-    "main": {
-      "type": "main-collection-products",
-      "settings": {
-        "show_inline_nav": true,
-        "show_collection_title": false,
-        "custom_title": "",
-        "background_color": "#ffffff",
-        "collection": "all",
-        "products_to_show": 8,
-        "desktop_columns": "3",
-        "mobile_columns": "2",
-        "featured_product_index_desktop": 0,
-        "featured_product_index_mobile": 0,
-        "featured_column_span": 2
-      }
-    }
-  },
-  "order": [
-    "main"
-  ]
+    "sections": {
+        "content_builder": {
+            "type": "content-builder",
+            "blocks": {
+                "image_yyBd7G": {
+                    "type": "image",
+                    "settings": {
+                        "image": "shopify://shop_images/Mask_group_1920x_1920x_d287d17a-691b-4b16-a8b9-352419d1efe6.webp",
+                        "alt_text": "Content image",
+                        "image_mobile_height": 20,
+                        "image_desktop_height": 30,
+                        "image_large_desktop_height": 36,
+                        "position": "left",
+                        "custom_css": "&, & img {\n  object-fit: contain;\n  height: 145px;\n}\n@media (min-width: 920px) {\n  &, & img {\n    object-fit: contain;\n    height: 470px;\n  }\n}\n@media (min-width: 1700px) {\n  &,\n  & img {\n    height: 500px;\n  }\n}"
+                    }
+                },
+                "text_hiLYFN": {
+                    "type": "text",
+                    "settings": {
+                        "title": "Smithey Factory Seconds may have small cosmetic or seasoning imperfections that do not affect the cook quality of your Smithey in any way.",
+                        "title_desktop_size": 2,
+                        "title_mobile_size": 1,
+                        "title_color": "#b68b32",
+                        "content": "<p><strong>Inventory quantities are extremely limited, and your cart contents and order are not guaranteed until checkout is complete.</strong></p>",
+                        "content_desktop_size": 1,
+                        "content_mobile_size": 0.9,
+                        "content_color": "#112626",
+                        "position": "left",
+                        "custom_css": ""
+                    }
+                },
+                "button_rceTJr": {
+                    "type": "button",
+                    "settings": {
+                        "button_text": "full faq below",
+                        "button_link": "#faq",
+                        "button_bg_color": "#FFFFFF",
+                        "button_text_color": "#112626",
+                        "position": "left",
+                        "btn_position_desktop": "center",
+                        "btn_position_mobile": "center",
+                        "custom_css": ""
+                    }
+                }
+            },
+            "block_order": [
+                "image_yyBd7G",
+                "text_hiLYFN",
+                "button_rceTJr"
+            ],
+            "settings": {
+                "background_color": "#D5D5D5",
+                "desktop_padding": 1.5,
+                "mobile_padding": 1.1,
+                "show_features": false,
+                "custom_css": "#SECTION_ID .content-builder__left{\n  width: 100%;\n  background:white;\n  max-width: 56rem;\n  padding:30px 0;\n  margin:auto;\n}\n#SECTION_ID .content-builder__right {\n  display: none;\n}"
+            }
+        }
+    },
+    "order": [
+        "content_builder"
+    ]
 }
