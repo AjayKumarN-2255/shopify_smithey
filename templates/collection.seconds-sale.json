@@ -19,15 +19,30 @@
                     "type": "text",
                     "settings": {
                         "title": "Smithey Factory Seconds may have small cosmetic or seasoning imperfections that do not affect the cook quality of your Smithey in any way.",
-                        "title_desktop_size": 2,
+                        "title_desktop_size": 0.8,
                         "title_mobile_size": 1,
-                        "title_color": "#b68b32",
+                        "title_color": "#112626",
                         "content": "<p><strong>Inventory quantities are extremely limited, and your cart contents and order are not guaranteed until checkout is complete.</strong></p>",
-                        "content_desktop_size": 1,
-                        "content_mobile_size": 0.9,
+                        "content_desktop_size": 0.8,
+                        "content_mobile_size": 1,
                         "content_color": "#112626",
                         "position": "left",
-                        "custom_css": ""
+                        "custom_css": ".content-builder__title{\n  font-weight:400;\n  text-transform:unset;\n  margin-top:16px;\n  margin-bottom:0;\n  text-align:center;\n  max-width:unset;\n  padding:0 5px;\n}\n.content-builder__content {\n  margin-bottom: 0;\n  text-align: center;\n  max-width: unset;\n  padding: 0 5px;\n}\n@media (min-width: 920px) {\n  .content-builder__title {\n    margin-top:10px;\n    max-width: 31rem;\n    text-align: center;\n    line-height:1.3;\n    margin-left: auto;\n    margin-right: auto;\n  }\n  .content-builder__content {\n    max-width: 30rem;\n    line-height:1.3;\n    margin: auto;\n  }\n}"
+                    }
+                },
+                "text_xYxUzf": {
+                    "type": "text",
+                    "settings": {
+                        "title": "All factory seconds sales are final.",
+                        "title_desktop_size": 0.8,
+                        "title_mobile_size": 1,
+                        "title_color": "#112626",
+                        "content": "",
+                        "content_desktop_size": 0.8,
+                        "content_mobile_size": 1,
+                        "content_color": "#112626",
+                        "position": "left",
+                        "custom_css": ".content-builder__title{\n  text-transform:unset;\n  margin-top:16px;\n  margin-bottom:0;\n  text-align:center;\n  max-width:unset;\n  padding:0 5px;\n}\n.content-builder__content {\n  margin-bottom: 0;\n  text-align: center;\n  max-width: unset;\n  padding: 0 5px;\n}\n@media (min-width: 920px) {\n  .content-builder__title {\n    margin-top:10px;\n    max-width: 31rem;\n    text-align: center;\n    line-height:1.3;\n    margin-left: auto;\n    margin-right: auto;\n  }\n  .content-builder__content {\n    max-width: 30rem;\n    line-height:1.3;\n    margin: auto;\n  }\n}"
                     }
                 },
                 "button_rceTJr": {
@@ -35,26 +50,27 @@
                     "settings": {
                         "button_text": "full faq below",
                         "button_link": "#faq",
-                        "button_bg_color": "#FFFFFF",
+                        "button_bg_color": "#ffffff",
                         "button_text_color": "#112626",
                         "position": "left",
                         "btn_position_desktop": "center",
                         "btn_position_mobile": "center",
-                        "custom_css": ""
+                        "custom_css": "& a {\n  text-transform: uppercase;\n  border: 2px solid #b68b32;\n  height:50px;\n  width:185px;\n   font-size: 14px !important;\n   padding: 0 !important;\n}\n@media (min-width: 920px) {\n  &  {\n    margin-top:8px !important;\n  }\n  &  a{\n    margin-bottom:0 !important;\n  }\n}"
                     }
                 }
             },
             "block_order": [
                 "image_yyBd7G",
                 "text_hiLYFN",
+                "text_xYxUzf",
                 "button_rceTJr"
             ],
             "settings": {
-                "background_color": "#D5D5D5",
+                "background_color": "#d5d5d5",
                 "desktop_padding": 1.5,
                 "mobile_padding": 1.1,
                 "show_features": false,
-                "custom_css": "#SECTION_ID .content-builder__left{\n  width: 100%;\n  background:white;\n  max-width: 56rem;\n  padding:30px 0;\n  margin:auto;\n}\n#SECTION_ID .content-builder__right {\n  display: none;\n}"
+                "custom_css": "#SECTION_ID .content-builder__left{\n  width: 100%;\n  background:white;\n  max-width: 56rem;\n  padding:30px 0;\n  margin:auto;\n  gap:0;\n}\n#SECTION_ID .content-builder__right {\n  display: none;\n}"
             }
         }
     },
