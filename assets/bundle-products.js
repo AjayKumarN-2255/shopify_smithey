@@ -1,4 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const siteHeader = document.querySelector('.site-header');
+
+  const syncStickyTop = () => {
+    const height =
+      siteHeader && siteHeader.classList.contains('header--scrolled')
+        ? siteHeader.getBoundingClientRect().height
+        : 0;
+
+    document.documentElement.style.setProperty('--bundle-sticky-top', `${height}px`);
+  };
+
+  syncStickyTop();
+  window.addEventListener('scroll', () => requestAnimationFrame(syncStickyTop), { passive: true });
+  window.addEventListener('resize', syncStickyTop);
+
   document.querySelectorAll('.bundle-products').forEach((section) => {
     const tabs = [...section.querySelectorAll('.bundle-products__tab')];
     const panels = [...section.querySelectorAll('.bundle-products__panel')];
@@ -7,7 +22,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!tabs.length || !panels.length) return;
 
     const headerOffset = () => {
-      return (header ? header.getBoundingClientRect().height : 0) + 12;
+      const stickyTop =
+        parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--bundle-sticky-top')) || 0;
+
+      return stickyTop + (header ? header.getBoundingClientRect().height : 0) + 12;
     };
 
     const setActive = (tabId) => {
