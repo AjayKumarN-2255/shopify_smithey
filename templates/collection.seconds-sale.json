@@ -97,6 +97,8 @@
                         "question": "What is the Return Policy for Factory Seconds cookware?",
                         "answer": "<p>All Factory Seconds sales are final.  We will not accept returns or exchanges on any pieces purchased during the Seconds Sale.</p>",
                         "position": "right",
+                        "open_by_default": true,
+
                         "custom_css": ".faq__question-text {\n  color: #112626;\n  font-size: 18px;\n  padding-right:1rem;\n}\n\n.faq__item {\n  border-top: 2px dotted #7e899280;\n  border-bottom: none;\n}\n\n.faq__answer {\n  font-size: 13px;\n  word-spacing: 2px;\n    font-family: Sentinel, sans-serif !important;\n}\n\n@media (min-width: 920px) {\n  .faq__item {\n    border-top: none;\n    max-width: 28rem;\n    border-bottom: 2px dotted #7e899280;\n  }\n\n  .faq__question-text {\n    font-size: 22px;\n  }\n\n  .faq__answer {\n    word-spacing: unset;\n  }\n\n  .faq__question {\n    align-items: start;\n  }\n}\n\n@media (min-width: 1700px) {\n  .faq__item {\n    max-width: 38rem;\n  }\n}"
                     }
                 },

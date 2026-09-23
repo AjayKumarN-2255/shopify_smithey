@@ -2,7 +2,7 @@
 
 <div
   id="content-builder-faq-{{ block.id }}"
-  class="faq__item"
+  class="faq__item{% if block.settings.open_by_default %} is-open{% endif %}"
   {{ block.shopify_attributes }}
 >
   <div class="faq__question">
@@ -106,7 +106,7 @@
     question.dataset.faqBound = 'true';
     question.setAttribute('role', 'button');
     question.setAttribute('tabindex', '0');
-    question.setAttribute('aria-expanded', 'false');
+    question.setAttribute('aria-expanded', item.classList.contains('is-open') ? 'true' : 'false');
 
     const getFaqScope = () =>
       item.closest('.faq__items') ||

@@ -116,6 +116,7 @@
           "settings": {
             "question": "Can I cook acidic foods in my Smithey?",
             "answer": "<p>Yes! You can absolutely cook acidic foods in your Smithey. Dishes made with ingredients like tomatoes, lemons, or vinegar may strip or discolor the seasoning, especially on a newer skillet before the seasoning has fully matured. This is completely normal and nothing to worry about—you can simply re-season your Smithey and keep cooking. As your seasoning continues to develop, acidic foods will have less of an effect on the cooking surface.</p>",
+            "open_by_default": true,
             "position": "right",
             "custom_css": ".faq__question-text {\n  color: #112626;\n  font-size: 18px;\n  padding-right:1rem;\n}\n\n.faq__item {\n  border-top: 2px dotted #7e899280;\n  border-bottom: none;\n}\n\n.faq__answer {\n  font-size: 13px;\n  word-spacing: 2px;\n    font-family: Sentinel, sans-serif !important;\n}\n\n@media (min-width: 920px) {\n  .faq__item {\n    border-top: none;\n    max-width: 28rem;\n    border-bottom: 2px dotted #7e899280;\n  }\n\n  .faq__question-text {\n    font-size: 22px;\n  }\n\n  .faq__answer {\n    word-spacing: unset;\n  }\n\n  .faq__question {\n    align-items: start;\n  }\n}\n\n@media (min-width: 1700px) {\n  .faq__item {\n    max-width: 38rem;\n  }\n}"
           }
