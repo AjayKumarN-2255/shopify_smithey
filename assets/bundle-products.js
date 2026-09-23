@@ -532,10 +532,12 @@ function initializeBundleBuilder(section) {
 
     const bundleId = generateBundleId();
     const bundleName = config.bundleName || 'Build Your Own Bundle';
+    const bundleSavings = calculateBundleSavings(calculateBundleTotal()).unlocked || 0;
     const items = bundleItems.map((item) => {
       const properties = {
         _Bundle: bundleName,
-        _Bundle_ID: bundleId
+        _Bundle_ID: bundleId,
+        _Bundle_Savings: String(bundleSavings)
       };
 
       if (item.engraving.trim()) {

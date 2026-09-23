@@ -384,7 +384,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const itemsEl = drawer.querySelector('.cart-drawer__items');
 
         if (countEl) countEl.textContent = String(cart.item_count || 0);
-        if (subtotalEl) subtotalEl.textContent = formatMoney(cart.total_price || 0);
         syncCartIndicator(cart);
 
         if (giftNoteInput && typeof cart.note === 'string') {
@@ -393,6 +392,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!cart.item_count) {
             if (itemsEl) itemsEl.innerHTML = '';
+            if (subtotalEl) subtotalEl.textContent = formatMoney(0);
             setEmptyState(true);
             syncRecommendations(cart);
             return;
@@ -441,6 +441,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const properties = item.properties || {};
         node.dataset.bundleId = properties._Bundle_ID || '';
         node.dataset.bundleName = properties._Bundle || '';
+        node.dataset.bundleSavings = properties._Bundle_Savings || '0';
         node.dataset.linePrice = String(item.final_line_price || 0);
 
         let engraving = node.querySelector('.cart-drawer__item-engraving');
@@ -458,6 +459,99 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function bundleTiers() {
+        const defaults = [
+            { amount: 27500, savings: 5000 },
+            { amount: 42500, savings: 7500 },
+            { amount: 54000, savings: 12500 }
+        ];
+        const configNode = document.querySelector('[data-bundle-config]');
+        if (!configNode) return defaults;
+
+        try {
+            const config = JSON.parse(configNode.textContent);
+            if (Array.isArray(config.tiers) && config.tiers.length) {
+                return [...config.tiers].sort((left, right) => left.amount - right.amount);
+            }
+        } catch (error) {
+            console.error('Bundle tier config is invalid', error);
+        }
+
+        return defaults;
+    }
+
+    function savingsForBundleTotal(total) {
+        let unlocked = 0;
+
+        bundleTiers().forEach((tier) => {
+            if (total >= Number(tier.amount)) unlocked = Number(tier.savings);
+        });
+
+        return unlocked;
+    }
+
+    function discountedLinePrices(prices, savings) {
+        const sum = prices.reduce((total, price) => total + price, 0);
+        if (!savings || !sum) return prices;
+
+        const capped = Math.min(savings, sum);
+        let remaining = capped;
+
+        return prices.map((price, index) => {
+            if (index === prices.length - 1) {
+                return Math.max(price - remaining, 0);
+            }
+
+            const share = Math.min(Math.round((price / sum) * capped), remaining, price);
+            remaining -= share;
+            return price - share;
+        });
+    }
+
+    function applyBundleLinePrices(nodes) {
+        const prices = nodes.map((node) => parseInt(node.dataset.linePrice, 10) || 0);
+        const sum = prices.reduce((total, price) => total + price, 0);
+        const savings = savingsForBundleTotal(sum);
+        const discounted = discountedLinePrices(prices, savings);
+
+        nodes.forEach((node, index) => {
+            const priceEl = node.querySelector('.cart-drawer__item-price');
+            if (priceEl) priceEl.textContent = formatMoney(discounted[index]);
+        });
+
+        return discounted.reduce((total, price) => total + price, 0);
+    }
+
+    function updateDisplayedSubtotal(itemsEl) {
+        const subtotalEl = drawer.querySelector('[data-cart-subtotal]');
+        if (!subtotalEl || !itemsEl) return;
+
+        const groups = new Map();
+        let total = 0;
+
+        itemsEl.querySelectorAll('.cart-drawer__item').forEach((node) => {
+            const price = parseInt(node.dataset.linePrice, 10) || 0;
+            const bundleId = node.dataset.bundleId || '';
+
+            if (!bundleId) {
+                total += price;
+                return;
+            }
+
+            if (!groups.has(bundleId)) {
+                groups.set(bundleId, { sum: 0 });
+            }
+
+            groups.get(bundleId).sum += price;
+        });
+
+        groups.forEach((group) => {
+            total += Math.max(group.sum - savingsForBundleTotal(group.sum), 0);
+        });
+
+        subtotalEl.textContent = formatMoney(Math.max(total, 0));
+    }
+
     function groupBundleItems(itemsEl) {
         if (!itemsEl) return;
 
@@ -465,12 +559,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const itemNodes = Array.from(itemsEl.querySelectorAll('.cart-drawer__item'));
         let previousId = '';
-        let groupTotal = 0;
+        let groupNodes = [];
         let lastNode = null;
 
         const flushGroup = () => {
-            if (!previousId || !lastNode) return;
+            if (!previousId || !groupNodes.length || !lastNode) return;
 
+            const bundlePrice = applyBundleLinePrices(groupNodes);
             const total = document.createElement('p');
             total.className = 'cart-drawer__bundle-total';
             total.dataset.bundleTotal = previousId;
@@ -479,7 +574,7 @@ document.addEventListener('DOMContentLoaded', () => {
             label.textContent = 'Bundle total';
 
             const value = document.createElement('span');
-            value.textContent = formatMoney(groupTotal);
+            value.textContent = formatMoney(bundlePrice);
 
             total.append(label, value);
             lastNode.after(total);
@@ -492,7 +587,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (bundleId !== previousId) {
                 flushGroup();
                 previousId = bundleId;
-                groupTotal = 0;
+                groupNodes = [];
                 lastNode = null;
 
                 if (bundleId) {
@@ -505,12 +600,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             if (bundleId) {
-                groupTotal += parseInt(node.dataset.linePrice, 10) || 0;
+                groupNodes.push(node);
                 lastNode = node;
             }
         });
 
         flushGroup();
+        updateDisplayedSubtotal(itemsEl);
     }
 
     async function runCartRequest(request, options = {}) {
