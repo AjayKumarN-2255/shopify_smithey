@@ -68,6 +68,14 @@ document.addEventListener('DOMContentLoaded', () => {
     window.SmitheyCart = {
         open: openCartDrawer,
         close: closeCartDrawer,
+        addItems(items) {
+            return runCartRequest(() => addItemsToCart(items), { openDrawer: true }).then((cart) => {
+                if (!cart) {
+                    throw new Error('Unable to add this bundle to the cart.');
+                }
+                return cart;
+            });
+        }
     };
 
     const placeholderRegex = /\{\{\s*(\w+)\s*\}\}/;
@@ -236,6 +244,20 @@ document.addEventListener('DOMContentLoaded', () => {
         return fetchCart();
     }
 
+    async function addItemsToCart(items) {
+        const response = await fetch(cartApiUrl('cart/add.js'), {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json'
+            },
+            body: JSON.stringify({ items })
+        });
+
+        await parseCartResponse(response);
+        return fetchCart();
+    }
+
     async function changeCartItem(lineKey, quantity) {
         const response = await fetch(cartApiUrl('cart/change.js'), {
             method: 'POST',
@@ -269,6 +291,7 @@ document.addEventListener('DOMContentLoaded', () => {
         node.dataset.lineKey = item.key;
         node.dataset.variantId = String(item.variant_id);
         node.dataset.productId = String(item.product_id);
+        syncBundleMeta(node, item);
 
         if (image && imageUrl) {
             image.src = imageUrl;
@@ -299,6 +322,7 @@ document.addEventListener('DOMContentLoaded', () => {
         element.dataset.lineKey = item.key;
         element.dataset.variantId = String(item.variant_id);
         element.dataset.productId = String(item.product_id);
+        syncBundleMeta(element, item);
 
         if (price) price.textContent = formatMoney(item.final_line_price);
         if (quantity) quantity.textContent = String(item.quantity);
@@ -409,11 +433,88 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         remaining.forEach((element) => element.remove());
+        groupBundleItems(itemsEl);
         syncRecommendations(cart);
     }
 
+    function syncBundleMeta(node, item) {
+        const properties = item.properties || {};
+        node.dataset.bundleId = properties._Bundle_ID || '';
+        node.dataset.bundleName = properties._Bundle || '';
+        node.dataset.linePrice = String(item.final_line_price || 0);
+
+        let engraving = node.querySelector('.cart-drawer__item-engraving');
+        const text = properties.Engraving || '';
+
+        if (text) {
+            if (!engraving) {
+                engraving = document.createElement('p');
+                engraving.className = 'cart-drawer__item-engraving';
+                node.querySelector('.cart-drawer__item-title')?.after(engraving);
+            }
+            engraving.textContent = text;
+        } else if (engraving) {
+            engraving.remove();
+        }
+    }
+
+    function groupBundleItems(itemsEl) {
+        if (!itemsEl) return;
+
+        itemsEl.querySelectorAll('[data-bundle-label], [data-bundle-total]').forEach((node) => node.remove());
+
+        const itemNodes = Array.from(itemsEl.querySelectorAll('.cart-drawer__item'));
+        let previousId = '';
+        let groupTotal = 0;
+        let lastNode = null;
+
+        const flushGroup = () => {
+            if (!previousId || !lastNode) return;
+
+            const total = document.createElement('p');
+            total.className = 'cart-drawer__bundle-total';
+            total.dataset.bundleTotal = previousId;
+
+            const label = document.createElement('span');
+            label.textContent = 'Bundle total';
+
+            const value = document.createElement('span');
+            value.textContent = formatMoney(groupTotal);
+
+            total.append(label, value);
+            lastNode.after(total);
+        };
+
+        itemNodes.forEach((node) => {
+            const bundleId = node.dataset.bundleId || '';
+            node.classList.toggle('is-bundled', Boolean(bundleId));
+
+            if (bundleId !== previousId) {
+                flushGroup();
+                previousId = bundleId;
+                groupTotal = 0;
+                lastNode = null;
+
+                if (bundleId) {
+                    const label = document.createElement('p');
+                    label.className = 'cart-drawer__bundle-label';
+                    label.dataset.bundleLabel = bundleId;
+                    label.textContent = node.dataset.bundleName || 'Your Bundle';
+                    node.before(label);
+                }
+            }
+
+            if (bundleId) {
+                groupTotal += parseInt(node.dataset.linePrice, 10) || 0;
+                lastNode = node;
+            }
+        });
+
+        flushGroup();
+    }
+
     async function runCartRequest(request, options = {}) {
-        if (isRequesting) return;
+        if (isRequesting) return Promise.resolve(null);
 
         isRequesting = true;
         clearError();
@@ -431,6 +532,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (options.openDrawer) {
                 openCartDrawer();
             }
+
+            return cart;
         } catch (error) {
             console.error('Cart AJAX request failed', error);
 
@@ -439,6 +542,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             showError(error.message || 'Something went wrong. Please try again.');
+            return null;
         } finally {
             setControlsBusy(false);
             drawer.querySelectorAll('.cart-drawer__item').forEach((itemEl) => {
@@ -607,4 +711,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    groupBundleItems(drawer.querySelector('.cart-drawer__items'));
 });

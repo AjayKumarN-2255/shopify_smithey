@@ -83,12 +83,36 @@
             "title": "Accessories",
             "collection": "accessories"
           }
+        },
+        "savings_tier_1": {
+          "type": "tier",
+          "settings": {
+            "amount": 275,
+            "savings": 50
+          }
+        },
+        "savings_tier_2": {
+          "type": "tier",
+          "settings": {
+            "amount": 425,
+            "savings": 75
+          }
+        },
+        "savings_tier_3": {
+          "type": "tier",
+          "settings": {
+            "amount": 540,
+            "savings": 125
+          }
         }
       },
       "block_order": [
         "collection_tab_cast_iron",
         "collection_tab_carbon_steel",
-        "collection_tab_accessories"
+        "collection_tab_accessories",
+        "savings_tier_1",
+        "savings_tier_2",
+        "savings_tier_3"
       ],
       "settings": {
         "bundle_heading": "Your Bundle",

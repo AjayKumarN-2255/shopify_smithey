@@ -4,22 +4,48 @@
 <section
   id="bundle-products-{{ section.id }}"
   class="bundle-products"
+  data-bundle-builder
 >
+  <script type="application/json" data-bundle-config>
+    {
+      "bundleName": {{ section.settings.bundle_name | json }},
+      "addLabel": {{ section.settings.button_text | json }},
+      "addedLabel": {{ section.settings.added_text | json }},
+      "submitLabel": {{ section.settings.submit_text | json }},
+      "moneyFormat": {{ shop.money_format | json }},
+      "tiers": [
+        {%- assign tier_seen = false -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'tier' and block.settings.amount > 0 and block.settings.savings > 0 -%}
+            {%- if tier_seen -%},{%- endif -%}
+            {%- assign tier_seen = true -%}
+            {
+              "amount": {{ block.settings.amount | times: 100 }},
+              "savings": {{ block.settings.savings | times: 100 }}
+            }
+          {%- endif -%}
+        {%- endfor -%}
+      ]
+    }
+  </script>
   <div class="bundle-products__container">
     <div class="bundle-products__header">
       <div class="bundle-products__header-left">
         {% if section.blocks.size > 0 %}
           <nav class="bundle-products__tabs" aria-label="Bundle collections">
+            {% assign first_tab = true %}
             {% for block in section.blocks %}
+              {% if block.type != 'items' %}{% continue %}{% endif %}
               <button
                 type="button"
-                class="bundle-products__tab{% if forloop.first %} is-active{% endif %}"
+                class="bundle-products__tab{% if first_tab %} is-active{% endif %}"
                 data-tab="{{ block.id }}"
-                aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}"
+                aria-pressed="{% if first_tab %}true{% else %}false{% endif %}"
                 {{ block.shopify_attributes }}
               >
                 {{ block.settings.title }}
               </button>
+              {% assign first_tab = false %}
             {% endfor %}
           </nav>
         {% endif %}
@@ -35,6 +61,7 @@
     <div class="bundle-products__body">
       <div class="bundle-products__left">
         {% for block in section.blocks %}
+          {% if block.type != 'items' %}{% continue %}{% endif %}
           {% assign tab_collection = block.settings.collection %}
           {% assign tab_title = block.settings.title | default: tab_collection.title %}
 
@@ -52,7 +79,37 @@
             {% if tab_collection != blank and tab_collection.products.size > 0 %}
               <div class="bundle-products__grid">
                 {% for product in tab_collection.products %}
-                  <article class="bundle-products__card">
+                  <article class="bundle-products__card" data-product-id="{{ product.id }}">
+                    {% assign is_engravable = false %}
+                    {% if product.tags contains 'engravable' or product.tags contains 'Engravable' %}
+                      {% assign is_engravable = true %}
+                    {% endif %}
+                    <script type="application/json" data-product-json>
+                      {
+                        "productId": {{ product.id | json }},
+                        "title": {{ product.title | json }},
+                        "engravable": {{ is_engravable | json }},
+                        "variants": [
+                          {%- for variant in product.variants -%}
+                            {%- if variant.image -%}
+                              {%- assign variant_image = variant.image | image_url: width: 200 -%}
+                            {%- elsif product.featured_image -%}
+                              {%- assign variant_image = product.featured_image | image_url: width: 200 -%}
+                            {%- else -%}
+                              {%- assign variant_image = '' -%}
+                            {%- endif -%}
+                            {
+                              "id": {{ variant.id | json }},
+                              "title": {{ variant.title | json }},
+                              "price": {{ variant.price | json }},
+                              "available": {{ variant.available | json }},
+                              "image": {{ variant_image | json }},
+                              "inventory": {% if variant.inventory_management != blank and variant.inventory_policy == 'deny' %}{{ variant.inventory_quantity | default: 0 }}{% else %}null{% endif %}
+                            }{%- unless forloop.last -%},{%- endunless -%}
+                          {%- endfor -%}
+                        ]
+                      }
+                    </script>
                     {% assign secondary_image = nil %}
                     {% if product.images.size > 1 %}
                       {% for image in product.images %}
@@ -142,13 +199,33 @@
 
                     <hr class="bundle-products__card-divider">
 
-                    <button
-                      type="button"
-                      class="bundle-products__card-button"
-                      data-product-id="{{ product.id }}"
-                    >
-                      {{ section.settings.button_text }}
-                    </button>
+                    <div class="bundle-products__card-actions">
+                      {% if product.variants.size > 1 %}
+                        <label class="bundle-products__variant-label">
+                          <span class="visually-hidden">{{ product.title }} variant</span>
+                          <select class="bundle-products__variant" data-variant-select>
+                            {% for variant in product.variants %}
+                              <option
+                                value="{{ variant.id }}"
+                                {% if variant.id == product.selected_or_first_available_variant.id %}selected{% endif %}
+                                {% unless variant.available %}disabled{% endunless %}
+                              >
+                                {{ variant.title }} — {{ variant.price | money }}
+                              </option>
+                            {% endfor %}
+                          </select>
+                        </label>
+                      {% endif %}
+
+                      <button
+                        type="button"
+                        class="bundle-products__card-button"
+                        data-add-to-bundle
+                        {% unless product.available %}disabled{% endunless %}
+                      >
+                        {{ section.settings.button_text }}
+                      </button>
+                    </div>
                   </article>
                   {% endfor %}
               </div>
@@ -159,10 +236,37 @@
         {% endfor %}
       </div>
 
-      <aside class="bundle-products__right">
-        <div class="bundle-products__empty">
+      <aside class="bundle-products__right" data-bundle-summary>
+        <h2 class="bundle-summary__heading">{{ section.settings.bundle_heading }}</h2>
+
+        <div class="bundle-products__empty" data-bundle-empty>
           {{ section.settings.empty_text }}
         </div>
+
+        <div class="bundle-summary" data-bundle-filled hidden>
+          <ul class="bundle-summary__items" data-bundle-items></ul>
+
+          <div class="bundle-summary__savings" data-bundle-savings hidden>
+            <p class="bundle-summary__savings-message" data-bundle-savings-message></p>
+            <div class="bundle-summary__sections" data-bundle-sections></div>
+          </div>
+
+          <div class="bundle-summary__totals">
+            <div class="bundle-summary__total-row">
+              <span>Total</span>
+              <span class="bundle-summary__total-prices">
+                <span class="bundle-summary__offer" data-bundle-offer hidden></span>
+                <span class="bundle-summary__actual" data-bundle-actual hidden></span>
+                <span data-bundle-total></span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <button type="button" class="bundle-summary__submit" data-bundle-submit disabled hidden>
+          {{ section.settings.submit_text }}
+        </button>
+        <p class="bundle-summary__error" data-bundle-error hidden></p>
       </aside>
     </div>
   </div>
@@ -198,6 +302,24 @@
       "default": "Add to Bundle"
     },
     {
+      "type": "text",
+      "id": "added_text",
+      "label": "Added button text",
+      "default": "✓ Added to Bundle"
+    },
+    {
+      "type": "text",
+      "id": "submit_text",
+      "label": "Add bundle to cart button",
+      "default": "Add to Cart"
+    },
+    {
+      "type": "text",
+      "id": "bundle_name",
+      "label": "Bundle name stored on cart lines",
+      "default": "Build Your Own Bundle"
+    },
+    {
       "type": "textarea",
       "id": "custom_css",
       "label": "Custom CSS",
@@ -219,6 +341,24 @@
           "type": "collection",
           "id": "collection",
           "label": "Collection"
+        }
+      ]
+    },
+    {
+      "type": "tier",
+      "name": "Savings tier",
+      "settings": [
+        {
+          "type": "number",
+          "id": "amount",
+          "label": "Spend amount (dollars)",
+          "default": 250
+        },
+        {
+          "type": "number",
+          "id": "savings",
+          "label": "Savings (dollars)",
+          "default": 25
         }
       ]
     }
@@ -243,6 +383,27 @@
           "type": "items",
           "settings": {
             "title": "Accessories"
+          }
+        },
+        {
+          "type": "tier",
+          "settings": {
+            "amount": 275,
+            "savings": 50
+          }
+        },
+        {
+          "type": "tier",
+          "settings": {
+            "amount": 425,
+            "savings": 75
+          }
+        },
+        {
+          "type": "tier",
+          "settings": {
+            "amount": 540,
+            "savings": 125
           }
         }
       ]
