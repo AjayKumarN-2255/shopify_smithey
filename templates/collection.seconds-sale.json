@@ -73,6 +73,49 @@
                 "custom_css": "#SECTION_ID .content-builder__left{\n  width: 100%;\n  background:white;\n  max-width: 56rem;\n  padding:30px 0;\n  margin:auto;\n  gap:0;\n}\n#SECTION_ID .content-builder__right {\n  display: none;\n}"
             }
         },
+        "main_collection_products_4eeqnb": {
+            "type": "main-collection-products",
+            "blocks": {
+                "card_text_QbyW6g": {
+                    "type": "card_text",
+                    "settings": {
+                        "text": "<p>FACTORY SECONDS</p>",
+                        "text_color": "#112626",
+                        "text_desktop_size": 0.9,
+                        "text_mobile_size": 0.8,
+                        "custom_css": "& {\n  color: rgb(136, 146, 146);\n  border: 1px solid rgb(182, 139, 50);\n  width: fit-content;\n  padding: 0 5px;\n  margin-top: 5px;\n  margin-bottom: 10px;\n}\n\n@media (min-width: 920px) {\n  & {\n    font-size: 22px;\n  }\n}"
+                    }
+                },
+                "add_to_cart_z9KFAU": {
+                    "type": "add_to_cart",
+                    "settings": {
+                        "button_text": "Add to Cart",
+                        "button_bg_color": "#B68B32",
+                        "button_text_color": "#112626",
+                        "custom_css": "& .product-card__add-button {\n  border-radius:4px;\n}\n@media (min-width: 920px) {\n  & .product-card__add-button {\n    font-size: 18px;\n  }\n}"
+                    }
+                }
+            },
+            "block_order": [
+                "card_text_QbyW6g",
+                "add_to_cart_z9KFAU"
+            ],
+            "name": "Main Collection Products",
+            "settings": {
+                "show_inline_nav": false,
+                "show_collection_title": false,
+                "custom_title": "",
+                "background_color": "#d5d5d5",
+                "collection": "carbon-steel",
+                "products_to_show": 3,
+                "desktop_columns": "3",
+                "mobile_columns": "2",
+                "featured_product_index_desktop": 0,
+                "featured_product_index_mobile": 0,
+                "featured_column_span": 2,
+                "custom_css": ".product-card__material{\ndisplay:none;\n}\n.product-card__reviews{\n  display:none;\n}\n#SECTION_ID .product-card__content {\n  padding: 0;\n}\n#SECTION_ID .product-card__price,.product-card__price_mobile {\n  border:none;\n  font-weight:400;\n  margin-bottom:5px;\n  color: rgb(195, 54, 49);\n}\n@media (min-width: 920px) {\n  #SECTION_ID .main-collection-products__grid {\n    padding-left: 0;\n    padding-right: 0;\n    padding-top: 1.5rem;\n  }\n .product-card__image-wrapper {\n    height: 18rem;\n  }\n.product-card__title {\n  font-size: 0.7rem;\n}\n#SECTION_ID .product-card__price {\n  font-size: 22px;\n  margin-bottom:10px;\n}\n}"
+            }
+        },
         "content_builder_4zVCF3": {
             "type": "content-builder",
             "blocks": {
@@ -96,9 +139,8 @@
                     "settings": {
                         "question": "What is the Return Policy for Factory Seconds cookware?",
                         "answer": "<p>All Factory Seconds sales are final.  We will not accept returns or exchanges on any pieces purchased during the Seconds Sale.</p>",
-                        "position": "right",
                         "open_by_default": true,
-
+                        "position": "right",
                         "custom_css": ".faq__question-text {\n  color: #112626;\n  font-size: 18px;\n  padding-right:1rem;\n}\n\n.faq__item {\n  border-top: 2px dotted #7e899280;\n  border-bottom: none;\n}\n\n.faq__answer {\n  font-size: 13px;\n  word-spacing: 2px;\n    font-family: Sentinel, sans-serif !important;\n}\n\n@media (min-width: 920px) {\n  .faq__item {\n    border-top: none;\n    max-width: 28rem;\n    border-bottom: 2px dotted #7e899280;\n  }\n\n  .faq__question-text {\n    font-size: 22px;\n  }\n\n  .faq__answer {\n    word-spacing: unset;\n  }\n\n  .faq__question {\n    align-items: start;\n  }\n}\n\n@media (min-width: 1700px) {\n  .faq__item {\n    max-width: 38rem;\n  }\n}"
                     }
                 },
@@ -107,6 +149,7 @@
                     "settings": {
                         "question": "Can I use other discounts or promo codes on Factory Seconds pieces?",
                         "answer": "<p>No, additional discounts cannot be applied to Factory Seconds, as these items are already specially priced for the sale.</p>",
+                        "open_by_default": false,
                         "position": "right",
                         "custom_css": ".faq__question-text {\n  color: #112626;\n  font-size: 18px;\n  padding-right:1rem;\n}\n\n.faq__item {\n  border-top: 2px dotted #7e899280;\n  border-bottom: none;\n}\n\n.faq__answer {\n  font-size: 13px;\n  word-spacing: 2px;\n    font-family: Sentinel, sans-serif !important;\n}\n\n@media (min-width: 920px) {\n  .faq__item {\n    border-top: none;\n    max-width: 28rem;\n    border-bottom: 2px dotted #7e899280;\n  }\n\n  .faq__question-text {\n    font-size: 22px;\n  }\n\n  .faq__answer {\n    word-spacing: unset;\n  }\n\n  .faq__question {\n    align-items: start;\n  }\n}\n\n@media (min-width: 1700px) {\n  .faq__item {\n    max-width: 38rem;\n  }\n}"
                     }
@@ -116,6 +159,7 @@
                     "settings": {
                         "question": "Can I have my Factory Seconds pieces engraved?",
                         "answer": "<p>Yes, Factory Seconds pieces can be engraved.</p>",
+                        "open_by_default": false,
                         "position": "right",
                         "custom_css": ".faq__question-text {\n  color: #112626;\n  font-size: 18px;\n  padding-right:1rem;\n}\n\n.faq__item {\n  border-top: 2px dotted #7e899280;\n  border-bottom: none;\n}\n\n.faq__answer {\n  font-size: 13px;\n  word-spacing: 2px;\n    font-family: Sentinel, sans-serif !important;\n}\n\n@media (min-width: 920px) {\n  .faq__item {\n    border-top: none;\n    max-width: 28rem;\n    border-bottom: 2px dotted #7e899280;\n  }\n\n  .faq__question-text {\n    font-size: 22px;\n  }\n\n  .faq__answer {\n    word-spacing: unset;\n  }\n\n  .faq__question {\n    align-items: start;\n  }\n}\n\n@media (min-width: 1700px) {\n  .faq__item {\n    max-width: 38rem;\n  }\n}"
                     }
@@ -139,6 +183,7 @@
     },
     "order": [
         "content_builder",
+        "main_collection_products_4eeqnb",
         "content_builder_4zVCF3"
     ]
 }

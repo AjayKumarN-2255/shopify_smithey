@@ -1,18 +1,20 @@
 {{ 'main-collection-products.css' | asset_url | stylesheet_tag }}
 
 <section
+  id="main-collection-products-{{ section.id }}"
   class="main-collection-products"
   style="background-color: {{ section.settings.background_color }};"
 >
   <div class="main-collection-container">
     {% comment %}
-      On collection pages, keep the page collection so the picker cannot
-      override it with the wrong collection (e.g. "All").
-      Use the section picker only when this section is placed elsewhere.
+      On a collection page with products, keep that collection so a picker
+      set to "All" cannot replace it. If the page collection is empty, use
+      the collection selected in the section settings.
     {% endcomment %}
-    {% unless request.page_type == 'collection' and collection != blank %}
+    {% if request.page_type == 'collection' and collection != blank and collection.products_count > 0 %}
+    {% elsif section.settings.collection != blank and section.settings.collection.handle != 'all' %}
       {% assign collection = section.settings.collection %}
-    {% endunless %}
+    {% endif %}
 
     {% if section.settings.show_inline_nav %}
       <ul class="inline-nav">
@@ -121,7 +123,23 @@
                   }}
                 {% endif %}
               </div>
+            </a>
 
+            {% assign is_first_product = forloop.first %}
+            {% for block in section.blocks %}
+              {% if block.type == 'card_text' and block.settings.text != blank %}
+                <div
+                  class="product-card__note product-card__note--{{ block.id }}"
+                  {% if is_first_product %}
+                    {{ block.shopify_attributes }}
+                  {% endif %}
+                >
+                  {{ block.settings.text }}
+                </div>
+              {% endif %}
+            {% endfor %}
+
+            <a href="{{ product.url }}" class="product-card__link">
               <div class="product-card__content">
                 <h3 class="product-card__title">
                   {{ product.title }}
@@ -162,6 +180,35 @@
                 </div>
               </div>
             </a>
+
+            {% for block in section.blocks %}
+              {% if block.type == 'add_to_cart' %}
+                {% assign cart_variant = product.selected_or_first_available_variant %}
+                <form
+                  class="product-card__add product-card__add--{{ block.id }}"
+                  method="post"
+                  action="/cart/add"
+                  {% if is_first_product %}
+                    {{ block.shopify_attributes }}
+                  {% endif %}
+                >
+                  <input type="hidden" name="id" value="{{ cart_variant.id }}">
+                  <button
+                    type="submit"
+                    class="product-card__add-button"
+                    {% unless product.available %}
+                      disabled
+                    {% endunless %}
+                  >
+                    {% if product.available %}
+                      {{ block.settings.button_text }}
+                    {% else %}
+                      Sold out
+                    {% endif %}
+                  </button>
+                </form>
+              {% endif %}
+            {% endfor %}
           </article>
         {% endfor %}
       </div>
@@ -170,27 +217,64 @@
 </section>
 
 <style>
-    .main-collection-products__grid {
-      grid-template-columns: repeat({{section.settings.mobile_columns}}, 1fr);
+    #main-collection-products-{{ section.id }} .main-collection-products__grid {
+      grid-template-columns: repeat({{ section.settings.mobile_columns }}, 1fr);
     }
 
-    .product-card.product-card--featured-mobile {
-    grid-column: span var(--featured-column-span-mobile);
-  }
+    #main-collection-products-{{ section.id }} .product-card.product-card--featured-mobile {
+      grid-column: span var(--featured-column-span-mobile);
+    }
 
     @media (min-width: 920px) {
-      .main-collection-products__grid {
-        grid-template-columns: repeat({{section.settings.desktop_columns}}, 1fr);
+      #main-collection-products-{{ section.id }} .main-collection-products__grid {
+        grid-template-columns: repeat({{ section.settings.desktop_columns }}, 1fr);
       }
-      .product-card.product-card--featured-mobile {
+      #main-collection-products-{{ section.id }} .product-card.product-card--featured-mobile {
         grid-column: unset;
       }
 
-      .product-card.product-card--featured-desktop {
+      #main-collection-products-{{ section.id }} .product-card.product-card--featured-desktop {
         grid-column: span var(--featured-column-span-desktop);
       }
     }
 </style>
+
+{% for block in section.blocks %}
+  {% if block.type == 'card_text' %}
+    {% assign note_selector = '#main-collection-products-' | append: section.id | append: ' .product-card__note--' | append: block.id %}
+    <style>
+      {{ note_selector }} {
+        color: {{ block.settings.text_color }};
+        font-size: {{ block.settings.text_mobile_size }}rem;
+      }
+
+      @media (min-width: 920px) {
+        {{ note_selector }} {
+          font-size: {{ block.settings.text_desktop_size }}rem;
+        }
+      }
+
+      {{ block.settings.custom_css | replace: '&', note_selector }}
+    </style>
+  {% elsif block.type == 'add_to_cart' %}
+    {% assign add_selector = '#main-collection-products-' | append: section.id | append: ' .product-card__add--' | append: block.id %}
+    <style>
+      {{ add_selector }} .product-card__add-button {
+        background-color: {{ block.settings.button_bg_color }};
+        color: {{ block.settings.button_text_color }};
+      }
+
+      {{ block.settings.custom_css | replace: '&', add_selector }}
+    </style>
+  {% endif %}
+{% endfor %}
+
+{% if section.settings.custom_css != blank %}
+  {% assign section_css_selector = '#main-collection-products-' | append: section.id %}
+  <style>
+    {{ section.settings.custom_css | replace: '#SECTION_ID', section_css_selector }}
+  </style>
+{% endif %}
 
 {% schema %}
 {
@@ -297,6 +381,80 @@
       "max": 6,
       "step": 1,
       "default": 2
+    },
+    {
+      "type": "textarea",
+      "id": "custom_css",
+      "label": "Custom CSS",
+      "info": "Use #SECTION_ID to target this section. Example: #SECTION_ID .product-card { background: #fff; }"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card_text",
+      "name": "Card Text",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Common text",
+          "info": "Shown below the product image on every card in this section."
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "#112626"
+        },
+        {
+          "type": "number",
+          "id": "text_desktop_size",
+          "label": "Desktop size (rem)",
+          "default": 0.9
+        },
+        {
+          "type": "number",
+          "id": "text_mobile_size",
+          "label": "Mobile size (rem)",
+          "default": 0.8
+        },
+        {
+          "type": "textarea",
+          "id": "custom_css",
+          "label": "Custom CSS",
+          "info": "Use '&' to target this text on every card. Example: '& { text-align: center; margin-top: 0.5rem; }'"
+        }
+      ]
+    },
+    {
+      "type": "add_to_cart",
+      "name": "Add to Cart",
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text",
+          "default": "Add to Cart"
+        },
+        {
+          "type": "color",
+          "id": "button_bg_color",
+          "label": "Button background",
+          "default": "#b68b32"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "Button text color",
+          "default": "#112626"
+        },
+        {
+          "type": "textarea",
+          "id": "custom_css",
+          "label": "Custom CSS",
+          "info": "Use '&' to target this button on every card. Example: '& { margin-top: 0.5rem; }'"
+        }
+      ]
     }
   ],
   "presets": [

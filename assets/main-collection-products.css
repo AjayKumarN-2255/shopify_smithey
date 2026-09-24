@@ -78,6 +78,39 @@
   padding: 0.75rem;
 }
 
+.product-card__note {
+  padding: 0;
+  line-height: 1.35;
+  font-weight: 500;
+}
+
+.product-card__note :is(p, h1, h2, h3, h4, h5, h6) {
+  margin: 0;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.product-card__add {
+  padding: 0;
+}
+
+.product-card__add-button {
+  display: block;
+  width: 100%;
+  border: 0;
+  padding: 0.75rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.product-card__add-button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
 .product-card__image-wrapper {
   position: relative;
   width: 100%;
