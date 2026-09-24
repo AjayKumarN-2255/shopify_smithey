@@ -1,0 +1,29 @@
+{% assign source = text | default: '' | strip | replace: '_', ' ' | replace: '-', ' ' %}
+{% assign chars = source | split: '' %}
+{% assign spaced = '' %}
+{% assign prev_was_lower = false %}
+{% for char in chars %}
+  {% assign lower = char | downcase %}
+  {% if char != lower and prev_was_lower %}
+    {% assign spaced = spaced | append: ' ' | append: lower %}
+  {% else %}
+    {% assign spaced = spaced | append: lower %}
+  {% endif %}
+  {% assign prev_was_lower = false %}
+  {% if char == lower and char != ' ' %}
+    {% assign prev_was_lower = true %}
+  {% endif %}
+{% endfor %}
+{% assign camel = '' %}
+{% assign parts = spaced | split: ' ' %}
+{% for part in parts %}
+  {% if part == blank %}
+    {% continue %}
+  {% endif %}
+  {% if camel == blank %}
+    {% assign camel = part %}
+  {% else %}
+    {% assign camel = camel | append: part | capitalize %}
+  {% endif %}
+{% endfor %}
+{{- camel -}}

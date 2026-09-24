@@ -1,0 +1,51 @@
+{% assign material_label = product.metafields.custom.material.value | default: product.metafields.custom.material %}
+{% if material_label.title != blank %}
+  {% assign material_label = material_label.title %}
+{% endif %}
+
+{% capture material_camel %}{% render 'to-camel-case', text: material_label %}{% endcapture %}
+{% assign material_camel = material_camel | strip %}
+{% assign material_handle = material_camel | handleize %}
+{% assign material_compact = material_camel | downcase %}
+
+{% if material_compact == 'iron' or material_compact == 'castiron' %}
+  {% assign material_handle = 'cast-iron' %}
+{% endif %}
+
+{% assign material_blog = blogs[material_handle] %}
+
+{% if material_blog != blank and material_blog.articles_count > 0 %}
+  <div class="product__related-blogs">
+    <div class="product__related-blogs-inner">
+      <h2 class="product__related-blogs-heading">The Case For Our {{ material_label | upcase }}</h2>
+
+      <div class="product__related-blogs-grid">
+        {% assign material_articles = material_blog.articles | reverse %}
+        {% for article in material_articles limit: 4 %}
+          <article class="product__related-blog-card">
+            {% if article.image %}
+              <div class="product__related-blog-media">
+                {{
+                  article.image
+                  | image_url: width: 902, height: 902, crop: 'center'
+                  | image_tag:
+                    loading: 'lazy',
+                    class: 'product__related-blog-image',
+                    alt: article.image.alt | default: article.title,
+                    width: 451,
+                    height: 451
+                }}
+              </div>
+            {% endif %}
+
+            <h3 class="product__related-blog-title">{{ article.title }}</h3>
+
+            <div class="product__related-blog-excerpt">
+              {{ article.excerpt | default: article.content | strip_html | truncate: 280 }}
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endif %}
