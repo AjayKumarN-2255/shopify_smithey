@@ -976,3 +976,176 @@
     max-height: none;
   }
 }
+
+.product-faqs {
+  width: 100%;
+  background-color: #faf9f9;
+  color: #112626;
+}
+
+.product-faqs__inner {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 80px 10px 32px;
+}
+
+.product-faqs__title {
+  max-width: 20rem;
+  margin: 0 0 20px;
+  font-family: Gotham, ui-sans-serif, sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.15;
+  text-transform: uppercase;
+  color: #b68b32;
+}
+
+.product-faqs__text {
+  margin: 0 0 2.5rem;
+  max-width: 36rem;
+  font-family: Sentinel, ui-serif, serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.45;
+  word-spacing: 1px;
+  color: #112626;
+}
+
+.product-faqs__item {
+  border-bottom: 2px dotted rgba(126, 137, 146, 0.5);
+  padding: 1.15rem 0 0.85rem;
+}
+
+.product-faqs__question {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  cursor: pointer;
+}
+
+.product-faqs__question-text {
+  max-width: 20rem;
+  font-family: Gotham, ui-sans-serif, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.25;
+  text-transform: uppercase;
+  color: #112626;
+}
+
+.product-faqs__icon {
+  flex: 0 0 auto;
+  font-family: Gotham, ui-sans-serif, sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1;
+  color: #b68b32;
+}
+
+.product-faqs__icon--open {
+  display: none;
+}
+
+.product-faqs__answer {
+  max-height: 0;
+  overflow: hidden;
+  margin: 0;
+  font-family: Sentinel, ui-serif, serif;
+  font-size: 16px;
+  line-height: 1.45;
+  color: #112626;
+  transition: max-height 0.3s ease, margin 0.3s ease;
+}
+
+.product-faqs__answer p {
+  margin: 0;
+}
+
+.product-faqs__item.is-open .product-faqs__icon:not(.product-faqs__icon--open) {
+  display: none;
+}
+
+.product-faqs__item.is-open .product-faqs__icon--open {
+  display: inline;
+}
+
+.product-faqs__item.is-open .product-faqs__answer {
+  max-height: 500px;
+  margin-top: 0.85rem;
+}
+
+@media screen and (min-width: 920px) {
+  .product-faqs {
+    height: 560px;
+  }
+
+  .product-faqs__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem 5rem;
+    align-items: start;
+    padding: 80px 0 0;
+  }
+
+  .product-faqs__intro {
+    max-width: 20rem;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: start;
+  }
+
+  .product-faqs__items {
+    max-width: 540px;
+    text-align: start;
+  }
+
+  .product-faqs__items > .product-faqs__item:first-child {
+    padding-top: 0;
+  }
+
+  .product-faqs__title {
+    max-width: none;
+    margin-right: 0;
+    margin-left: 0;
+    font-size: 32px;
+  }
+
+  .product-faqs__text {
+    max-width: none;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    text-align: start;
+    font-size: 16px;
+  }
+
+  .product-faqs__question-text {
+    max-width: 15rem;
+    font-size: 22px;
+  }
+}
+
+@media screen and (min-width: 1700px) {
+  .product-faqs {
+    height: 435px;
+  }
+
+  .product-faqs__question-text {
+    max-width: unset;
+  }
+
+  .product-faqs__intro {
+    max-width: 34rem;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: start;
+  }
+
+  .product-faqs__items {
+    max-width: 740px;
+  }
+}

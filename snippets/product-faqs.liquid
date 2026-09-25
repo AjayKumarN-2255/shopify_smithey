@@ -1,0 +1,70 @@
+{% assign product_faqs = product.metafields.custom.faq.value %}
+
+{% if product_faqs != blank %}
+  <section class="product-faqs" aria-label="Product FAQs">
+    <div class="product-faqs__inner">
+      <div class="product-faqs__intro">
+        <h2 class="product-faqs__title">FAQs: {{ product.title }}</h2>
+        <p class="product-faqs__text">
+          We stand behind the quality of our cast iron and carbon steel cookware. If your cookware is defective, we'll replace it. If your cookware fails you after honest and normal use, we'll repair or replace it.
+        </p>
+      </div>
+
+      <div class="product-faqs__items">
+        {% for faq in product_faqs %}
+          {% assign faq_question = faq.qn.value | default: faq.qn %}
+          {% assign faq_answer = faq.ans.value | default: faq.ans %}
+
+          {% if faq_question != blank %}
+            <div class="product-faqs__item{% if forloop.first %} is-open{% endif %}">
+              <div class="product-faqs__question" role="button" tabindex="0" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}">
+                <span class="product-faqs__question-text">{{ faq_question }}</span>
+                <span class="product-faqs__icon" aria-hidden="true">+</span>
+                <span class="product-faqs__icon product-faqs__icon--open" aria-hidden="true">−</span>
+              </div>
+              {% if faq_answer != blank %}
+                <div class="product-faqs__answer">
+                  {{ faq_answer }}
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const root = document.querySelector('.product-faqs');
+      if (!root || root.dataset.faqsBound === 'true') return;
+      root.dataset.faqsBound = 'true';
+
+      root.querySelectorAll('.product-faqs__question').forEach((question) => {
+        const toggle = () => {
+          const item = question.closest('.product-faqs__item');
+          const isOpen = item.classList.contains('is-open');
+
+          root.querySelectorAll('.product-faqs__item').forEach((faq) => {
+            faq.classList.remove('is-open');
+            const faqQuestion = faq.querySelector('.product-faqs__question');
+            if (faqQuestion) faqQuestion.setAttribute('aria-expanded', 'false');
+          });
+
+          if (!isOpen) {
+            item.classList.add('is-open');
+            question.setAttribute('aria-expanded', 'true');
+          }
+        };
+
+        question.addEventListener('click', toggle);
+        question.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            toggle();
+          }
+        });
+      });
+    });
+  </script>
+{% endif %}
