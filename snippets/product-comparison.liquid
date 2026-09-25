@@ -1,0 +1,112 @@
+{% assign material_label = product.metafields.custom.material.value | default: product.metafields.custom.material %}
+{% if material_label.title != blank %}
+  {% assign material_label = material_label.title %}
+{% endif %}
+
+{% capture material_camel %}{% render 'to-camel-case', text: material_label %}{% endcapture %}
+{% assign material_camel = material_camel | strip %}
+{% assign material_handle = material_camel | handleize %}
+{% assign material_compact = material_camel | downcase %}
+
+{% if material_compact == 'iron' or material_compact == 'castiron' %}
+  {% assign material_handle = 'cast-iron' %}
+{% endif %}
+
+{% assign material_collection = collections[material_handle] %}
+{% if material_collection == blank or material_collection.products_count == 0 %}
+  {% assign material_collection = collections.all %}
+{% endif %}
+
+{% assign current_material = material_label | downcase | strip %}
+{% assign picked_handles = '' %}
+{% assign picked_count = 0 %}
+
+{% for item in material_collection.products %}
+  {% if picked_count < 2 and item.id != product.id %}
+    {% assign item_material = item.metafields.custom.material.value | default: item.metafields.custom.material %}
+    {% if item_material.title != blank %}
+      {% assign item_material = item_material.title %}
+    {% endif %}
+    {% assign item_material = item_material | downcase | strip %}
+
+    {% if material_collection.handle == material_handle or item_material == current_material %}
+      {% assign picked_handles = picked_handles | append: item.handle | append: '|' %}
+      {% assign picked_count = picked_count | plus: 1 %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+{% assign compare_handles = picked_handles | append: product.handle | split: '|' %}
+{% assign key_diff_serves = '3+ people|1-3 people|2+ people' | split: '|' %}
+{% assign key_diff_notes = 'The round shape and two handles make this the perfect skillet to go from oven to grill and vice versa in a snap.|The chef skillet that ranges from breakfast to stir fry’s and encourages you to get moving in your cooking.|The perfect cast iron skillet to feed the family.' | split: '|' %}
+
+{% if compare_handles.size > 0 and material_label != blank %}
+  <section class="product-comparison" aria-label="Compare our cookware">
+    <div class="product-comparison__inner">
+      <h2 class="product-comparison__heading">Compare Our Cookware</h2>
+
+      <div class="product-comparison__grid">
+        {% for handle in compare_handles %}
+          {% if handle != blank %}
+            {% assign compare_product = all_products[handle] %}
+            {% assign diff_index = forloop.index0 | modulo: key_diff_serves.size %}
+            {% assign key_diff_serve = key_diff_serves[diff_index] %}
+            {% assign key_diff_note = key_diff_notes[diff_index] %}
+
+            <article class="product-comparison__card">
+              <div class="product-comparison__media">
+                {% if compare_product.id == product.id %}
+                  <span class="product-comparison__badge">Currently Viewing</span>
+                {% endif %}
+
+                {% if compare_product.featured_image %}
+                  {{
+                    compare_product.featured_image
+                    | image_url: width: 800
+                    | image_tag:
+                      loading: 'lazy',
+                      class: 'product-comparison__image',
+                      alt: compare_product.title,
+                      widths: '400, 600, 800'
+                  }}
+                {% endif %}
+              </div>
+
+              <h3 class="product-comparison__title">{{ compare_product.title }}</h3>
+
+              {% if compare_product.description != blank %}
+                <p class="product-comparison__description">
+                  {{ compare_product.description | strip_html | truncate: 140 }}
+                </p>
+              {% endif %}
+
+              <div class="product-comparison__differences">
+                <h4 class="product-comparison__differences-heading">Key Differences</h4>
+                <p class="product-comparison__difference">
+                  <span class="product-comparison__difference-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <circle cx="9" cy="8" r="2.2"></circle>
+                      <circle cx="15.5" cy="8.5" r="1.8"></circle>
+                      <path d="M4.5 18.5c.4-2.4 2.2-3.8 4.5-3.8s4.1 1.4 4.5 3.8"></path>
+                      <path d="M13.2 14.8c1.6.2 2.9 1.2 3.4 3.2"></path>
+                    </svg>
+                  </span>
+                  <span>{{ key_diff_serve }}</span>
+                </p>
+                <p class="product-comparison__difference">
+                  <span class="product-comparison__difference-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <circle cx="10" cy="12" r="5.5"></circle>
+                      <path d="M15 12h6"></path>
+                    </svg>
+                  </span>
+                  <span>{{ key_diff_note }}</span>
+                </p>
+              </div>
+            </article>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endif %}
