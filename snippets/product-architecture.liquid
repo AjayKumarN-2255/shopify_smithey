@@ -1,0 +1,50 @@
+{% assign material_label = product.metafields.custom.material.value | default: product.metafields.custom.material %}
+{% if material_label.title != blank %}
+  {% assign material_label = material_label.title %}
+{% endif %}
+
+{% assign architecture_desc_image = product.metafields.custom.architecture_desc.value | default: product.metafields.custom.architecture.value %}
+{% assign architecture_mob_image = product.metafields.custom.architecture_mob.value %}
+
+{% if architecture_desc_image != blank or architecture_mob_image != blank %}
+  <section class="product-architecture" aria-label="Product architecture">
+    {% if architecture_mob_image != blank %}
+      {% assign architecture_mob_src = architecture_mob_image | image_url: width: 1200 %}
+      {% if architecture_mob_src == blank %}
+        {% assign architecture_mob_src = architecture_mob_image.url %}
+      {% endif %}
+      <img
+        class="product-architecture__image product-architecture__image--mobile"
+        src="{{ architecture_mob_src }}"
+        alt=""
+        loading="lazy"
+        width="750"
+        height="2022"
+      >
+    {% endif %}
+
+    {% if architecture_desc_image != blank %}
+      {% assign architecture_desc_src = architecture_desc_image | image_url: width: 2000 %}
+      {% if architecture_desc_src == blank %}
+        {% assign architecture_desc_src = architecture_desc_image.url %}
+      {% endif %}
+      <img
+        class="product-architecture__image product-architecture__image--desc"
+        src="{{ architecture_desc_src }}"
+        alt=""
+        loading="lazy"
+        width="2000"
+        height="1122"
+      >
+    {% endif %}
+
+    <div class="product-architecture__inner">
+      <header class="product-architecture__header">
+        {% if material_label != blank %}
+          <p class="product-architecture__material">Smithey {{ material_label }}</p>
+        {% endif %}
+        <h2 class="product-architecture__title">{{ product.title }}</h2>
+      </header>
+    </div>
+  </section>
+{% endif %}

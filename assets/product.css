@@ -777,6 +777,110 @@
   margin: 0;
 }
 
+.product-architecture {
+  position: relative;
+  width: 100%;
+  height: 975px;
+  overflow: hidden;
+  background-color: #0e2424;
+  background-image: url(https://smithey.com/cdn/shop/files/smithey-texture-dark.jpg?v=1676068986);
+  background-repeat: repeat;
+  color: #ffffff;
+}
+
+.product-architecture__inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.product-architecture__header {
+  margin: 0 auto 2.5rem;
+  text-align: center;
+}
+
+.product-architecture__material {
+  margin-top: 40px;
+  margin-bottom: 5px;
+  font-family: Gotham, ui-sans-serif, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: rgb(213, 213, 213);
+}
+
+.product-architecture__title {
+  margin: 0;
+  font-family: Gotham, ui-sans-serif, sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.15;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.product-architecture__image {
+  position: absolute;
+  inset: 0;
+  top: -1.25rem;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  pointer-events: none;
+}
+
+.product-architecture__image--desc {
+  display: none;
+}
+
+.product-architecture__desc {
+  width: 100%;
+  max-width: 1100px;
+  margin: 2.5rem auto 0;
+}
+
+@media screen and (min-width: 920px) {
+  .product-architecture__header {
+    margin-bottom: 3.5rem;
+  }
+
+  .product-architecture__material {
+    margin-top: 40px;
+    margin-bottom: 5px;
+    font-size: 12px !important;
+    letter-spacing: 0.32em;
+  }
+
+  .product-architecture__title {
+    font-size: 32px !important;
+    letter-spacing: 0.04em;
+  }
+
+  .product-architecture {
+    height: 805px;
+  }
+
+  .product-architecture__image--mobile {
+    display: none;
+  }
+
+  .product-architecture__image--desc {
+    display: block;
+  }
+
+  .product-architecture__image {
+    top: -1rem;
+  }
+}
+
 @media screen and (min-width: 920px) {
   .product__related-blogs {
     margin-top: 0;
@@ -829,6 +933,17 @@
 }
 
 @media screen and (min-width: 1700px) {
+  .product-architecture {
+    height: 840px;
+  }
+
+  .product-architecture__image {
+    top: 0;
+    height: 840px;
+    object-fit: contain;
+    object-position: center center;
+  }
+
   .product__gallery {
     width: 45.55rem;
   }
