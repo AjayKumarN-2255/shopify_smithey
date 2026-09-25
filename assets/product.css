@@ -1003,7 +1003,7 @@
 }
 
 .product-faqs__text {
-  margin: 0 0 2.5rem;
+  margin: 0 0 1.5rem;
   max-width: 36rem;
   font-family: Sentinel, ui-serif, serif;
   font-size: 15px;
@@ -1117,7 +1117,7 @@
   .product-faqs__text {
     max-width: none;
     margin-right: 0;
-    margin-bottom: 0;
+    margin-bottom: 1.5rem;
     margin-left: 0;
     text-align: start;
     font-size: 16px;
