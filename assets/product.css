@@ -1080,7 +1080,8 @@
 
 @media screen and (min-width: 920px) {
   .product-faqs {
-    height: 460px;
+    min-height: 460px;
+    padding-bottom: 5px;
   }
 
   .product-faqs__inner {
@@ -1162,9 +1163,10 @@
 }
 
 .product-comparison__heading {
-  margin: 0 0 1.75rem;
+  max-width: 20rem;
+  margin: 0 auto 1.75rem;
   font-family: Gotham, ui-sans-serif, sans-serif;
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 700;
   letter-spacing: 0.04em;
   line-height: 1.2;
@@ -1174,22 +1176,32 @@
 }
 
 .product-comparison__grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
+  display: flex;
+  gap: 13px;
   width: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.product-comparison__grid::-webkit-scrollbar {
+  display: none;
 }
 
 .product-comparison__card {
   display: flex;
+  flex: 0 0 330px;
   flex-direction: column;
+  width: 330px;
   min-width: 0;
+  scroll-snap-align: start;
 }
 
 .product-comparison__media {
   position: relative;
   width: 100%;
-  aspect-ratio: 1;
+  height: 374px;
   background-color: #eceae6;
   overflow: hidden;
 }
@@ -1204,7 +1216,7 @@
 .product-comparison__badge {
   position: absolute;
   top: 0.85rem;
-  right: 0.85rem;
+  left: 0.85rem;
   z-index: 1;
   padding: 0.35rem 0.5rem;
   border: 1px solid #112626;
@@ -1219,7 +1231,7 @@
 }
 
 .product-comparison__title {
-  margin: 1.15rem 0 0.75rem;
+  margin: 17px 0 4px;
   font-family: Gotham, ui-sans-serif, sans-serif;
   font-size: 14px;
   font-weight: 700;
@@ -1267,16 +1279,46 @@
 .product-comparison__difference-icon {
   flex: 0 0 auto;
   margin-top: 0.1rem;
-  color: #b68b32;
+}
+
+.product-comparison__difference-icon img {
+  display: block;
+  width: 18px;
+  height: auto;
 }
 
 @media screen and (min-width: 920px) {
+  .product-comparison__inner {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
   .product-comparison__heading {
-    font-size: 36px;
+    max-width: unset;
+    margin-bottom: 20px;
+    font-size: 32px;
   }
 
   .product-comparison__grid {
+    display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.25rem;
+    gap: 20px;
+    overflow-x: visible;
+    scroll-snap-type: none;
+  }
+
+  .product-comparison__card {
+    flex: none;
+    width: auto;
+  }
+
+  .product-comparison__media {
+    height: 511px;
+  }
+}
+
+@media screen and (min-width: 1700px) {
+  .product-comparison__media {
+    height: 686px;
   }
 }
