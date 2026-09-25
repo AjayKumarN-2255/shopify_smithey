@@ -1194,8 +1194,10 @@
   flex: 0 0 330px;
   flex-direction: column;
   width: 330px;
+  height: auto;
   min-width: 0;
   scroll-snap-align: start;
+  align-self: stretch;
 }
 
 .product-comparison__media {
@@ -1231,7 +1233,10 @@
 }
 
 .product-comparison__title {
-  margin: 17px 0 4px;
+  margin: 17px 0 0;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px dashed rgb(126, 137, 146);
+  border-left-color: rgb(126, 137, 146);
   font-family: Gotham, ui-sans-serif, sans-serif;
   font-size: 14px;
   font-weight: 700;
@@ -1242,7 +1247,11 @@
 }
 
 .product-comparison__description {
-  margin: 0 0 1.25rem;
+  flex: 1 1 auto;
+  margin: 0.85rem 0 0;
+  padding-bottom: 1rem;
+  border-bottom: 1px dashed rgb(126, 137, 146);
+  border-left-color: rgb(126, 137, 146);
   font-family: Sentinel, ui-serif, serif;
   font-size: 15px;
   line-height: 1.45;
@@ -1250,12 +1259,16 @@
 }
 
 .product-comparison__differences {
+  min-height: 145px;
+  margin-top: auto;
   padding-top: 1rem;
-  border-top: 2px dotted rgba(126, 137, 146, 0.5);
+  padding-bottom: 0.5rem;
+  border-bottom: 1px dashed rgb(126, 137, 146);
+  border-left-color: rgb(126, 137, 146);
 }
 
 .product-comparison__differences-heading {
-  margin: 0 0 0.85rem;
+  margin: 0 0 8px;
   font-family: Gotham, ui-sans-serif, sans-serif;
   font-size: 13px;
   font-weight: 700;
@@ -1310,6 +1323,12 @@
   .product-comparison__card {
     flex: none;
     width: auto;
+    height: 100%;
+  }
+
+  .product-comparison__differences {
+    padding-top: 12px;
+    padding-bottom: 0;
   }
 
   .product-comparison__media {
