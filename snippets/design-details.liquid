@@ -1,0 +1,209 @@
+{% assign design_details = product.metafields.custom.design_details.value %}
+
+{% if design_details != blank %}
+  {{ 'design-details.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'design-details.js' | asset_url }}" defer></script>
+
+  <section class="design-details" data-design-details aria-label="Design details">
+    <div class="design-details__container">
+      <div class="design-details__desktop">
+        <div class="design-details__stage">
+          {% assign design_detail_count = 0 %}
+          {% for detail in design_details %}
+            {% assign design_detail_count = design_detail_count | plus: 1 %}
+            {% assign detail_title = detail.title.value | default: detail.title %}
+            {% assign detail_title = detail_title | strip %}
+            {% assign desc_field = detail.desc %}
+            {% assign desc_type = desc_field.type | default: '' %}
+            {% capture desc_raw %}{{ desc_field.value | default: desc_field }}{% endcapture %}
+            {% assign desc_raw = desc_raw | strip %}
+            {% assign image_field = detail.image %}
+            {% assign detail_image = image_field.value | default: image_field %}
+            {% if detail_image.preview_image != blank %}
+              {% assign detail_image = detail_image.preview_image %}
+            {% endif %}
+            {% assign detail_alt = detail_image.alt | default: detail_title %}
+            {% assign detail_src = detail_image | image_url: width: 1600 %}
+            {% if detail_src == blank %}
+              {% assign detail_src = detail_image.url | default: detail_image.src %}
+            {% endif %}
+            {% assign panel_id = 'DesignDetailPanel-' | append: product.id | append: '-' | append: forloop.index0 %}
+
+            <div
+              id="{{ panel_id }}"
+              class="design-details__panel{% if forloop.first %} design-details__panel--active{% endif %}"
+              data-design-panel="{{ forloop.index0 }}"
+            >
+              <div class="design-details__media">
+                {% if detail_src != blank %}
+                  {% if detail_image.width != blank %}
+                    {{
+                      detail_image
+                      | image_url: width: 1600
+                      | image_tag:
+                        loading: 'lazy',
+                        class: 'design-details__image',
+                        alt: detail_alt,
+                        widths: '480, 800, 1200, 1600',
+                        sizes: '(min-width: 920px) 42vw, 92vw'
+                    }}
+                  {% else %}
+                    <img
+                      class="design-details__image"
+                      src="{{ detail_src }}"
+                      alt="{{ detail_alt | escape }}"
+                      loading="lazy"
+                    >
+                  {% endif %}
+                {% endif %}
+              </div>
+
+              {% if desc_type contains 'rich_text' or desc_raw contains '"type":"root"' or desc_raw contains '"type": "root"' %}
+                <div class="design-details__description">
+                  {{ desc_field | metafield_tag }}
+                </div>
+              {% elsif desc_raw != blank %}
+                <div class="design-details__description">
+                  {{ desc_raw | newline_to_br }}
+                </div>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+
+        <div class="design-details__navigation">
+          <h2 class="design-details__heading">
+            <span class="design-details__heading-label">Design Details:</span>
+            <span class="design-details__heading-name">{{ product.title }}</span>
+          </h2>
+
+          <ul class="design-details__items">
+            {% for detail in design_details %}
+              {% assign detail_title = detail.title.value | default: detail.title %}
+              {% assign detail_title = detail_title | strip %}
+              {% assign panel_id = 'DesignDetailPanel-' | append: product.id | append: '-' | append: forloop.index0 %}
+
+              <li class="design-details__entry">
+                <button
+                  type="button"
+                  class="design-details__item{% if forloop.first %} design-details__item--active{% endif %}"
+                  data-design-index="{{ forloop.index0 }}"
+                  aria-controls="{{ panel_id }}"
+                  {% if forloop.first %}
+                    aria-current="true"
+                  {% endif %}
+                >
+                  {{ detail_title }}
+                </button>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+
+      <div class="design-details__mobile">
+        <h2 class="design-details__heading">
+          <span class="design-details__heading-label">Design Details:</span>
+          <span class="design-details__heading-name">{{ product.title }}</span>
+        </h2>
+
+        <div class="design-details__slider" data-design-viewport>
+          {% for detail in design_details %}
+            {% assign detail_title = detail.title.value | default: detail.title %}
+            {% assign detail_title = detail_title | strip %}
+            {% assign desc_field = detail.desc %}
+            {% assign desc_type = desc_field.type | default: '' %}
+            {% capture desc_raw %}{{ desc_field.value | default: desc_field }}{% endcapture %}
+            {% assign desc_raw = desc_raw | strip %}
+            {% assign image_field = detail.image %}
+            {% assign detail_image = image_field.value | default: image_field %}
+            {% if detail_image.preview_image != blank %}
+              {% assign detail_image = detail_image.preview_image %}
+            {% endif %}
+            {% assign detail_alt = detail_image.alt | default: detail_title %}
+            {% assign detail_src = detail_image | image_url: width: 1600 %}
+            {% if detail_src == blank %}
+              {% assign detail_src = detail_image.url | default: detail_image.src %}
+            {% endif %}
+
+            <article
+              class="design-details__slide"
+              data-design-slide
+              aria-hidden="{% if forloop.first %}false{% else %}true{% endif %}"
+            >
+              <div class="design-details__slide-media">
+                {% if detail_src != blank %}
+                  {% if detail_image.width != blank %}
+                    {{
+                      detail_image
+                      | image_url: width: 1600
+                      | image_tag:
+                        loading: 'lazy',
+                        class: 'design-details__slide-image',
+                        alt: detail_alt,
+                        widths: '480, 800, 1200, 1600',
+                        sizes: '92vw'
+                    }}
+                  {% else %}
+                    <img
+                      class="design-details__slide-image"
+                      src="{{ detail_src }}"
+                      alt="{{ detail_alt | escape }}"
+                      loading="lazy"
+                    >
+                  {% endif %}
+                {% endif %}
+              </div>
+
+              {% if detail_title != blank %}
+                <h3 class="design-details__slide-title">{{ detail_title }}</h3>
+              {% endif %}
+
+              {% if desc_type contains 'rich_text' or desc_raw contains '"type":"root"' or desc_raw contains '"type": "root"' %}
+                <div class="design-details__slide-description">
+                  {{ desc_field | metafield_tag }}
+                </div>
+              {% elsif desc_raw != blank %}
+                <div class="design-details__slide-description">
+                  {{ desc_raw | newline_to_br }}
+                </div>
+              {% endif %}
+            </article>
+          {% endfor %}
+        </div>
+
+        {% if design_detail_count > 1 %}
+          <div class="design-details__controls">
+            <button type="button" class="design-details__control" data-design-prev aria-label="Previous design detail">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+                <path d="M14.5 5.5 L8 12 L14.5 18.5" fill="none" stroke="currentColor" stroke-width="1.5"></path>
+              </svg>
+            </button>
+
+            <div class="design-details__dots" role="tablist" aria-label="Design detail slides">
+              {% for detail in design_details %}
+                {% assign detail_title = detail.title.value | default: detail.title %}
+                {% assign detail_title = detail_title | strip %}
+                <button
+                  type="button"
+                  class="design-details__dot{% if forloop.first %} is-active{% endif %}"
+                  data-design-dot="{{ forloop.index0 }}"
+                  aria-label="{{ detail_title | escape }}"
+                  {% if forloop.first %}
+                    aria-current="true"
+                  {% endif %}
+                ></button>
+              {% endfor %}
+            </div>
+
+            <button type="button" class="design-details__control" data-design-next aria-label="Next design detail">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+                <path d="M9.5 5.5 L16 12 L9.5 18.5" fill="none" stroke="currentColor" stroke-width="1.5"></path>
+              </svg>
+            </button>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+{% endif %}
