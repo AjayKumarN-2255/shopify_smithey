@@ -1,0 +1,213 @@
+{% comment %}
+  Product Use section.
+  Reads the list of custom objects from `product.metafields.custom.product_use`.
+  Each object supports: title, content title, content desc, content link, image, video.
+  Only the "Designed for Daily Use" heading is hardcoded; everything else is dynamic.
+{% endcomment %}
+
+{% assign product_use_list = product.metafields.custom.product_use.value %}
+
+{% if product_use_list != blank and product_use_list.size > 0 %}
+  {{ 'product-use.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'product-use.js' | asset_url }}" defer></script>
+
+  <section class="product-use" data-product-use aria-label="Product use">
+    <div class="product-use__container">
+      <header class="product-use__header">
+        <h2 class="product-use__heading">Designed for Daily Use</h2>
+
+        <nav class="product-use__nav" aria-label="Product use">
+          <ul class="product-use__tabs">
+            {% for item in product_use_list %}
+              {% assign use_title = item.title.value | default: item.title %}
+              {% assign use_title = use_title | strip %}
+              {% assign panel_id = 'ProductUsePanel-' | append: product.id | append: '-' | append: forloop.index0 %}
+
+              {% if use_title != blank %}
+                <li class="product-use__tab-item">
+                  <button
+                    type="button"
+                    class="product-use__tab{% if forloop.first %} product-use__tab--active{% endif %}"
+                    data-product-use-tab="{{ forloop.index0 }}"
+                    aria-controls="{{ panel_id }}"
+                    aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+                    {% if forloop.first %}
+                      aria-current="true"
+                    {% endif %}
+                  >
+                    {{ use_title }}
+                  </button>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </nav>
+      </header>
+
+      <div class="product-use__stage">
+        {% for item in product_use_list %}
+          {% assign use_title = item.title.value | default: item.title %}
+          {% assign use_title = use_title | strip %}
+
+          {% assign content_title_field = item['content title'] %}
+          {% if content_title_field == blank %}
+            {% assign content_title_field = item.content_title %}
+          {% endif %}
+          {% if content_title_field == blank %}
+            {% assign content_title_field = item['content_title'] %}
+          {% endif %}
+          {% assign content_title = content_title_field.value | default: content_title_field %}
+          {% assign content_title = content_title | strip %}
+
+          {% assign content_desc_field = item['content desc'] %}
+          {% if content_desc_field == blank %}
+            {% assign content_desc_field = item.content_desc %}
+          {% endif %}
+          {% if content_desc_field == blank %}
+            {% assign content_desc_field = item['content_desc'] %}
+          {% endif %}
+          {% assign desc_type = content_desc_field.type | default: '' %}
+          {% capture desc_raw %}{{ content_desc_field.value | default: content_desc_field }}{% endcapture %}
+          {% assign desc_raw = desc_raw | strip %}
+
+          {% assign content_link_field = item['content link'] %}
+          {% if content_link_field == blank %}
+            {% assign content_link_field = item.content_link %}
+          {% endif %}
+          {% if content_link_field == blank %}
+            {% assign content_link_field = item['content_link'] %}
+          {% endif %}
+          {% assign content_link_url = content_link_field.value | default: content_link_field %}
+          {% if content_link_url.url != blank %}
+            {% assign content_link_url = content_link_url.url %}
+          {% endif %}
+          {% assign content_link_url = content_link_url | strip %}
+
+          {% assign video_field = item.video.value | default: item.video %}
+          {% assign has_video = false %}
+          {% assign video_poster = '' %}
+          {% if video_field != blank %}
+            {% if video_field.sources != blank %}
+              {% assign has_video = true %}
+              {% if video_field.preview_image != blank %}
+                {% assign video_poster = video_field.preview_image | image_url: width: 1600 %}
+              {% endif %}
+            {% elsif video_field.url != blank %}
+              {% assign has_video = true %}
+            {% elsif video_field contains 'http' or video_field contains '.mp4' or video_field contains '.mov' %}
+              {% assign has_video = true %}
+              {% assign video_field_url = video_field %}
+            {% endif %}
+          {% endif %}
+
+          {% assign image_field = item.image.value | default: item.image %}
+          {% if image_field.preview_image != blank %}
+            {% assign image_field = image_field.preview_image %}
+          {% endif %}
+          {% assign image_alt = image_field.alt | default: content_title | default: use_title %}
+          {% assign image_src = image_field | image_url: width: 1600 %}
+          {% if image_src == blank %}
+            {% assign image_src = image_field.url | default: image_field.src %}
+          {% endif %}
+
+          {% assign panel_id = 'ProductUsePanel-' | append: product.id | append: '-' | append: forloop.index0 %}
+
+          <article
+            id="{{ panel_id }}"
+            class="product-use__panel{% if forloop.first %} product-use__panel--active{% endif %}"
+            data-product-use-panel="{{ forloop.index0 }}"
+          >
+            {% if has_video or image_src != blank %}
+              <div class="product-use__media">
+                {% if has_video %}
+                  {% if video_field.sources != blank %}
+                    <video
+                      class="product-use__video"
+                      autoplay
+                      muted
+                      loop
+                      playsinline
+                      preload="metadata"
+                      {% if video_poster != blank %}
+                        poster="{{ video_poster }}"
+                      {% endif %}
+                    >
+                      {% for source in video_field.sources %}
+                        <source src="{{ source.url }}" type="{{ source.mime_type }}">
+                      {% endfor %}
+                    </video>
+                  {% elsif video_field.url != blank %}
+                    <video
+                      class="product-use__video"
+                      src="{{ video_field.url }}"
+                      autoplay
+                      muted
+                      loop
+                      playsinline
+                      preload="metadata"
+                      {% if video_poster != blank %}
+                        poster="{{ video_poster }}"
+                      {% endif %}
+                    ></video>
+                  {% elsif video_field_url != blank %}
+                    <video
+                      class="product-use__video"
+                      src="{{ video_field_url }}"
+                      autoplay
+                      muted
+                      loop
+                      playsinline
+                      preload="metadata"
+                    ></video>
+                  {% endif %}
+                {% elsif image_src != blank %}
+                  {% if image_field.width != blank %}
+                    {{
+                      image_field
+                      | image_url: width: 1600
+                      | image_tag:
+                        loading: 'lazy',
+                        class: 'product-use__image',
+                        alt: image_alt,
+                        widths: '480, 800, 1200, 1600',
+                        sizes: '(min-width: 920px) 66vw, 92vw'
+                    }}
+                  {% else %}
+                    <img
+                      class="product-use__image"
+                      src="{{ image_src }}"
+                      alt="{{ image_alt | escape }}"
+                      loading="lazy"
+                    >
+                  {% endif %}
+                {% endif %}
+              </div>
+            {% endif %}
+
+            {% if content_title != blank or desc_raw != blank or content_link_url != blank %}
+              <div class="product-use__content">
+                {% if content_title != blank %}
+                  <h3 class="product-use__content-title">{{ content_title }}</h3>
+                {% endif %}
+
+                {% if desc_type contains 'rich_text' or desc_raw contains '"type":"root"' or desc_raw contains '"type": "root"' %}
+                  <div class="product-use__content-desc">
+                    {{ content_desc_field | metafield_tag }}
+                  </div>
+                {% elsif desc_raw != blank %}
+                  <div class="product-use__content-desc">
+                    {{ desc_raw | newline_to_br }}
+                  </div>
+                {% endif %}
+
+                {% if content_link_url != blank %}
+                  <a class="product-use__content-link" href="{{ content_link_url }}">Learn More</a>
+                {% endif %}
+              </div>
+            {% endif %}
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endif %}

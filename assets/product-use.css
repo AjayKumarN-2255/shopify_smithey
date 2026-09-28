@@ -1,0 +1,253 @@
+.product-use {
+  width: 100%;
+  background-color: #ffffff;
+  color: #112626;
+}
+
+.product-use__container {
+  width: 100%;
+  padding: 36px 8px 48px;
+}
+
+.product-use__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.product-use__heading {
+  max-width: 15rem;
+  margin: 0 0 30px;
+  font-family: Gotham, ui-sans-serif, sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.35;
+  text-transform: uppercase;
+  color: #112626;
+}
+
+.product-use__nav {
+  width: 100%;
+}
+
+.product-use__tabs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.product-use__tab-item {
+  margin: 0;
+  padding: 0;
+}
+
+.product-use__tab {
+  padding: 0 0 6px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: none;
+  color: #9a9a9a;
+  font-family: Gotham, ui-sans-serif, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+.product-use__tab:hover,
+.product-use__tab:focus-visible {
+  color: #112626;
+}
+
+.product-use__tab:focus-visible {
+  outline: 1px solid #112626;
+  outline-offset: 4px;
+}
+
+.product-use__tab--active {
+  border-bottom-color: #b68b32;
+  color: #112626;
+}
+
+.product-use__stage {
+  margin-top: 14px;
+}
+
+.product-use__panel {
+  display: none;
+}
+
+.product-use__panel--active {
+  display: block;
+}
+
+.product-use__media {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 4px;
+  background-color: #e6e6e6;
+}
+
+.product-use__image,
+.product-use__video {
+  display: block;
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+}
+
+.product-use__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 28px 20px 8px;
+  text-align: center;
+}
+
+.product-use__content-title {
+  margin: 0;
+  font-family: Gotham, ui-sans-serif, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  line-height: 1.35;
+  text-transform: uppercase;
+  color: #112626;
+}
+
+.product-use__content-desc {
+  max-width: 20rem;
+  margin-top: 14px;
+  font-family: Sentinel, ui-serif, serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #112626;
+}
+
+.product-use__content-desc p,
+.product-use__content-desc .metafield-rich_text_field {
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+}
+
+.product-use__content-desc p + p {
+  margin-top: 0.75em;
+}
+
+.product-use__content-link {
+  display: inline-block;
+  margin-top: 30px;
+  font-family: Gotham, ui-sans-serif, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  color: #b68b32;
+}
+
+.product-use__content-link:hover {
+  color: #112626;
+}
+
+@media (min-width: 920px) {
+  .product-use__container {
+    margin: 0 auto;
+    padding: 100px 20px 50px;
+  }
+
+  .product-use__header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    text-align: left;
+  }
+
+  .product-use__header {
+    margin-bottom: 40px;
+  }
+
+  .product-use__heading {
+    max-width: none;
+    margin-bottom: 0;
+    font-size: 32px;
+    white-space: nowrap;
+  }
+
+  .product-use__nav {
+    width: auto;
+    margin-top: 0;
+  }
+
+  .product-use__tabs {
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    gap: 32px;
+  }
+
+  .product-use__tab {
+    font-size: 15px;
+  }
+
+  .product-use__stage {
+    margin-top: 0;
+  }
+
+  .product-use__panel--active {
+    display: grid;
+    grid-template-columns: minmax(0, 2.35fr) minmax(0, 1fr);
+    align-items: stretch;
+  }
+
+  .product-use__media {
+    border-radius: 0;
+  }
+
+  .product-use__image,
+  .product-use__video {
+    height: 625px;
+  }
+
+  .product-use__content {
+    justify-content: center;
+    padding: 48px 32px;
+    border-radius: 4px;
+    background-color: #f6f4ef;
+  }
+
+  .product-use__content-title {
+    font-size: 24px;
+    max-width: 14rem;
+  }
+
+  .product-use__content-desc {
+    max-width: 300px;
+  }
+}
+
+@media (min-width: 1700px) {
+  .product-use__image,
+  .product-use__video {
+    height: 820px;
+  }
+
+  .product-use__content {
+    padding: 56px 48px;
+  }
+}
