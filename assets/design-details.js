@@ -39,8 +39,6 @@ function initDesignDetailsMobile(root) {
 
   const slides = [...viewport.querySelectorAll('[data-design-slide]')];
   const dots = [...root.querySelectorAll('[data-design-dot]')];
-  const prev = root.querySelector('[data-design-prev]');
-  const next = root.querySelector('[data-design-next]');
 
   if (slides.length < 2) return;
 
@@ -88,14 +86,6 @@ function initDesignDetailsMobile(root) {
       isProgrammatic = false;
     }, 500);
   };
-
-  if (prev) {
-    prev.addEventListener('click', () => goTo(index - 1));
-  }
-
-  if (next) {
-    next.addEventListener('click', () => goTo(index + 1));
-  }
 
   dots.forEach((dot) => {
     dot.addEventListener('click', () => goTo(Number(dot.dataset.designDot)));
