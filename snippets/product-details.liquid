@@ -140,6 +140,43 @@
             </div>
           {% endif %}
 
+          {% unless product.has_only_default_variant %}
+            <div class="product__variants" data-product-variants>
+              {% for option in product.options_with_values %}
+                {% assign option_index = forloop.index0 %}
+                {% assign selected_value = option.selected_value | default: option.values.first %}
+                <div
+                  class="product__variant-group"
+                  data-option-index="{{ option_index }}"
+                  data-option-name="{{ option.name | escape }}"
+                >
+                  <p class="product__variant-label">{{ option.name }}:</p>
+                  <div
+                    class="product__variant-pills"
+                    role="radiogroup"
+                    aria-label="{{ option.name | escape }}"
+                  >
+                    {% for value in option.values %}
+                      <button
+                        type="button"
+                        class="product__variant-pill{% if value == selected_value %} is-selected{% endif %}"
+                        data-option-index="{{ option_index }}"
+                        data-option-value="{{ value | escape }}"
+                        role="radio"
+                        aria-checked="{% if value == selected_value %}true{% else %}false{% endif %}"
+                      >
+                        {{ value }}
+                      </button>
+                    {% endfor %}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+            <script type="application/json" data-product-variants-json>
+              {{ product.variants | json }}
+            </script>
+          {% endunless %}
+
           {% form 'product', product, class: 'product__form' %}
             <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
 
@@ -155,12 +192,14 @@
             </button>
           {% endform %}
 
-          <button type="button" class="product__engraving">
-            <span class="product__engraving-label">Add Custom Engraving</span>
-            <span class="product__engraving-icon" aria-hidden="true">+</span>
-          </button>
+          {% unless product.handle contains 'glass-lid' %}
+            <button type="button" class="product__engraving">
+              <span class="product__engraving-label">Add Custom Engraving</span>
+              <span class="product__engraving-icon" aria-hidden="true">+</span>
+            </button>
+          {% endunless %}
 
-          <div class="product__badges">
+          <div class="product__badges{% if product.handle contains 'glass-lid' %} product__badges--plain{% endif %}">
             <div class="product__badge">
               <img
                 alt="US Made"
