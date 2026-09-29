@@ -177,59 +177,82 @@
             </script>
           {% endunless %}
 
-          {% form 'product', product, class: 'product__form' %}
-            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          {% assign is_giftcard = false %}
+          {% if product.handle contains 'giftcard' or product.handle contains 'gift-card' %}
+            {% assign is_giftcard = true %}
+          {% endif %}
 
-            <button
-              type="submit"
-              class="product__add-to-cart"
-              {% unless product.available %}
-                disabled
-              {% endunless %}
-            >
-              <span class="product__add-to-cart-label">Add to Cart</span>
-              <span class="product__add-to-cart-price">{{ product.price | money }}</span>
-            </button>
-          {% endform %}
+          {% if is_giftcard %}
+            {% form 'product', product, class: 'product__form product__form--gift' %}
+              <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
 
-          {% unless product.handle contains 'glass-lid' %}
-            <button type="button" class="product__engraving">
-              <span class="product__engraving-label">Add Custom Engraving</span>
-              <span class="product__engraving-icon" aria-hidden="true">+</span>
-            </button>
-          {% endunless %}
-
-          <div class="product__badges{% if product.handle contains 'glass-lid' %} product__badges--plain{% endif %}">
-            <div class="product__badge">
-              <img
-                alt="US Made"
-                class="product__badge-image"
-                loading="lazy"
-                src="https://smithey.com/cdn/shop/files/usa_500x.png?v=1695064478"
+              <button
+                type="submit"
+                class="product__add-to-cart product__add-to-cart--gift"
+                {% unless product.available %}
+                  disabled
+                {% endunless %}
               >
-              <span class="product__badge-label">US Made</span>
-            </div>
+                <span class="product__add-to-cart-label">Send as a Gift</span>
+              </button>
+            {% endform %}
 
-            <div class="product__badge">
-              <img
-                alt="Lifetime Guarantee"
-                class="product__badge-image"
-                loading="lazy"
-                src="https://smithey.com/cdn/shop/files/Smithey_Icons_16-01_500x.png?v=1695064129"
-              >
-              <span class="product__badge-label">Lifetime Guarantee</span>
-            </div>
+            <p class="product__gift-note">Delivered Electronically via Email</p>
+          {% else %}
+            {% form 'product', product, class: 'product__form' %}
+              <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
 
-            <div class="product__badge">
-              <img
-                alt="PFOA &amp; PTFE Free"
-                class="product__badge-image"
-                loading="lazy"
-                src="https://smithey.com/cdn/shop/files/PFAFree_500x.png?v=1752782855"
+              <button
+                type="submit"
+                class="product__add-to-cart"
+                {% unless product.available %}
+                  disabled
+                {% endunless %}
               >
-              <span class="product__badge-label">PFOA &amp; PTFE Free</span>
+                <span class="product__add-to-cart-label">Add to Cart</span>
+                <span class="product__add-to-cart-price">{{ product.price | money }}</span>
+              </button>
+            {% endform %}
+
+            {% unless product.handle contains 'glass-lid' %}
+              <button type="button" class="product__engraving">
+                <span class="product__engraving-label">Add Custom Engraving</span>
+                <span class="product__engraving-icon" aria-hidden="true">+</span>
+              </button>
+            {% endunless %}
+
+            <div class="product__badges{% if product.handle contains 'glass-lid' %} product__badges--plain{% endif %}">
+              <div class="product__badge">
+                <img
+                  alt="US Made"
+                  class="product__badge-image"
+                  loading="lazy"
+                  src="https://smithey.com/cdn/shop/files/usa_500x.png?v=1695064478"
+                >
+                <span class="product__badge-label">US Made</span>
+              </div>
+
+              <div class="product__badge">
+                <img
+                  alt="Lifetime Guarantee"
+                  class="product__badge-image"
+                  loading="lazy"
+                  src="https://smithey.com/cdn/shop/files/Smithey_Icons_16-01_500x.png?v=1695064129"
+                >
+                <span class="product__badge-label">Lifetime Guarantee</span>
+              </div>
+
+              <div class="product__badge">
+                <img
+                  alt="PFOA &amp; PTFE Free"
+                  class="product__badge-image"
+                  loading="lazy"
+                  src="https://smithey.com/cdn/shop/files/PFAFree_500x.png?v=1752782855"
+                >
+                <span class="product__badge-label">PFOA &amp; PTFE Free</span>
+              </div>
             </div>
-          </div>
+          {% endif %}
         </div>
 
         {% assign related_products = product.metafields['shopify--discovery--product_recommendation'].related_products.value %}

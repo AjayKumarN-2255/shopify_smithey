@@ -1447,3 +1447,24 @@
     font-family: inherit;
   }
 }
+
+/* ---------- Gift card (Send as a Gift) ---------- */
+.product__form--gift {
+  margin-bottom: 0;
+}
+
+.product__add-to-cart--gift {
+  justify-content: flex-start;
+}
+
+.product__gift-note {
+  margin: 1.25rem 0 0;
+  font-family: Gotham, ui-sans-serif, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1.4;
+  text-align: center;
+  text-transform: uppercase;
+  color: rgb(126, 137, 146);
+}
