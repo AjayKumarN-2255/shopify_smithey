@@ -151,8 +151,13 @@
       var submitError = modal.querySelector('[data-gift-submit-error]');
       var defaultQuote = 'Enjoy your Smithey!';
       var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      var variantId = modal.dataset.giftVariantId || '';
       var isAdding = false;
+
+      function getVariantId() {
+        var variantInput = document.querySelector('[data-gift-variant-input]');
+        if (variantInput && variantInput.value) return variantInput.value;
+        return modal.dataset.giftVariantId || '';
+      }
 
       function openModal() {
         modal.hidden = false;
@@ -187,6 +192,10 @@
       }
 
       async function addGiftToCart(properties) {
+        var variantId = getVariantId();
+        if (!variantId) {
+          throw new Error('Unable to add this product to the cart.');
+        }
         if (
           window.SmitheyCart &&
           typeof window.SmitheyCart.addItems === 'function'
@@ -278,11 +287,6 @@
           }
           if (!emailValid && emailInput) {
             emailInput.focus();
-            return;
-          }
-
-          if (!variantId) {
-            showSubmitError('Unable to add this product to the cart.');
             return;
           }
 

@@ -84,7 +84,11 @@
       if (atcButton) {
         atcButton.disabled = !variant.available;
         if (atcLabel) {
-          atcLabel.textContent = variant.available ? 'Add to Cart' : 'Sold Out';
+          if (atcButton.hasAttribute('data-gift-modal-open')) {
+            atcLabel.textContent = variant.available ? 'SEND AS A GIFT' : 'Sold Out';
+          } else {
+            atcLabel.textContent = variant.available ? 'Add to Cart' : 'Sold Out';
+          }
         }
       }
     }

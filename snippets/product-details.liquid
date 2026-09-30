@@ -184,6 +184,12 @@
 
           {% if is_giftcard %}
             <div class="product__form product__form--gift">
+              <input
+                type="hidden"
+                name="id"
+                value="{{ product.selected_or_first_available_variant.id }}"
+                data-gift-variant-input
+              >
               <button
                 type="button"
                 class="product__add-to-cart product__add-to-cart--gift"
