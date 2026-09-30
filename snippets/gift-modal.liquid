@@ -18,9 +18,14 @@
       <div class="gift-modal__form-col">
         <p class="gift-modal__desc">We'll directly email the recipient a link to open your greeting card and redeem your gift.</p>
 
-        <label class="gift-modal__label">To:</label>
-        <input class="gift-modal__input" type="text" value="" placeholder="Recipient's Name" readonly tabindex="-1">
-        <input class="gift-modal__input" type="text" value="" placeholder="Recipient's Email" readonly tabindex="-1">
+        <div class="gift-modal__to-row">
+          <label class="gift-modal__label gift-modal__label--to">To:</label>
+          <input class="gift-modal__input gift-modal__input--to" type="text" value="" placeholder="Recipient's Name" readonly tabindex="-1">
+        </div>
+        <div class="gift-modal__to-row">
+          <span class="gift-modal__label gift-modal__label--to gift-modal__label--spacer" aria-hidden="true"></span>
+          <input class="gift-modal__input gift-modal__input--to" type="text" value="" placeholder="Recipient's Email" readonly tabindex="-1">
+        </div>
 
         <label class="gift-modal__label gift-modal__label--stacked">Personalized<br>Message:</label>
         <div class="gift-modal__message-row">
