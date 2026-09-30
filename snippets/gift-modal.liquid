@@ -1,0 +1,126 @@
+{% comment %}
+  Gift modal — static preview only, no cart / no interactivity.
+  Rendered only for giftcard products from snippets/product-details.liquid
+{% endcomment %}
+<div class="gift-modal" data-gift-modal hidden aria-hidden="true">
+  <div class="gift-modal__overlay" data-gift-modal-close></div>
+
+  <div class="gift-modal__dialog" role="dialog" aria-modal="true" aria-label="Add a personal touch!">
+    <button type="button" class="gift-modal__close" data-gift-modal-close aria-label="Close">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+        <path d="M1 1L17 17M17 1L1 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+      </svg>
+    </button>
+
+    <h2 class="gift-modal__title">Add a personal touch!</h2>
+
+    <div class="gift-modal__body">
+      <div class="gift-modal__form-col">
+        <p class="gift-modal__desc">We'll directly email the recipient a link to open your greeting card and redeem your gift.</p>
+
+        <label class="gift-modal__label">To:</label>
+        <input class="gift-modal__input" type="text" value="" placeholder="Recipient's Name" readonly tabindex="-1">
+        <input class="gift-modal__input" type="text" value="" placeholder="Recipient's Email" readonly tabindex="-1">
+
+        <label class="gift-modal__label gift-modal__label--stacked">Personalized<br>Message:</label>
+        <div class="gift-modal__message-row">
+          <label class="gift-modal__label gift-modal__label--inline">Personalized Message:</label>
+          <textarea class="gift-modal__textarea" rows="2" readonly tabindex="-1" placeholder="Enjoy your Smithey!"></textarea>
+        </div>
+        <p class="gift-modal__count">0/500</p>
+
+        <div class="gift-modal__delivery">
+          <span class="gift-modal__delivery-btn gift-modal__delivery-btn--active">
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <rect x="1.5" y="3" width="17" height="15" rx="1" stroke="currentColor" stroke-width="1.4" />
+              <path d="M1.5 7.5H18.5M6 1.5V4M14 1.5V4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+              <path d="M7 11.5L9.2 13.7L13.5 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Now
+          </span>
+          <span class="gift-modal__delivery-btn">
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <rect x="1.5" y="3" width="17" height="15" rx="1" stroke="currentColor" stroke-width="1.4" />
+              <path d="M1.5 7.5H18.5M6 1.5V4M14 1.5V4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+              <g fill="currentColor">
+                <rect x="5" y="10" width="2" height="2" rx="0.3" />
+                <rect x="8" y="10" width="2" height="2" rx="0.3" />
+                <rect x="11" y="10" width="2" height="2" rx="0.3" />
+                <rect x="5" y="13" width="2" height="2" rx="0.3" />
+                <rect x="8" y="13" width="2" height="2" rx="0.3" />
+              </g>
+            </svg>
+            Choose Date
+          </span>
+        </div>
+      </div>
+
+      <div class="gift-modal__preview-col">
+        <div class="gift-modal__preview-card">
+          {% if product.featured_image %}
+            {{
+              product.featured_image
+              | image_url: width: 600
+              | image_tag: loading: 'lazy', class: 'gift-modal__preview-image', alt: product.title, width: 400, height: 300
+            }}
+          {% else %}
+            <img
+              class="gift-modal__preview-image"
+              src="https://smithey.com/cdn/shop/files/usa_500x.png?v=1695064478"
+              alt="{{ product.title | escape }}"
+              loading="lazy"
+              width="400"
+              height="300"
+            >
+          {% endif %}
+          <p class="gift-modal__preview-quote">
+            <span class="gift-modal__quote-mark gift-modal__quote-mark--left" aria-hidden="true">&ldquo;</span>
+            Enjoy your Smithey!
+            <span class="gift-modal__quote-mark gift-modal__quote-mark--right" aria-hidden="true">&rdquo;</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="gift-modal__footer">
+      <span class="gift-modal__add">ADD TO CART</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    function initGiftModal() {
+      var modal = document.querySelector('[data-gift-modal]');
+      var openBtn = document.querySelector('[data-gift-modal-open]');
+      if (!modal || !openBtn) return;
+      if (modal.dataset.bound) return;
+      modal.dataset.bound = 'true';
+
+      function openModal() {
+        modal.hidden = false;
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeModal() {
+        modal.hidden = true;
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      openBtn.addEventListener('click', openModal);
+      modal.querySelectorAll('[data-gift-modal-close]').forEach(function (el) {
+        el.addEventListener('click', closeModal);
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && !modal.hidden) closeModal();
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initGiftModal);
+    } else {
+      initGiftModal();
+    }
+  })();
+</script>

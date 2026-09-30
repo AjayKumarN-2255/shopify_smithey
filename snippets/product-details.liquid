@@ -183,21 +183,22 @@
           {% endif %}
 
           {% if is_giftcard %}
-            {% form 'product', product, class: 'product__form product__form--gift' %}
-              <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-
+            <div class="product__form product__form--gift">
               <button
-                type="submit"
+                type="button"
                 class="product__add-to-cart product__add-to-cart--gift"
+                data-gift-modal-open
                 {% unless product.available %}
                   disabled
                 {% endunless %}
               >
                 <span class="product__add-to-cart-label">SEND AS A GIFT</span>
               </button>
-            {% endform %}
+            </div>
 
             <p class="product__gift-note">Delivered Electronically via Email</p>
+
+            {% render 'gift-modal', product: product %}
           {% else %}
             {% form 'product', product, class: 'product__form' %}
               <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
