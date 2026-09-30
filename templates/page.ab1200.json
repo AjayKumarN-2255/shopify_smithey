@@ -40,7 +40,8 @@
                 "background_color": "#ffffff",
                 "desktop_padding": 3.7,
                 "mobile_padding": 1.3,
-                "show_features": false
+                "show_features": false,
+                "custom_css": "#SECTION_ID .content-builder__right {\n  display: none;\n}\n\n#SECTION_ID .content-builder__left {\n  width: 100%;\n  max-width: 100%;\n}\n\n#SECTION_ID .content-builder__container {\n  padding-top: 0;\n  padding-bottom: 0;\n}"
             }
         },
         "metaobject_table_PpFTq9": {
