@@ -447,12 +447,18 @@
   .recipe-listing .cook-menu__recipe-card {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    flex: none;
+    box-sizing: border-box;
     height: 100%;
     background-color: #2d4140;
     padding: 0.7rem;
     text-decoration: none;
     color: inherit;
     transition: background-color 0.2s ease;
+    overflow: hidden;
   }
 
   .recipe-listing .cook-menu__recipe-card:hover {
@@ -500,6 +506,7 @@
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
+    flex-wrap: wrap;
     gap: 0.5rem;
     width: 100%;
     margin-top: auto;
@@ -550,7 +557,11 @@
     padding: 0.2rem 0.5rem;
     text-transform: uppercase;
     white-space: nowrap;
-    flex-shrink: 0;
+    flex-shrink: 1;
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
     line-height: 1.2;
     letter-spacing: 0.02em;
   }
