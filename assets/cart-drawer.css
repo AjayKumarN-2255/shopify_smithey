@@ -240,6 +240,26 @@
   letter-spacing: 0.04em;
 }
 
+.cart-drawer__item-gifts {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 6px 0 0;
+}
+
+.cart-drawer__item-gift {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: #687f8a;
+}
+
+.cart-drawer__item-gift strong {
+  color: #112626;
+  font-weight: 700;
+}
+
 .cart-drawer__item-main {
   display: flex;
   gap: 16px;

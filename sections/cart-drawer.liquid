@@ -78,6 +78,20 @@
               </span>
             </div>
 
+            {% if item.properties.Message != blank or item.properties.Name != blank or item.properties.Email != blank %}
+              <div class="cart-drawer__item-gifts">
+                {% if item.properties.Message != blank %}
+                  <p class="cart-drawer__item-gift" data-gift-prop="true">{{ item.properties.Message }}</p>
+                {% endif %}
+                {% if item.properties.Name != blank %}
+                  <p class="cart-drawer__item-gift" data-gift-prop="true"><strong>Name:</strong> {{ item.properties.Name }}</p>
+                {% endif %}
+                {% if item.properties.Email != blank %}
+                  <p class="cart-drawer__item-gift" data-gift-prop="true"><strong>Email:</strong> {{ item.properties.Email }}</p>
+                {% endif %}
+              </div>
+            {% endif %}
+
             <div class="cart-drawer__item-actions">
               <div class="cart-drawer__quantity">
                 <button

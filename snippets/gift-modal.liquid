@@ -1,8 +1,14 @@
 {% comment %}
-  Gift modal — static preview only, no cart / no interactivity.
+  Gift modal — interactive name/email/message with inline validation + live preview.
   Rendered only for giftcard products from snippets/product-details.liquid
 {% endcomment %}
-<div class="gift-modal" data-gift-modal hidden aria-hidden="true">
+<div
+  class="gift-modal"
+  data-gift-modal
+  data-gift-variant-id="{{ product.selected_or_first_available_variant.id }}"
+  hidden
+  aria-hidden="true"
+>
   <div class="gift-modal__overlay" data-gift-modal-close></div>
 
   <div class="gift-modal__dialog" role="dialog" aria-modal="true" aria-label="Add a personal touch!">
@@ -19,20 +25,51 @@
         <p class="gift-modal__desc">We'll directly email the recipient a link to open your greeting card and redeem your gift.</p>
 
         <div class="gift-modal__to-row">
-          <label class="gift-modal__label gift-modal__label--to">To:</label>
-          <input class="gift-modal__input gift-modal__input--to" type="text" value="" placeholder="Recipient's Name" readonly tabindex="-1">
+          <label class="gift-modal__label gift-modal__label--to" for="gift-recipient-name">To:</label>
+          <div class="gift-modal__field">
+            <input
+              id="gift-recipient-name"
+              class="gift-modal__input gift-modal__input--to"
+              type="text"
+              value=""
+              placeholder="Recipient's Name"
+              autocomplete="off"
+              data-gift-name
+            >
+            <p class="gift-modal__error" data-gift-name-error hidden>Input is invalid!</p>
+          </div>
         </div>
         <div class="gift-modal__to-row">
           <span class="gift-modal__label gift-modal__label--to gift-modal__label--spacer" aria-hidden="true"></span>
-          <input class="gift-modal__input gift-modal__input--to" type="text" value="" placeholder="Recipient's Email" readonly tabindex="-1">
+          <div class="gift-modal__field">
+            <input
+              id="gift-recipient-email"
+              class="gift-modal__input gift-modal__input--to"
+              type="email"
+              value=""
+              placeholder="Recipient's Email"
+              autocomplete="off"
+              data-gift-email
+            >
+            <p class="gift-modal__error" data-gift-email-error hidden>This is not a valid email</p>
+          </div>
         </div>
 
-        <label class="gift-modal__label gift-modal__label--stacked">Personalized<br>Message:</label>
+        <label class="gift-modal__label gift-modal__label--stacked" for="gift-message">Personalized<br>Message:</label>
         <div class="gift-modal__message-row">
-          <label class="gift-modal__label gift-modal__label--inline">Personalized Message:</label>
-          <textarea class="gift-modal__textarea" rows="2" readonly tabindex="-1" placeholder="Enjoy your Smithey!"></textarea>
+          <label class="gift-modal__label gift-modal__label--inline" for="gift-message-desktop">Personalized Message:</label>
+          <div class="gift-modal__field gift-modal__field--message">
+            <textarea
+              id="gift-message-desktop"
+              class="gift-modal__textarea"
+              rows="2"
+              maxlength="500"
+              placeholder="Enjoy your Smithey!"
+              data-gift-message
+            ></textarea>
+          </div>
         </div>
-        <p class="gift-modal__count">0/500</p>
+        <p class="gift-modal__count" data-gift-count>0/500</p>
 
         <div class="gift-modal__delivery">
           <span class="gift-modal__delivery-btn gift-modal__delivery-btn--active">
@@ -80,7 +117,7 @@
           {% endif %}
           <p class="gift-modal__preview-quote">
             <span class="gift-modal__quote-mark gift-modal__quote-mark--left" aria-hidden="true">&ldquo;</span>
-            Enjoy your Smithey!
+            <span data-gift-quote-text>Enjoy your Smithey!</span>
             <span class="gift-modal__quote-mark gift-modal__quote-mark--right" aria-hidden="true">&rdquo;</span>
           </p>
         </div>
@@ -88,7 +125,8 @@
     </div>
 
     <div class="gift-modal__footer">
-      <span class="gift-modal__add">ADD TO CART</span>
+      <p class="gift-modal__error gift-modal__submit-error" data-gift-submit-error hidden></p>
+      <button type="button" class="gift-modal__add" data-gift-add>ADD TO CART</button>
     </div>
   </div>
 </div>
@@ -102,15 +140,175 @@
       if (modal.dataset.bound) return;
       modal.dataset.bound = 'true';
 
+      var nameInput = modal.querySelector('[data-gift-name]');
+      var emailInput = modal.querySelector('[data-gift-email]');
+      var messageInput = modal.querySelector('[data-gift-message]');
+      var quoteText = modal.querySelector('[data-gift-quote-text]');
+      var count = modal.querySelector('[data-gift-count]');
+      var nameError = modal.querySelector('[data-gift-name-error]');
+      var emailError = modal.querySelector('[data-gift-email-error]');
+      var addBtn = modal.querySelector('[data-gift-add]');
+      var submitError = modal.querySelector('[data-gift-submit-error]');
+      var defaultQuote = 'Enjoy your Smithey!';
+      var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      var variantId = modal.dataset.giftVariantId || '';
+      var isAdding = false;
+
       function openModal() {
         modal.hidden = false;
         modal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
+        clearSubmitError();
       }
       function closeModal() {
         modal.hidden = true;
         modal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
+      }
+
+      function showSubmitError(message) {
+        if (!submitError) return;
+        submitError.textContent = message;
+        submitError.hidden = false;
+      }
+
+      function clearSubmitError() {
+        if (!submitError) return;
+        submitError.textContent = '';
+        submitError.hidden = true;
+      }
+
+      function setAdding(adding) {
+        isAdding = adding;
+        if (!addBtn) return;
+        addBtn.disabled = adding;
+        addBtn.setAttribute('aria-busy', adding ? 'true' : 'false');
+        addBtn.textContent = adding ? 'ADDING...' : 'ADD TO CART';
+      }
+
+      async function addGiftToCart(properties) {
+        if (
+          window.SmitheyCart &&
+          typeof window.SmitheyCart.addItems === 'function'
+        ) {
+          return window.SmitheyCart.addItems([
+            { id: Number(variantId), quantity: 1, properties: properties }
+          ]);
+        }
+
+        var response = await fetch('/cart/add.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({
+            id: Number(variantId),
+            quantity: 1,
+            properties: properties
+          })
+        });
+
+        if (!response.ok) {
+          var data = {};
+          try {
+            data = await response.json();
+          } catch (e) {
+            data = {};
+          }
+          throw new Error(data.description || data.message || 'Something went wrong. Please try again.');
+        }
+      }
+      function setInvalid(input, errorEl, isInvalid) {
+        if (!input || !errorEl) return;
+        input.classList.toggle('is-invalid', isInvalid);
+        if (isInvalid) {
+          errorEl.hidden = false;
+          input.setAttribute('aria-invalid', 'true');
+        } else {
+          errorEl.hidden = true;
+          input.removeAttribute('aria-invalid');
+        }
+      }
+
+      function validateName() {
+        var valid = nameInput && nameInput.value.trim().length > 0;
+        setInvalid(nameInput, nameError, !valid);
+        return valid;
+      }
+
+      function validateEmail() {
+        var value = emailInput ? emailInput.value.trim() : '';
+        var valid = emailPattern.test(value);
+        setInvalid(emailInput, emailError, !valid);
+        return valid;
+      }
+
+      if (messageInput) {
+        messageInput.addEventListener('input', function () {
+          var value = messageInput.value;
+          if (value.length > 500) {
+            value = value.slice(0, 500);
+            messageInput.value = value;
+          }
+          if (count) count.textContent = value.length + '/500';
+          if (quoteText) quoteText.textContent = value.trim().length > 0 ? value : defaultQuote;
+        });
+      }
+
+      if (nameInput) {
+        nameInput.addEventListener('input', function () {
+          if (nameInput.value.trim().length > 0) setInvalid(nameInput, nameError, false);
+        });
+      }
+
+      if (emailInput) {
+        emailInput.addEventListener('input', function () {
+          if (emailPattern.test(emailInput.value.trim())) setInvalid(emailInput, emailError, false);
+        });
+      }
+
+      if (addBtn) {
+        addBtn.addEventListener('click', async function () {
+          if (isAdding) return;
+          clearSubmitError();
+
+          var nameValid = validateName();
+          var emailValid = validateEmail();
+          if (!nameValid && nameInput) {
+            nameInput.focus();
+            return;
+          }
+          if (!emailValid && emailInput) {
+            emailInput.focus();
+            return;
+          }
+
+          if (!variantId) {
+            showSubmitError('Unable to add this product to the cart.');
+            return;
+          }
+
+          var properties = {
+            Name: nameInput.value.trim(),
+            Email: emailInput.value.trim()
+          };
+          var message = messageInput ? messageInput.value.trim() : '';
+          if (message.length > 0) properties.Message = message;
+
+          setAdding(true);
+          try {
+            await addGiftToCart(properties);
+            closeModal();
+            if (
+              !window.SmitheyCart ||
+              typeof window.SmitheyCart.addItems !== 'function'
+            ) {
+              window.location.href = '/cart';
+            }
+          } catch (error) {
+            showSubmitError(error.message || 'Something went wrong. Please try again.');
+          } finally {
+            setAdding(false);
+          }
+        });
       }
 
       openBtn.addEventListener('click', openModal);

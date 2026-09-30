@@ -457,6 +457,33 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (engraving) {
             engraving.remove();
         }
+
+        node.querySelector('.cart-drawer__item-gifts')?.remove();
+
+        const giftRows = [];
+        if (properties.Message) giftRows.push({ label: '', value: String(properties.Message) });
+        if (properties.Name) giftRows.push({ label: 'Name:', value: String(properties.Name) });
+        if (properties.Email) giftRows.push({ label: 'Email:', value: String(properties.Email) });
+
+        if (giftRows.length) {
+            const top = node.querySelector('.cart-drawer__item-top');
+            const box = document.createElement('div');
+            box.className = 'cart-drawer__item-gifts';
+            giftRows.forEach((row) => {
+                const el = document.createElement('p');
+                el.className = 'cart-drawer__item-gift';
+                el.setAttribute('data-gift-prop', 'true');
+                if (row.label) {
+                    const strong = document.createElement('strong');
+                    strong.textContent = row.label;
+                    el.append(strong, ` ${row.value}`);
+                } else {
+                    el.textContent = row.value;
+                }
+                box.append(el);
+            });
+            top?.after(box);
+        }
     }
 
     function bundleTiers() {
