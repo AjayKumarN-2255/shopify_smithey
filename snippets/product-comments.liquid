@@ -1,0 +1,522 @@
+{% comment %}
+  Snippet: product-comments
+  Purpose: Frontend-only presentation layer for the existing Judge.me review widget.
+  - Uses the existing Judge.me app + review data (no fake/hardcoded reviews).
+  - Does NOT replace Judge.me, does NOT touch submission functionality.
+  - Layout per review (matches reference screenshot):
+      LEFT  -> Reviewer name (+ verified badge)
+      RIGHT -> Rating (Judge.me stars, top) + Comment (below stars)
+  Usage in templates/product.liquid:
+    {% render 'product-comments', product: product %}
+{% endcomment %}
+
+<section class="product-comments" id="reviews" aria-label="Product reviews">
+  <div class="product-comments__inner">
+    {% assign review_html = product.metafields.judgeme.widget | append: '' %}
+    {% if review_html contains "class='jdgm-rev " %}
+      {% assign review_count = review_html | split: "data-number-of-reviews='" | last | split: "'" | first | plus: 0 %}
+      {% assign review_avg = review_html | split: "data-average-rating='" | last | split: "'" | first | plus: 0 %}
+      {% assign avg_tenths = review_avg | times: 10 | round %}
+      <div class="product-comments__avg" aria-label="Average rating {{ review_avg }} out of 5 from {{ review_count }} reviews">
+        <span class="product-comments__avg-stars" aria-hidden="true">
+          {% for i in (1..5) %}
+            {% assign star_full = i | times: 10 %}
+            {% assign star_half = star_full | minus: 5 %}
+            {% if avg_tenths >= star_full %}
+              <span class="product-comments__avg-star product-comments__avg-star--on">★</span>
+            {% elsif avg_tenths >= star_half %}
+              <span class="product-comments__avg-star product-comments__avg-star--half">★</span>
+            {% else %}
+              <span class="product-comments__avg-star">★</span>
+            {% endif %}
+          {% endfor %}
+        </span>
+        <span class="product-comments__avg-count">
+          {{- review_count }}
+          {% if review_count == 1 %}Review{% else %}Reviews{% endif -%}
+        </span>
+      </div>
+    {% else %}
+      <p class="product-comments__eyebrow">Smithey Owners</p>
+      <h2 class="product-comments__title">Reviews</h2>
+      <p class="product-comments__sub">Real reviews from Judge.me — names, star ratings and comments only.</p>
+    {% endif %}
+
+    <div class="product-comments__widget">
+      <!-- Start of Judge.me code -->
+      <script>
+        window.jdgm = window.jdgm || {};
+        jdgm.SHOP_DOMAIN = jdgm.SHOP_DOMAIN || {{ shop.permanent_domain | json }};
+        jdgm.PLATFORM = jdgm.PLATFORM || 'shopify';
+      </script>
+      <script data-cfasync="false" async src="https://cdn.judge.me/widget_preloader.js"></script>
+      <div style="clear:both"></div>
+      <div
+        id="judgeme_product_reviews"
+        class="jdgm-widget jdgm-review-widget product-comments__jdgm"
+        data-product-title="{{ product.title | escape }}"
+        data-id="{{ product.id }}"
+        data-product-id="{{ product.id }}"
+        data-widget="review"
+        data-auto-install="false"
+        data-shop-reviews-count="{{ shop.metafields.judgeme.shop_reviews_count | default: 0 | escape }}"
+        data-entry-point="review_widget.js"
+        data-entry-key="review-widget/main.js"
+      >
+        {{ product.metafields.judgeme.widget }}
+      </div>
+      {% if product.metafields.judgeme.review_widget_data %}
+        <script>
+          window.jdgm = window.jdgm || {};
+          jdgm.data = jdgm.data || {};
+          jdgm.data.reviewWidget = jdgm.data.reviewWidget || {};
+          jdgm.data.reviewWidget[{{ product.id }}] = {{ product.metafields.judgeme.review_widget_data }};
+        </script>
+      {% endif %}
+      <!-- End of Judge.me code -->
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ============================================================
+     Product Comments — Smithey presentation for Judge.me
+     Layout per review:
+       LEFT  (col 1): Reviewer name + verified badge
+       RIGHT (col 2): Stars on top, comment below
+     Judge.me data / init untouched — CSS only.
+     ============================================================ */
+  .product-comments {
+    width: 100%;
+    background: #ffffff;
+    color: #112626;
+    border-top: 1px solid rgba(17, 38, 38, 0.12);
+  }
+
+  .product-comments__inner {
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 3rem 0 3.5rem;
+  }
+
+  .product-comments__eyebrow {
+    margin: 0 0 0.4rem;
+    font-family: Gotham, ui-sans-serif, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    line-height: 1.4;
+    text-align: center;
+    text-transform: uppercase;
+    color: #b68b32;
+  }
+
+  .product-comments__title {
+    margin: 0 0 0.5rem;
+    font-family: Gotham, ui-sans-serif, sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    line-height: 1.15;
+    text-align: center;
+    text-transform: uppercase;
+    color: rgb(32, 61, 62);
+    max-width: 20rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .product-comments__sub {
+    margin: 0 auto 1.5rem;
+    max-width: 20rem;
+    font-family: Sentinel, ui-serif, serif;
+    font-size: 15px;
+    line-height: 1.6;
+    text-align: center;
+    color: rgba(17, 38, 38, 0.72);
+  }
+
+  .product-comments__avg {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 80px;
+  }
+
+  .product-comments__avg-stars {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    line-height: 1;
+  }
+
+  .product-comments__avg-star {
+    position: relative;
+    display: inline-block;
+    font-size: 18px;
+    line-height: 1;
+    color: rgba(32, 61, 62, 0.2);
+  }
+
+  .product-comments__avg-star--on {
+    color: #c6a15a;
+  }
+
+  .product-comments__avg-star--half {
+    color: rgba(32, 61, 62, 0.2);
+  }
+
+  .product-comments__avg-star--half::after {
+    content: "★";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0.52em;
+    overflow: hidden;
+    color: #c6a15a;
+  }
+
+  .product-comments__avg-count {
+    font-size: 11.2px;
+    font-weight: 400;
+    line-height: 1;
+    color: rgb(32, 61, 62);
+  }
+
+  .product-comments__widget {
+    max-width: 1120px;
+    margin: 0 auto;
+  }
+
+  .product-comments .jdgm-widget {
+    font-family: inherit;
+  }
+
+  /* Judge.me hides .jdgm-rev-widg until its script runs. On the local
+     preview that script never removes the hide, so the comments stay invisible. */
+  .product-comments .jdgm-rev-widg {
+    display: block !important;
+  }
+
+  .product-comments .jdgm-rev-widg__header,
+  .product-comments .jdgm-histogram,
+  .product-comments .jdgm-rev-widg__summary,
+  .product-comments .jdgm-rev-widg__sort-wrapper {
+    display: none !important;
+  }
+
+  /* --- Review list: single-column rows with dotted separators (like ref) --- */
+  .product-comments .jdgm-rev-widg__body,
+  .product-comments .jdgm-rev-widg__reviews,
+  .product-comments .jdgm-list {
+    display: block;
+  }
+
+  /* --- Each review: 2-column grid --- */
+  .product-comments .jdgm-rev {
+    display: grid !important;
+    grid-template-columns: 150px minmax(0, 1fr) !important;
+    column-gap: 36px;
+    row-gap: 0.35rem;
+    align-items: start;
+    margin: 0 !important;
+    padding: 18px !important;
+    border: none !important;
+    border-top: 2px dotted rgb(204, 204, 204) !important;
+    border-radius: 0;
+    background: transparent;
+  }
+
+  .product-comments .jdgm-rev:last-child {
+    border-bottom: 2px dotted rgb(204, 204, 204) !important;
+  }
+
+  /* Let header children participate directly in the grid */
+  .product-comments .jdgm-rev__header {
+    display: contents !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    background: none !important;
+  }
+
+  /* LEFT: name + verified stacked */
+  .product-comments .jdgm-rev__author-wrapper {
+    grid-column: 1 / 2 !important;
+    grid-row: 1 / span 2 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.2rem;
+    margin: 0 !important;
+    padding-top: 0.15rem;
+  }
+
+  .product-comments .jdgm-rev__author,
+  .product-comments .jdgm-rev__author-wrapper .jdgm-rev__author {
+    display: block;
+    margin: 0;
+    font-family: Gotham, ui-sans-serif, sans-serif !important;
+    font-size: 13.2px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.06em !important;
+    line-height: 1.35 !important;
+    text-transform: uppercase !important;
+    color: rgb(32, 61, 62) !important;
+  }
+
+  /* Verified badge — shown (as in reference: "VERIFIED BUYER" under name) */
+  .product-comments .jdgm-rev__verified {
+    display: block !important;
+    margin: 0;
+    font-family: Gotham, ui-sans-serif, sans-serif !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.06em !important;
+    line-height: 1.35 !important;
+    text-transform: uppercase !important;
+    color: #112626 !important;
+    opacity: 0.9;
+  }
+
+  /* Let the comment sit in the review grid, under the stars */
+  .product-comments .jdgm-rev__content {
+    display: contents !important;
+  }
+
+  /* RIGHT TOP: stars */
+  .product-comments .jdgm-rev__rating,
+  .product-comments .jdgm-rev__stars {
+    grid-column: 2 / 3 !important;
+    grid-row: 1 / 2 !important;
+    display: inline-flex !important;
+    gap: 0.12em;
+    margin: 0 !important;
+    padding: 0 !important;
+    align-self: start;
+    line-height: 1;
+  }
+
+  /* Judge.me stars are an icon font that does not load on the local preview.
+     Draw them from the existing jdgm--on / jdgm--off / jdgm--half classes. */
+  .product-comments .jdgm-star {
+    position: relative;
+    display: inline-block;
+    width: 1em;
+    font-family: Georgia, "Times New Roman", serif !important;
+    font-size: 16px !important;
+    line-height: 1 !important;
+    color: rgba(17, 38, 38, 0.22);
+  }
+
+  .product-comments .jdgm-star::before,
+  .product-comments .jdgm-star.jdgm--half::after {
+    content: "★";
+  }
+
+  .product-comments .jdgm-star.jdgm--on {
+    color: #b68b32;
+  }
+
+  .product-comments .jdgm-star.jdgm--half {
+    color: rgba(17, 38, 38, 0.22);
+  }
+
+  .product-comments .jdgm-star.jdgm--half::after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0.5em;
+    overflow: hidden;
+    color: #b68b32;
+  }
+
+  /* Hide review title to keep strictly Name / Stars / Comment */
+  .product-comments .jdgm-rev__title {
+    display: none !important;
+  }
+
+  /* RIGHT BOTTOM: comment below stars */
+  .product-comments .jdgm-rev__body {
+    grid-column: 2 / 3 !important;
+    grid-row: 2 / 3 !important;
+    display: block;
+    max-width: 20rem;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .product-comments .jdgm-rev__body-text,
+  .product-comments .jdgm-rev__body p {
+    margin: 0 !important;
+    max-width: 20rem;
+    font-family: Sentinel, ui-serif, serif !important;
+    font-size: 12px !important;
+    font-style: italic !important;
+    line-height: 1.6 !important;
+    color: rgb(32, 61, 62) !important;
+  }
+
+  /* Hide everything else inside a review (widget chrome untouched) */
+  .product-comments .jdgm-rev__timestamp,
+  .product-comments .jdgm-rev__location,
+  .product-comments .jdgm-rev__avatar,
+  .product-comments .jdgm-rev__icon,
+  .product-comments .jdgm-rev__br,
+  .product-comments .jdgm-rev__buyer-badge-wrapper,
+  .product-comments .jdgm-rev__custom-form,
+  .product-comments .jdgm-rev__transparency-badge-wrapper,
+  .product-comments .jdgm-rev__vids,
+  .product-comments .jdgm-rev__pics,
+  .product-comments .jdgm-rev__media,
+  .product-comments .jdgm-rev__video,
+  .product-comments .jdgm-rev__actions,
+  .product-comments .jdgm-rev__votes,
+  .product-comments .jdgm-rev__helpful,
+  .product-comments .jdgm-rev__vote-btn,
+  .product-comments .jdgm-rev__custom-questions,
+  .product-comments .jdgm-rev__custom-question,
+  .product-comments .jdgm-rev__recommend,
+  .product-comments .jdgm-rev__replies,
+  .product-comments .jdgm-rev__reply,
+  .product-comments .jdgm-rev__source,
+  .product-comments .jdgm-rev__badge,
+  .product-comments .jdgm-rev__tags,
+  .product-comments .jdgm-rev__variant,
+  .product-comments .jdgm-rev__prod-img,
+  .product-comments .jdgm-rev-qna,
+  .product-comments .jdgm-rev__social,
+  .product-comments .jdgm-rev__report {
+    display: none !important;
+  }
+
+  .product-comments .jdgm-write-rev-link,
+  .product-comments .jdgm-btn--solid,
+  .product-comments .jdgm-submit-rev {
+    font-family: Gotham, ui-sans-serif, sans-serif !important;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* Judge.me form card — sits above reviews, same width as list */
+  .product-comments .jdgm-form {
+    max-width: 1000px;
+    margin: 0 auto 1.5rem !important;
+    padding: 1.5rem 1.25rem !important;
+    border: 1px solid rgba(17, 38, 38, 0.14) !important;
+    border-radius: 6px;
+    background: #fff;
+  }
+
+  .product-comments .jdgm-form__title,
+  .product-comments .jdgm-form legend {
+    font-family: Gotham, ui-sans-serif, sans-serif !important;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #112626 !important;
+  }
+
+  .product-comments .jdgm-form input[type='text'],
+  .product-comments .jdgm-form input[type='email'],
+  .product-comments .jdgm-form textarea {
+    width: 100%;
+    border: 1px solid rgba(17, 38, 38, 0.2) !important;
+    border-radius: 4px;
+    font-family: Sentinel, ui-serif, serif !important;
+  }
+
+  .product-comments .jdgm-form input:focus,
+  .product-comments .jdgm-form textarea:focus {
+    border-color: #b68b32 !important;
+    outline: none;
+  }
+
+  .product-comments .jdgm-submit-rev {
+    background: #b68b32 !important;
+    color: #112626 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 1rem 2rem !important;
+  }
+
+  .product-comments .jdgm-submit-rev:hover {
+    background: #112626 !important;
+    color: #b68b32 !important;
+  }
+
+  /* Hide the default Judge.me "Write review" link text — our CTA triggers it.
+     Kept in DOM so Judge.me JS keeps working. */
+  .product-comments .jdgm-rev-widg__header .jdgm-write-rev-link {
+    display: inline-block;
+  }
+
+  .product-comments .jdgm-paginate {
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+
+  /* Mobile: keep left/right split, just narrower left column */
+  @media screen and (max-width: 649px) {
+    .product-comments .jdgm-rev {
+      grid-template-columns: 108px minmax(0, 1fr) !important;
+      column-gap: 36px;
+      padding: 18px !important;
+    }
+
+    .product-comments .jdgm-rev__author,
+    .product-comments .jdgm-rev__author-wrapper .jdgm-rev__author {
+      font-size: 13.2px !important;
+    }
+
+    .product-comments .jdgm-rev__verified {
+      font-size: 9px !important;
+    }
+
+    .product-comments .jdgm-star {
+      font-size: 14px !important;
+    }
+
+    .product-comments .jdgm-rev__body-text,
+    .product-comments .jdgm-rev__body p {
+      font-size: 12px !important;
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    .product-comments__inner {
+      padding: 42px 0 5rem;
+    }
+
+    .product-comments__title {
+      font-size: 32px;
+      letter-spacing: 0.04em;
+    }
+
+    .product-comments .jdgm-rev {
+      grid-template-columns: 190px minmax(0, 1fr) !important;
+    }
+  }
+</style>
+
+<script>
+  // Display-only: keep left/right review layout after Judge.me async render.
+  // No custom form, no submission handling — native Judge.me form/widget untouched.
+  (function () {
+    function normalizeReviews() {
+      document.querySelectorAll('#judgeme_product_reviews .jdgm-rev').forEach(function (rev) {
+        var header = rev.querySelector('.jdgm-rev__header');
+        if (header && header.dataset.pcGrid !== 'true') header.dataset.pcGrid = 'true';
+      });
+    }
+    function init() {
+      normalizeReviews();
+      if ('MutationObserver' in window) {
+        var w = document.getElementById('judgeme_product_reviews');
+        if (w) new MutationObserver(normalizeReviews).observe(w, { childList: true, subtree: true });
+      }
+      document.addEventListener('jdgm:loaded', normalizeReviews);
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+    else init();
+  })();
+</script>
