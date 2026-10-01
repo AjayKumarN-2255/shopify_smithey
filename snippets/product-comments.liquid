@@ -44,12 +44,8 @@
 
     <div class="product-comments__widget">
       <!-- Start of Judge.me code -->
-      <script>
-        window.jdgm = window.jdgm || {};
-        jdgm.SHOP_DOMAIN = jdgm.SHOP_DOMAIN || {{ shop.permanent_domain | json }};
-        jdgm.PLATFORM = jdgm.PLATFORM || 'shopify';
-      </script>
-      <script data-cfasync="false" async src="https://cdn.judge.me/widget_preloader.js"></script>
+      <!-- entry-point / entry-key are omitted on purpose. Judge.me's loader
+           uses them to replace this HTML with the default revamp widget. -->
       <div style="clear:both"></div>
       <div
         id="judgeme_product_reviews"
@@ -60,8 +56,6 @@
         data-widget="review"
         data-auto-install="false"
         data-shop-reviews-count="{{ shop.metafields.judgeme.shop_reviews_count | default: 0 | escape }}"
-        data-entry-point="review_widget.js"
-        data-entry-key="review-widget/main.js"
       >
         {{ product.metafields.judgeme.widget }}
       </div>
