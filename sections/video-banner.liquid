@@ -16,7 +16,7 @@
           muted
           loop
           playsinline
-          preload="none"
+          preload="metadata"
           {% if section.settings.poster != blank %}
             poster="{{ section.settings.poster | image_url: width: 1920 }}"
           {% endif %}
@@ -83,31 +83,37 @@
     };
 
     const showOverlay = () => {
+      if (video.controls) return;
+
       if (video.paused && video.currentTime === 0) {
         if (poster) poster.classList.remove('is-hidden');
         if (overlay) overlay.classList.remove('is-hidden');
       }
     };
 
-    const togglePlayback = () => {
-      if (video.paused) {
-        hideOverlay();
-        video.play();
-      } else {
-        video.pause();
-      }
+    const startPlayback = () => {
+      hideOverlay();
+      video.muted = false;
+      video.controls = true;
+      video.play();
     };
 
-    video.addEventListener('click', togglePlayback);
+    video.addEventListener('click', () => {
+      if (video.controls) return;
+      startPlayback();
+    });
 
     if (playButton) {
       playButton.addEventListener('click', (event) => {
         event.stopPropagation();
-        togglePlayback();
+        startPlayback();
       });
     }
 
-    video.addEventListener('play', hideOverlay);
+    video.addEventListener('play', () => {
+      hideOverlay();
+      video.controls = true;
+    });
     video.addEventListener('pause', showOverlay);
     video.addEventListener('ended', showOverlay);
   });
