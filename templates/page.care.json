@@ -1,4 +1,12 @@
-
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "our_story_hero_Vaxz3V": {
@@ -14,8 +22,8 @@
         "title": "Caring for your smithey",
         "subtitle": "Use it often. Care for it well.",
         "image": "shopify://shop_images/2021_Round-Carbon-Roaster_5_-_Large_8b219f46-4d61-47b3-a375-1f1269ad225c.webp",
-        "desktop_height": 50,
-        "mobile_height": 70
+        "desktop_height": 54,
+        "mobile_height": 71
       }
     },
     "media_tabs_nYT7NX": {
@@ -126,6 +134,7 @@
           "settings": {
             "question": "Why is my skillet changing color?",
             "answer": "<p>As you cook with your Smithey, it's normal for the appearance of the seasoning to change. Certain foods—especially acidic ingredients—can strip away a small amount of seasoning. This is completely normal and easy to restore by adding another layer of seasoning. Over time, your Smithey's cooking surface will continue to mature, becoming darker, smoother, and more naturally nonstick. Eventually, it will develop the deep jet-black color that cast iron enthusiasts love—that's the goal!</p>",
+            "open_by_default": false,
             "position": "right",
             "custom_css": ".faq__question-text {\n  color: #112626;\n  font-size: 18px; \n  padding-right:1rem;\n}\n\n.faq__item {\n  border-top: 2px dotted #7e899280;\n  border-bottom: none;\n}\n\n.faq__answer {\n  font-size: 13px;\n  word-spacing: 2px;    \nfont-family: Sentinel, sans-serif !important;\n}\n\n@media (min-width: 920px) {\n  .faq__item {\n    border-top: none;\n    max-width: 28rem;\n    border-bottom: 2px dotted #7e899280;\n  }\n\n  .faq__question-text {\n    font-size: 22px;\n  }\n\n  .faq__answer {\n    word-spacing: unset;\n  }\n\n  .faq__question {\n    align-items: start;\n  }\n}\n\n@media (min-width: 1700px) {\n  .faq__item {\n    max-width: 38rem;\n  }\n}"
           }
@@ -135,12 +144,18 @@
           "settings": {
             "question": "Why is my food sticking?",
             "answer": "<p>When it comes to food sticking on cast iron, it almost always comes down to temperature control. About 9 out of 10 times we see sticking, it’s because the skillet either wasn’t fully preheated or the heat was simply too high.<br/>Whether your seasoning is stripping, or your food is sticking, most temperature control issues can be fixed by taking things<strong>slow and steady.</strong>•<strong>Slow</strong>: Before you add anything to the pan, feel the handle. If it's still cold, the pan isn't ready. Once the handle is warm to the touch, you're good to go. Every cooktop runs a little differently, so letting the handle be your guide takes the guesswork out of it.<br/>•<strong>Steady</strong>: Keep the maximum temperature on your burner no higher than the 50% mark. Cast iron retains heat extremely well, and too much heat can result in your food burning/sticking to the surface of your Smithey.</p>",
+            "open_by_default": false,
             "position": "right",
             "custom_css": ".faq__question-text {\n  color: #112626;\n  font-size: 18px;\n  padding-right:1rem;\n}\n\n.faq__item {\n  border-top: 2px dotted #7e899280;\n  border-bottom: none;\n}\n\n.faq__answer {\n  font-size: 13px;\n  word-spacing: 2px;\n    font-family: Sentinel, sans-serif !important;\n}\n\n@media (min-width: 920px) {\n  .faq__item {\n    border-top: none;\n    max-width: 28rem;\n    border-bottom: 2px dotted #7e899280;\n  }\n\n  .faq__question-text {\n    font-size: 22px;\n  }\n\n  .faq__answer {\n    word-spacing: unset;\n  }\n\n  .faq__question {\n    align-items: start;\n  }\n}\n\n@media (min-width: 1700px) {\n  .faq__item {\n    max-width: 38rem;\n  }\n}"
           }
         }
       },
-      "block_order": ["text_Q4Vcwf", "faq_dRUHAe", "faq_4XUhdR", "faq_4qcnFn"],
+      "block_order": [
+        "text_Q4Vcwf",
+        "faq_dRUHAe",
+        "faq_4XUhdR",
+        "faq_4qcnFn"
+      ],
       "custom_css": [],
       "name": "Content Builder",
       "settings": {
