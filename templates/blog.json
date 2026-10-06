@@ -60,7 +60,7 @@
             "position": "left",
             "btn_position_desktop": "center",
             "btn_position_mobile": "center",
-            "custom_css": "& .content-builder__button-link{\n  font-size:22px; \n  text-transform:uppercase;\n  padding:28px 49px;\n  margin:42px 0;\n}\n&{\n  margin:0;\n}\n@media (min-width: 920px) {\n  & .content-builder__button-link {\n    margin:0;\n     padding: 32px 56px;\n  }\n}"
+            "custom_css": "& .content-builder__button-link{\n  font-size:22px; \n  text-transform:uppercase;\n  padding:28px 49px;\n  margin:42px 0;\n}\n&{\n  margin:0;\n}\n@media (min-width: 920px) {\n  & .content-builder__button-link {\n    margin:0;\n    padding: 36px 63px;\n  }\n}"
           }
         }
       },
