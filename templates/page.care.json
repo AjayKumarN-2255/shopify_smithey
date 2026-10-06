@@ -116,7 +116,7 @@
             "content_mobile_size": 0.9,
             "content_color": "#112626",
             "position": "left",
-            "custom_css": ".content-builder__title{\n  margin:1rem 0;\n}\n.content-builder__content {\n    margin-bottom:2rem;\n    font-family: Sentinel, sans-serif !important;\n}\n\n.content-builder__content a{\n    color:#112626;\n}\n\n@media (min-width: 920px) {\n  .content-builder__content {\n    max-width: 25rem;\n  }\n}\n\n@media (min-width: 1700px) {\n  .content-builder__content {\n    max-width: 28rem;\n    text-align:start;\n  }\n}"
+            "custom_css": ".content-builder__title{\n  margin:40px 0 20px 0 ;\n}\n.content-builder__content {\n    margin-bottom:2rem;\n    font-family: Sentinel, sans-serif !important;\n}\n\n.content-builder__content a{\n    color:#112626;\n}\n\n@media (min-width: 920px) {\n.content-builder__title{\n  margin:1rem 0;\n}\n  .content-builder__content {\n    max-width: 25rem;\n  }\n}\n\n@media (min-width: 1700px) {\n  .content-builder__content {\n    max-width: 28rem;\n    text-align:start;\n  }\n}"
           }
         },
         "faq_dRUHAe": {
