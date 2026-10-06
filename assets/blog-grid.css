@@ -219,7 +219,8 @@
     height: 8.5rem;
   }
   .blog-grid__category {
-    font-size: 14px;
+    font-size: 12px;
+    margin-bottom: 14px;
   }
 
   .blog-grid-__excerpt {
