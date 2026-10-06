@@ -13,6 +13,7 @@
       "type": "our-story-hero",
       "custom_css": [
         ".our-story-hero__content {padding: 12px 38px; border: 5px solid #b68b32;}",
+        "@media (max-width: 374px) {.our-story-hero {height: 256px !important; min-height: 256px !important; }}",
         "@media (min-width: 920px) {.our-story-hero__content {padding: 13px 40px; }}",
         "@media (min-width: 1550px) {.our-story-hero {min-height: 256px !important; }}"
       ],
