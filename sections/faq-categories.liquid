@@ -215,6 +215,54 @@
       line-height: 1.5;
     }
   }
+
+  #faq-categories-{{ section.id }} .faq__icon {
+    position: relative;
+    display: inline-block !important;
+    flex: 0 0 0.75em;
+    width: 0.75em !important;
+    height: 0.75em !important;
+    min-width: 0.75em;
+    min-height: 0.75em;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    line-height: 0 !important;
+    letter-spacing: 0 !important;
+    color: transparent !important;
+    overflow: hidden;
+  }
+
+  #faq-categories-{{ section.id }} .faq__icon.faq-hide {
+    display: none !important;
+  }
+
+  #faq-categories-{{ section.id }} .faq__item.is-open .faq__icon:not(.faq-hide) {
+    display: none !important;
+  }
+
+  #faq-categories-{{ section.id }} .faq__item.is-open .faq__icon.faq-hide {
+    display: inline-block !important;
+  }
+
+  #faq-categories-{{ section.id }} .faq__icon::before,
+  #faq-categories-{{ section.id }} .faq__icon:not(.faq-hide)::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: #8f6a2a;
+    transform: translate(-50%, -50%);
+  }
+
+  #faq-categories-{{ section.id }} .faq__icon::before {
+    width: 0.75em !important;
+    height: 2px !important;
+  }
+
+  #faq-categories-{{ section.id }} .faq__icon:not(.faq-hide)::after {
+    width: 2px !important;
+    height: 0.75em !important;
+  }
 </style>
 
 <script>
