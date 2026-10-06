@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "our_story_hero_Vaxz3V": {
@@ -15,7 +24,7 @@
         "subtitle": "Like a classic car or a well-tended garden, your Smithey gives back what you put into it.",
         "image": "shopify://shop_images/Smithey_1.1_1255.webp",
         "desktop_height": 54,
-        "mobile_height": 70
+        "mobile_height": 71
       }
     },
     "media_tabs_nYT7NX": {
@@ -103,6 +112,7 @@
           "settings": {
             "question": "How often do I need to season my skillet?",
             "answer": "<p>Occasionally, your Smithey may need a fresh layer of seasoning, especially after cooking acidic foods or giving it a thorough scrub to remove stuck-on food. With regular use, your skillet will continue to season naturally, developing a darker, smoother cooking surface over time. If your seasoning has been stripped, simply follow one of the seasoning methods above to restore it.</p>",
+            "open_by_default": false,
             "position": "right",
             "custom_css": ".faq__question-text {\n  color: #112626;\n  font-size: 18px;\n  padding-right:1rem;\n}\n\n.faq__item {\n  border-top: 2px dotted #7e899280;\n  border-bottom: none;\n}\n\n.faq__answer {\n  font-size: 13px;\n  word-spacing: 2px;\nfont-family: Sentinel, sans-serif !important;\n}\n\n@media (min-width: 920px) {\n  .faq__item {\n    border-top: none;\n    max-width: 28rem;\n    border-bottom: 2px dotted #7e899280;\n  }\n\n  .faq__question-text {\n    font-size: 22px;\n  }\n\n  .faq__answer {\n    word-spacing: unset;\n  }\n\n  .faq__question {\n    align-items: start;\n  }\n}\n\n@media (min-width: 1700px) {\n  .faq__item {\n    max-width: 38rem;\n  }\n}"
           }
@@ -112,6 +122,7 @@
           "settings": {
             "question": "Can I cook acidic foods in my Smithey?",
             "answer": "<p>Yes! You can absolutely cook acidic foods in your Smithey. Dishes made with ingredients like tomatoes, lemons, or vinegar may strip or discolor the seasoning, especially on a newer skillet before the seasoning has fully matured. This is completely normal and nothing to worry about—you can simply re-season your Smithey and keep cooking. As your seasoning continues to develop, acidic foods will have less of an effect on the cooking surface.</p>",
+            "open_by_default": false,
             "position": "right",
             "custom_css": ".faq__question-text {\n  color: #112626;\n  font-size: 18px; \n  padding-right:1rem;\n}\n\n.faq__item {\n  border-top: 2px dotted #7e899280;\n  border-bottom: none;\n}\n\n.faq__answer {\n  font-size: 13px;\n  word-spacing: 2px;\nfont-family: Sentinel, sans-serif !important;\n}\n\n@media (min-width: 920px) {\n  .faq__item {\n    border-top: none;\n    max-width: 28rem;\n    border-bottom: 2px dotted #7e899280;\n  }\n\n  .faq__question-text {\n    font-size: 22px;\n  }\n\n  .faq__answer {\n    word-spacing: unset;\n  }\n\n  .faq__question {\n    align-items: start;\n  }\n}\n\n@media (min-width: 1700px) {\n  .faq__item {\n    max-width: 38rem;\n  }\n}"
           }
@@ -121,12 +132,18 @@
           "settings": {
             "question": "Why is my skillet changing color?",
             "answer": "<p>As you cook with your Smithey, it's normal for the appearance of the seasoning to change. Certain foods—especially acidic ingredients—can strip away a small amount of seasoning. This is completely normal and easy to restore by adding another layer of seasoning. Over time, your Smithey's cooking surface will continue to mature, becoming darker, smoother, and more naturally nonstick. Eventually, it will develop the deep jet-black color that cast iron enthusiasts love—that's the goal!</p>",
+            "open_by_default": false,
             "position": "right",
             "custom_css": ".faq__question-text {\n  color: #112626;\n  font-size: 18px;\n  padding-right:1rem;\n}\n\n.faq__item {\n  border-top: 2px dotted #7e899280;\n  border-bottom: none;\n}\n\n.faq__answer {\n  font-size: 13px;\n  word-spacing: 2px;\nfont-family: Sentinel, sans-serif !important;\n}\n\n@media (min-width: 920px) {\n  .faq__item {\n    border-top: none;\n    max-width: 28rem;\n    border-bottom: 2px dotted #7e899280;\n  }\n\n  .faq__question-text {\n    font-size: 22px;\n  }\n\n  .faq__answer {\n    word-spacing: unset;\n  }\n\n  .faq__question {\n    align-items: start;\n  }\n}\n\n@media (min-width: 1700px) {\n  .faq__item {\n    max-width: 38rem;\n  }\n}"
           }
         }
       },
-      "block_order": ["text_Q4Vcwf", "faq_dRUHAe", "faq_4XUhdR", "faq_4qcnFn"],
+      "block_order": [
+        "text_Q4Vcwf",
+        "faq_dRUHAe",
+        "faq_4XUhdR",
+        "faq_4qcnFn"
+      ],
       "custom_css": [],
       "name": "Content Builder",
       "settings": {
