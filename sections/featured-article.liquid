@@ -24,8 +24,14 @@
           {{ section.settings.article.title }}
         </h2>
 
+        {%- liquid
+          assign excerpt_text = section.settings.article.content | strip_html | strip | replace: '​', ''
+          if excerpt_text contains 'burning'
+            assign excerpt_text = excerpt_text | split: 'burning' | first | append: 'burning.'
+          endif
+        -%}
         <div class="featured-article__excerpt">
-          {{ section.settings.article.content | strip_html | truncate: 220 }}
+          {{ excerpt_text }}
         </div>
       </div>
       <div class="featured-article__footer">
@@ -65,8 +71,7 @@
     padding: 28px 14px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    min-height: 28rem;
+    justify-content: flex-start;
   }
 
   .featured-article__category {
@@ -103,6 +108,7 @@
 
   .featured-article__footer {
     width: 100%;
+    margin-top: 88px;
     padding: 0.75rem 0;
     border-top: 2px solid #b68b32;
   }
@@ -132,6 +138,7 @@
     }
     .featured-article__content {
       min-height: unset;
+      justify-content: space-between;
     }
     .featured-article__category {
       font-size: 11px;
@@ -152,6 +159,7 @@
     }
     .featured-article__footer {
       width: 100%;
+      margin-top: 0;
       padding: 1rem 0;
     }
     .featured-article__link {
