@@ -219,11 +219,11 @@
   #faq-categories-{{ section.id }} .faq__icon {
     position: relative;
     display: inline-block !important;
-    flex: 0 0 0.75em;
-    width: 0.75em !important;
-    height: 0.75em !important;
-    min-width: 0.75em;
-    min-height: 0.75em;
+    flex: 0 0 1.125em;
+    width: 1.125em !important;
+    height: 1.125em !important;
+    min-width: 1.125em;
+    min-height: 1.125em;
     font-size: 16px !important;
     font-weight: 400 !important;
     line-height: 0 !important;
@@ -255,13 +255,33 @@
   }
 
   #faq-categories-{{ section.id }} .faq__icon::before {
-    width: 0.75em !important;
+    width: 1.125em !important;
     height: 2px !important;
   }
 
   #faq-categories-{{ section.id }} .faq__icon:not(.faq-hide)::after {
     width: 2px !important;
-    height: 0.75em !important;
+    height: 1.125em !important;
+  }
+
+  @media (min-width: 920px) {
+    #faq-categories-{{ section.id }} .faq__icon {
+      flex: 0 0 0.75em;
+      width: 0.75em !important;
+      height: 0.75em !important;
+      min-width: 0.75em;
+      min-height: 0.75em;
+    }
+
+    #faq-categories-{{ section.id }} .faq__icon::before {
+      width: 0.75em !important;
+      height: 2px !important;
+    }
+
+    #faq-categories-{{ section.id }} .faq__icon:not(.faq-hide)::after {
+      width: 2px !important;
+      height: 0.75em !important;
+    }
   }
 </style>
 
