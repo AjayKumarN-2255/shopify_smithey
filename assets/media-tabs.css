@@ -18,6 +18,7 @@
 .media-tabs__navigation {
   display: flex;
   justify-content: center;
+  overflow: scroll;
   gap: 1rem;
 }
 
@@ -26,6 +27,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.103rem;
+  text-wrap: nowrap;
   padding: 0.5rem 0;
   color: #7e8989;
   border: none;
