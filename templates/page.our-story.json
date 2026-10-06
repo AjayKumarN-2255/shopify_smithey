@@ -192,12 +192,12 @@
             "title_desktop_size": 2,
             "title_mobile_size": 1,
             "title_color": "#a91010",
-            "content": "<h2>From the kitchen to the campfire, <em><strong>USE IT WELL.</strong></em></h2>",
+            "content": "<h2>From the kitchen to the campfire,&nbsp;<strong>USE IT WELL.</strong></h2>",
             "content_desktop_size": 1.8,
             "content_mobile_size": 2.6,
             "content_color": "#112626",
             "position": "right",
-            "custom_css": ".content-builder__content h2 {\n      text-align: center;\n       font-weight: 400 !important;\n       line-height: 1.6;\n       letter-spacing: 1px;\n       margin: 2rem 0 1.8rem 0;\n}\n.content-builder__content em {\n    color:#b68b32;\n}\n@media (min-width: 920px) {\n .content-builder__content {\n    text-align: center;\n    margin-top:3.5rem;\n  }\n}\n\n@media (min-width: 1700px) {\n   .content-builder__content {\n      max-width:25rem;\n      text-align:center;\n      margin:3.5rem auto;\n  }\n}"
+            "custom_css": ".content-builder__content h2 {\n      text-align: center;\n       font-weight: 400 !important;\n       line-height: 1.6;\n       letter-spacing: 1px;\n       margin: 2rem 0 1.8rem 0;\n}\n.content-builder__content strong {\n    color:#b68b32;\n}\n@media (min-width: 920px) {\n .content-builder__content {\n    text-align: center;\n    margin-top:3.5rem;\n  }\n}\n\n@media (min-width: 1700px) {\n   .content-builder__content {\n      max-width:25rem;\n      text-align:center;\n      margin:3.5rem auto;\n  }\n}"
           }
         }
       },
