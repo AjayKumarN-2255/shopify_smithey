@@ -122,10 +122,6 @@
 
                     <a href="{{ product.url }}" class="bundle-products__card-image-link">
                       <div class="bundle-products__card-image{% if secondary_image != blank %} bundle-products__card-image--has-secondary{% endif %}">
-                        {% if product.tags contains 'engravable' or product.tags contains 'Engravable' %}
-                          <span class="bundle-products__card-badge">Engravable</span>
-                        {% endif %}
-
                         {% if product.featured_image != blank %}
                           {% assign primary_alt = product.featured_image.alt | default: product.title %}
                           {{
@@ -149,6 +145,8 @@
                               alt: secondary_alt
                           }}
                         {% endif %}
+
+                        <span class="bundle-products__card-badge">Engravable</span>
                       </div>
                     </a>
 
