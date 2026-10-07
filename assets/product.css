@@ -1437,9 +1437,21 @@
 }
 
 .product__variants--gift .product__variant-pill,
-.product__variants--gift .product__variant-pill.is-selected {
+.product__variants--gift .product__variant-pill.is-selected,
+.product__variants--gift .product__variant-pill:hover,
+.product__variants--gift .product__variant-pill.is-selected:hover {
   border: 2px solid rgba(36, 80, 80, 0.25);
   border-radius: 2px;
+}
+
+.product__variants--gift .product__variant-pill:hover {
+  background-color: #fff;
+  color: rgb(36, 80, 80);
+}
+
+.product__variants--gift .product__variant-pill.is-selected:hover {
+  background-color: rgb(29, 49, 49);
+  color: rgb(182, 139, 50);
 }
 
 @media screen and (min-width: 920px) {
