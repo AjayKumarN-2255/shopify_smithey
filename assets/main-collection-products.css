@@ -64,6 +64,7 @@
   margin: auto;
   display: grid;
   padding: 13px;
+  padding-bottom: 93px;
   border-bottom: 1px solid #dfe1e3;
   gap: 13px;
 }
