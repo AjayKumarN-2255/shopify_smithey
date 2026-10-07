@@ -294,11 +294,9 @@
 
 .bundle-products__card-price {
   flex-shrink: 0;
-  color: #245050;
-  font-size: 12px;
+  color: rgb(75, 90, 87);
+  font-size: 14px;
   font-weight: 700;
-  border-top: 1px solid #112626;
-  border-bottom: 1px solid #112626;
   padding: 2px 0;
 }
 
