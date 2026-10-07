@@ -43,7 +43,10 @@
                 aria-pressed="{% if first_tab %}true{% else %}false{% endif %}"
                 {{ block.shopify_attributes }}
               >
-                {{ block.settings.title }}
+                {% assign tab_words = block.settings.title | split: ' ' %}
+                {% for word in tab_words %}
+                  <span class="bundle-products__tab-word">{{ word }}</span>
+                {% endfor %}
               </button>
               {% assign first_tab = false %}
             {% endfor %}
