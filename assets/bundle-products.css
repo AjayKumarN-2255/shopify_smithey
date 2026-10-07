@@ -199,6 +199,7 @@
 .bundle-products__card-image-primary {
   position: relative;
   z-index: 1;
+  opacity: 1;
 }
 
 .bundle-products__card-image-secondary {

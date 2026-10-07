@@ -112,11 +112,9 @@
                     </script>
                     {% assign secondary_image = nil %}
                     {% if product.images.size > 1 %}
-                      {% for image in product.images %}
-                        {% unless image == product.featured_image %}
-                          {% assign secondary_image = image %}
-                          {% break %}
-                        {% endunless %}
+                      {% for image in product.images offset: 1 %}
+                        {% assign secondary_image = image %}
+                        {% break %}
                       {% endfor %}
                     {% endif %}
 
