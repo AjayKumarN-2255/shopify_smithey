@@ -1487,6 +1487,12 @@
 
 .product__add-to-cart--gift {
   justify-content: flex-start;
+  background-color: #be893d;
+}
+
+.product__add-to-cart--gift:hover:not(:disabled) {
+  background-color: #112626;
+  color: #be893d;
 }
 
 .product__gift-note {
