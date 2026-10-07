@@ -1412,6 +1412,18 @@
   background-color: #f2f4f4;
 }
 
+.product__variants--static .product__variant-pill:hover {
+  background-color: #fff;
+  border-color: rgb(36, 80, 80);
+  color: rgb(36, 80, 80);
+}
+
+.product__variants--static .product__variant-pill.is-selected:hover {
+  background-color: rgb(29, 49, 49);
+  border-color: rgb(29, 49, 49);
+  color: rgb(182, 139, 50);
+}
+
 .product__variant-pill:focus-visible {
   outline: 2px solid rgb(17, 38, 38);
   outline-offset: 2px;
