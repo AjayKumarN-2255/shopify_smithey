@@ -316,8 +316,8 @@
 
 .bundle-products__card-details {
   display: inline-block;
-  margin-top: 1rem;
-  margin-bottom: 1.1rem;
+  margin-top: 22px;
+  margin-bottom: 0;
   color: #112626;
   font-size: 12px;
   font-weight: 700;
