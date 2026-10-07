@@ -140,13 +140,16 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    box-sizing: border-box;
+    width: 66px;
+    height: 30px;
     background-color: {{ block.settings.offer_bg_color }};
     color: {{ block.settings.offer_text_color }};
     font-family: var(--font-body);
     font-size: 12px;
     font-weight: 500;
     line-height: 1;
-    padding: 0.28rem 0.7rem;
+    padding: 0;
     border-radius: 999px;
     white-space: nowrap;
   }
