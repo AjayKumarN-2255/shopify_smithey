@@ -374,7 +374,7 @@
   margin-top: 0;
   padding: 0 1rem;
   border: 0;
-  background-color: #c49a4a;
+  background-color: #be893d;
   color: #112626;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -389,7 +389,7 @@
 .bundle-products__card-button:hover,
 .bundle-products__card-button.is-added {
   background-color: #112626;
-  color: #c49a4a;
+  color: #be893d;
 }
 
 .bundle-products__card-button.is-added {
@@ -925,13 +925,13 @@
 }
 
 .bundle-summary__submit:not(:disabled) {
-  background: #c49a4a;
+  background: #be893d;
   color: #112626;
 }
 
 .bundle-summary__submit:not(:disabled):hover {
   background: #112626;
-  color: #c49a4a;
+  color: #be893d;
 }
 
 .bundle-summary__submit:disabled {
