@@ -2,8 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const siteHeader = document.querySelector('.site-header');
 
   const syncStickyTop = () => {
+    const isDesktop = window.matchMedia('(min-width: 920px)').matches;
     const height =
-      siteHeader && siteHeader.classList.contains('header--scrolled')
+      isDesktop && siteHeader && siteHeader.classList.contains('header--scrolled')
         ? siteHeader.getBoundingClientRect().height
         : 0;
 

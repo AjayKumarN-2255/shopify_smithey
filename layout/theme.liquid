@@ -107,7 +107,7 @@
     {% endif %}
   </head>
 
-  <body class="{% if template == 'index' %}template-home{% else %}template-other{% endif %}">
+  <body class="{% if template == 'index' %}template-home{% else %}template-other{% endif %}{% if template.suffix == 'byob' %} template-byob{% endif %}">
     {% sections 'header-group' %}
     {% section 'cart-drawer' %}
 
