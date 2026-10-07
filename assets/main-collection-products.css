@@ -267,6 +267,10 @@
 
   .main-collection-products__grid {
     row-gap: 3rem;
+    column-gap: 1.5rem;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 150px;
   }
 
   .product-card__material {
@@ -278,7 +282,7 @@
   }
 
   .product-card__image-wrapper {
-    height: 17.52rem;
+    height: 17.65rem;
   }
 
   .product-card__price {
