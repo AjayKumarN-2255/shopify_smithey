@@ -96,6 +96,7 @@
   text-transform: uppercase;
   white-space: nowrap;
   color: #8a9696;
+  transition: color 0.25s ease;
 }
 
 .bundle-products__tab::after {
@@ -108,9 +109,12 @@
   background-color: transparent;
 }
 
-.bundle-products__tab.is-active,
-.bundle-products__tab:hover {
+.bundle-products__tab.is-active {
   color: #112626;
+}
+
+.bundle-products__tab:hover {
+  color: #b68b32;
 }
 
 .bundle-products__tab.is-active::after {
