@@ -35,9 +35,12 @@
   background-color: transparent;
 }
 
-.inline-nav a:hover,
-.inline-nav a.active {
+.inline-nav a:hover {
   color: #112626;
+}
+
+.inline-nav a.active {
+  color: rgb(0, 0, 0);
 }
 
 .inline-nav a:hover::after,
