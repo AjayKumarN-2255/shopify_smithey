@@ -379,6 +379,21 @@
   color: #c49a4a;
 }
 
+.bundle-products__card-button.is-added {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  line-height: 1;
+}
+
+.bundle-products__added-icon {
+  display: block;
+  flex: 0 0 auto;
+  width: 17px;
+  height: 13px;
+}
+
 .bundle-products__card-button:disabled {
   opacity: 0.45;
   cursor: not-allowed;

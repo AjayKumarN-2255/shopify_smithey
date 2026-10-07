@@ -205,6 +205,34 @@ function initializeBundleBuilder(section) {
     showAddedConfirmation(variant.id);
   }
 
+  function addedConfirmationMarkup() {
+    const label = String(config.addedLabel || 'Added to Bundle').replace(/^\s*✓\s*/, '');
+    const text = document.createElement('span');
+    text.textContent = label;
+
+    const icon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    icon.setAttribute('class', 'bundle-products__added-icon');
+    icon.setAttribute('width', '17');
+    icon.setAttribute('height', '13');
+    icon.setAttribute('viewBox', '0 0 17 13');
+    icon.setAttribute('fill', 'none');
+    icon.setAttribute('aria-hidden', 'true');
+
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('fill-rule', 'evenodd');
+    path.setAttribute('clip-rule', 'evenodd');
+    path.setAttribute(
+      'd',
+      'M16.3064 0.407958C16.8503 0.951903 16.8503 1.83381 16.3064 2.37776L6.09212 12.592C5.80661 12.8776 5.41125 13.0251 5.00848 12.9965C4.60572 12.9679 4.2352 12.7659 3.99294 12.4429L0.278653 7.49047C-0.182899 6.87507 -0.0581782 6.00203 0.557225 5.54047C1.17263 5.07892 2.04567 5.20364 2.50722 5.81905L5.25792 9.48664L14.3366 0.407958C14.8806 -0.135986 15.7625 -0.135986 16.3064 0.407958Z'
+    );
+    path.setAttribute('fill', 'currentColor');
+    icon.append(path);
+
+    const wrap = document.createElement('span');
+    wrap.append(icon, text);
+    return wrap.innerHTML;
+  }
+
   function showAddedConfirmation(variantId) {
     section.querySelectorAll('.bundle-products__card').forEach((card) => {
       const button = card.querySelector('[data-add-to-bundle]');
@@ -215,7 +243,7 @@ function initializeBundleBuilder(section) {
       if (!variant || variant.id !== variantId) return;
 
       button.classList.add('is-added');
-      button.textContent = '✓ Added to Bundle';
+      button.innerHTML = addedConfirmationMarkup();
 
       const pending = addedTimers.get(button);
       if (pending) clearTimeout(pending);
