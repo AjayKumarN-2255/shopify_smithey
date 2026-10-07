@@ -1436,6 +1436,12 @@
   color: rgb(182, 139, 50);
 }
 
+.product__variants--gift .product__variant-pill,
+.product__variants--gift .product__variant-pill.is-selected {
+  border: 2px solid rgba(36, 80, 80, 0.25);
+  border-radius: 2px;
+}
+
 @media screen and (min-width: 920px) {
   /* Desktop – matches desc style (3 per row, centered, inside bordered info card) */
   .product__variants {

@@ -141,7 +141,7 @@
           {% endif %}
 
           {% unless product.has_only_default_variant %}
-            <div class="product__variants{% if product.handle contains 'glass-lid' %} product__variants--static{% endif %}" data-product-variants>
+            <div class="product__variants{% if product.handle contains 'glass-lid' %} product__variants--static{% endif %}{% if product.handle contains 'giftcard' or product.handle contains 'gift-card' %} product__variants--gift{% endif %}" data-product-variants>
               {% for option in product.options_with_values %}
                 {% assign option_index = forloop.index0 %}
                 {% assign selected_value = option.selected_value | default: option.values.first %}
