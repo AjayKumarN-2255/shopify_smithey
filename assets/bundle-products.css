@@ -572,6 +572,11 @@
 }
 
 @media (min-width: 1700px) {
+  .bundle-products__title,
+  .bundle-products__grid {
+    max-width: 1355px;
+  }
+
   .bundle-products__grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
