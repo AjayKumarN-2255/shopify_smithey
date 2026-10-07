@@ -307,7 +307,7 @@
   color: #112626;
   font-size: 14px;
   font-weight: 500;
-  line-height: 1.45;
+  line-height: 18.2px;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;
@@ -589,6 +589,7 @@
   .bundle-products__card-description {
     margin-top: 14px;
     margin-bottom: 32px;
+    line-height: 1.45;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
