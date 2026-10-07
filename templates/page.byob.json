@@ -70,7 +70,7 @@
         "desktop_padding": 2,
         "mobile_padding": 0,
         "show_features": false,
-        "custom_css": "#SECTION_ID {\n  opacity:0.95\n}\n#SECTION_ID .content-builder__container {\n  flex-direction: column-reverse;\n}\n#SECTION_ID .content-builder__left {\n  padding: 21px 8px;\n}\n@media (min-width: 920px) {\n  #SECTION_ID .content-builder__container {\n    flex-direction: row;\n    padding-left: 0;\n    padding-right: 0;\n  }\n#SECTION_ID .content-builder__left {\n  padding: 24px 40px;\n}\n}\n@media (min-width: 1700px) {\n  #SECTION_ID .content-builder__left {\n     display:flex;\n     justify-content:center;\n  }\n}"
+        "custom_css": "#SECTION_ID {\n  opacity:0.95\n}\n#SECTION_ID .content-builder__container {\n  flex-direction: column-reverse;\n}\n#SECTION_ID .content-builder__left {\n  gap:24px;\n  padding: 21px 8px;\n}\n@media (min-width: 920px) {\n  #SECTION_ID .content-builder__container {\n    flex-direction: row;\n    padding-left: 0;\n    padding-right: 0;\n  }\n#SECTION_ID .content-builder__left {\n  padding: 24px 40px;\n}\n}\n@media (min-width: 1700px) {\n  #SECTION_ID .content-builder__left {\n     display:flex;\n     justify-content:center;\n  }\n}"
       }
     },
     "bundle-products": {
