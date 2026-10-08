@@ -455,7 +455,7 @@ body.is-search-open .section-announcement-bar {
 
   .header-left span,
   .header-right-nav span {
-    color: white;
+    color: #f3f3f3;
     cursor: pointer;
   }
 
