@@ -15,6 +15,7 @@
   color: #b68b32;
   text-transform: uppercase;
   font-size: 8px;
+  font-weight: 400;
 }
 
 .footer__logo {
@@ -183,7 +184,7 @@
   }
   .footer__heading {
     font-size: 0.75rem;
-    font-weight: 700;
+    font-weight: 400;
     margin-bottom: 18px;
   }
 
