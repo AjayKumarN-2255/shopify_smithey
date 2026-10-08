@@ -10,8 +10,17 @@
       {{ block.settings.question }}
     </span>
 
-    <span class="faq__icon">+</span>
-    <span class="faq__icon faq-hide">−</span>
+    <span class="faq__icon" aria-hidden="true">
+      <svg class="faq__icon-plus" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="11" cy="11" r="11" fill="white" fill-opacity="0.66"></circle>
+        <path d="M5.5 11H16.5" stroke="#B68B32" stroke-width="2" stroke-linejoin="round"></path>
+        <path d="M11 5.5V16.5" stroke="#B68B32" stroke-width="2" stroke-linejoin="round"></path>
+      </svg>
+      <svg class="faq__icon-minus" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="11" cy="11" r="11" fill="white" fill-opacity="0.66"></circle>
+        <path d="M16.5 11L5.5 11" stroke="#B68B32" stroke-width="2" stroke-linejoin="round"></path>
+      </svg>
+    </span>
   </div>
 
   <div class="faq__answer">
@@ -48,10 +57,39 @@
     cursor: pointer;
   }
 
+  .faq__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: 20px;
+    height: 20px;
+    line-height: 0;
+  }
+
+  .faq__icon svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .faq__icon .faq__icon-minus {
+    display: none;
+  }
+
+  .faq__item.is-open .faq__icon .faq__icon-plus {
+    display: none;
+  }
+
+  .faq__item.is-open .faq__icon .faq__icon-minus {
+    display: block;
+  }
+
   @media (max-width: 919px) {
     .faq__icon {
-      font-size: 20px !important;
-      line-height: 1;
+      width: 20px;
+      height: 20px;
+      line-height: 0;
       letter-spacing: 0;
       flex: 0 0 auto;
     }
@@ -73,18 +111,15 @@
     margin: 1rem 0;
   }
 
-  .faq__item.is-open .faq__icon:not(.faq-hide) {
-    display: none;
-  }
-
-  .faq__item.is-open .faq__icon.faq-hide {
-    display: inline;
-  }
-
   @media (min-width: 920px) {
     .faq__question-text,
     .faq__icon {
       font-size: 22px;
+    }
+
+    .faq__icon {
+      width: 22px;
+      height: 22px;
     }
 
     .faq__answer {
