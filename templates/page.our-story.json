@@ -35,7 +35,7 @@
             "title_desktop_size": 1.5,
             "title_mobile_size": 2.1,
             "title_color": "#b68b32",
-            "content": "<p>Smithey Ironware is a backyard story. Our founder, Isaac Morton, hatched the idea for Smithey while toying around his woodshed admiring the smooth surfaces and timeless logos of vintage ironware design.  Here, he developed an expertise in restoring old and forgotten pieces into surprisingly stunning cookware, which he would then gift to friends and family.</p>",
+            "content": "<p>Smithey Ironware is a backyard story. Our founder, Isaac Morton, hatched the idea for Smithey while toying around his woodshed admiring the smooth surfaces and timeless logos of vintage ironware design. &nbsp;Here, he developed an expertise in restoring old and forgotten pieces into surprisingly stunning cookware, which he would then gift to friends and family.</p>",
             "content_desktop_size": 0.8,
             "content_mobile_size": 1,
             "content_color": "#112626",
@@ -79,7 +79,7 @@
             "content_mobile_size": 1,
             "content_color": "#112626",
             "position": "right",
-            "custom_css": ".content-builder__content {\n  margin-bottom: 30px;\n}\n\n@media (min-width: 920px) {\n  .content-builder__content {\n    margin-top: 4rem;\n  }\n}"
+            "custom_css": ".content-builder__content {\n  margin-bottom: 30px;\n}\n\n@media (min-width: 920px) {\n  .content-builder__content {\n    margin-top: 4rem;\n  }\n}\n\n@media (min-width: 1600px) {\n  .content-builder__content {\n    margin-bottom: 0;\n  }\n}"
           }
         }
       },
