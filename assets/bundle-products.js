@@ -484,10 +484,17 @@ function initializeBundleBuilder(section) {
   }
 
   function syncProductButtons() {
+    const bundledProductIds = new Set(bundleItems.map((item) => item.productId));
+
     section.querySelectorAll('.bundle-products__card').forEach((card) => {
       const button = card.querySelector('[data-add-to-bundle]');
+      const tick = card.querySelector('[data-bundle-tick]');
       const product = readProduct(card);
-      if (!button || !product) return;
+      if (!product) return;
+
+      if (tick) tick.hidden = !bundledProductIds.has(product.productId);
+
+      if (!button) return;
 
       const variant = selectedVariant(card, product);
       button.disabled = !variant || !variant.available;

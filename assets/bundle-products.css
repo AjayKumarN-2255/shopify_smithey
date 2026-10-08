@@ -243,6 +243,28 @@
   line-height: 1.2;
 }
 
+.bundle-products__card-tick {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 4;
+  display: block;
+  width: 28px;
+  height: 28px;
+  line-height: 0;
+  pointer-events: none;
+}
+
+.bundle-products__card-tick svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.bundle-products__card-tick[hidden] {
+  display: none !important;
+}
+
 .bundle-products__card-content {
   padding: 0;
 }
@@ -568,6 +590,13 @@
 
   .bundle-products__card-badge {
     display: block;
+  }
+
+  .bundle-products__card-tick {
+    top: 12px;
+    right: 12px;
+    width: 40px;
+    height: 40px;
   }
 
   .bundle-products__card-content {
