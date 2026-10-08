@@ -296,20 +296,23 @@
 
 .bundle-products__card-reviews {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 0.4rem;
   min-width: 0;
 }
 
 .bundle-products__card-rating {
   color: #be893d;
-  font-size: 0.7rem;
-  letter-spacing: 0.04em;
+  font-size: 16px;
+  line-height: 1;
+  letter-spacing: 0;
 }
 
 .bundle-products__card-review-count {
   color: #0c1f2191;
-  font-size: 10px;
+  font-size: 11.2px;
+  font-weight: 700;
 }
 
 .bundle-products__card-price {
@@ -609,6 +612,11 @@
 
   .bundle-products__card-material {
     margin-bottom: 5px;
+  }
+
+  .bundle-products__card-reviews {
+    flex-direction: row;
+    align-items: center;
   }
 
   .bundle-products__card-description {
