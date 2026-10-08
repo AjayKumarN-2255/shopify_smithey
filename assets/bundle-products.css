@@ -198,7 +198,7 @@
 
 .bundle-products__card-image--has-secondary .bundle-products__card-image-primary,
 .bundle-products__card-image--has-secondary .bundle-products__card-image-secondary {
-  transition: opacity 0.45s ease, transform 0.55s ease;
+  transition: opacity 0.45s ease;
 }
 
 .bundle-products__card-image-primary {
@@ -212,7 +212,6 @@
   inset: 0;
   z-index: 2;
   opacity: 0;
-  transform: scale(1.04);
   pointer-events: none;
 }
 
@@ -225,7 +224,6 @@
   .bundle-products__card:hover .bundle-products__card-image-secondary,
   .bundle-products__card:focus-within .bundle-products__card-image-secondary {
     opacity: 1;
-    transform: scale(1);
   }
 }
 
