@@ -115,6 +115,14 @@
       const buttons = section.querySelectorAll('.media-tabs__tab-button');
       const panels = section.querySelectorAll('.media-tabs__panel');
 
+      const scrollTabIntoView = (button) => {
+        const nav = button.closest('.media-tabs__navigation');
+        if (!nav) return;
+
+        const left = button.offsetLeft - (nav.clientWidth - button.offsetWidth) / 2;
+        nav.scrollTo({ left: Math.max(left, 0), behavior: 'smooth' });
+      };
+
       buttons.forEach((button, index) => {
         button.addEventListener('click', () => {
           buttons.forEach((btn) => btn.classList.remove('is-active'));
@@ -122,6 +130,7 @@
 
           button.classList.add('is-active');
           panels[index].classList.add('is-active');
+          scrollTabIntoView(button);
         });
       });
     });

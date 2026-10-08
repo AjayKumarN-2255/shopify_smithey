@@ -7,6 +7,7 @@
 .media-tabs__left,
 .media-tabs__right {
   width: 100%;
+  min-width: 0;
 }
 
 .media-tabs__navigation,
@@ -17,16 +18,28 @@
 
 .media-tabs__navigation {
   display: flex;
-  justify-content: center;
-  overflow: scroll;
-  gap: 1rem;
+  justify-content: flex-start;
+  justify-content: safe center;
+  gap: 1.5rem;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.media-tabs__navigation::-webkit-scrollbar {
+  display: none;
 }
 
 .media-tabs__tab-button {
+  flex: 0 0 auto;
   font-size: 0.857rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.103rem;
+  white-space: nowrap;
   text-wrap: nowrap;
   padding: 0.5rem 0;
   color: #7e8989;
