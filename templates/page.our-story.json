@@ -183,7 +183,7 @@
             "image_desktop_height": 22.2,
             "image_large_desktop_height": 29,
             "position": "right",
-            "custom_css": ""
+            "custom_css": "@media (min-width: 920px) and (max-width: 1024px) {\n\n & img {\n    object-fit: fill;\n  }\n}"
           }
         },
         "text_RdPw9n": {
