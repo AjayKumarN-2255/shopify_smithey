@@ -32,7 +32,9 @@
   justify-content: space-between;
   padding: 1rem;
   gap: 1rem;
-  border-top: 1px dotted gray;
+  border-bottom-width: 1px;
+  border-bottom-style: dashed;
+  border-bottom-color: rgb(126, 137, 146);
   min-width: 0;
 }
 .blog-grid__card-content {
@@ -40,7 +42,9 @@
   flex: 1;
 }
 .blog-grid__card:last-child {
-  border-bottom: 1px dotted gray;
+  border-bottom-width: 1px;
+  border-bottom-style: dashed;
+  border-bottom-color: rgb(126, 137, 146);
 }
 .blog-grid__carousel-image {
   position: relative;
