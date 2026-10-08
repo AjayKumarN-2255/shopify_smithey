@@ -141,8 +141,49 @@
       gap: 32px;
       margin-bottom: 3rem;
     }
+    .blog-featured__card {
+      min-width: 0;
+    }
     .blog-featured__image {
       height: 12.75rem;
+    }
+  }
+
+  @media (min-width: 920px) and (max-width: 1250px) {
+    .blog-featured__container {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      padding: 0 1.5rem;
+      gap: 1.25rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .blog-featured__card {
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .blog-featured__image {
+      height: auto;
+      aspect-ratio: 4 / 3;
+    }
+
+    .blog-featured__title {
+      font-size: 22px;
+      overflow-wrap: break-word;
+    }
+
+    .blog-featured__excerpt {
+      max-width: 100%;
+      overflow-wrap: break-word;
+    }
+
+    .blog-featured__tags {
+      padding: 0 1.5rem;
+      max-width: 100%;
+      box-sizing: border-box;
     }
   }
 </style>
