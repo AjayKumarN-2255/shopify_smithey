@@ -98,12 +98,17 @@
                 {% endfor %}
               {% endif %}
 
+              {% assign card_image_width = 800 %}
+              {% if forloop.index == section.settings.featured_product_index_desktop or forloop.index == section.settings.featured_product_index_mobile %}
+                {% assign card_image_width = 1600 %}
+              {% endif %}
+
               <div class="product-card__image-wrapper{% if secondary_image != blank %} product-card__image-wrapper--has-secondary{% endif %}">
                 {% if product.featured_image != blank %}
                   {% assign primary_alt = product.featured_image.alt | default: product.title %}
                   {{
                     product.featured_image
-                    | image_url: width: 800
+                    | image_url: width: card_image_width
                     | image_tag:
                       loading: 'lazy',
                       class: 'product-card__image product-card__image--primary',
@@ -115,7 +120,7 @@
                   {% assign secondary_alt = secondary_image.alt | default: product.title %}
                   {{
                     secondary_image
-                    | image_url: width: 800
+                    | image_url: width: card_image_width
                     | image_tag:
                       loading: 'lazy',
                       class: 'product-card__image product-card__image--secondary',
