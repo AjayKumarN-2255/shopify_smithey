@@ -163,7 +163,7 @@
         "desktop_padding": 1.6,
         "mobile_padding": 0.8,
         "show_features": false,
-        "custom_css": "#SECTION_ID .content-builder__right {\n  padding-bottom: 2rem;\n}\n\n@media (min-width: 920px) {\n  #SECTION_ID .content-builder__container {\n    gap: 0;\n  }\n\n  #SECTION_ID .content-builder__left {\n    align-items: center;\n  }\n\n  #SECTION_ID .content-builder__right {\n    padding: 0 0 4rem;\n  }\n}\n@media (min-width: 1700px) {\n  .our-story-hero {\n    height: 29rem !important;\n  }\n}"
+        "custom_css": "#SECTION_ID .content-builder__right {\n  padding-bottom: 2rem;\n}\n\n@media (min-width: 920px) {\n  #SECTION_ID .content-builder__container {\n    gap: 0;\n  }\n\n  #SECTION_ID .content-builder__left {\n    align-items: center;\n  }\n\n  #SECTION_ID .content-builder__right {\n    padding: 0 0 4rem;\n  }\n}\n@media (min-width: 920px) and (max-width: 1250px) {\n  #SECTION_ID .content-builder__container {\n    gap: 2rem;\n  }\n\n  #SECTION_ID .content-builder__left,\n  #SECTION_ID .content-builder__right {\n    width: calc(50% - 1rem);\n    max-width: calc(50% - 1rem);\n  }\n}\n@media (min-width: 1700px) {\n  .our-story-hero {\n    height: 29rem !important;\n  }\n}"
       }
     }
   },
