@@ -204,3 +204,10 @@
     width: 315px;
   }
 }
+
+@media (min-width: 760px) and (max-width: 1020px) {
+  .founder-message__image img {
+    height: unset;
+    max-height: 1040px;
+  }
+}
