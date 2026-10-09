@@ -1,6 +1,66 @@
 {% section 'founder-message' %}
 
+<section class="founder-note-banner" aria-label="Founder note tagline">
+  <p class="founder-note-banner__text founder-note-banner__text--desktop">
+    COOKWARE FOR HOME CHEFS WHO LOVE TO COOK AND APPRECIATE FINE<br>
+    CRAFTSMANSHIP
+  </p>
+  <p class="founder-note-banner__text founder-note-banner__text--mobile">
+    COOKWARE FOR HOME<br>
+    CHEFS WHO LOVE TO<br>
+    COOK AND APPRECIATE<br>
+    FINE CRAFTSMANSHIP
+  </p>
+</section>
+
 <style>
+  .founder-note-banner {
+    background-color: #0b2626;
+    width: 100%;
+    padding: 3.5rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .founder-note-banner__text {
+    margin: 0;
+    color: #ffffff;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: Gotham, ui-sans-serif, sans-serif;
+    font-weight: 700;
+    letter-spacing: 3px;
+  }
+
+  .founder-note-banner__text--desktop {
+    display: none;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .founder-note-banner__text--mobile {
+    display: block;
+    font-size: 16px;
+    line-height: 1.45;
+    max-width: 18rem;
+  }
+
+  @media (min-width: 920px) {
+    .founder-note-banner {
+      padding: 4.5rem 2rem;
+    }
+
+    .founder-note-banner__text--mobile {
+      display: none;
+    }
+
+    .founder-note-banner__text--desktop {
+      display: block;
+      max-width: none;
+    }
+  }
+
   .founder-message__description {
     display: block;
     -webkit-line-clamp: unset;
@@ -25,7 +85,7 @@
     font-size: 13px;
     color: #b68b32;
     margin-bottom: 18px;
-    letter-spacing: 1px;
+    letter-spacing: 3px;
   }
 
   .founder-message__description,
