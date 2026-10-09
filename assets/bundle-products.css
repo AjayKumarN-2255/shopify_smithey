@@ -660,6 +660,20 @@
   .bundle-products__card-image {
     height: 239px;
   }
+
+  .bundle-products__tab {
+    white-space: normal;
+    text-align: center;
+    line-height: 1.15;
+  }
+
+  .bundle-products__tab-word {
+    display: block;
+  }
+
+  .bundle-products__tab-word + .bundle-products__tab-word::before {
+    content: none;
+  }
 }
 
 @media (min-width: 1700px) {
