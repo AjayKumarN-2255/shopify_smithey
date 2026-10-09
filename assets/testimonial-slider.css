@@ -77,6 +77,12 @@
 .testimonial-slider__button svg {
   width: 1.25rem;
   height: auto;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.testimonial-slider__button:hover svg {
+  opacity: 1;
 }
 
 .testimonial-slider__button--prev svg {

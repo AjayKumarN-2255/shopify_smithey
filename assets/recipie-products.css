@@ -116,7 +116,7 @@
 .recipe-slider__button svg {
   width: 1.25rem;
   height: auto;
-  opacity: 0.5;
+  opacity: 0.6;
   transition: opacity 0.2s ease;
 }
 
