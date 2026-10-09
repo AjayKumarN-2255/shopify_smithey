@@ -137,9 +137,7 @@
 }
 
 .product-card__image-wrapper--has-secondary .product-card__image {
-  transition:
-    opacity 0.45s ease,
-    transform 0.55s ease;
+  transition: opacity 0.45s ease;
 }
 
 .product-card__image--primary {
@@ -153,7 +151,7 @@
   inset: 0;
   z-index: 2;
   opacity: 0;
-  transform: scale(1.04);
+  object-fit: contain;
   pointer-events: none;
 }
 
@@ -174,7 +172,6 @@
   .product-card--featured-desktop:hover .product-card__image--secondary,
   .product-card--featured-desktop:focus-within .product-card__image--secondary {
     opacity: 1;
-    transform: scale(1);
   }
 }
 
@@ -408,6 +405,10 @@
 
   .product-card--featured-desktop .product-card__image-wrapper img {
     object-fit: cover;
+  }
+
+  .product-card--featured-desktop .product-card__image--secondary {
+    object-fit: contain;
   }
 
   .product-card--featured-desktop
