@@ -646,6 +646,22 @@
   }
 }
 
+@media (min-width: 920px) and (max-width: 1250px) {
+  .bundle-products__left {
+    padding: 52px 60px;
+  }
+
+  .bundle-products__right {
+    flex: 0 0 405px;
+    width: 405px;
+    max-width: 405px;
+  }
+
+  .bundle-products__card-image {
+    height: 239px;
+  }
+}
+
 @media (min-width: 1700px) {
   .bundle-products__title,
   .bundle-products__grid {
