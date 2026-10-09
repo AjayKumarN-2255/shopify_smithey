@@ -72,20 +72,20 @@
   text-align: left;
 }
 
+/* Mobile → tablet: bottom-right, slightly inset from the right edge */
 .founder-message__signature {
   position: absolute;
-  left: 9%;
-  /* right: auto; */
-  right: 0;
+  left: auto;
+  right: 12px;
   bottom: -30%;
-  width: 315px;
+  width: min(315px, 72vw);
   pointer-events: none;
 }
 
 .founder-message__signature img {
   display: block;
-  width: 315px;
-  height: 160px;
+  width: 100%;
+  height: auto;
   object-fit: contain;
 }
 
@@ -183,9 +183,9 @@
   }
   .founder-message__signature {
     left: auto;
-    right: -25%;
+    right: 0;
     bottom: -10%;
-    width: 315px;
+    width: 260px;
     transform: none;
   }
   .founder-message__highlights {
@@ -194,5 +194,13 @@
     gap: 1.6rem;
     margin-top: 3rem;
     margin-bottom: 2.25rem;
+  }
+}
+
+/* Desktop: allow signature to extend further right */
+@media (min-width: 1025px) {
+  .founder-message__signature {
+    right: -25%;
+    width: 315px;
   }
 }
