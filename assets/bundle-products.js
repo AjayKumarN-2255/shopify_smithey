@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.bundle-products').forEach((section) => {
     initializeBundleTabs(section);
     initializeBundleBuilder(section);
+    initializeBundleModals(section);
   });
 });
 
@@ -665,5 +666,335 @@ function initializeBundleBuilder(section) {
     submitButton.addEventListener('click', addBundleToCart);
   }
 
+  section.addEventListener('click', (event) => {
+    const modalAdd = event.target.closest('[data-bundle-modal-add]');
+    if (!modalAdd || !section.contains(modalAdd)) return;
+
+    const modal = modalAdd.closest('[data-bundle-modal]');
+    const productId = modal && Number(modal.dataset.productId);
+    const card =
+      productId &&
+      section.querySelector(`.bundle-products__card[data-product-id="${productId}"]`);
+    const product = card && readProduct(card);
+    if (!product) return;
+
+    const variantId = Number(modalAdd.dataset.variantId);
+    const variant =
+      product.variants.find((item) => item.id === variantId) || selectedVariant(card, product);
+
+    if (product && variant) {
+      addProductToBundle(product, variant);
+
+      const glassLidInput = modal.querySelector('[data-bundle-modal-glass-lid]');
+      if (glassLidInput && glassLidInput.checked && glassLidInput.dataset.glassLidVariantId) {
+        addProductToBundle(
+          {
+            productId: Number(glassLidInput.dataset.glassLidProductId),
+            title: glassLidInput.dataset.glassLidTitle || 'Glass Lid',
+            engravable: false,
+            variants: [
+              {
+                id: Number(glassLidInput.dataset.glassLidVariantId),
+                title: 'Default',
+                price: Number(glassLidInput.dataset.glassLidPrice || 0),
+                available: true,
+                image: glassLidInput.dataset.glassLidImage || '',
+                inventory: null
+              }
+            ]
+          },
+          {
+            id: Number(glassLidInput.dataset.glassLidVariantId),
+            title: 'Default',
+            price: Number(glassLidInput.dataset.glassLidPrice || 0),
+            available: true,
+            image: glassLidInput.dataset.glassLidImage || '',
+            inventory: null
+          }
+        );
+      }
+
+      closeBundleModal(modal);
+    }
+  });
+
   renderBundle();
+}
+
+function closeBundleModal(modal) {
+  if (!modal) return;
+  modal.hidden = true;
+  modal.setAttribute('aria-hidden', 'true');
+  if (!document.querySelector('.bundle-product-modal:not([hidden])')) {
+    document.body.classList.remove('bundle-product-modal-open');
+  }
+}
+
+function openBundleModal(modal) {
+  if (!modal) return;
+  modal.hidden = false;
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('bundle-product-modal-open');
+  const closeBtn = modal.querySelector('[data-bundle-modal-close]');
+  if (closeBtn) closeBtn.focus();
+}
+
+function formatModalMoney(cents, moneyFormat) {
+  const format = String(moneyFormat || '${{amount}}').replace(/<[^>]*>/g, '');
+  const placeholderRegex = /\{\{\s*(\w+)\s*\}\}/;
+  const placeholder = format.match(placeholderRegex);
+  const amount = (Number(cents) / 100).toFixed(2);
+  const [dollars, decimal] = amount.split('.');
+  const withCommas = dollars.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+  let value = `${withCommas}.${decimal}`;
+
+  if (placeholder && placeholder[1] === 'amount_no_decimals') {
+    value = withCommas;
+  }
+
+  const formatted = placeholder ? format.replace(placeholderRegex, value) : `$${value}`;
+  return formatted.replace(/([.,]00)(?!\d)/, '');
+}
+
+function initializeBundleModalGallery(modal) {
+  const gallery = modal.querySelector('[data-bundle-modal-gallery]');
+  if (!gallery || gallery.dataset.bound === 'true') return;
+  gallery.dataset.bound = 'true';
+
+  const track = gallery.querySelector('[data-bundle-modal-track]');
+  const slides = [...gallery.querySelectorAll('[data-bundle-modal-slide]')];
+  const thumbnails = [...gallery.querySelectorAll('[data-bundle-modal-thumbnail]')];
+  if (!track || slides.length <= 1 || !thumbnails.length) return;
+
+  let activeIndex = 0;
+
+  const setActiveThumbnail = (index) => {
+    if (index < 0 || index >= slides.length) return;
+    activeIndex = index;
+    thumbnails.forEach((thumbnail, thumbnailIndex) => {
+      thumbnail.setAttribute('aria-current', thumbnailIndex === index ? 'true' : 'false');
+    });
+  };
+
+  const scrollToSlide = (index) => {
+    const slide = slides[index];
+    if (!slide) return;
+    slide.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+    setActiveThumbnail(index);
+  };
+
+  thumbnails.forEach((thumbnail) => {
+    thumbnail.addEventListener('click', () => {
+      const index = Number.parseInt(thumbnail.dataset.imageIndex, 10);
+      if (Number.isNaN(index)) return;
+      scrollToSlide(index);
+    });
+  });
+
+  track.addEventListener(
+    'scroll',
+    () => {
+      const trackRect = track.getBoundingClientRect();
+      const trackCenter = trackRect.left + trackRect.width / 2;
+      let closestIndex = 0;
+      let closestDistance = Number.POSITIVE_INFINITY;
+
+      slides.forEach((slide, index) => {
+        const slideRect = slide.getBoundingClientRect();
+        const distance = Math.abs(slideRect.left + slideRect.width / 2 - trackCenter);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = index;
+        }
+      });
+
+      setActiveThumbnail(closestIndex);
+    },
+    { passive: true }
+  );
+}
+
+function initializeBundleModalVariants(modal, moneyFormat) {
+  const variantsNode = modal.querySelector('[data-bundle-modal-variants-json]');
+  const addButtons = [...modal.querySelectorAll('[data-bundle-modal-add]')];
+  const priceEls = [
+    ...modal.querySelectorAll('[data-bundle-modal-price], [data-bundle-modal-price-mobile]')
+  ];
+  if (!variantsNode || !addButtons.length) return;
+
+  let variants = [];
+  try {
+    variants = JSON.parse(variantsNode.textContent) || [];
+  } catch (error) {
+    console.error('Bundle modal variants are invalid', error);
+    return;
+  }
+
+  const selectedOptions = {};
+
+  modal.querySelectorAll('.bundle-product-modal__variant-group').forEach((group) => {
+    const index = group.dataset.optionIndex;
+    const selected = group.querySelector('.bundle-product-modal__variant-pill.is-selected');
+    if (selected) selectedOptions[index] = selected.dataset.bundleModalOptionValue;
+  });
+
+  modal.querySelectorAll('.bundle-product-modal__addon-input').forEach((input) => {
+    const index = input.dataset.bundleModalOptionIndex;
+    selectedOptions[index] = input.checked
+      ? input.dataset.bundleModalOptionValue
+      : input.dataset.bundleModalOptionOff || '';
+  });
+
+  const findMatchingVariant = () => {
+    const optionCount = Object.keys(selectedOptions).length;
+    if (!optionCount) return variants[0];
+
+    return (
+      variants.find((variant) =>
+        Object.keys(selectedOptions).every((index) => {
+          const optionKey = `option${Number(index) + 1}`;
+          return String(variant[optionKey] || '') === String(selectedOptions[index] || '');
+        })
+      ) || variants[0]
+    );
+  };
+
+  const syncVariantUi = () => {
+    const variant = findMatchingVariant();
+    if (!variant) return;
+
+    addButtons.forEach((button) => {
+      button.dataset.variantId = String(variant.id);
+      button.disabled = variant.available === false;
+    });
+
+    priceEls.forEach((priceEl) => {
+      priceEl.textContent = formatModalMoney(variant.price, moneyFormat);
+    });
+
+    const card = modal.closest('.bundle-products__card');
+    const select = card && card.querySelector('[data-variant-select]');
+    if (select) {
+      select.value = String(variant.id);
+      select.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+  };
+
+  if (modal.dataset.variantsBound === 'true') {
+    syncVariantUi();
+    return;
+  }
+  modal.dataset.variantsBound = 'true';
+
+  modal.addEventListener('click', (event) => {
+    const pill = event.target.closest('.bundle-product-modal__variant-pill');
+    if (pill && modal.contains(pill)) {
+      const group = pill.closest('.bundle-product-modal__variant-group');
+      if (!group) return;
+
+      group.querySelectorAll('.bundle-product-modal__variant-pill').forEach((item) => {
+        item.classList.remove('is-selected');
+        item.setAttribute('aria-checked', 'false');
+      });
+      pill.classList.add('is-selected');
+      pill.setAttribute('aria-checked', 'true');
+      selectedOptions[pill.dataset.bundleModalOptionIndex] = pill.dataset.bundleModalOptionValue;
+      syncVariantUi();
+    }
+  });
+
+  modal.addEventListener('change', (event) => {
+    const input = event.target.closest('.bundle-product-modal__addon-input');
+    if (!input || !modal.contains(input)) return;
+
+    const index = input.dataset.bundleModalOptionIndex;
+    selectedOptions[index] = input.checked
+      ? input.dataset.bundleModalOptionValue
+      : input.dataset.bundleModalOptionOff || '';
+    syncVariantUi();
+  });
+
+  syncVariantUi();
+}
+
+function initializeBundleModals(section) {
+  const configNode = section.querySelector('[data-bundle-config]');
+  let moneyFormat = '${{amount}}';
+  if (configNode) {
+    try {
+      const config = JSON.parse(configNode.textContent);
+      moneyFormat = config.moneyFormat || moneyFormat;
+    } catch (error) {
+      // keep default money format
+    }
+  }
+
+  section.querySelectorAll('[data-bundle-modal]').forEach((modal) => {
+    initializeBundleModalGallery(modal);
+    initializeBundleModalVariants(modal, moneyFormat);
+  });
+
+  section.addEventListener('click', (event) => {
+    const closeTrigger = event.target.closest('[data-bundle-modal-close]');
+    if (closeTrigger) {
+      const modal = closeTrigger.closest('[data-bundle-modal]');
+      closeBundleModal(modal);
+      return;
+    }
+
+    if (!event.target.closest('[data-bundle-modal]')) {
+      const openTrigger = event.target.closest('[data-bundle-modal-open]');
+      const card = event.target.closest('.bundle-products__card');
+      const interactive = event.target.closest(
+        '[data-add-to-bundle], [data-variant-select], .bundle-products__variant-label, .bundle-products__card-actions'
+      );
+
+      if (openTrigger && section.contains(openTrigger)) {
+        const productId = openTrigger.dataset.bundleModalOpen;
+        const modal = section.querySelector(`[data-bundle-modal][data-product-id="${productId}"]`);
+        if (modal) openBundleModal(modal);
+        return;
+      }
+
+      if (card && section.contains(card) && !interactive) {
+        const productId = card.dataset.productId;
+        const modal = section.querySelector(`[data-bundle-modal][data-product-id="${productId}"]`);
+        if (modal) openBundleModal(modal);
+        return;
+      }
+    }
+
+    const readMore = event.target.closest('[data-bundle-modal-read-more]');
+    if (readMore) {
+      const why = readMore.closest('[data-bundle-modal-why]');
+      if (!why) return;
+      const shortText = why.querySelector('[data-bundle-modal-why-short]');
+      const fullText = why.querySelector('[data-bundle-modal-why-full]');
+      const expanded = readMore.getAttribute('aria-expanded') === 'true';
+
+      if (shortText) shortText.hidden = !expanded;
+      if (fullText) fullText.hidden = expanded;
+      readMore.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+      readMore.textContent = expanded ? 'Read more' : 'Read less';
+      return;
+    }
+
+    const accordionHeader = event.target.closest('.bundle-product-modal__accordion-header');
+    if (accordionHeader) {
+      const accordion = accordionHeader.closest('[data-bundle-modal-accordion]');
+      if (!accordion) return;
+      const body = accordion.querySelector('.bundle-product-modal__accordion-body');
+      const isOpen = accordion.classList.contains('is-open');
+
+      accordion.classList.toggle('is-open', !isOpen);
+      accordionHeader.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+      if (body) body.hidden = isOpen;
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+    const openModal = section.querySelector('.bundle-product-modal:not([hidden])');
+    if (openModal) closeBundleModal(openModal);
+  });
 }

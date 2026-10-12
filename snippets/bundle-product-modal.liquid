@@ -1,0 +1,398 @@
+{% comment %}
+  BYOB product quick-view modal.
+  Layout: max-width 1100px, two equal columns, 28px gap.
+  Content adapted from snippets/product-details.liquid for bundle context.
+{% endcomment %}
+
+{% assign rating = product.metafields.custom.rating.value | default: 5 %}
+{% assign reviews_count = product.metafields.custom.reviews_count | default: 0 %}
+{% assign featured_image = product.featured_image | default: product.images.first %}
+{% assign capacity = product.metafields.custom.capacity.value | default: product.metafields.custom.capacity | default: product.metafields.custom.serves.value | default: product.metafields.custom.serves %}
+{% assign features_content = product.metafields.custom.features.value | default: product.metafields.custom.features %}
+{% assign dimensions_content = product.metafields.custom.dimensions.value | default: product.metafields.custom.dimensions | default: product.metafields.custom.specs.value | default: product.metafields.custom.specs %}
+{% assign why_text = product.description | strip_html | strip %}
+{% assign why_short = why_text | truncate: 220 %}
+{% assign why_needs_more = false %}
+{% if why_text.size > 220 %}
+  {% assign why_needs_more = true %}
+{% endif %}
+{% assign is_engravable = false %}
+{% if product.tags contains 'engravable' or product.tags contains 'Engravable' %}
+  {% assign is_engravable = true %}
+{% endif %}
+
+<div
+  class="bundle-product-modal"
+  data-bundle-modal
+  data-product-id="{{ product.id }}"
+  hidden
+  aria-hidden="true"
+>
+  <div class="bundle-product-modal__overlay" data-bundle-modal-close></div>
+
+  <div
+    class="bundle-product-modal__dialog"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="bundle-product-modal-title-{{ product.id }}"
+  >
+    <button
+      type="button"
+      class="bundle-product-modal__close"
+      data-bundle-modal-close
+      aria-label="Close product details"
+    >
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="16" cy="16" r="16" fill="#F3F3F3"></circle>
+        <path d="M27 5H5V27H27V5Z" fill="#F3F3F3"></path>
+        <path d="M22.1875 9.8125L9.8125 22.1875" stroke="#112626" stroke-width="2" stroke-linejoin="round"></path>
+        <path d="M22.1875 22.1875L9.8125 9.8125" stroke="#112626" stroke-width="2" stroke-linejoin="round"></path>
+      </svg>
+    </button>
+
+    <div class="bundle-product-modal__layout">
+      <div class="bundle-product-modal__media-column">
+        <div class="bundle-product-modal__mobile-header">
+          <div class="bundle-product-modal__mobile-header-top">
+            <h2 class="bundle-product-modal__mobile-title">{{ product.title }}</h2>
+            <div class="bundle-product-modal__mobile-pricing">
+              {% if product.compare_at_price > product.price %}
+                <span class="bundle-product-modal__mobile-compare-price">
+                  {{ product.compare_at_price | money }}
+                </span>
+              {% endif %}
+              <span class="bundle-product-modal__mobile-price" data-bundle-modal-price-mobile>
+                {{ product.selected_or_first_available_variant.price | money }}
+              </span>
+            </div>
+          </div>
+
+          <div class="bundle-product-modal__mobile-reviews">
+            <span class="bundle-product-modal__stars" aria-hidden="true">
+              {% for i in (1..5) %}
+                {% if i <= rating %}★{% else %}☆{% endif %}
+              {% endfor %}
+            </span>
+            {% if reviews_count > 0 %}
+              <span class="bundle-product-modal__review-count">{{ reviews_count }} Reviews</span>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="bundle-product-modal__gallery" data-bundle-modal-gallery>
+          <div class="bundle-product-modal__media" data-bundle-modal-track>
+            {% if product.images.size > 0 %}
+              {% for image in product.images %}
+                <div class="bundle-product-modal__slide" data-bundle-modal-slide>
+                  {{
+                    image
+                    | image_url: width: 911, height: 911, crop: 'center'
+                    | image_tag:
+                      loading: 'lazy',
+                      class: 'bundle-product-modal__image',
+                      alt: image.alt | default: product.title,
+                      width: 700,
+                      height: 700,
+                      widths: '500, 700, 911',
+                      sizes: '(min-width: 920px) 536px, 92vw'
+                  }}
+                </div>
+              {% endfor %}
+            {% elsif featured_image %}
+              <div class="bundle-product-modal__slide" data-bundle-modal-slide>
+                {{
+                  featured_image
+                  | image_url: width: 911, height: 911, crop: 'center'
+                  | image_tag:
+                    loading: 'lazy',
+                    class: 'bundle-product-modal__image',
+                    alt: featured_image.alt | default: product.title,
+                    width: 700,
+                    height: 700,
+                    widths: '500, 700, 911',
+                    sizes: '(min-width: 920px) 536px, 92vw'
+                }}
+              </div>
+            {% endif %}
+          </div>
+
+          {% if product.images.size > 1 %}
+            <div class="bundle-product-modal__thumbnails">
+              {% for image in product.images %}
+                <button
+                  type="button"
+                  class="bundle-product-modal__thumbnail"
+                  data-bundle-modal-thumbnail
+                  data-image-index="{{ forloop.index0 }}"
+                  aria-label="{{ image.alt | default: product.title | escape }}"
+                  {% if forloop.first %}
+                    aria-current="true"
+                  {% endif %}
+                >
+                  {{
+                    image
+                    | image_url: width: 150, height: 150, crop: 'center'
+                    | image_tag:
+                      loading: 'lazy',
+                      class: 'bundle-product-modal__thumbnail-image',
+                      alt: image.alt | default: product.title,
+                      width: 150,
+                      height: 150
+                  }}
+                </button>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="bundle-product-modal__mobile-cta">
+          <button
+            type="button"
+            class="bundle-product-modal__add"
+            data-bundle-modal-add
+            data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+            {% unless product.available %}
+              disabled
+            {% endunless %}
+          >
+            {{ add_label | default: 'Add to Bundle' }}
+          </button>
+        </div>
+      </div>
+
+      <div class="bundle-product-modal__details">
+        <div class="bundle-product-modal__info">
+          <h2
+            class="bundle-product-modal__title"
+            id="bundle-product-modal-title-{{ product.id }}"
+          >
+            {{ product.title }}
+          </h2>
+
+          <div class="bundle-product-modal__reviews">
+            <span class="bundle-product-modal__stars" aria-hidden="true">
+              {% for i in (1..5) %}
+                {% if i <= rating %}★{% else %}☆{% endif %}
+              {% endfor %}
+            </span>
+            {% if reviews_count > 0 %}
+              <span class="bundle-product-modal__review-count">{{ reviews_count }} Reviews</span>
+            {% endif %}
+          </div>
+
+          <div class="bundle-product-modal__pricing-row">
+            <div class="bundle-product-modal__pricing">
+              <span class="bundle-product-modal__price" data-bundle-modal-price>
+                {{ product.selected_or_first_available_variant.price | money }}
+              </span>
+              {% if product.compare_at_price > product.price %}
+                <span class="bundle-product-modal__compare-price">
+                  {{ product.compare_at_price | money }}
+                </span>
+              {% endif %}
+            </div>
+
+            {% if capacity != blank %}
+              <p class="bundle-product-modal__capacity">
+                <span class="bundle-product-modal__capacity-icon" aria-hidden="true">
+                  <img
+                    src="https://smithey.com/cdn/shop/files/Group_2421_1.png?v=1694703100"
+                    alt=""
+                    width="14"
+                    height="21"
+                    loading="lazy"
+                  >
+                </span>
+                <span>{{ capacity }}</span>
+              </p>
+            {% endif %}
+          </div>
+
+          {% assign has_lid_option = false %}
+          {% unless product.has_only_default_variant %}
+            <div class="bundle-product-modal__variants" data-bundle-modal-variants>
+              {% for option in product.options_with_values %}
+                {% assign option_index = forloop.index0 %}
+                {% assign selected_value = option.selected_value | default: option.values.first %}
+                {% assign option_name_down = option.name | downcase %}
+                {% assign is_lid_option = false %}
+                {% if option_name_down contains 'lid' or option_name_down contains 'glass' %}
+                  {% assign is_lid_option = true %}
+                  {% assign has_lid_option = true %}
+                {% endif %}
+
+                {% if is_lid_option and option.values.size <= 2 %}
+                  {% assign addon_on_value = '' %}
+                  {% assign addon_off_value = '' %}
+                  {% for value in option.values %}
+                    {% assign value_down = value | downcase %}
+                    {% if value_down contains 'none' or value_down contains 'without' or value_down == 'no' or value_down contains 'no lid' %}
+                      {% assign addon_off_value = value %}
+                    {% else %}
+                      {% assign addon_on_value = value %}
+                    {% endif %}
+                  {% endfor %}
+                  {% if addon_on_value == blank %}
+                    {% assign addon_on_value = option.values.last %}
+                  {% endif %}
+                  {% if addon_off_value == blank %}
+                    {% assign addon_off_value = option.values.first %}
+                  {% endif %}
+                  <label class="bundle-product-modal__addon">
+                    <input
+                      type="checkbox"
+                      class="bundle-product-modal__addon-input"
+                      data-bundle-modal-option-index="{{ option_index }}"
+                      data-bundle-modal-option-value="{{ addon_on_value | escape }}"
+                      data-bundle-modal-option-off="{{ addon_off_value | escape }}"
+                      {% if selected_value == addon_on_value %}
+                        checked
+                      {% endif %}
+                    >
+                    <span class="bundle-product-modal__addon-box" aria-hidden="true"></span>
+                    <span class="bundle-product-modal__addon-label">{{ addon_on_value }}</span>
+                  </label>
+                {% else %}
+                  <div
+                    class="bundle-product-modal__variant-group"
+                    data-option-index="{{ option_index }}"
+                    data-option-name="{{ option.name | escape }}"
+                  >
+                    <p class="bundle-product-modal__variant-label">{{ option.name }}:</p>
+                    <div
+                      class="bundle-product-modal__variant-pills"
+                      role="radiogroup"
+                      aria-label="{{ option.name | escape }}"
+                    >
+                      {% for value in option.values %}
+                        <button
+                          type="button"
+                          class="bundle-product-modal__variant-pill{% if value == selected_value %} is-selected{% endif %}"
+                          data-bundle-modal-option-index="{{ option_index }}"
+                          data-bundle-modal-option-value="{{ value | escape }}"
+                          role="radio"
+                          aria-checked="{% if value == selected_value %}true{% else %}false{% endif %}"
+                        >
+                          {{ value }}
+                        </button>
+                      {% endfor %}
+                    </div>
+                  </div>
+                {% endif %}
+              {% endfor %}
+
+              <script type="application/json" data-bundle-modal-variants-json>
+                {{ product.variants | json }}
+              </script>
+            </div>
+          {% endunless %}
+
+          {% unless has_lid_option or product.handle contains 'glass-lid' %}
+            {% assign glass_lid_product = all_products['glass-lids'] %}
+            {% if glass_lid_product == blank %}
+              {% assign glass_lid_product = all_products['glass-lid'] %}
+            {% endif %}
+            {% if glass_lid_product != blank and glass_lid_product.available %}
+              {% assign glass_lid_variant = glass_lid_product.selected_or_first_available_variant %}
+              <label class="bundle-product-modal__addon">
+                <input
+                  type="checkbox"
+                  class="bundle-product-modal__addon-input"
+                  data-bundle-modal-glass-lid
+                  data-glass-lid-variant-id="{{ glass_lid_variant.id }}"
+                  data-glass-lid-product-id="{{ glass_lid_product.id }}"
+                  data-glass-lid-title="{{ glass_lid_product.title | escape }}"
+                  data-glass-lid-price="{{ glass_lid_variant.price }}"
+                  data-glass-lid-image="{% if glass_lid_product.featured_image %}{{ glass_lid_product.featured_image | image_url: width: 200 }}{% endif %}"
+                >
+                <span class="bundle-product-modal__addon-box" aria-hidden="true"></span>
+                <span class="bundle-product-modal__addon-label">
+                  With Glass Lid (+{{ glass_lid_variant.price | money }})
+                </span>
+              </label>
+            {% else %}
+              <label class="bundle-product-modal__addon">
+                <input
+                  type="checkbox"
+                  class="bundle-product-modal__addon-input"
+                  data-bundle-modal-glass-lid
+                >
+                <span class="bundle-product-modal__addon-box" aria-hidden="true"></span>
+                <span class="bundle-product-modal__addon-label">With Glass Lid (+$40)</span>
+              </label>
+            {% endif %}
+          {% endunless %}
+
+          <button
+            type="button"
+            class="bundle-product-modal__add bundle-product-modal__add--desktop"
+            data-bundle-modal-add
+            data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+            {% unless product.available %}
+              disabled
+            {% endunless %}
+          >
+            {{ add_label | default: 'Add to Bundle' }}
+          </button>
+
+          <p class="bundle-product-modal__engraving-note">Engraving may be added in the cart.</p>
+        </div>
+
+        {% if why_text != blank %}
+          <div class="bundle-product-modal__why">
+            <h3 class="bundle-product-modal__why-title">Why This {% if product.title contains 'Skillet' %}Skillet{% elsif product.title contains 'Set' %}Set{% else %}Product{% endif %}?</h3>
+            <div class="bundle-product-modal__why-content" data-bundle-modal-why>
+              <p class="bundle-product-modal__why-text" data-bundle-modal-why-short>{{ why_short }}</p>
+              {% if why_needs_more %}
+                <p class="bundle-product-modal__why-text" data-bundle-modal-why-full hidden>{{ why_text }}</p>
+                <button type="button" class="bundle-product-modal__read-more" data-bundle-modal-read-more>
+                  Read more
+                </button>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+
+        <div class="bundle-product-modal__accordions">
+          <div class="bundle-product-modal__accordion" data-bundle-modal-accordion>
+            <button type="button" class="bundle-product-modal__accordion-header" aria-expanded="false">
+              <span>Features</span>
+              <span class="bundle-product-modal__accordion-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="bundle-product-modal__accordion-body" hidden>
+              {% if features_content != blank %}
+                {% if features_content.type contains 'rich_text' %}
+                  {{ product.metafields.custom.features | metafield_tag }}
+                {% else %}
+                  {{ features_content }}
+                {% endif %}
+              {% elsif product.description != blank %}
+                {{ product.description }}
+              {% else %}
+                <p>See product page for full feature details.</p>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="bundle-product-modal__accordion" data-bundle-modal-accordion>
+            <button type="button" class="bundle-product-modal__accordion-header" aria-expanded="false">
+              <span>Dimensions &amp; Specs</span>
+              <span class="bundle-product-modal__accordion-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="bundle-product-modal__accordion-body" hidden>
+              {% if dimensions_content != blank %}
+                {% if dimensions_content.type contains 'rich_text' %}
+                  {{ product.metafields.custom.dimensions | default: product.metafields.custom.specs | metafield_tag }}
+                {% else %}
+                  {{ dimensions_content }}
+                {% endif %}
+              {% else %}
+                <p>See product page for full dimensions and specs.</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

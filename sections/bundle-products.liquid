@@ -121,7 +121,12 @@
                       {% endfor %}
                     {% endif %}
 
-                    <a href="{{ product.url }}" class="bundle-products__card-image-link">
+                    <button
+                      type="button"
+                      class="bundle-products__card-image-link"
+                      data-bundle-modal-open="{{ product.id }}"
+                      aria-label="View details for {{ product.title | escape }}"
+                    >
                       <div class="bundle-products__card-image{% if secondary_image != blank %} bundle-products__card-image--has-secondary{% endif %}">
                         {% if product.featured_image != blank %}
                           {% assign primary_alt = product.featured_image.alt | default: product.title %}
@@ -155,10 +160,14 @@
                           </svg>
                         </span>
                       </div>
-                    </a>
+                    </button>
 
                     <div class="bundle-products__card-info">
-                      <a href="{{ product.url }}" class="bundle-products__card-link">
+                      <button
+                        type="button"
+                        class="bundle-products__card-link"
+                        data-bundle-modal-open="{{ product.id }}"
+                      >
                         <div class="bundle-products__card-content">
                           <h3 class="bundle-products__card-title">{{ product.title }}</h3>
 
@@ -188,7 +197,7 @@
                             </span>
                           </div>
                         </div>
-                      </a>
+                      </button>
 
                       {% assign card_description = product.description | strip_html | strip %}
                       {% if card_description != blank %}
@@ -197,9 +206,13 @@
                         </p>
                       {% endif %}
 
-                      <a href="{{ product.url }}" class="bundle-products__card-details">
+                      <button
+                        type="button"
+                        class="bundle-products__card-details"
+                        data-bundle-modal-open="{{ product.id }}"
+                      >
                         See details
-                      </a>
+                      </button>
                     </div>
 
                     <hr class="bundle-products__card-divider">
@@ -231,6 +244,11 @@
                         {{ section.settings.button_text }}
                       </button>
                     </div>
+
+                    {% render 'bundle-product-modal',
+                      product: product,
+                      add_label: section.settings.button_text
+                    %}
                   </article>
                   {% endfor %}
               </div>
