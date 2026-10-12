@@ -128,21 +128,13 @@
                 <h3 class="mobile-panel__section-label">Shop by category</h3>
 
                 <nav class="mobile-panel__links" aria-label="Shop categories">
-                  <a href="{{ pages['byob'].url | default: '/pages/byob' }}">
-                    Build Your Own Bundle
-                  </a>
-                  <a href="{{ collections['accessories'].url | default: '/collections/accessories' }}">
-                    Accessories
-                  </a>
-                  <a href="{{ all_products['glass-lids'].url | default: '/products/glass-lids' }}">
-                    Glass lids
-                  </a>
+                  <a href="{{ pages['byob'].url | default: '/pages/byob' }}"> Build Your Own Bundle </a>
+                  <a href="{{ collections['accessories'].url | default: '/collections/accessories' }}"> Accessories </a>
+                  <a href="{{ all_products['glass-lids'].url | default: '/products/glass-lids' }}"> Glass lids </a>
                   <a href="{{ all_products['no-12-skillet'].url | default: '/products/no-12-skillet' }}">
                     Carbon Steel Lid
                   </a>
-                  <a href="{{ all_products['giftcard'].url | default: '/products/giftcard' }}">
-                    Gift cards
-                  </a>
+                  <a href="{{ all_products['giftcard'].url | default: '/products/giftcard' }}"> Gift cards </a>
                 </nav>
 
                 <a
@@ -165,11 +157,7 @@
                       <a href="{{ article.url }}" class="mobile-panel-cook__feature">
                         <div class="mobile-panel-cook__feature-image">
                           {% if article.image %}
-                            {{
-                              article.image
-                              | image_url: width: 240
-                              | image_tag: loading: 'lazy', alt: article.title
-                            }}
+                            {{ article.image | image_url: width: 240 | image_tag: loading: 'lazy', alt: article.title }}
                           {% endif %}
                         </div>
                         <div class="mobile-panel-cook__feature-body">
@@ -188,9 +176,7 @@
                     <a href="{{ mobile_cook_blog.url }}/tagged/Desserts">Desserts</a>
                   </nav>
 
-                  <a href="{{ mobile_cook_blog.url }}" class="mobile-panel__cta">
-                    All Recipes
-                  </a>
+                  <a href="{{ mobile_cook_blog.url }}" class="mobile-panel__cta"> All Recipes </a>
                 {% endif %}
               </div>
           {% endcase %}
@@ -207,7 +193,7 @@
     position: fixed;
     top: 50px;
     left: 0;
-    padding: 0 1rem;
+    padding: 0 20px;
     height: calc(100vh - 50px);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
@@ -277,9 +263,7 @@
     background-color: #112626;
     transform: translateX(100%);
     visibility: hidden;
-    transition:
-      transform 0.35s ease,
-      visibility 0.35s ease;
+    transition: transform 0.35s ease, visibility 0.35s ease;
     z-index: 1000;
     overflow: hidden;
     display: flex;
