@@ -159,7 +159,7 @@ body.no-scroll {
   top: 0;
   left: 0;
   width: 100%;
-  background: rgba(17, 38, 38, 0.95);
+  background: rgb(17, 38, 38);
   transition: background-color 0.3s ease;
   z-index: 999;
 }
