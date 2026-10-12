@@ -65,6 +65,12 @@
   object-fit: contain;
 }
 
+.comparison-card__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
 .comparison-card__table {
   width: 100%;
   border-collapse: collapse;
@@ -125,7 +131,7 @@
 
 @media (min-width: 920px) {
   .comparison-section {
-    padding: 105px 1rem 0;
+    padding: 105px 0 0;
   }
 
   .comparison-section__eyebrow {
@@ -140,13 +146,22 @@
   .comparison-section__grid {
     flex-direction: row;
     align-items: stretch;
-    gap: 60px;
-    max-width: 57rem;
+    gap: 0;
     margin: auto;
   }
 
   .comparison-card {
     flex: 1;
+  }
+
+  .comparison-card__body {
+    max-width: 30.5rem;
+    padding: 0 30px;
+    box-sizing: border-box;
+  }
+
+  .comparison-card:first-child .comparison-card__body {
+    margin-left: auto;
   }
 
   .comparison-card__title {
@@ -164,7 +179,7 @@
   }
 
   .comparison-card__image img {
-    object-fit: cover;
+    object-fit: fill;
   }
 }
 

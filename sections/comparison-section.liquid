@@ -38,45 +38,47 @@
                   }}
                 </div>
               {% endif %}
+            </div>
 
+            <div class="comparison-card__body">
               <h2 class="comparison-card__title">
                 {{ article.title }}
               </h2>
+
+              <table class="comparison-card__table">
+                <tr>
+                  <th>Material</th>
+                  <td>{{ comparison.material }}</td>
+                </tr>
+
+                <tr>
+                  <th>Key Differences</th>
+                  <td>{{ comparison.key_difference }}</td>
+                </tr>
+
+                <tr>
+                  <th>Uses</th>
+                  <td>{{ comparison.uses }}</td>
+                </tr>
+
+                <tr>
+                  <th>Care</th>
+                  <td>{{ comparison.care }}</td>
+                </tr>
+
+                <tr>
+                  <th>Why Choose</th>
+                  <td>{{ comparison.why_choose }}</td>
+                </tr>
+              </table>
+
+              <a
+                href="{{ comparison.collection.url }}"
+                class="comparison-card__button"
+              >
+                {{ comparison.button_label }}
+              </a>
             </div>
-
-            <table class="comparison-card__table">
-              <tr>
-                <th>Material</th>
-                <td>{{ comparison.material }}</td>
-              </tr>
-
-              <tr>
-                <th>Key Differences</th>
-                <td>{{ comparison.key_difference }}</td>
-              </tr>
-
-              <tr>
-                <th>Uses</th>
-                <td>{{ comparison.uses }}</td>
-              </tr>
-
-              <tr>
-                <th>Care</th>
-                <td>{{ comparison.care }}</td>
-              </tr>
-
-              <tr>
-                <th>Why Choose</th>
-                <td>{{ comparison.why_choose }}</td>
-              </tr>
-            </table>
-
-            <a
-              href="{{ comparison.collection.url }}"
-              class="comparison-card__button"
-            >
-              {{ comparison.button_label }}
-            </a>
           </article>
         {% endif %}
       {% endfor %}
