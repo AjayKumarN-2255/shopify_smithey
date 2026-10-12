@@ -1174,10 +1174,10 @@
 }
 
 .bundle-product-modal__mobile-reviews .bundle-product-modal__review-count {
-  color: #7e8989;
+  color: rgb(75, 90, 87);
   font-family: Gotham, ui-sans-serif, sans-serif;
   font-size: 11px;
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
@@ -1300,9 +1300,10 @@
 }
 
 .bundle-product-modal__review-count {
-  color: #7e8989;
+  color: rgb(75, 90, 87);
   font-family: Gotham, ui-sans-serif, sans-serif;
   font-size: 11px;
+  font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
@@ -1478,7 +1479,7 @@
 
 .bundle-product-modal__engraving-note {
   margin: 0;
-  color: #7e8989;
+  color: rgb(75, 90, 87);
   font-family: Gotham, ui-sans-serif, sans-serif;
   font-size: 12px;
   font-style: normal;
