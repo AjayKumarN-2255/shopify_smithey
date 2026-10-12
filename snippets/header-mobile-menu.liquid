@@ -3,7 +3,10 @@
     <ul class="mobile-menu_left__link">
       <ul class="mobile-menu_left__link">
         <li class="mobile-menu__item mobile-menu__item--hardcoded">
-          <span class="mobile-menu__link">
+          <a
+            href="{{ collections['cast-iron'].url | default: '/collections/cast-iron' }}"
+            class="mobile-menu__link"
+          >
             <span class="mobile-menu__title">CAST IRON</span>
             <img
               src="https://smithey.com/cdn/shop/files/Smithey_Cast_Iron_400.png?v=1763072690&width=200"
@@ -12,11 +15,14 @@
               width="44"
               height="44"
             >
-          </span>
+          </a>
         </li>
 
         <li class="mobile-menu__item mobile-menu__item--hardcoded">
-          <span class="mobile-menu__link">
+          <a
+            href="{{ collections['carbon-steel'].url | default: '/collections/carbon-steel' }}"
+            class="mobile-menu__link"
+          >
             <span class="mobile-menu__title">CARBON STEEL</span>
             <img
               src="https://smithey.com/cdn/shop/files/Smithey_Carbon_Steel_400.png?v=1763072698&width=200"
@@ -25,11 +31,14 @@
               width="44"
               height="44"
             >
-          </span>
+          </a>
         </li>
 
         <li class="mobile-menu__item mobile-menu__item--hardcoded">
-          <span class="mobile-menu__link">
+          <a
+            href="{{ collections['sets'].url | default: '/collections/sets' }}"
+            class="mobile-menu__link"
+          >
             <span class="mobile-menu__title">SETS</span>
             <img
               src="https://smithey.com/cdn/shop/files/Smithey_Sets_400.png?v=1763072704&width=200"
@@ -38,11 +47,14 @@
               width="44"
               height="44"
             >
-          </span>
+          </a>
         </li>
 
         <li class="mobile-menu__item mobile-menu__item--hardcoded">
-          <span class="mobile-menu__link">
+          <a
+            href="{{ collections['accessories'].url | default: '/collections/accessories' }}"
+            class="mobile-menu__link"
+          >
             <span class="mobile-menu__title">ACCESSORIES</span>
             <img
               src="https://smithey.com/cdn/shop/files/Smithey_Accessories_400_1.png?v=1763072712&width=200"
@@ -51,7 +63,7 @@
               width="44"
               height="44"
             >
-          </span>
+          </a>
         </li>
         {% for link in left_menu.links %}
           <li class="mobile-menu__item">
