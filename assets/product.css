@@ -892,14 +892,42 @@
   }
 }
 
+/* Medium screens (~1210): use mobile image so left/right sides are not cropped */
 @media screen and (min-width: 920px) and (max-width: 1250px) {
+  .product-architecture {
+    height: 975px;
+  }
+
+  .product-architecture__image--mobile {
+    display: block;
+  }
+
+  .product-architecture__image--desc {
+    display: none;
+  }
+
   .product-architecture__image {
-    left: 50%;
-    width: 112%;
+    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
     max-width: none;
     object-fit: contain;
-    object-position: center center;
-    transform: translateX(-50%);
+    object-position: top center;
+    transform: none;
+  }
+}
+
+@media screen and (min-width: 1251px) {
+  .product-architecture__image--mobile {
+    display: none;
+  }
+
+  .product-architecture__image--desc {
+    display: block;
   }
 }
 
