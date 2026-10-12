@@ -58,11 +58,11 @@
             <div class="bundle-product-modal__mobile-pricing">
               {% if product.compare_at_price > product.price %}
                 <span class="bundle-product-modal__mobile-compare-price">
-                  {{ product.compare_at_price | money }}
+                  {{ product.compare_at_price | money_without_trailing_zeros }}
                 </span>
               {% endif %}
               <span class="bundle-product-modal__mobile-price" data-bundle-modal-price-mobile>
-                {{ product.selected_or_first_available_variant.price | money }}
+                {{ product.selected_or_first_available_variant.price | money_without_trailing_zeros }}
               </span>
             </div>
           </div>

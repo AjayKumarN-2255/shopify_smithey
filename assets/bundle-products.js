@@ -967,6 +967,7 @@ function initializeBundleModals(section) {
     const readMore = event.target.closest('[data-bundle-modal-read-more]');
     if (readMore) {
       const why = readMore.closest('[data-bundle-modal-why]');
+      const whySection = readMore.closest('.bundle-product-modal__why');
       if (!why) return;
       const shortText = why.querySelector('[data-bundle-modal-why-short]');
       const fullText = why.querySelector('[data-bundle-modal-why-full]');
@@ -976,6 +977,7 @@ function initializeBundleModals(section) {
       if (fullText) fullText.hidden = expanded;
       readMore.setAttribute('aria-expanded', expanded ? 'false' : 'true');
       readMore.textContent = expanded ? 'Read more' : 'Read less';
+      if (whySection) whySection.classList.toggle('is-expanded', !expanded);
       return;
     }
 
